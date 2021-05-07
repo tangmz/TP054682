@@ -1,5 +1,7 @@
 package Assignment;
 
+import static Assignment.Assignment.adminInfo;
+import static Assignment.Assignment.studentInfo;
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -7,7 +9,9 @@ import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.PrintWriter;
+import java.util.Scanner;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -72,10 +76,23 @@ public class Landing extends JFrame implements ActionListener{
             Switch= "AdminL";
         }else if(e.getSource()==login){
             if(Switch=="StudenL"){
-                for(int i=0;i<Assignment.studentInfo.size();i++){
-                    Student studentA = Assignment.studentInfo.get(i);
-                    if (idIn.equals(Assignment.studentInfo.get(i))){
-                        JOptionPane.showMessageDialog(login, Assignment.studentInfo.get(i));
+                String userInput = idIn.getText();
+                for(int i=0; i<Assignment.studentInfo.size(); i++){
+                    Student c = Assignment.studentInfo.get(i);
+                    if(userInput.equals(c.getStuUserN())){
+                        Assignment.whoStudentLogin = c;
+                        break;
+                    }
+                }
+                if(Assignment.whoStudentLogin==null){
+                    JOptionPane.showMessageDialog(login, "Wrong username!");
+                } else{
+                    String passInput = passIn.getText();
+                    if(passInput != Assignment.whoStudentLogin.getStuPass()){
+                        JOptionPane.showMessageDialog(login, "Wrong password!");
+                        Assignment.whoStudentLogin = null;
+                    } else{
+                        setVisible(false);  //same as this.setVisible(false);
                     }
                 }
             JComboBox<String> location2 = (JComboBox<String>) e.getSource();

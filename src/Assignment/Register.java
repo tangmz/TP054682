@@ -69,25 +69,27 @@ public class Register extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
         String selectedLocation = "Test";
         //String selectedLocation = (String)comboBox.getSelectedItem().toString();
-        int studentID = 0;
+        int studentID = 1;
+        int i = 0;
         String studentName = stuName.getText();
         String studentUser = stuUsername.getText();
         String studentPass = stuPass.getText();
         if(e.getSource() == create){
             boolean flag = true;
-            for(int i = 0; i<Assignment.studentInfo.size(); i++){
+            for(i = 0; i<Assignment.studentInfo.size(); i++){
                 Student studentA = Assignment.studentInfo.get(i);
                 if(studentName.equals(studentA.getStuName())){
                     flag = false;
                     break;
                 }
             }
+            studentID = i + 1;
             if (flag){
                 Student studentReg = new Student(studentID,studentName,studentUser,studentPass,selectedLocation);
                 Assignment.studentInfo.add(studentReg);
                 try{
                     PrintWriter f = new PrintWriter("studentLogin.txt");
-                    for(int i=0; i<Assignment.studentInfo.size(); i++){
+                    for(i=0; i<Assignment.studentInfo.size(); i++){
                         Student c = Assignment.studentInfo.get(i);
                         f.println(c.getStuID());
                         f.println(c.getStuName());
@@ -97,7 +99,8 @@ public class Register extends JFrame implements ActionListener{
                         f.println();
                     }
                     f.close();
-                    System.exit(0);
+                    setVisible(false);
+                    Assignment.login.setVisible(true);
                 } catch(Exception ex){
                     System.out.println("Error in stop!");
                 }

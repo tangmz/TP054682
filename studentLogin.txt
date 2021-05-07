@@ -1,10 +1,6 @@
+1
 Ng
-kennethng
-2168
-HI
-
-joo
-123
-123
-HI
+Ng
+1
+Test
 
