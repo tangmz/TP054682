@@ -1,12 +1,16 @@
 package Assignment;
 
+import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Label;
+import java.awt.Panel;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.PrintWriter;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -17,9 +21,25 @@ public class Register extends JFrame implements ActionListener{
     private Label nameL, usernameL, passwordL, locationL;
     private TextField stuName, stuUsername, stuPass, stuPlace;
     private JList regLocation;
+    private JFrame x;
+    private Panel c,s;
     public Register(){
-        String place[] = {"Bukit Jalil", "Putrajaya", "Petaling Jaya", "Shah Alam"};
-        JComboBox<String> location = new JComboBox<>(place);
+        /*JComboBox comboBox = new JComboBox();
+        x = new JFrame();
+        x.setSize(500, 300);
+        x.setLocation(800, 200);
+        x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        c = new Panel();
+        c.setBackground(Color.black);
+        x.add(c,BorderLayout.CENTER);
+        s = new Panel();    //FlowLayout by default
+        x.add(s,BorderLayout.SOUTH);
+        x.setVisible(true);
+        comboBox.addItem("Bukit Jalil");
+        comboBox.addItem("Putrajaya");
+        comboBox.addItem("Petaling Jaya");
+        comboBox.addItem("Shah Alam");
+        comboBox.setSelectedItem(null);*/
         setSize(300,200);
         setLocation(1000,300);
         setLayout(new FlowLayout());
@@ -35,7 +55,6 @@ public class Register extends JFrame implements ActionListener{
         stuPass = new TextField(15);
         create.addActionListener(this);
         exit.addActionListener(this);
-        location.addActionListener(this);
         add(nameL);
         add(stuName);
         add(usernameL);
@@ -43,29 +62,17 @@ public class Register extends JFrame implements ActionListener{
         add(passwordL);
         add(stuPass);
         add(locationL);
-        add(location);
         add(create);
         add(exit);
         setVisible(false);
     }
     public void actionPerformed(ActionEvent e){
+        String selectedLocation = "Test";
+        //String selectedLocation = (String)comboBox.getSelectedItem().toString();
         int studentID = 0;
         String studentName = stuName.getText();
         String studentUser = stuUsername.getText();
         String studentPass = stuPass.getText();
-        JComboBox<String> location2 = (JComboBox<String>) e.getSource();
-        String selectedLocation = (String) location2.getSelectedItem();
-        if (selectedLocation.equals("Bukit Jalil")){
-            System.out.println("Bukit Jalil is selected");
-        } else if (selectedLocation.equals("Putrajaya")){
-            System.out.println("Putrajaya is selected");
-        }else if (selectedLocation.equals("Petaling Jaya")){
-            System.out.println("Petaling Jaya is selected");
-        }else if (selectedLocation.equals("Shah Alam")){
-            System.out.println("Shah Alam is selected");
-        }else{
-            System.out.println("Bukit Jalil is selected");
-        }
         if(e.getSource() == create){
             boolean flag = true;
             for(int i = 0; i<Assignment.studentInfo.size(); i++){
@@ -78,11 +85,27 @@ public class Register extends JFrame implements ActionListener{
             if (flag){
                 Student studentReg = new Student(studentID,studentName,studentUser,studentPass,selectedLocation);
                 Assignment.studentInfo.add(studentReg);
+                try{
+                    PrintWriter f = new PrintWriter("studentLogin.txt");
+                    for(int i=0; i<Assignment.studentInfo.size(); i++){
+                        Student c = Assignment.studentInfo.get(i);
+                        f.println(c.getStuID());
+                        f.println(c.getStuName());
+                        f.println(c.getStuUserN());
+                        f.println(c.getStuPass());
+                        f.println(c.getStuPlace());
+                        f.println();
+                    }
+                    f.close();
+                    System.exit(0);
+                } catch(Exception ex){
+                    System.out.println("Error in stop!");
+                }
             } else{
                 JOptionPane.showMessageDialog(create, "Name has been used!");
             }
         } else if(e.getSource() == exit){
-            Assignment.register.setVisible(false);
+            setVisible(false);
             Assignment.login.setVisible(true);
         }
     }

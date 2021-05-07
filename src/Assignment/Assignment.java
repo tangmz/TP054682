@@ -16,7 +16,7 @@ public class Assignment {
             
             Scanner s = new Scanner(new File("studentLogin.txt"));
             while(s.hasNext()){
-                int a = s.nextInt();
+                int a = Integer.parseInt(s.nextLine());
                 String b = s.nextLine();
                 String c = s.nextLine();
                 String d = s.nextLine();
