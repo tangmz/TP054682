@@ -1,17 +1,26 @@
 package Assignment;
 
 public class Student {
-    private String stuID;
+    private int stuID;
     private String stuName;
     private String stuUserN;
     private String stuPass;
     private String stuPlace;
 
-    public Student(String stuName, String stuUserN, String stuPass, String stuPlace) {
+    public Student(int stuID, String stuName, String stuUserN, String stuPass, String stuPlace) {
+        this.stuID = stuID;
         this.stuName = stuName;
         this.stuUserN = stuUserN;
         this.stuPass = stuPass;
         this.stuPlace = stuPlace;
+    }
+
+    public int getStuID() {
+        return stuID;
+    }
+
+    public void setStuID(int stuID) {
+        this.stuID = stuID;
     }
 
     public String getStuName() {
@@ -45,7 +54,6 @@ public class Student {
     public void setStuPlace(String stuPlace) {
         this.stuPlace = stuPlace;
     }
-
 }
 
 

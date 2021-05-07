@@ -49,45 +49,39 @@ public class Register extends JFrame implements ActionListener{
         setVisible(false);
     }
     public void actionPerformed(ActionEvent e){
+        int studentID = 0;
+        String studentName = stuName.getText();
+        String studentUser = stuUsername.getText();
+        String studentPass = stuPass.getText();
+        JComboBox<String> location2 = (JComboBox<String>) e.getSource();
+        String selectedLocation = (String) location2.getSelectedItem();
+        if (selectedLocation.equals("Bukit Jalil")){
+            System.out.println("Bukit Jalil is selected");
+        } else if (selectedLocation.equals("Putrajaya")){
+            System.out.println("Putrajaya is selected");
+        }else if (selectedLocation.equals("Petaling Jaya")){
+            System.out.println("Petaling Jaya is selected");
+        }else if (selectedLocation.equals("Shah Alam")){
+            System.out.println("Shah Alam is selected");
+        }else{
+            System.out.println("Bukit Jalil is selected");
+        }
         if(e.getSource() == create){
-            String stuID = JOptionPane.showInputDialog(("Enter your ID: "));
             boolean flag = true;
             for(int i = 0; i<Assignment.studentInfo.size(); i++){
-                Student c = Assignment.studentInfo.get(i);
-                if(stuID.equals(c.getStuName())){
+                Student studentA = Assignment.studentInfo.get(i);
+                if(studentName.equals(studentA.getStuName())){
                     flag = false;
                     break;
                 }
             }
-            String stuName = JOptionPane.showInputDialog(("Enter your name: "));
-            boolean flag1 = true;
-            for(int i = 0; i<Assignment.studentInfo.size(); i++){
-                Student c = Assignment.studentInfo.get(i);
-                if(stuName.equals(c.getStuName())){
-                    flag1 = false;
-                    break;
-                }
-            }
-            String stuUserName = JOptionPane.showInputDialog(("Enter your username: "));
-            boolean flag2 = true;
-            for(int i = 0; i<Assignment.studentInfo.size(); i++){
-                Student c = Assignment.studentInfo.get(i);
-                if(stuUserName.equals(c.getStuName())){
-                    flag2 = false;
-                    break;
-                }
-            }
-            JComboBox<String> location2 = (JComboBox<String>) e.getSource();
-            String selectedLocation = (String) location2.getSelectedItem();
             if (flag){
-                String pin = (JOptionPane.showInputDialog("Pin"));
-                Student c = new Student(stuName, stuUserName, pin, selectedLocation);
-                Assignment.studentInfo.add(c);
+                Student studentReg = new Student(studentID,studentName,studentUser,studentPass,selectedLocation);
+                Assignment.studentInfo.add(studentReg);
             } else{
                 JOptionPane.showMessageDialog(create, "Name has been used!");
             }
-        }
-        else if(e.getSource() == exit){
+        } else if(e.getSource() == exit){
             Assignment.register.setVisible(false);
             Assignment.login.setVisible(true);
         }

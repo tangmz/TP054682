@@ -16,12 +16,13 @@ public class Assignment {
             
             Scanner s = new Scanner(new File("studentLogin.txt"));
             while(s.hasNext()){
-                String a = s.nextLine();
+                int a = s.nextInt();
                 String b = s.nextLine();
                 String c = s.nextLine();
                 String d = s.nextLine();
+                String e = s.nextLine();
                 s.nextLine();
-                Student student = new Student(a,b,c,d);
+                Student student = new Student(a,b,c,d, e);
                 studentInfo.add(student);
             }
             s = new Scanner(new File("adminLogin.txt"));
