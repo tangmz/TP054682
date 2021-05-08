@@ -24,7 +24,7 @@ public class Landing extends JFrame implements ActionListener{
         for (int i = 0; i < place.length;i++){
             locationLogin.addItem(place[i]);
         }
-        locationLogin.setSelectedItem(null);
+        locationLogin.setSelectedItem("Bukit Jalil");
         setSize(300,200);
         setLocation(1000,300);
         setLayout(new FlowLayout());
@@ -48,6 +48,7 @@ public class Landing extends JFrame implements ActionListener{
         exit.addActionListener(this);
         add(student);
         student.setBackground(Color.GREEN);
+        
         add(admin);
         admin.setBackground(Color.LIGHT_GRAY);
         add(id);

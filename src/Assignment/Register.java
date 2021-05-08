@@ -46,7 +46,7 @@ public class Register extends JFrame implements ActionListener{
         locationReg.addItem("Putrajaya");
         locationReg.addItem("Petaling Jaya");
         locationReg.addItem("Shah Alam");
-        locationReg.setSelectedItem(null);
+        locationReg.setSelectedItem("Bukit Jalil");
         setSize(300,200);
         setLocation(1000,300);
         setLayout(new FlowLayout());
@@ -162,7 +162,7 @@ public class Register extends JFrame implements ActionListener{
                 }
             }
         }
-        if(e.getSource() == exit){
+        else if(e.getSource() == exit){
             userName.setText("");
             userLoginName.setText("");
             userPass.setText("");
