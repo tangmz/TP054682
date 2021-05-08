@@ -73,44 +73,36 @@ public class Landing extends JFrame implements ActionListener{
             admin.setBackground(Color.GREEN);
             Switch= "AdminL";
         }else if(e.getSource()==login){
-            if("StudenL".equals(Switch)){
+            if(Switch.equals("StudentL")){
                 for(int i=0; i<Assignment.studentInfo.size(); i++){
                     Student c = Assignment.studentInfo.get(i);
                     if(userInput.equals(c.getStuUserN())){
-                        Assignment.whoStudentLogin = c;
-                        break;
-                    }
-                }
-                if(Assignment.whoStudentLogin==null){
-                    JOptionPane.showMessageDialog(login, "Wrong username!");
-                } else{
-                    if(passInput != Assignment.whoStudentLogin.getStuPass()){
-                        JOptionPane.showMessageDialog(login, "Wrong password!");
-                        Assignment.whoStudentLogin = null;
+                        if(passInput.equals(c.getStuPass())){
+                            setVisible(false);
+                            this.dispose();
+                            break;
+                        } else{
+                            JOptionPane.showMessageDialog(login, "Wrong password!");
+                        }
                     } else{
-                        setVisible(false);  //same as this.setVisible(false);
+                        JOptionPane.showMessageDialog(login, "Wrong username!");
                     }
                 }
-            } else if ("AdminL".equals(Switch)){
-                for(int i = 0; i<Assignment.adminInfo.size(); i++){
-                    Admin adminLogin = Assignment.adminInfo.get(i);
-                    if(userInput.equals(adminLogin.getAdName())){
-                        Assignment.whoAdminLogin = adminLogin;
-                        break;
+            } else if (Switch.equals("AdminL")){
+                for(int i=0; i<Assignment.adminInfo.size(); i++){
+                    Admin c = Assignment.adminInfo.get(i);
+                    if(userInput.equals(c.getAdUserN())){
+                        if(passInput.equals(c.getAdPass())){
+                            setVisible(false);
+                            this.dispose();
+                            break;
+                        } else{
+                            JOptionPane.showMessageDialog(login, "Wrong password!");
+                        }
+                    } else{
+                        JOptionPane.showMessageDialog(login, "Wrong username!");
                     }
                 }
-            }
-            if(Assignment.whoAdminLogin == null){
-                JOptionPane.showMessageDialog(login, "Wrong username!");
-            } else{
-                String s = JOptionPane.showInputDialog("Password:");
-                if(s != Assignment.whoAdminLogin.getAdPass()){
-                    JOptionPane.showMessageDialog(login, "Wrong password!");
-                    Assignment.whoAdminLogin = null;
-                } else{
-                    setVisible(false); //same as this.setVisible(false);
-                    //Assignment.second.setVisible(true);
-                    }
             }
         }else if (e.getSource() == exit){
             System.exit(0);

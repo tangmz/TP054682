@@ -4,8 +4,3 @@ Ng
 Ng
 Test
 
-2
-
-
-
-Test
