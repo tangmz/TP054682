@@ -1,7 +1,5 @@
 package Assignment;
 
-import static Assignment.Assignment.adminInfo;
-import static Assignment.Assignment.studentInfo;
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -9,9 +7,7 @@ import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.PrintWriter;
-import java.util.Scanner;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -39,8 +35,8 @@ public class Landing extends JFrame implements ActionListener{
         exit = new Button("Exit");
         id = new Label("ID: ");
         password = new Label("Password");
-        idIn = new TextField(10);
-        passIn = new TextField(10);
+        idIn = new TextField(15);
+        passIn = new TextField(15);
         locationLabel = new Label ("Select your location");
         student.addActionListener(this);
         admin.addActionListener(this);
@@ -66,6 +62,8 @@ public class Landing extends JFrame implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent e){
+        String userInput = idIn.getText();
+        String passInput = passIn.getText();
         if(e.getSource()==student){
             student.setBackground(Color.GREEN);
             admin.setBackground(Color.LIGHT_GRAY);
@@ -76,7 +74,6 @@ public class Landing extends JFrame implements ActionListener{
             Switch= "AdminL";
         }else if(e.getSource()==login){
             if(Switch=="StudenL"){
-                String userInput = idIn.getText();
                 for(int i=0; i<Assignment.studentInfo.size(); i++){
                     Student c = Assignment.studentInfo.get(i);
                     if(userInput.equals(c.getStuUserN())){
@@ -87,7 +84,6 @@ public class Landing extends JFrame implements ActionListener{
                 if(Assignment.whoStudentLogin==null){
                     JOptionPane.showMessageDialog(login, "Wrong username!");
                 } else{
-                    String passInput = passIn.getText();
                     if(passInput != Assignment.whoStudentLogin.getStuPass()){
                         JOptionPane.showMessageDialog(login, "Wrong password!");
                         Assignment.whoStudentLogin = null;
@@ -95,19 +91,6 @@ public class Landing extends JFrame implements ActionListener{
                         setVisible(false);  //same as this.setVisible(false);
                     }
                 }
-            JComboBox<String> location2 = (JComboBox<String>) e.getSource();
-            String selectedLocation = (String) location2.getSelectedItem();
-            if (selectedLocation.equals("Bukit Jalil")){
-                System.out.println("Bukit Jalil is selected");
-            } else if (selectedLocation.equals("Putrajaya")){
-                System.out.println("Putrajaya is selected");
-            }else if (selectedLocation.equals("Petaling Jaya")){
-                System.out.println("Petaling Jaya is selected");
-            }else if (selectedLocation.equals("Shah Alam")){
-                System.out.println("Shah Alam is selected");
-            }else{
-                System.out.println("DENY");
-            }
             } else if (Switch == "AdminL"){
                 String inputAdmin = JOptionPane.showInputDialog(("Enter name: "));
                 boolean flag = true;
@@ -133,31 +116,7 @@ public class Landing extends JFrame implements ActionListener{
                     }
             }
         }else if (e.getSource() == exit){
-            try{
-                PrintWriter f = new PrintWriter("studentLogin.txt");
-                for(int i=0; i<Assignment.studentInfo.size(); i++){
-                    Student c = Assignment.studentInfo.get(i);
-                    f.println(c.getStuName());
-                    f.println(c.getStuUserN());
-                    f.println(c.getStuPass());
-                    f.println(c.getStuPlace());
-                    f.println();
-                }
-                f.close();
-                f = new PrintWriter("adminLogin.txt");
-                for (int i=0; i <Assignment.adminInfo.size(); i++){
-                    Admin b = Assignment.adminInfo.get(i);
-                    f.println(b.getAdName());
-                    f. println(b.getAdUserN());
-                    f.println(b.getAdPass());
-                    f.println(b.getAdPlace());
-                }
-                f.close();
-                System.exit(0);
-            } catch (Exception error){
-                System.out.println("Error");
-                Runtime.getRuntime().exit(0);
-            }
+            System.exit(0);
         } else if (e.getSource() == register){
             setVisible(false);
             Assignment.register.setVisible(true);
