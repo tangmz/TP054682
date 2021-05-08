@@ -1,8 +1,6 @@
 package Assignment;
 
-import java.awt.BorderLayout;
 import java.awt.Button;
-import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Label;
@@ -11,19 +9,26 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintWriter;
-import javax.swing.JComboBox;
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 
 public class Register extends JFrame implements ActionListener{
     private Button create, exit;
     private Label nameL, usernameL, passwordL, locationL;
-    private TextField stuName, stuUsername, stuPass, stuPlace;
+    private TextField userName, userLoginName, userPass;
     private JList regLocation;
     private JFrame x;
     private Panel c,s;
+    JRadioButton adminB, studentB;
     public Register(){
+        adminB = new JRadioButton("Admin");
+        studentB = new JRadioButton("Student");
+        ButtonGroup buttonG = new ButtonGroup();
+        buttonG.add(adminB);
+        buttonG.add(studentB);
         /*JComboBox comboBox = new JComboBox();
         x = new JFrame();
         x.setSize(500, 300);
@@ -50,66 +55,114 @@ public class Register extends JFrame implements ActionListener{
         usernameL = new Label("Username: ");
         passwordL = new Label("Password");
         locationL = new Label("Select your Location: ");
-        stuName = new TextField(15);
-        stuUsername = new TextField(15);
-        stuPass = new TextField(15);
+        userName = new TextField(15);
+        userLoginName = new TextField(15);
+        userPass = new TextField(15);
         create.addActionListener(this);
         exit.addActionListener(this);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         add(nameL);
-        add(stuName);
+        add(userName);
         add(usernameL);
-        add(stuUsername);
+        add(userLoginName);
         add(passwordL);
-        add(stuPass);
+        add(userPass);
         add(locationL);
         add(create);
         add(exit);
+        add(adminB);
+        add(studentB);
         setVisible(false);
     }
     @Override
     public void actionPerformed(ActionEvent e){
         String selectedLocation = "Test";
         //String selectedLocation = (String)comboBox.getSelectedItem().toString();
-        int studentID = 1;
+        int userID = 1;
         int i = 0;
-        String studentName = stuName.getText();
-        String studentUser = stuUsername.getText();
-        String studentPass = stuPass.getText();
-        if(e.getSource() == create){
-            boolean flag = true;
-            for(i = 0; i<Assignment.studentInfo.size(); i++){
-                Student studentA = Assignment.studentInfo.get(i);
-                if(studentName.equals(studentA.getStuName())){
-                    flag = false;
-                    break;
-                }
-            }
-            studentID = i + 1;
-            if (flag){
-                Student studentReg = new Student(studentID,studentName,studentUser,studentPass,selectedLocation);
-                Assignment.studentInfo.add(studentReg);
-                try{
-                    PrintWriter f = new PrintWriter("studentLogin.txt");
-                    for(i=0; i<Assignment.studentInfo.size(); i++){
-                        Student c = Assignment.studentInfo.get(i);
-                        f.println(c.getStuID());
-                        f.println(c.getStuName());
-                        f.println(c.getStuUserN());
-                        f.println(c.getStuPass());
-                        f.println(c.getStuPlace());
-                        f.println();
+        String visitorName = userName.getText();
+        String visitorUserN = userLoginName.getText();
+        String visitorPass = userPass.getText();
+        if (adminB.isSelected()){
+                if(e.getSource() == create){
+                    String pinAdmin = JOptionPane.showInputDialog(this, "Pin");
+                    if (pinAdmin.equals("admin1234")){
+                        boolean flag = true;
+                        for(i = 0; i<Assignment.adminInfo.size(); i++){
+                            Admin adminA = Assignment.adminInfo.get(i);
+                            if(visitorName.equals(adminA.getAdName())){
+                                flag = false;
+                                break;
+                            }
+                        }
+                        userID = i + 1;
+                        if (flag){
+                            Admin adminReg = new Admin(userID, visitorName,visitorUserN,visitorPass,selectedLocation);
+                            Assignment.adminInfo.add(adminReg);
+                            try{
+                                PrintWriter f = new PrintWriter("adminLogin.txt");
+                                for(i=0; i<Assignment.adminInfo.size(); i++){
+                                    Admin c = Assignment.adminInfo.get(i);
+                                    f.println(c.getAdId());
+                                    f.println(c.getAdName());
+                                    f.println(c.getAdUserN());
+                                    f.println(c.getAdPass());
+                                    f.println(c.getAdPlace());
+                                    f.println();
+                                }
+                                f.close();
+                                this.dispose();
+                                Assignment.login.setVisible(true);
+                            } catch(Exception ex){
+                                System.out.println("Error in stop!");
+                            }
+                        } else{
+                            JOptionPane.showMessageDialog(create, "Name has been used!");
+                        }
+                    }else{
+                    JOptionPane.showMessageDialog(adminB, "Wrong Pin");
                     }
-                    f.close();
-                    this.dispose();
-                    Assignment.login.setVisible(true);
-                } catch(Exception ex){
-                    System.out.println("Error in stop!");
                 }
-            } else{
-                JOptionPane.showMessageDialog(create, "Name has been used!");
+        } else if (studentB.isSelected()){
+            if(e.getSource() == create){
+                boolean flag = true;
+                for(i = 0; i<Assignment.studentInfo.size(); i++){
+                    Student studentA = Assignment.studentInfo.get(i);
+                    if(visitorName.equals(studentA.getStuName())){
+                        flag = false;
+                        break;
+                    }
+                }
+                userID = i + 1;
+                if (flag){
+                    Student studentReg = new Student(userID,visitorName,visitorUserN,visitorPass,selectedLocation);
+                    Assignment.studentInfo.add(studentReg);
+                    try{
+                        PrintWriter f = new PrintWriter("studentLogin.txt");
+                        for(i=0; i<Assignment.studentInfo.size(); i++){
+                            Student c = Assignment.studentInfo.get(i);
+                            f.println(c.getStuID());
+                            f.println(c.getStuName());
+                            f.println(c.getStuUserN());
+                            f.println(c.getStuPass());
+                            f.println(c.getStuPlace());
+                            f.println();
+                        }
+                        f.close();
+                        this.dispose();
+                        Assignment.login.setVisible(true);
+                    } catch(Exception ex){
+                        System.out.println("Error in stop!");
+                    }
+                } else{
+                    JOptionPane.showMessageDialog(create, "Name has been used!");
+                }
             }
-        } else if(e.getSource() == exit){
+        }
+        if(e.getSource() == exit){
+            userName.setText("");
+            userLoginName.setText("");
+            userPass.setText("");
             this.dispose();
             Assignment.login.setVisible(true);
         }

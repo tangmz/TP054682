@@ -2,10 +2,7 @@ package Assignment;
 
 public class Student {
     private int stuID;
-    private String stuName;
-    private String stuUserN;
-    private String stuPass;
-    private String stuPlace;
+    private String stuName, stuUserN, stuPass, stuPlace;
 
     public Student(int stuID, String stuName, String stuUserN, String stuPass, String stuPlace) {
         this.stuID = stuID;

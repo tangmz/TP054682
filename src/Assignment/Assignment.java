@@ -27,12 +27,13 @@ public class Assignment {
             }
             s = new Scanner(new File("adminLogin.txt"));
             while(s.hasNext()){
-                String a = s.nextLine();
-                String b = s.nextLine();
-                String c = s.nextLine();
-                String d = s.nextLine();
+                int f = Integer.parseInt(s.nextLine());
+                String g = s.nextLine();
+                String h = s.nextLine();
+                String i = s.nextLine();
+                String j = s.nextLine();
                 s.nextLine();
-                Admin admin = new Admin(a,b,c,d);
+                Admin admin = new Admin(f,g,h,i,j);
                 adminInfo.add(admin);
                 //allCustomer.add(c);
             }
