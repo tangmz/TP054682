@@ -7,7 +7,6 @@ import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.PrintWriter;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -22,7 +21,7 @@ public class Landing extends JFrame implements ActionListener{
     public Landing(){
         //Landing object = new Landing();
         String place[] = {"Bukit Jalil", "Putrajaya", "Petaling Jaya", "Shah Alam"};
-        JComboBox<String> location = new JComboBox<>(place);
+        JComboBox<String> Location = new JComboBox<>(place);
         setSize(300,200);
         setLocation(1000,300);
         setLayout(new FlowLayout());
@@ -41,7 +40,7 @@ public class Landing extends JFrame implements ActionListener{
         student.addActionListener(this);
         admin.addActionListener(this);
         login.addActionListener(this);
-        location.addActionListener(this);
+        Location.addActionListener(this);
         register.addActionListener(this);
         clear.addActionListener(this);
         exit.addActionListener(this);
@@ -54,13 +53,14 @@ public class Landing extends JFrame implements ActionListener{
         add(password);
         add(passIn);
         add(login);
-        add(location);
+        add(Location);
         add(register);
         add(clear);
         add(exit);
         setVisible(true);
     }
     
+    @Override
     public void actionPerformed(ActionEvent e){
         String userInput = idIn.getText();
         String passInput = passIn.getText();
@@ -73,7 +73,7 @@ public class Landing extends JFrame implements ActionListener{
             admin.setBackground(Color.GREEN);
             Switch= "AdminL";
         }else if(e.getSource()==login){
-            if(Switch=="StudenL"){
+            if("StudenL".equals(Switch)){
                 for(int i=0; i<Assignment.studentInfo.size(); i++){
                     Student c = Assignment.studentInfo.get(i);
                     if(userInput.equals(c.getStuUserN())){
@@ -91,13 +91,10 @@ public class Landing extends JFrame implements ActionListener{
                         setVisible(false);  //same as this.setVisible(false);
                     }
                 }
-            } else if (Switch == "AdminL"){
-                String inputAdmin = JOptionPane.showInputDialog(("Enter name: "));
-                boolean flag = true;
+            } else if ("AdminL".equals(Switch)){
                 for(int i = 0; i<Assignment.adminInfo.size(); i++){
                     Admin adminLogin = Assignment.adminInfo.get(i);
-                    if(inputAdmin.equals(adminLogin.getAdName())){
-                        flag = false;
+                    if(userInput.equals(adminLogin.getAdName())){
                         Assignment.whoAdminLogin = adminLogin;
                         break;
                     }

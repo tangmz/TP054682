@@ -55,6 +55,7 @@ public class Register extends JFrame implements ActionListener{
         stuPass = new TextField(15);
         create.addActionListener(this);
         exit.addActionListener(this);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         add(nameL);
         add(stuName);
         add(usernameL);
@@ -66,6 +67,7 @@ public class Register extends JFrame implements ActionListener{
         add(exit);
         setVisible(false);
     }
+    @Override
     public void actionPerformed(ActionEvent e){
         String selectedLocation = "Test";
         //String selectedLocation = (String)comboBox.getSelectedItem().toString();
@@ -99,7 +101,7 @@ public class Register extends JFrame implements ActionListener{
                         f.println();
                     }
                     f.close();
-                    setVisible(false);
+                    this.dispose();
                     Assignment.login.setVisible(true);
                 } catch(Exception ex){
                     System.out.println("Error in stop!");
@@ -108,7 +110,7 @@ public class Register extends JFrame implements ActionListener{
                 JOptionPane.showMessageDialog(create, "Name has been used!");
             }
         } else if(e.getSource() == exit){
-            setVisible(false);
+            this.dispose();
             Assignment.login.setVisible(true);
         }
     }
