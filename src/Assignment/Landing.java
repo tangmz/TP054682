@@ -14,14 +14,17 @@ import javax.swing.JOptionPane;
 
 public class Landing extends JFrame implements ActionListener{
     private Button student,admin,login,clear,exit, register;
-    private JList location;
     private Label id,password, locationLabel;
     private TextField idIn,passIn; 
     private String Switch = "StudentL";
+    JComboBox locationLogin = new JComboBox();
     public Landing(){
         //Landing object = new Landing();
         String place[] = {"Bukit Jalil", "Putrajaya", "Petaling Jaya", "Shah Alam"};
-        JComboBox<String> Location = new JComboBox<>(place);
+        for (int i = 0; i < place.length;i++){
+            locationLogin.addItem(place[i]);
+        }
+        locationLogin.setSelectedItem(null);
         setSize(300,200);
         setLocation(1000,300);
         setLayout(new FlowLayout());
@@ -40,7 +43,6 @@ public class Landing extends JFrame implements ActionListener{
         student.addActionListener(this);
         admin.addActionListener(this);
         login.addActionListener(this);
-        Location.addActionListener(this);
         register.addActionListener(this);
         clear.addActionListener(this);
         exit.addActionListener(this);
@@ -53,7 +55,7 @@ public class Landing extends JFrame implements ActionListener{
         add(password);
         add(passIn);
         add(login);
-        add(Location);
+        add(locationLogin);
         add(register);
         add(clear);
         add(exit);
@@ -62,6 +64,7 @@ public class Landing extends JFrame implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e){
+        String selectedLocation = locationLogin.getSelectedItem().toString();
         String userInput = idIn.getText();
         String passInput = passIn.getText();
         if(e.getSource()==student){
@@ -78,14 +81,19 @@ public class Landing extends JFrame implements ActionListener{
                     Student c = Assignment.studentInfo.get(i);
                     if(userInput.equals(c.getStuUserN())){
                         if(passInput.equals(c.getStuPass())){
-                            setVisible(false);
-                            this.dispose();
-                            break;
+                            if(selectedLocation.equals(c.getStuPlace())){
+                                setVisible(false);
+                                this.dispose();
+                                break;
+                            }
+                            else{
+                                JOptionPane.showMessageDialog(login, "Wrong Location!");
+                            }
                         } else{
-                            JOptionPane.showMessageDialog(login, "Wrong password!");
+                            JOptionPane.showMessageDialog(login, "Wrong Password!");
                         }
                     } else{
-                        JOptionPane.showMessageDialog(login, "Wrong username!");
+                        JOptionPane.showMessageDialog(login, "Wrong Username!");
                     }
                 }
             } else if (Switch.equals("AdminL")){
@@ -93,9 +101,13 @@ public class Landing extends JFrame implements ActionListener{
                     Admin c = Assignment.adminInfo.get(i);
                     if(userInput.equals(c.getAdUserN())){
                         if(passInput.equals(c.getAdPass())){
-                            setVisible(false);
-                            this.dispose();
-                            break;
+                            if(selectedLocation.equals(c.getAdPlace())){
+                                setVisible(false);
+                                this.dispose();
+                                break;
+                            } else{
+                                JOptionPane.showMessageDialog(login, "Wrong Location!");
+                            }
                         } else{
                             JOptionPane.showMessageDialog(login, "Wrong password!");
                         }

@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 import javax.swing.ButtonGroup;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -23,6 +24,7 @@ public class Register extends JFrame implements ActionListener{
     private JFrame x;
     private Panel c,s;
     JRadioButton adminB, studentB;
+    JComboBox locationReg = new JComboBox();
     public Register(){
         adminB = new JRadioButton("Admin");
         studentB = new JRadioButton("Student");
@@ -39,12 +41,12 @@ public class Register extends JFrame implements ActionListener{
         x.add(c,BorderLayout.CENTER);
         s = new Panel();    //FlowLayout by default
         x.add(s,BorderLayout.SOUTH);
-        x.setVisible(true);
-        comboBox.addItem("Bukit Jalil");
-        comboBox.addItem("Putrajaya");
-        comboBox.addItem("Petaling Jaya");
-        comboBox.addItem("Shah Alam");
-        comboBox.setSelectedItem(null);*/
+        x.setVisible(true);*/
+        locationReg.addItem("Bukit Jalil");
+        locationReg.addItem("Putrajaya");
+        locationReg.addItem("Petaling Jaya");
+        locationReg.addItem("Shah Alam");
+        locationReg.setSelectedItem(null);
         setSize(300,200);
         setLocation(1000,300);
         setLayout(new FlowLayout());
@@ -68,6 +70,7 @@ public class Register extends JFrame implements ActionListener{
         add(passwordL);
         add(userPass);
         add(locationL);
+        add(locationReg);
         add(create);
         add(exit);
         add(adminB);
@@ -76,7 +79,7 @@ public class Register extends JFrame implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e){
-        String selectedLocation = "Test";
+        String selectedLocation = locationReg.getSelectedItem().toString();
         //String selectedLocation = (String)comboBox.getSelectedItem().toString();
         int userID = 1;
         int i = 0;

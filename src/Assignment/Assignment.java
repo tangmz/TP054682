@@ -22,7 +22,7 @@ public class Assignment {
                 String d = s.nextLine();
                 String e = s.nextLine();
                 s.nextLine();
-                Student student = new Student(a,b,c,d, e);
+                Student student = new Student(a,b,c,d,e);
                 studentInfo.add(student);
             }
             s = new Scanner(new File("adminLogin.txt"));
