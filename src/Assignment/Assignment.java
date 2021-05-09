@@ -7,6 +7,7 @@ public class Assignment {
     public static Landing login = new Landing();
     public static Register register = new Register();
     public static Visitor visitorView = new Visitor();
+    public static Student whoStudentLogin = null;
     public static ArrayList <Student> studentInfo = new ArrayList<Student>();
     public static ArrayList<Admin> adminInfo = new ArrayList<Admin>();
         
