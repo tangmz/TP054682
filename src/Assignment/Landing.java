@@ -102,9 +102,6 @@ public class Landing extends JFrame implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e){
-        String selectedLocation = locationLogin.getSelectedItem().toString();
-        String userInput = idIn.getText();
-        String passInput = passIn.getText();
         if(e.getSource()==student){
             student.setBackground(Color.GREEN);
             admin.setBackground(Color.LIGHT_GRAY);
@@ -113,7 +110,11 @@ public class Landing extends JFrame implements ActionListener{
             student.setBackground(Color.LIGHT_GRAY);
             admin.setBackground(Color.GREEN);
             Switch= "AdminL";
-        }else if(e.getSource()==login){
+        }
+        if(e.getSource()==login){
+            String selectedLocation = locationLogin.getSelectedItem().toString();
+            String userInput = idIn.getText();
+            String passInput = passIn.getText();
             if(Switch.equals("StudentL")){
                 for(int i=0; i<Assignment.studentInfo.size(); i++){
                     Student c = Assignment.studentInfo.get(i);
@@ -123,13 +124,12 @@ public class Landing extends JFrame implements ActionListener{
                                 setVisible(false);
                                 this.dispose();
                                 break;
-                            }
-                            else{
+                            }else{
                                 JOptionPane.showMessageDialog(login, "Wrong Location!");
                             }
-                        } else{
+                        }else{
                             JOptionPane.showMessageDialog(login, "Wrong Password!");
-                        }
+                        }  
                     } else{
                         JOptionPane.showMessageDialog(login, "Wrong Username!");
                     }
