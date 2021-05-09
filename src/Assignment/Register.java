@@ -178,7 +178,7 @@ public class Register extends JFrame implements ActionListener{
                 }
             }
         }
-        else if(e.getSource() == exit){
+        if(e.getSource() == exit){
             userName.setText("");
             userLoginName.setText("");
             userPass.setText("");
