@@ -70,7 +70,7 @@ public class Register extends JFrame implements ActionListener{
         userPhone = new TextField(15);
         create.addActionListener(this);
         exit.addActionListener(this);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         add(nameL);
         add(userName);
         add(usernameL);

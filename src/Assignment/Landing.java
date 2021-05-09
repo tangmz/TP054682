@@ -7,6 +7,8 @@ import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -36,10 +38,10 @@ public class Landing extends JFrame implements ActionListener{
         clear = new Button("Clear");
         exit = new Button("Exit");
         visitorView = new Button("Visitor View");
-        id = new Label("ID: ");
-        password = new Label("Password");
-        idIn = new TextField(15);
-        passIn = new TextField(15);
+        //id = new Label("Username: ");
+        //password = new Label("Password");
+        idIn = new TextField("Username",15);
+        passIn = new TextField("Password",15);
         locationLabel = new Label ("Select your location");
         student.addActionListener(this);
         admin.addActionListener(this);
@@ -48,20 +50,53 @@ public class Landing extends JFrame implements ActionListener{
         clear.addActionListener(this);
         exit.addActionListener(this);
         visitorView.addActionListener(this);
+        idIn.addFocusListener(new FocusListener(){
+            @Override
+            public void focusGained(FocusEvent fe) {
+                if (idIn.getText().equals("Username")){
+                    idIn.setText("");
+                    System.out.print("Received11");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent fe) {
+                if (idIn.getText().equals("")){
+                    idIn.setText("Username");
+                    System.out.print("Received11");
+                }
+            }
+        });
+        passIn.addFocusListener(new FocusListener(){
+            @Override
+            public void focusGained(FocusEvent fe) {
+                if (passIn.getText().equals("Password")){
+                    passIn.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent fe) {
+                if (passIn.getText().equals("")){
+                    passIn.setText("Password");
+                }
+            }
+        });
         add(student);
         student.setBackground(Color.GREEN);
         add(admin);
         admin.setBackground(Color.LIGHT_GRAY);
-        add(id);
+        //add(id);
         add(idIn);
-        add(password);
+        //add(password);
         add(passIn);
-        add(login);
         add(locationLogin);
+        add(login);
         add(register);
         add(clear);
         add(exit);
         add(visitorView);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
     
