@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JList;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class Landing extends JFrame implements ActionListener{
@@ -17,7 +17,8 @@ public class Landing extends JFrame implements ActionListener{
     private Label id,password, locationLabel;
     private TextField idIn,passIn; 
     private String Switch = "StudentL";
-    JComboBox locationLogin = new JComboBox();
+    private JComboBox locationLogin = new JComboBox();
+    private JLabel hyperlink = new JLabel("Visitor View");
     public Landing(){
         //Landing object = new Landing();
         String place[] = {"Bukit Jalil", "Putrajaya", "Petaling Jaya", "Shah Alam"};

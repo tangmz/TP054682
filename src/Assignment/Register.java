@@ -42,10 +42,10 @@ public class Register extends JFrame implements ActionListener{
         s = new Panel();    //FlowLayout by default
         x.add(s,BorderLayout.SOUTH);
         x.setVisible(true);*/
-        locationReg.addItem("Bukit Jalil");
-        locationReg.addItem("Putrajaya");
-        locationReg.addItem("Petaling Jaya");
-        locationReg.addItem("Shah Alam");
+        String place[] = {"Bukit Jalil", "Putrajaya", "Petaling Jaya", "Shah Alam"};
+        for (int i = 0; i < place.length;i++){
+            locationReg.addItem(place[i]);
+        }
         locationReg.setSelectedItem("Bukit Jalil");
         setSize(300,200);
         setLocation(1000,300);
