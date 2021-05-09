@@ -20,19 +20,21 @@ public class Assignment {
                 String c = s.nextLine();
                 String d = s.nextLine();
                 String e = s.nextLine();
+                String f = s.nextLine();
+                String g = s.nextLine();
                 s.nextLine();
-                Student student = new Student(a,b,c,d,e);
+                Student student = new Student(a,b,c,d,e,f,g);
                 studentInfo.add(student);
             }
             s = new Scanner(new File("adminLogin.txt"));
             while(s.hasNext()){
-                int f = Integer.parseInt(s.nextLine());
-                String g = s.nextLine();
-                String h = s.nextLine();
+                int h = Integer.parseInt(s.nextLine());
                 String i = s.nextLine();
                 String j = s.nextLine();
+                String k = s.nextLine();
+                String l = s.nextLine();
                 s.nextLine();
-                Admin admin = new Admin(f,g,h,i,j);
+                Admin admin = new Admin(h,i,j,k,l);
                 adminInfo.add(admin);
                 //allCustomer.add(c);
             }

@@ -18,19 +18,25 @@ import javax.swing.JRadioButton;
 
 public class Register extends JFrame implements ActionListener{
     private Button create, exit;
-    private Label nameL, usernameL, passwordL, locationL;
-    private TextField userName, userLoginName, userPass;
+    private Label nameL, usernameL, passwordL, locationL, genderL, phoneL;
+    private TextField userName, userLoginName, userPass, userPhone;
     private JList regLocation;
     private JFrame x;
     private Panel c,s;
-    JRadioButton adminB, studentB;
-    JComboBox locationReg = new JComboBox();
+    private JRadioButton adminB, studentB;
+    private JRadioButton female, male;
+    private JComboBox locationReg = new JComboBox();
     public Register(){
         adminB = new JRadioButton("Admin");
         studentB = new JRadioButton("Student");
-        ButtonGroup buttonG = new ButtonGroup();
-        buttonG.add(adminB);
-        buttonG.add(studentB);
+        ButtonGroup buttonRole = new ButtonGroup();
+        buttonRole.add(adminB);
+        buttonRole.add(studentB);
+        male = new JRadioButton("Male");
+        female = new JRadioButton("Female");
+        ButtonGroup buttonGender = new ButtonGroup();
+        buttonGender.add(female);
+        buttonGender.add(male);
         /*JComboBox comboBox = new JComboBox();
         x = new JFrame();
         x.setSize(500, 300);
@@ -47,7 +53,7 @@ public class Register extends JFrame implements ActionListener{
             locationReg.addItem(place[i]);
         }
         locationReg.setSelectedItem("Bukit Jalil");
-        setSize(300,200);
+        setSize(300,250);
         setLocation(1000,300);
         setLayout(new FlowLayout());
         setBackground(Color.white);
@@ -57,9 +63,11 @@ public class Register extends JFrame implements ActionListener{
         usernameL = new Label("Username: ");
         passwordL = new Label("Password");
         locationL = new Label("Select your Location: ");
+        phoneL = new Label("Phone number");
         userName = new TextField(15);
         userLoginName = new TextField(15);
         userPass = new TextField(15);
+        userPhone = new TextField(15);
         create.addActionListener(this);
         exit.addActionListener(this);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,6 +77,10 @@ public class Register extends JFrame implements ActionListener{
         add(userLoginName);
         add(passwordL);
         add(userPass);
+        add(male);
+        add(female);
+        add(phoneL);
+        add(userPhone);
         add(locationL);
         add(locationReg);
         add(create);
@@ -86,6 +98,8 @@ public class Register extends JFrame implements ActionListener{
         String visitorName = userName.getText();
         String visitorUserN = userLoginName.getText();
         String visitorPass = userPass.getText();
+        String visitorPhone = userPhone.getText();
+        String userGender = "Male";
         if (adminB.isSelected()){
                 if(e.getSource() == create){
                     String pinAdmin = JOptionPane.showInputDialog(this, "Pin");
@@ -138,7 +152,7 @@ public class Register extends JFrame implements ActionListener{
                 }
                 userID = i + 1;
                 if (flag){
-                    Student studentReg = new Student(userID,visitorName,visitorUserN,visitorPass,selectedLocation);
+                    Student studentReg = new Student(userID,visitorName,visitorUserN,visitorPass,selectedLocation, userGender ,visitorPhone);
                     Assignment.studentInfo.add(studentReg);
                     try{
                         PrintWriter f = new PrintWriter("studentLogin.txt");
@@ -149,6 +163,8 @@ public class Register extends JFrame implements ActionListener{
                             f.println(c.getStuUserN());
                             f.println(c.getStuPass());
                             f.println(c.getStuPlace());
+                            f.println(c.getStuGender());
+                            f.println(c.getStuPhone());
                             f.println();
                         }
                         f.close();
