@@ -158,8 +158,8 @@ public class Landing extends JFrame implements ActionListener{
             setVisible(false);
             Assignment.register.setVisible(true);
         }else if (e.getSource() == clear){
-            idIn.setText("");
-            passIn.setText("");
+            idIn.setText("Username");
+            passIn.setText("Password");
         }else if (e.getSource() == exit){
             System.exit(0);
         } else if (e.getSource() == visitorView){
