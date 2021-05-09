@@ -9,16 +9,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 public class Landing extends JFrame implements ActionListener{
-    private Button student,admin,login,clear,exit, register;
+    private Button student,admin,login,clear,exit, register, visitorView;
     private Label id,password, locationLabel;
     private TextField idIn,passIn; 
     private String Switch = "StudentL";
-    private JComboBox locationLogin = new JComboBox();
-    private JLabel hyperlink = new JLabel("Visitor View");
+    JComboBox locationLogin = new JComboBox();
     public Landing(){
         //Landing object = new Landing();
         String place[] = {"Bukit Jalil", "Putrajaya", "Petaling Jaya", "Shah Alam"};
@@ -36,6 +35,7 @@ public class Landing extends JFrame implements ActionListener{
         register = new Button("Register");
         clear = new Button("Clear");
         exit = new Button("Exit");
+        visitorView = new Button("Visitor View");
         id = new Label("ID: ");
         password = new Label("Password");
         idIn = new TextField(15);
@@ -47,9 +47,9 @@ public class Landing extends JFrame implements ActionListener{
         register.addActionListener(this);
         clear.addActionListener(this);
         exit.addActionListener(this);
+        visitorView.addActionListener(this);
         add(student);
         student.setBackground(Color.GREEN);
-        
         add(admin);
         admin.setBackground(Color.LIGHT_GRAY);
         add(id);
@@ -61,6 +61,7 @@ public class Landing extends JFrame implements ActionListener{
         add(register);
         add(clear);
         add(exit);
+        add(visitorView);
         setVisible(true);
     }
     
@@ -118,14 +119,17 @@ public class Landing extends JFrame implements ActionListener{
                     }
                 }
             }
-        }else if (e.getSource() == exit){
-            System.exit(0);
         } else if (e.getSource() == register){
             setVisible(false);
             Assignment.register.setVisible(true);
         }else if (e.getSource() == clear){
             idIn.setText("");
             passIn.setText("");
+        }else if (e.getSource() == exit){
+            System.exit(0);
+        } else if (e.getSource() == visitorView){
+            setVisible(false);
+            Assignment.visitorView.setVisible(true);
         }
     }
 }
