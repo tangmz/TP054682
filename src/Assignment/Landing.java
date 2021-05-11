@@ -109,6 +109,7 @@ public class Landing extends JFrame implements ActionListener{
             admin.setBackground(Color.GREEN);
             Switch= "AdminL";
         }
+        boolean flag = true;
         if(e.getSource()==login){
             String selectedLocation = locationLogin.getSelectedItem().toString();
             String userInput = idIn.getText();
@@ -117,6 +118,7 @@ public class Landing extends JFrame implements ActionListener{
                 for(int i=0; i<Assignment.studentInfo.size(); i++){
                     Student c = Assignment.studentInfo.get(i);
                     if(userInput.equals(c.getStuUserN())){
+                        flag = false;
                         if(passInput.equals(c.getStuPass())){
                             if(selectedLocation.equals(c.getStuPlace())){
                                 setVisible(false);
@@ -131,9 +133,13 @@ public class Landing extends JFrame implements ActionListener{
                             break;
                         }
                     }
+          
 //                    } else{
 //                        JOptionPane.showMessageDialog(login, "Wrong Username!");
 //                        break;
+                }
+                if (flag){
+                        JOptionPane.showMessageDialog(login, "Wrong Username!");
                     }
             } else if (Switch.equals("AdminL")){
                 for(int i=0; i<Assignment.adminInfo.size(); i++){
