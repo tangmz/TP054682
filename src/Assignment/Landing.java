@@ -132,10 +132,10 @@ public class Landing extends JFrame implements ActionListener{
                             JOptionPane.showMessageDialog(login, "Wrong Password!");
                             break;
                         }  
-                    } else{
-                        JOptionPane.showMessageDialog(login, "Wrong Username!");
-                        break;
-                    }
+                    } //else{
+//                        JOptionPane.showMessageDialog(login, "Wrong Username!");
+//                        break;
+//                    }
                 }
             } else if (Switch.equals("AdminL")){
                 for(int i=0; i<Assignment.adminInfo.size(); i++){
