@@ -55,7 +55,6 @@ public class Landing extends JFrame implements ActionListener{
             public void focusGained(FocusEvent fe) {
                 if (idIn.getText().equals("Username")){
                     idIn.setText("");
-                    System.out.print("Received11");
                 }
             }
 
@@ -63,7 +62,6 @@ public class Landing extends JFrame implements ActionListener{
             public void focusLost(FocusEvent fe) {
                 if (idIn.getText().equals("")){
                     idIn.setText("Username");
-                    System.out.print("Received11");
                 }
             }
         });
@@ -131,12 +129,12 @@ public class Landing extends JFrame implements ActionListener{
                         }else{
                             JOptionPane.showMessageDialog(login, "Wrong Password!");
                             break;
-                        }  
-                    } //else{
+                        }
+                    }
+//                    } else{
 //                        JOptionPane.showMessageDialog(login, "Wrong Username!");
 //                        break;
-//                    }
-                }
+                    }
             } else if (Switch.equals("AdminL")){
                 for(int i=0; i<Assignment.adminInfo.size(); i++){
                     Admin c = Assignment.adminInfo.get(i);
