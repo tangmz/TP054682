@@ -99,7 +99,7 @@ public class Register extends JFrame implements ActionListener{
         String visitorUserN = userLoginName.getText();
         String visitorPass = userPass.getText();
         String visitorPhone = userPhone.getText();
-        String userGender = "Male";
+        String visitorGender = "Male";
         if (adminB.isSelected()){
                 if(e.getSource() == create){
                     String pinAdmin = JOptionPane.showInputDialog(this, "Pin");
@@ -114,7 +114,7 @@ public class Register extends JFrame implements ActionListener{
                         }
                         userID = i + 1;
                         if (flag){
-                            Admin adminReg = new Admin(userID, visitorName,visitorUserN,visitorPass,selectedLocation);
+                            Admin adminReg = new Admin(userID, visitorName,visitorUserN,visitorPass,selectedLocation, visitorGender, visitorPhone);
                             Assignment.adminInfo.add(adminReg);
                             try{
                                 PrintWriter f = new PrintWriter("adminLogin.txt");
@@ -125,6 +125,8 @@ public class Register extends JFrame implements ActionListener{
                                     f.println(c.getAdUserN());
                                     f.println(c.getAdPass());
                                     f.println(c.getAdPlace());
+                                    f.println(c.getAdGender());
+                                    f.println(c.getAdPhone());
                                     f.println();
                                 }
                                 f.close();
@@ -152,7 +154,7 @@ public class Register extends JFrame implements ActionListener{
                 }
                 userID = i + 1;
                 if (flag){
-                    Student studentReg = new Student(userID,visitorName,visitorUserN,visitorPass,selectedLocation, userGender ,visitorPhone);
+                    Student studentReg = new Student(userID,visitorName,visitorUserN,visitorPass,selectedLocation, visitorGender ,visitorPhone);
                     Assignment.studentInfo.add(studentReg);
                     try{
                         PrintWriter f = new PrintWriter("studentLogin.txt");

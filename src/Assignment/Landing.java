@@ -94,7 +94,7 @@ public class Landing extends JFrame implements ActionListener{
         add(clear);
         add(exit);
         add(visitorView);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
     
