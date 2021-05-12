@@ -29,7 +29,7 @@ public class Landing extends JFrame implements ActionListener{
             locationLogin.addItem(place[i]);
         }
         locationLogin.setSelectedItem("Bukit Jalil");
-        setSize(350,250);
+        setSize(350,270);
         setLocation(1000,300);
         setLayout(new GridBagLayout());
         gbc.insets = new Insets(5,6,5,6);
