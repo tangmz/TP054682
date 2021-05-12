@@ -8,8 +8,11 @@ import java.awt.Panel;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.PrintWriter;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -48,11 +51,8 @@ public class Register extends JFrame implements ActionListener{
         s = new Panel();    //FlowLayout by default
         x.add(s,BorderLayout.SOUTH);
         x.setVisible(true);*/
-        String place[] = {"Bukit Jalil", "Putrajaya", "Petaling Jaya", "Shah Alam"};
-        for (int i = 0; i < place.length;i++){
-            locationReg.addItem(place[i]);
-        }
-        locationReg.setSelectedItem("Bukit Jalil");
+        locationReg.addItem("Petaling Jaya");
+        locationReg.setSelectedItem("Petaling jaya");
         setSize(300,250);
         setLocation(1000,300);
         setLayout(new FlowLayout());
@@ -71,6 +71,19 @@ public class Register extends JFrame implements ActionListener{
         create.addActionListener(this);
         exit.addActionListener(this);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        locationReg.addFocusListener(new FocusListener(){
+            @Override
+            public void focusGained(FocusEvent fe) {
+                locationReg.setModel(new DefaultComboBoxModel(Location.values()));
+                locationReg.showPopup();
+            }
+
+            @Override
+            public void focusLost(FocusEvent fe) {
+                
+            }
+            
+        });
         add(nameL);
         add(userName);
         add(usernameL);

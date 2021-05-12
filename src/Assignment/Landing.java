@@ -12,6 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.Arrays;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -25,11 +27,8 @@ public class Landing extends JFrame implements ActionListener{
     private GridBagConstraints gbc = new GridBagConstraints();
     public Landing(){
         //Landing object = new Landing();
-        String place[] = {"Bukit Jalil", "Putrajaya", "Petaling Jaya", "Shah Alam"};
-        for (int i = 0; i < place.length;i++){
-            locationLogin.addItem(place[i]);
-        }
-        locationLogin.setSelectedItem("Bukit Jalil");
+        locationLogin.addItem("Petaling Jaya");
+        locationLogin.setSelectedItem("Petaling jaya");
         setSize(400,270);
         setLocation(1000,300);
         setLayout(new GridBagLayout());
@@ -85,6 +84,20 @@ public class Landing extends JFrame implements ActionListener{
                 }
             }
         });
+        locationLogin.addFocusListener(new FocusListener(){
+            @Override
+            public void focusGained(FocusEvent fe) {
+                locationLogin.setModel(new DefaultComboBoxModel(Location.values()));
+                locationLogin.showPopup();
+            }
+
+            @Override
+            public void focusLost(FocusEvent fe) {
+                
+            }
+            
+        });
+        String a = Arrays.toString(Location.values());
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.CENTER;
