@@ -2,7 +2,9 @@ package Assignment;
 
 import java.awt.Button;
 import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
@@ -11,7 +13,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 public class Landing extends JFrame implements ActionListener{
@@ -20,6 +21,7 @@ public class Landing extends JFrame implements ActionListener{
     private TextField idIn,passIn; 
     private String Switch = "StudentL";
     JComboBox locationLogin = new JComboBox();
+    GridBagConstraints gbc = new GridBagConstraints();
     public Landing(){
         //Landing object = new Landing();
         String place[] = {"Bukit Jalil", "Putrajaya", "Petaling Jaya", "Shah Alam"};
@@ -27,9 +29,10 @@ public class Landing extends JFrame implements ActionListener{
             locationLogin.addItem(place[i]);
         }
         locationLogin.setSelectedItem("Bukit Jalil");
-        setSize(300,200);
+        setSize(350,250);
         setLocation(1000,300);
-        setLayout(new FlowLayout());
+        setLayout(new GridBagLayout());
+        gbc.insets = new Insets(5,6,5,6);
         setBackground(Color.white);
         student = new Button("Student");
         admin = new Button("Admin");
@@ -80,20 +83,45 @@ public class Landing extends JFrame implements ActionListener{
                 }
             }
         });
-        add(student);
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        add(student, gbc);
         student.setBackground(Color.GREEN);
-        add(admin);
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.EAST;
+        add(admin, gbc);
         admin.setBackground(Color.LIGHT_GRAY);
         //add(id);
-        add(idIn);
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(idIn, gbc);
         //add(password);
-        add(passIn);
-        add(locationLogin);
-        add(login);
-        add(register);
-        add(clear);
-        add(exit);
-        add(visitorView);
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(passIn, gbc);
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(locationLogin, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        add(login, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.WEST;
+        add(register, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.EAST;
+        add(clear,gbc);
+        gbc.gridx = 2;
+        gbc.gridy = 4;
+        add(exit, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 5;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(visitorView, gbc);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
