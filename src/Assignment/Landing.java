@@ -145,6 +145,7 @@ public class Landing extends JFrame implements ActionListener{
                 for(int i=0; i<Assignment.adminInfo.size(); i++){
                     Admin c = Assignment.adminInfo.get(i);
                     if(userInput.equals(c.getAdUserN())){
+                        flag = false;
                         if(passInput.equals(c.getAdPass())){
                             if(selectedLocation.equals(c.getAdPlace())){
                                 setVisible(false);
@@ -152,14 +153,17 @@ public class Landing extends JFrame implements ActionListener{
                                 break;
                             } else{
                                 JOptionPane.showMessageDialog(login, "Wrong Location!");
+                                break;
                             }
                         } else{
                             JOptionPane.showMessageDialog(login, "Wrong password!");
+                            break;
                         }
-                    } else{
-                        JOptionPane.showMessageDialog(login, "Wrong username!");
                     }
                 }
+                if (flag){
+                        JOptionPane.showMessageDialog(login, "Wrong Username!");
+                    }
             }
         } else if (e.getSource() == register){
             setVisible(false);

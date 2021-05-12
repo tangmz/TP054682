@@ -8,15 +8,18 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 public class Visitor extends JFrame implements ActionListener{
-    private Button register;
+    private Button register, exit;
     public Visitor(){
         setSize(300,200);
         setLocation(1000,300);
         setLayout(new FlowLayout());
         setBackground(Color.white);
         register = new Button("Register");
+        exit = new Button("Exit");
         register.addActionListener(this);
+        exit.addActionListener(this);
         add(register);
+        add(exit);
         setVisible(false);
     }
 
@@ -25,6 +28,10 @@ public class Visitor extends JFrame implements ActionListener{
         if (ae.getSource() == register){
             setVisible(false);
             Assignment.register.setVisible(true);
+        }
+        if(ae.getSource() == exit){
+            setVisible(false);
+            Assignment.login.setVisible(true);
         }
     }
 }
