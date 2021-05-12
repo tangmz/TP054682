@@ -128,7 +128,7 @@ public class Register extends JFrame implements ActionListener{
                                     f.println();
                                 }
                                 f.close();
-                                setVisible(false);
+                                this.dispose();
                                 Assignment.login.setVisible(true);
                             } catch(Exception ex){
                                 System.out.println("Error in stop!");
@@ -168,7 +168,7 @@ public class Register extends JFrame implements ActionListener{
                             f.println();
                         }
                         f.close();
-                        setVisible(false);
+                        this.dispose();
                         Assignment.login.setVisible(true);
                     } catch(Exception ex){
                         System.out.println("Error in stop!");
@@ -182,7 +182,7 @@ public class Register extends JFrame implements ActionListener{
             userName.setText("");
             userLoginName.setText("");
             userPass.setText("");
-            setVisible(false);
+            this.dispose();
             Assignment.login.setVisible(true);
         }
     }

@@ -30,7 +30,7 @@ public class Visitor extends JFrame implements ActionListener{
             Assignment.register.setVisible(true);
         }
         if(ae.getSource() == exit){
-            setVisible(false);
+            this.dispose();
             Assignment.login.setVisible(true);
         }
     }
