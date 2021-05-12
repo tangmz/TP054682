@@ -2,6 +2,7 @@ package Assignment;
 
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -17,11 +18,11 @@ import javax.swing.JOptionPane;
 
 public class Landing extends JFrame implements ActionListener{
     private Button student,admin,login,clear,exit, register, visitorView;
-    private Label id,password, locationLabel;
+    private Label id,password, locationLabel, title;
     private TextField idIn,passIn; 
     private String Switch = "StudentL";
-    JComboBox locationLogin = new JComboBox();
-    GridBagConstraints gbc = new GridBagConstraints();
+    private JComboBox locationLogin = new JComboBox();
+    private GridBagConstraints gbc = new GridBagConstraints();
     public Landing(){
         //Landing object = new Landing();
         String place[] = {"Bukit Jalil", "Putrajaya", "Petaling Jaya", "Shah Alam"};
@@ -29,7 +30,7 @@ public class Landing extends JFrame implements ActionListener{
             locationLogin.addItem(place[i]);
         }
         locationLogin.setSelectedItem("Bukit Jalil");
-        setSize(350,270);
+        setSize(400,270);
         setLocation(1000,300);
         setLayout(new GridBagLayout());
         gbc.insets = new Insets(5,6,5,6);
@@ -45,6 +46,7 @@ public class Landing extends JFrame implements ActionListener{
         //password = new Label("Password");
         idIn = new TextField("Username",15);
         passIn = new TextField("Password",15);
+        title = new Label("Sport Mangement System");
         locationLabel = new Label ("Select your location");
         student.addActionListener(this);
         admin.addActionListener(this);
@@ -85,25 +87,31 @@ public class Landing extends JFrame implements ActionListener{
         });
         gbc.gridx = 1;
         gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.CENTER;
+        title.setFont(new Font("Verdana", Font.BOLD, 20));
+        add(title, gbc);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridx =1;
+        gbc.gridy = 1;
+        add(locationLogin, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.WEST;
         add(student, gbc);
         student.setBackground(Color.GREEN);
         gbc.gridx = 1;
-        gbc.gridy = 0;
+        gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.EAST;
         add(admin, gbc);
         admin.setBackground(Color.LIGHT_GRAY);
         //add(id);
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         add(idIn, gbc);
         //add(password);
-        gbc.gridy = 2;
-        gbc.anchor = GridBagConstraints.CENTER;
-        add(passIn, gbc);
         gbc.gridy = 3;
         gbc.anchor = GridBagConstraints.CENTER;
-        add(locationLogin, gbc);
+        add(passIn, gbc);
         gbc.gridx = 0;
         gbc.gridy = 4;
         add(login, gbc);
