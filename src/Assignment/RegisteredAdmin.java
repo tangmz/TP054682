@@ -13,6 +13,7 @@ public class RegisteredAdmin{
     private Button logout;
     
     public void FrameLoad(String UserName){
+        //++Logout Button++//
         JFrameFormat frame = new JFrameFormat(UserName);
         frame.setVisible(true);
         logout = new Button("Logout");
@@ -25,8 +26,4 @@ public class RegisteredAdmin{
         });
         frame.Body.add(logout);
     }
-//    @Override
-//    public void actionPerformed(ActionEvent ae) {
-//        
-//    }
 }

@@ -30,7 +30,6 @@ public class Landing extends JFrame implements ActionListener{
     private String Switch = "StudentL";
     private JPanel Header, Subheader, Center, SelectionBody, InputBody, ButtonBody, Footer;
     private JComboBox locationLogin = new JComboBox();
-    private GridBagConstraints gbc = new GridBagConstraints();
     public Landing(){
         //Landing object = new Landing();
         locationLogin.addItem("Petaling Jaya");
