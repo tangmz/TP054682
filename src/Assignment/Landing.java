@@ -175,7 +175,7 @@ public class Landing extends JFrame implements ActionListener{
         Footer.add(visitorView, BorderLayout.CENTER);
         mainCont.add(Footer, BorderLayout.SOUTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setUndecorated(true);
+//        setUndecorated(true);
         setVisible(true);
     }
     
