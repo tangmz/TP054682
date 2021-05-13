@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 
 public class RegisteredStudent extends JFrame implements ActionListener{
     private JButton view, modify, feedback, exit;
-    Image newImage = new ImageIcon(this.getClass().getResource("/PicLibrary/basketball.png")).getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+    Image newImage = new ImageIcon(this.getClass().getResource("/PicLibrary/basketball.png")).getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
     Icon image1 = new ImageIcon(newImage);
     
     public RegisteredStudent(){
