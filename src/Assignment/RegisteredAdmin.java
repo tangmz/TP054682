@@ -9,11 +9,11 @@ import javax.swing.JPanel;
 public class RegisteredAdmin{
     
     private JPanel header, menuBody, menuTop, menuR1, menuR2;
-    private String User;
+    private String user;
     private Button logout;
     
-    public void FrameLoad(String UserName){
-        JFrameFormat frame = new JFrameFormat(UserName);
+    public void FrameLoad(String userName){
+        JFrameFormat frame = new JFrameFormat(userName);
         frame.setVisible(true);
         logout = new Button("Logout");
         logout.addActionListener(new ActionListener() {
