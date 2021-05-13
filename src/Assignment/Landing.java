@@ -14,8 +14,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -26,8 +27,7 @@ public class Landing extends JFrame implements ActionListener{
     private Button student,admin,login,clear,exit, register, visitorView;
     private Label id,password, locationLabel, title;
     private TextField idIn,passIn; 
-    private ImageIcon logo;
-    private String Switch = "StudentL";
+    public String Switch;
     private JPanel Header, Subheader, Center, SelectionBody, InputBody, ButtonBody, Footer;
     private JComboBox locationLogin = new JComboBox();
     public Landing(){
@@ -57,7 +57,7 @@ public class Landing extends JFrame implements ActionListener{
         //password = new Label("Password");
         idIn = new TextField("Username",15);
         passIn = new TextField("Password",15);
-        title = new Label("Sports Academy System");
+        title = new Label("Sports Center Mangement System");
         locationLabel = new Label ("Select your location");
         student.addActionListener(this);
         admin.addActionListener(this);
@@ -200,7 +200,7 @@ public class Landing extends JFrame implements ActionListener{
                         flag = false;
                         if(passInput.equals(c.getStuPass())){
                             if(selectedLocation.equals(c.getStuPlace())){
-                                Assignment.registeredStu.setVisible(true);
+                                Assignment.registeredStu.FrameLoad(c.getStuUserN());
                                 this.dispose();
                                 break;
                             }else{
