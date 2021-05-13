@@ -54,7 +54,7 @@ public class Register extends JFrame implements ActionListener{
         locationReg.addItem("Petaling Jaya");
         locationReg.setSelectedItem("Petaling jaya");
         setSize(300,250);
-        setLocation(1000,300);
+        setLocation(800,300);
         setLayout(new FlowLayout());
         setBackground(Color.white);
         create = new Button("Create");
