@@ -142,7 +142,7 @@ public class Register extends JFrame implements ActionListener{
         Footer.add(create);
         Footer.add(exit);
         mainCont.add(Footer, BorderLayout.SOUTH);
-        setVisible(true);
+        setVisible(false);
     }
     @Override
     public void actionPerformed(ActionEvent e){

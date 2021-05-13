@@ -18,8 +18,8 @@ public class RegisteredStudent{
     private String user;
     private Button logout;
     
-    public void FrameLoad(String userName){
-        JFrameFormat frame = new JFrameFormat(userName);
+    public void FrameLoad(String UserName){
+        JFrameFormat frame = new JFrameFormat(UserName);
         frame.setVisible(true);
         logout = new Button("Logout");
         logout.addActionListener(new ActionListener() {
@@ -31,11 +31,12 @@ public class RegisteredStudent{
         });
         frame.Body.add(logout);
     }
+}
 //    @Override
 //    public void actionPerformed(ActionEvent ae) {
 //        
 //    }
-}
+//}
 //    private JButton view, modify, feedback, exit;
 //    Image newImage = new ImageIcon(this.getClass().getResource("/PicLibrary/badminton.png")).getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
 //    Icon image1 = new ImageIcon(newImage);

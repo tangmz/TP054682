@@ -27,7 +27,7 @@ public class Landing extends JFrame implements ActionListener{
     private Button student,admin,login,clear,exit, register, visitorView;
     private Label id,password, locationLabel, title;
     private TextField idIn,passIn; 
-    public String Switch;
+    private String Switch = "StudentL";
     private JPanel Header, Subheader, Center, SelectionBody, InputBody, ButtonBody, Footer;
     private JComboBox locationLogin = new JComboBox();
     public Landing(){
