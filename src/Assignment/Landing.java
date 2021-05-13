@@ -35,7 +35,7 @@ public class Landing extends JFrame implements ActionListener{
         //Landing object = new Landing();
         locationLogin.addItem("Petaling Jaya");
         locationLogin.setSelectedItem("Petaling jaya");
-        setSize(400,290);
+        setSize(400,300);
         setLocation(1000,300);
         Container mainCont = this.getContentPane();
         mainCont.setLayout(new BorderLayout(8,6));

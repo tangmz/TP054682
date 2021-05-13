@@ -20,7 +20,6 @@ public class RegisteredStudent extends JFrame implements ActionListener{
         setBackground(Color.white);
         view = new JButton(image1);
         add(view);
-
         setVisible(false);
     }
 
