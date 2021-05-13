@@ -8,12 +8,13 @@ import javax.swing.JPanel;
 public class RegisteredAdmin implements ActionListener{
     
     private JPanel header, menuBody, menuTop, menuR1, menuR2;
-    private JFrameFormat frame = new JFrameFormat();
+    private String User;
     @Override
     public void actionPerformed(ActionEvent ae) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    public void FrameLoad(){
+    public void FrameLoad(String UserName){
+        JFrameFormat frame = new JFrameFormat(UserName);
         frame.setVisible(true);
     }
 }

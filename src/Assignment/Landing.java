@@ -27,7 +27,7 @@ public class Landing extends JFrame implements ActionListener{
     private Button student,admin,login,clear,exit, register, visitorView;
     private Label id,password, locationLabel, title;
     private TextField idIn,passIn; 
-    private String Switch = "StudentL";
+    public String Switch;
     private JPanel Header, Subheader, Center, SelectionBody, InputBody, ButtonBody, Footer;
     private JComboBox locationLogin = new JComboBox();
     private GridBagConstraints gbc = new GridBagConstraints();
@@ -228,7 +228,7 @@ public class Landing extends JFrame implements ActionListener{
                         flag = false;
                         if(passInput.equals(c.getAdPass())){
                             if(selectedLocation.equals(c.getAdPlace())){
-                                Assignment.registeredAd.FrameLoad();
+                                Assignment.registeredAd.FrameLoad(c.getAdUserN());
                                 this.dispose();
                                 break;
                             } else{

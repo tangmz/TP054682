@@ -1,4 +1,5 @@
 package Assignment;
+import java.awt.Label;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,7 +8,6 @@ public class Assignment {
     public static Landing login = new Landing();
     public static Register register = new Register();
     public static Visitor visitorView = new Visitor();
-    public static JFrameFormat frameFormat = new JFrameFormat();
     public static RegisteredAdmin registeredAd = new RegisteredAdmin();
     public static RegisteredStudent registeredStu = new RegisteredStudent();
     public static ArrayList <Student> studentInfo = new ArrayList<Student>();

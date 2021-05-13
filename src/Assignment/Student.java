@@ -14,6 +14,8 @@ public class Student {
         this.stuPhone = stuPhone;
     }
 
+    Student() {}
+
     public int getStuID() {
         return stuID;
     }
