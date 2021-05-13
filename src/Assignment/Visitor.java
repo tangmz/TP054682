@@ -11,7 +11,7 @@ public class Visitor extends JFrame implements ActionListener{
     private Button register, exit;
     public Visitor(){
         setSize(300,200);
-        setLocation(1000,300);
+        setLocation(800,300);
         setLayout(new FlowLayout());
         setBackground(Color.white);
         register = new Button("Register");

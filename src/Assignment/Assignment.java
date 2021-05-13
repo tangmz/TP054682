@@ -7,6 +7,8 @@ public class Assignment {
     public static Landing login = new Landing();
     public static Register register = new Register();
     public static Visitor visitorView = new Visitor();
+    public static JFrameFormat frameFormat = new JFrameFormat();
+    public static RegisteredAdmin registeredAd = new RegisteredAdmin();
     public static RegisteredStudent registeredStu = new RegisteredStudent();
     public static ArrayList <Student> studentInfo = new ArrayList<Student>();
     public static ArrayList<Admin> adminInfo = new ArrayList<Admin>();

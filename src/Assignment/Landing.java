@@ -36,11 +36,10 @@ public class Landing extends JFrame implements ActionListener{
         locationLogin.addItem("Petaling Jaya");
         locationLogin.setSelectedItem("Petaling jaya");
         setSize(400,300);
-        setLocation(1000,300);
+        setLocation(800,300);
         Container mainCont = this.getContentPane();
         mainCont.setLayout(new BorderLayout(8,6));
 //        gbc.insets = new Insets(5,6,5,6);
-        setBackground(Color.white);
         Header = new JPanel();
         Subheader = new JPanel();
         Center = new JPanel();
@@ -229,7 +228,7 @@ public class Landing extends JFrame implements ActionListener{
                         flag = false;
                         if(passInput.equals(c.getAdPass())){
                             if(selectedLocation.equals(c.getAdPlace())){
-                                setVisible(false);
+                                Assignment.registeredAd.FrameLoad();
                                 this.dispose();
                                 break;
                             } else{

@@ -17,7 +17,7 @@ public class RegisteredStudent extends JFrame implements ActionListener{
     
     public RegisteredStudent(){
         setSize(300,200);
-        setLocation(1000,300);
+        setLocation(800,300);
         setLayout(new FlowLayout());
         setBackground(Color.white);
         view = new JButton(image1);
