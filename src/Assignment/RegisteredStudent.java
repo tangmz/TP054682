@@ -2,17 +2,19 @@ package Assignment;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 public class RegisteredStudent extends JFrame implements ActionListener{
     private JButton view, modify, feedback, exit;
-    Icon image1 = new ImageIcon(getClass().getResource("/PicLibrary/AccountHeader.png"));
+    Image newImage = new ImageIcon(this.getClass().getResource("/PicLibrary/basketball.png")).getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+    Icon image1 = new ImageIcon(newImage);
+    
     public RegisteredStudent(){
         setSize(300,200);
         setLocation(1000,300);
