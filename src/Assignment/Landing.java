@@ -170,7 +170,7 @@ public class Landing extends JFrame implements ActionListener{
                         flag = false;
                         if(passInput.equals(c.getStuPass())){
                             if(selectedLocation.equals(c.getStuPlace())){
-                                setVisible(false);
+                                Assignment.registeredStu.setVisible(true);
                                 this.dispose();
                                 break;
                             }else{
