@@ -91,7 +91,7 @@ public class Visitor extends JFrame implements ActionListener{
         header.add(headerUser, BorderLayout.EAST);
         mainCont.add(header, BorderLayout.NORTH);
         view = new JPanel();
-        
+
         view.setLayout(new GridLayout(2,5));
         view.add(swimmingB);
         view.add(badmintonB);
