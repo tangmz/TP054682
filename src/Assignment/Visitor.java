@@ -66,9 +66,9 @@ public class Visitor extends JFrame implements ActionListener{
         viewL = new Label("View", Label.CENTER);
         registerL = new Label("Register", Label.CENTER);
         exitL = new Label("Exit", Label.CENTER);
-        viewL.setFont(new Font("Verdana", Font.BOLD, 20));
-        registerL.setFont(new Font("Verdana", Font.BOLD, 20));
-        exitL.setFont(new Font("Verdana", Font.BOLD, 20));
+        viewL.setFont(new Font("Verdana", Font.BOLD, 50));
+        registerL.setFont(new Font("Verdana", Font.BOLD, 50));
+        exitL.setFont(new Font("Verdana", Font.BOLD, 50));
         Body.setLayout(new GridLayout(2,3));
         Body.setBackground(Color.WHITE);
         Body.add(viewL);
@@ -84,13 +84,18 @@ public class Visitor extends JFrame implements ActionListener{
         UserLoggedIn.setText(":\t"+userName);
 //        register = new Button("Register");
 //        exit = new Button("Exit");
-//        register.addActionListener(this);
-//        exit.addActionListener(this);
+        view.addActionListener(this);
+        register.addActionListener(this);
+        exit.addActionListener(this);
 //        setVisible(false);
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        if(ae.getSource() == register){
+            setVisible(false);
+            
+        }
         if (ae.getSource() == register){
             setVisible(false);
             Assignment.register.setVisible(true);
