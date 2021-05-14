@@ -57,7 +57,7 @@ public class Landing extends JFrame implements ActionListener{
         //password = new Label("Password");
         idIn = new TextField("Username",15);
         passIn = new TextField("Password",15);
-        title = new Label("Sports Center Mangement System");
+        title = new Label("Sport Academy System");
         locationLabel = new Label ("Select your location");
         student.addActionListener(this);
         admin.addActionListener(this);
@@ -254,7 +254,7 @@ public class Landing extends JFrame implements ActionListener{
             System.exit(0);
         } else if (e.getSource() == visitorView){
             setVisible(false);
-            Assignment.visitorView.setVisible(true);
+            Assignment.visitorView.Visitor();
         }
     }
 }
