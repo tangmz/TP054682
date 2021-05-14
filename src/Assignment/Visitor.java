@@ -22,7 +22,7 @@ import javax.swing.border.LineBorder;
 public class Visitor extends JFrame implements ActionListener{
     private JButton register, exit, swimmingB, badmintonB, footballB, archeryB, gymnasticB, volleyballB, basketballB, cricketB, tennisB, tableTennisB;
     public JPanel header, headerUser, Body, view;
-    public Label UserLoggedIn, registerL, exitL, viewL, welcome; 
+    public Label UserLoggedIn, viewL, welcome; 
     public JLabel LogoFrame, UserFrame;
     private ImageIcon Logo, User, exitLogo, viewLogo, registerLogo, swimming, badminton, football, archery, gymnastic, volleyball, basketball, cricket, tennis, tableTennis;
     public String userName;
@@ -69,11 +69,11 @@ public class Visitor extends JFrame implements ActionListener{
         tableTennis = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/tableTennis.png")).getImage().getScaledInstance(150, 55, Image.SCALE_SMOOTH));
         tableTennisB = new JButton(tableTennis);
         tableTennisB.setBackground(Color.WHITE);
-        registerLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/sign up.png")).getImage().getScaledInstance(150, 55, Image.SCALE_SMOOTH));
-        register = new JButton(registerLogo);
+        registerLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/sign up.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+        register = new JButton("Register",registerLogo);
         register.setBackground(Color.LIGHT_GRAY);
-        exitLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/logout.png")).getImage().getScaledInstance(150, 55, Image.SCALE_SMOOTH));
-        exit = new JButton (exitLogo);
+        exitLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/logout.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+        exit = new JButton ("Exit",exitLogo);
         exit.setBackground(Color.LIGHT_GRAY);
         welcome = new Label("Welcome To Real Champion Sport Academy", Label.CENTER);
         welcome.setFont(new Font("Verdana", Font.BOLD, 20));
@@ -92,11 +92,6 @@ public class Visitor extends JFrame implements ActionListener{
         mainCont.add(header, BorderLayout.NORTH);
         view = new JPanel();
 
-        registerL = new Label("Register", Label.CENTER);
-        exitL = new Label("Exit", Label.CENTER);
-
-        registerL.setFont(new Font("Verdana", Font.BOLD, 50));
-        exitL.setFont(new Font("Verdana", Font.BOLD, 50));
         view.setLayout(new GridLayout(2,5));
         view.add(swimmingB);
         view.add(badmintonB);
@@ -110,9 +105,7 @@ public class Visitor extends JFrame implements ActionListener{
         view.add(tableTennisB);
         mainCont.add(view, BorderLayout.CENTER);
         Body = new JPanel();
-        Body.setLayout(new GridLayout(2,2));
-        Body.add(registerL);
-        Body.add(exitL);
+        Body.setLayout(new FlowLayout());
         Body.add(register);
         Body.add(exit);
         mainCont.add(Body, BorderLayout.SOUTH);
