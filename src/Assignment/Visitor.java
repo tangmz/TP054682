@@ -71,12 +71,14 @@ public class Visitor extends JFrame implements ActionListener{
         tableTennisB.setBackground(Color.WHITE);
         registerLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/sign up.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
         register = new JButton("Register",registerLogo);
+        register.setFont(new Font("Arial", Font.BOLD, 20));
         register.setBackground(Color.LIGHT_GRAY);
         exitLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/logout.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
         exit = new JButton ("Exit",exitLogo);
+        exit.setFont(new Font("Arial", Font.BOLD, 20));
         exit.setBackground(Color.LIGHT_GRAY);
         welcome = new Label("Welcome To Real Champion Sport Academy", Label.CENTER);
-        welcome.setFont(new Font("Verdana", Font.BOLD, 20));
+        welcome.setFont(new Font("Arial", Font.BOLD, 20));
         UserFrame.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Color.DARK_GRAY));
         ///////////////////////////
         header = new JPanel();
