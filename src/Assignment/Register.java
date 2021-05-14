@@ -26,7 +26,7 @@ import javax.swing.border.LineBorder;
 
 public class Register extends JFrame implements ActionListener{
     private Button create, exit;
-    private Label title, nameL, usernameL, passwordL, locationL, genderL, phoneL;
+    private Label title, nameL, usernameL, passwordL, locationL, genderL, phoneL, roleL;
     private TextField userName, userLoginName, userPass, userPhone;
     private JList regLocation;
     private JFrame x;
@@ -65,11 +65,13 @@ public class Register extends JFrame implements ActionListener{
         setBackground(Color.white);
         create = new Button("Create");
         exit = new Button("Exit");
-        nameL = new Label("Name:     \t  ");
-        usernameL = new Label("Username:  ");
+        nameL = new Label("Name:      \t  ");
+        usernameL = new Label("Username:   ");
         passwordL = new Label("Password:    ");
+        genderL = new Label("Gender: ", Label.LEFT);
         locationL = new Label("Select your Location: ");
         phoneL = new Label("Phone number:");
+        roleL = new Label("Role:          ", Label.LEFT);
         userName = new TextField(15);
         userLoginName = new TextField(15);
         userPass = new TextField(15);
@@ -118,6 +120,7 @@ public class Register extends JFrame implements ActionListener{
         Body.add(b3);
         b4 = new JPanel();
         b4.setLayout(new FlowLayout(FlowLayout.CENTER));
+        b4.add(genderL);
         b4.add(male);
         b4.add(female);
         Body.add(b4);
@@ -133,6 +136,7 @@ public class Register extends JFrame implements ActionListener{
         Body.add(b6);
         b7 = new JPanel();
         b7.setLayout(new FlowLayout(FlowLayout.CENTER));
+        b7.add(roleL);
         b7.add(adminB);
         b7.add(studentB);
         Body.add(b7);
