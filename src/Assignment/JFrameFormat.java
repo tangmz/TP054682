@@ -46,10 +46,11 @@ public class JFrameFormat extends JFrame{
         header.add(headerUser, BorderLayout.EAST);
         mainCont.add(header, BorderLayout.NORTH);
         Body = new JPanel();
+        Body.setLayout(new BorderLayout());
         mainCont.add(Body, BorderLayout.CENTER);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(false);
-        System.out.println(UserName);
+        setResizable(false);
         UserLoggedIn.setText(":\t"+UserName);
     }
 }

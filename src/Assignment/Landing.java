@@ -188,6 +188,8 @@ public class Landing extends JFrame implements ActionListener{
         mainCont.add(Footer, BorderLayout.SOUTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //        setUndecorated(true);
+        setTitle("REAL Champion Sport Academy");
+        setResizable(false);
         setVisible(true);
     }
     

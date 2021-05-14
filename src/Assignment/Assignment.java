@@ -1,6 +1,7 @@
 package Assignment;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Assignment {
@@ -11,6 +12,7 @@ public class Assignment {
     public static RegisteredStudent registeredStu = new RegisteredStudent();
     public static ArrayList <Student> studentInfo = new ArrayList<Student>();
     public static ArrayList<Admin> adminInfo = new ArrayList<Admin>();
+    public static Date DateTime;
         
     public static void main(String[] args) {
         try{

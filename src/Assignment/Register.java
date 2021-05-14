@@ -146,6 +146,7 @@ public class Register extends JFrame implements ActionListener{
         Footer.add(create);
         Footer.add(exit);
         mainCont.add(Footer, BorderLayout.SOUTH);
+        setResizable(false);
         setVisible(false);
     }
     @Override
