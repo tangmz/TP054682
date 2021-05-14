@@ -129,15 +129,33 @@ public class Visitor extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if(ae.getSource() == register){
+        if(ae.getSource() == swimmingB){
+            
+        }else if(ae.getSource() == badmintonB){
+            
+        }else if(ae.getSource() == footballB){
+            
+        }else if(ae.getSource() == archeryB){
+            
+        }else if(ae.getSource() == gymnasticB){
+            
+        }else if(ae.getSource() == volleyballB){
+            
+        }else if(ae.getSource() == basketballB){
+            
+        }else if(ae.getSource() == cricketB){
+            
+        }else if(ae.getSource() == tennisB){
+            
+        }else if(ae.getSource() == tableTennisB){
+            
+        }else if(ae.getSource() == register){
             setVisible(false);
             
-        }
-        if (ae.getSource() == register){
+        }else if (ae.getSource() == register){
             setVisible(false);
             Assignment.register.setVisible(true);
-        }
-        if(ae.getSource() == exit){
+        }else if(ae.getSource() == exit){
             this.dispose();
             Assignment.login.setVisible(true);
         }
