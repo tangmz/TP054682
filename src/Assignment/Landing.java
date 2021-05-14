@@ -29,12 +29,24 @@ public class Landing extends JFrame implements ActionListener{
     private TextField idIn,passIn; 
     private String Switch = "StudentL";
     private JPanel Header, Subheader, Center, SelectionBody, InputBody, ButtonBody, Footer;
-    private ImageIcon Logo;
+    private ImageIcon Logo, loginLogo, registerLogo, clearLogo, exitLogo;
     private JComboBox locationLogin = new JComboBox();
     public Landing(){
         //Landing object = new Landing();
         Logo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/A_Logo.png")).getImage().getScaledInstance(300, 110, Image.SCALE_SMOOTH));
         JLabel LogoFrame = new JLabel(Logo);
+        loginLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/login1.png")).getImage().getScaledInstance(20,20, Image.SCALE_SMOOTH));
+        login = new JButton("Login",loginLogo);
+        login.setBackground(Color.WHITE);
+        registerLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/sign up.png")).getImage().getScaledInstance(20,20, Image.SCALE_SMOOTH));
+        register = new JButton("Register", registerLogo);
+        register.setBackground(Color.WHITE);
+        clearLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/clear.png")).getImage().getScaledInstance(20,20, Image.SCALE_SMOOTH));
+        clear = new JButton("Clear", clearLogo);
+        clear.setBackground(Color.WHITE);
+        exitLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/logout.png")).getImage().getScaledInstance(20,20, Image.SCALE_SMOOTH));
+        exit = new JButton("Exit", exitLogo);
+        exit.setBackground(Color.WHITE);
         locationLogin.addItem("Petaling Jaya");
         locationLogin.setSelectedItem("Petaling jaya");
         setSize(400,420);
@@ -51,11 +63,8 @@ public class Landing extends JFrame implements ActionListener{
         Footer = new JPanel();
         student = new JButton("Student");
         admin = new JButton("Admin");
-        login = new JButton("Login");
-        register = new JButton("Register");
-        clear = new JButton("Clear");
-        exit = new JButton("Exit");
         visitorView = new JButton("Visitor View");
+        visitorView.setBackground(Color.WHITE);
         //id = new Label("Username: ");
         //password = new Label("Password");
         idIn = new TextField("Username",15);
