@@ -20,9 +20,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class RegisteredStudent extends DateTime{    
-    private JPanel header, menuBody, displayBody, sidePanel;
+    private JPanel header, menuBody, displayBody, sidePanel, attendancePanel;
     private String user, time;
-    private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, logout; 
+    private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, attendanceConfirm, logout; 
     private JLabel background;
     private ImageIcon viewCoachLogo, viewRecordLogo, viewRegSportLogo, modifyLogo, feedbackLogo, attendanceLogo, paymentLogo, logoutLogo, backgroundImage;
     public void FrameLoad(String UserName){
@@ -102,37 +102,43 @@ public class RegisteredStudent extends DateTime{
         viewRecord.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+
             }
         });
         viewRegSport.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+
             }
         });
         modifyRecord.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+
             }
         });
         feedbackCoach.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+
             }
         });
         attendance.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+//                displayBody.setVisible(true);
+//                attendancePanel = new JPanel();
+//                attendanceConfirm = new JButton("Attendace");
+//                attendanceConfirm.setBackground(Color.GREEN);
+//                attendancePanel.add(attendanceConfirm);
+//                attendancePanel.setVisible(false);
+//                frame.Body.add(attendancePanel, BorderLayout.CENTER);
             }
         });
         payment.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+
             }
         });
 
