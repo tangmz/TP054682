@@ -77,7 +77,7 @@ public class RegisteredAdmin extends DateTime{
         displayBody = new JPanel();
         displayBody.setBorder(BorderFactory.createMatteBorder(3 , 0 , 3 , 3 ,Color.DARK_GRAY));
         JLabel time = new JLabel();
-        time.setText(String.valueOf(getYear()));
+        time.setText(String.valueOf(getDay()));
         displayBody.add(time);
         frame.Body.add(menuBody, BorderLayout.WEST);
         frame.Body.add(displayBody, BorderLayout.CENTER);
