@@ -19,7 +19,7 @@ public class Assignment {
             
             Scanner s = new Scanner(new File("studentLogin.txt"));
             while(s.hasNext()){
-                int a = Integer.parseInt(s.nextLine());
+                String a = s.nextLine();
                 String b = s.nextLine();
                 String c = s.nextLine();
                 String d = s.nextLine();
@@ -32,7 +32,7 @@ public class Assignment {
             }
             s = new Scanner(new File("adminLogin.txt"));
             while(s.hasNext()){
-                int h = Integer.parseInt(s.nextLine());
+                String h = s.nextLine();
                 String i = s.nextLine();
                 String j = s.nextLine();
                 String k = s.nextLine();

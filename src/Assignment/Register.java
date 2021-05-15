@@ -153,7 +153,8 @@ public class Register extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
         String selectedLocation = locationReg.getSelectedItem().toString();
         //String selectedLocation = (String)comboBox.getSelectedItem().toString();
-        int userID = 1;
+        String adID = "AN1";
+        String stuID = "SN1";
         int i = 0;
         String visitorName = userName.getText();
         String visitorUserN = userLoginName.getText();
@@ -172,9 +173,10 @@ public class Register extends JFrame implements ActionListener{
                                 break;
                             }
                         }
-                        userID = i + 1;
+                        String nextID = String.valueOf(i+1);
+                        adID = "AN"+(nextID);
                         if (flag){
-                            Admin adminReg = new Admin(userID, visitorName,visitorUserN,visitorPass,selectedLocation, visitorGender, visitorPhone);
+                            Admin adminReg = new Admin(adID, visitorName,visitorUserN,visitorPass,selectedLocation, visitorGender, visitorPhone);
                             Assignment.adminInfo.add(adminReg);
                             try{
                                 PrintWriter f = new PrintWriter("adminLogin.txt");
@@ -212,9 +214,10 @@ public class Register extends JFrame implements ActionListener{
                         break;
                     }
                 }
-                userID = i + 1;
+                String nextID = String.valueOf(i+1);
+                stuID = "SN"+(nextID);
                 if (flag){
-                    Student studentReg = new Student(userID,visitorName,visitorUserN,visitorPass,selectedLocation, visitorGender ,visitorPhone);
+                    Student studentReg = new Student(stuID,visitorName,visitorUserN,visitorPass,selectedLocation, visitorGender ,visitorPhone);
                     Assignment.studentInfo.add(studentReg);
                     try{
                         PrintWriter f = new PrintWriter("studentLogin.txt");

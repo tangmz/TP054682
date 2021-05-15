@@ -1,19 +1,40 @@
 package Assignment;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class AdminAddFunc extends JPanel{
-    public String Stringg = "Hii";
-    public JLabel Test = new JLabel(Stringg);
-    public JPanel MainPanel; 
+public class AdminAddFunc extends JPanel implements ActionListener{
+//    private JLabel Test;
+    public JPanel PanelTop, PanelMod, PanelAdd, PanelBody; 
+    private JComboBox SportMod;
     AdminAddFunc(){
-        Stringg = "Hiiiiiii";
-        Test = new JLabel(Stringg);
-//        MainPanel = new JPanel();
-        setLayout(new FlowLayout());
-//        Assignment.registeredAd.displayBody.add(Test);
-        add(Test);
+        readFile();
+        SportMod = new JComboBox();
+//        SportMod.setModel(cbm);
+        
+        //++PanelDesign//++
+//        Test = new JLabel("Hiiiiiii");
+        PanelMod = new JPanel();
+        PanelMod.setLayout(new FlowLayout());
+        PanelMod.add(SportMod);
+        PanelTop = new JPanel();
+        PanelTop.setLayout(new BorderLayout());
+        PanelTop.add(PanelMod, BorderLayout.WEST);
+        setLayout(new BorderLayout());
+        add(PanelTop, BorderLayout.NORTH);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void readFile() {
+        
     }
 }

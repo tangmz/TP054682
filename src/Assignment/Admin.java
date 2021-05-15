@@ -1,10 +1,9 @@
 package Assignment;
 
 public class Admin {
-    private int adId;
-    private String adUserN, adPass, adName, adPlace, adGender, adPhone;
+    private String adId, adUserN, adPass, adName, adPlace, adGender, adPhone;
 
-    public Admin(int adId, String adUserN, String adPass, String adName, String adPlace, String adGender, String adPhone) {
+    public Admin(String adId, String adUserN, String adPass, String adName, String adPlace, String adGender, String adPhone) {
         this.adId = adId;
         this.adUserN = adUserN;
         this.adPass = adPass;
@@ -14,11 +13,11 @@ public class Admin {
         this.adPhone = adPhone;
     }
 
-    public int getAdId() {
+    public String getAdId() {
         return adId;
     }
 
-    public void setAdId(int adId) {
+    public void setAdId(String adId) {
         this.adId = adId;
     }
 

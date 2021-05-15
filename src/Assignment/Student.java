@@ -1,10 +1,9 @@
 package Assignment;
 
 public class Student {
-    private int stuID;
-    private String stuName, stuUserN, stuPass, stuPlace, stuGender, stuPhone;
+    private String stuID, stuName, stuUserN, stuPass, stuPlace, stuGender, stuPhone;
 
-    public Student(int stuID, String stuName, String stuUserN, String stuPass, String stuPlace, String stuGender, String stuPhone) {
+    public Student(String stuID, String stuName, String stuUserN, String stuPass, String stuPlace, String stuGender, String stuPhone) {
         this.stuID = stuID;
         this.stuName = stuName;
         this.stuUserN = stuUserN;
@@ -16,11 +15,11 @@ public class Student {
 
 
 
-    public int getStuID() {
+    public String getStuID() {
         return stuID;
     }
 
-    public void setStuID(int stuID) {
+    public void setStuID(String stuID) {
         this.stuID = stuID;
     }
 
