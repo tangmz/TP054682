@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Label;
 import javax.swing.BorderFactory;
@@ -17,7 +18,7 @@ public class JFrameFormat extends JFrame{
     
     public JPanel header, headerUser, Body;
     public Label UserLoggedIn; 
-    public JLabel LogoFrame, UserFrame;
+    public JLabel welcome, LogoFrame, UserFrame;
     private ImageIcon Logo, User;
     public String UserName;
 
@@ -27,6 +28,8 @@ public class JFrameFormat extends JFrame{
         setLocation(500,200);
         Container mainCont = this.getContentPane();
         mainCont.setLayout(new BorderLayout(8,6));
+        welcome = new JLabel("", JLabel.CENTER);
+        welcome.setFont(new Font("Arial", Font.BOLD, 30));
         UserLoggedIn = new Label(":\t<USER>");
         Logo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/A_Logo.png")).getImage().getScaledInstance(150, 55, Image.SCALE_SMOOTH));
         LogoFrame = new JLabel(Logo);
@@ -39,6 +42,7 @@ public class JFrameFormat extends JFrame{
         header.setBorder(new LineBorder(Color.DARK_GRAY, 2));
         header.setLayout(new BorderLayout());
         header.add(LogoFrame, BorderLayout.WEST);
+        header.add(welcome, BorderLayout.CENTER);
         headerUser = new JPanel();
         headerUser.setLayout(new FlowLayout());
         headerUser.add(UserFrame);

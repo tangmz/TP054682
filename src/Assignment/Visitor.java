@@ -65,10 +65,8 @@ public class Visitor implements ActionListener{
         exit = new JButton ("Exit",exitLogo);
         exit.setFont(new Font("Arial", Font.BOLD, 20));
         exit.setBackground(Color.LIGHT_GRAY);
-        welcome = new JLabel("Welcome To Real Champion Sport Academy", JLabel.CENTER);
-        welcome.setFont(new Font("Arial", Font.BOLD, 20));
+        frame.welcome.setText("Welcome To Real Champion Sport Academy");
         frame.setSize(950,600);
-        frame.header.add(welcome, BorderLayout.CENTER);
         
         view = new JPanel();
         view.setLayout(new GridLayout(2,5));
