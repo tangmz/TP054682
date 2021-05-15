@@ -5,26 +5,25 @@ import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.BorderFactory;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class RegisteredStudent{    
-    private JPanel header, menuBody, displayBody;
-    private String user;
-    private Button viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, logout; //SearchRecord inclusive of Sorting
-    
+    private JPanel header, menuBody, displayBody, sidePanel;
+    private String user, time;
+    private Button viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, logout; 
     public void FrameLoad(String UserName){
         //++Logout Button++//
         JFrameFormat frame = new JFrameFormat(UserName);
         frame.setVisible(true);
+        
         logout = new Button("Logout");
         logout.addActionListener(new ActionListener() {
             @Override
@@ -82,22 +81,32 @@ public class RegisteredStudent{
                 
             }
         });
+        DateFormat dateFormat = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+        String strDate = dateFormat.format(Assignment.DateTime);
+        JLabel dateTime = new JLabel("Login DateTime: "+strDate, JLabel.CENTER);
+        dateTime.setFont(new Font("Arial", Font.BOLD, 30));
+        frame.header.add(dateTime, BorderLayout.CENTER);
         menuBody = new JPanel();
-        menuBody.setLayout(new GridLayout(8,1));
         menuBody.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 3));
         menuBody.setPreferredSize(new Dimension(150, frame.getHeight()));
+        menuBody.setBackground(Color.WHITE);
+        menuBody.setLayout(new FlowLayout());
         menuBody.add(viewCoach);
         menuBody.add(viewRecord);
         menuBody.add(viewRegSport);
-        menuBody.add(modifyRecord);
-        menuBody.add(feedbackCoach);
-        menuBody.add(attendance);
-        menuBody.add(payment);
-        menuBody.add(logout);
+        frame.Body.add(menuBody, BorderLayout.CENTER);
+        sidePanel = new JPanel();
+        sidePanel.setLayout(new GridLayout(5,1));
+        sidePanel.add(modifyRecord);
+        sidePanel.add(feedbackCoach);
+        sidePanel.add(attendance);
+        sidePanel.add(payment);
+        sidePanel.add(logout);
+        frame.Body.add(sidePanel, BorderLayout.WEST);
         displayBody = new JPanel();
         displayBody.setBorder(BorderFactory.createMatteBorder(3 , 0 , 3 , 3 ,Color.DARK_GRAY));
-        frame.Body.add(menuBody, BorderLayout.WEST);
-        frame.Body.add(displayBody, BorderLayout.CENTER);
+       
+
         
     }
 }
