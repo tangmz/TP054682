@@ -17,18 +17,71 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
-public class RegisteredStudent{    
+public class RegisteredStudent extends DateTime{    
     private JPanel header, menuBody, displayBody, sidePanel;
     private String user, time;
     private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, logout; 
-    private ImageIcon viewCoachLogo, viewRecordLogo, viewRegSportLogo;
+    private JLabel background;
+    private ImageIcon viewCoachLogo, viewRecordLogo, viewRegSportLogo, modifyLogo, feedbackLogo, attendanceLogo, paymentLogo, logoutLogo, backgroundImage;
     public void FrameLoad(String UserName){
         //++Logout Button++//
         JFrameFormat frame = new JFrameFormat(UserName);
         frame.setVisible(true);
+        viewCoachLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/staff.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        viewCoach = new JButton("View Coach", viewCoachLogo);
+        viewCoach.setBackground(Color.WHITE);
+        viewRecordLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/record.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        viewRecord = new JButton("View Self Record", viewRecordLogo);
+        viewRecord.setBackground(Color.WHITE);
+        viewRegSportLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/schedule.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        viewRegSport = new JButton("View Sport Schedule", viewRegSportLogo);
+        viewRegSport.setBackground(Color.WHITE);
+        modifyLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/Modify.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        modifyRecord = new JButton("Modify Record", modifyLogo);
+        modifyRecord.setBackground(Color.WHITE);
+        feedbackLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/feedback.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        feedbackCoach = new JButton("Feedback", feedbackLogo);
+        feedbackCoach.setBackground(Color.WHITE);
+        attendanceLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/attendance.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        attendance = new JButton("Attendance", attendanceLogo);
+        attendance.setBackground(Color.WHITE);
+        paymentLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/payment.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        payment = new JButton("Payment", paymentLogo);
+        payment.setBackground(Color.WHITE);
+        logoutLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/logout.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        logout = new JButton("Logout", logoutLogo);
+        logout.setBackground(Color.WHITE);
+        backgroundImage = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/background.png")).getImage());
+        background = new JLabel(backgroundImage);
+        frame.welcome.setText("Student Panel");
+        frame.setTitle("Student Panel");
+        menuBody = new JPanel();
+        menuBody.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 3));
+        menuBody.setPreferredSize(new Dimension(210, frame.getHeight()));
+        menuBody.setBackground(Color.WHITE);
+        menuBody.setLayout(new GridLayout(8,1));
+        menuBody.add(viewCoach);
+        menuBody.add(viewRecord);
+        menuBody.add(viewRegSport);
+        //frame.Body.add(menuBody, BorderLayout.CENTER);
+        //sidePanel = new JPanel();
         
-        logout = new JButton("Logout");
+        menuBody.add(modifyRecord);
+        menuBody.add(feedbackCoach);
+        menuBody.add(attendance);
+        menuBody.add(payment);
+        menuBody.add(logout);
+        frame.Body.add(menuBody, BorderLayout.WEST);
+        displayBody = new JPanel();
+        JLabel dateTime = new JLabel(String.valueOf(getFullDate()), SwingConstants.CENTER);
+        dateTime.setFont(new Font("Arial", Font.BOLD, 30));
+        displayBody.setLayout(new GridLayout(2, 1));
+        displayBody.add(dateTime);
+        displayBody.add(background);
+        displayBody.setBorder(BorderFactory.createMatteBorder(3 , 0 , 3 , 3 ,Color.DARK_GRAY));
+        frame.Body.add(displayBody, BorderLayout.CENTER);
         logout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -36,86 +89,52 @@ public class RegisteredStudent{
                 Assignment.login.setVisible(true);
             }
         });
-        viewCoach = new JButton("View Coach");
         viewCoach.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 
+                displayBody.removeAll();
+               
+                //displayBody.add(a);
+                displayBody.repaint();
             }
         });
-        viewRecord = new JButton("View Self Records");
         viewRecord.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 
             }
         });
-        viewRegSport = new JButton("View Sport Schedule");
         viewRegSport.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 
             }
         });
-        modifyRecord = new JButton("Modify Self Records");
         modifyRecord.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 
             }
         });
-        feedbackCoach = new JButton("Feedback");
         feedbackCoach.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 
             }
         });
-        attendance = new JButton("Attendance");
         attendance.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 
             }
         });
-        payment = new JButton("Payment");
         payment.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 
             }
         });
-        viewCoachLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/staff.png")).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
-        viewCoach = new JButton("View Coach", viewCoachLogo);
-        viewRecordLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/record.png")).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
-        viewRecord = new JButton("View Self Record", viewRecordLogo);
-        viewRegSportLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/schedule.png")).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
-        viewRegSport = new JButton("View Sport Schedule", viewRegSportLogo);
-        DateFormat dateFormat = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
-        String strDate = dateFormat.format(Assignment.DateTime);
-        JLabel dateTime = new JLabel("Login DateTime: "+strDate, JLabel.CENTER);
-        dateTime.setFont(new Font("Arial", Font.BOLD, 30));
-        frame.header.add(dateTime, BorderLayout.CENTER);
-        menuBody = new JPanel();
-        menuBody.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 3));
-        menuBody.setPreferredSize(new Dimension(150, frame.getHeight()));
-        menuBody.setBackground(Color.WHITE);
-        menuBody.setLayout(new FlowLayout());
-        menuBody.add(viewCoach);
-        menuBody.add(viewRecord);
-        menuBody.add(viewRegSport);
-        frame.Body.add(menuBody, BorderLayout.CENTER);
-        sidePanel = new JPanel();
-        sidePanel.setLayout(new GridLayout(5,1));
-        sidePanel.add(modifyRecord);
-        sidePanel.add(feedbackCoach);
-        sidePanel.add(attendance);
-        sidePanel.add(payment);
-        sidePanel.add(logout);
-        frame.Body.add(sidePanel, BorderLayout.WEST);
-        displayBody = new JPanel();
-        displayBody.setBorder(BorderFactory.createMatteBorder(3 , 0 , 3 , 3 ,Color.DARK_GRAY));
-       
 
         
     }
