@@ -11,7 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class RegisteredAdmin{
+public class RegisteredAdmin extends DateTime{
     
     private JPanel header, menuBody, displayBody;
     private String user;
@@ -76,6 +76,9 @@ public class RegisteredAdmin{
         menuBody.add(logout);
         displayBody = new JPanel();
         displayBody.setBorder(BorderFactory.createMatteBorder(3 , 0 , 3 , 3 ,Color.DARK_GRAY));
+        JLabel time = new JLabel();
+        time.setText(String.valueOf(getYear()));
+        displayBody.add(time);
         frame.Body.add(menuBody, BorderLayout.WEST);
         frame.Body.add(displayBody, BorderLayout.CENTER);
         
