@@ -2,6 +2,7 @@ package Assignment;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -20,13 +21,14 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class RegisteredStudent extends DateTime{    
-    private JPanel header, menuBody, displayBody, sidePanel, attendancePanel;
+    private JPanel header, menuBody, displayBody, sidePanel, attendancePanel, menu, select1, select2, select3, select4, select5, select6;
     private String user, time;
     private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, attendanceConfirm, logout; 
     private JLabel background;
     private ImageIcon viewCoachLogo, viewRecordLogo, viewRegSportLogo, modifyLogo, feedbackLogo, attendanceLogo, paymentLogo, logoutLogo, backgroundImage;
     public void FrameLoad(String UserName){
         //++Logout Button++//
+        CardLayout cl = new CardLayout();
         JFrameFormat frame = new JFrameFormat(UserName);
         frame.setVisible(true);
         viewCoachLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/staff.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
@@ -74,13 +76,49 @@ public class RegisteredStudent extends DateTime{
         menuBody.add(payment);
         menuBody.add(logout);
         frame.Body.add(menuBody, BorderLayout.WEST);
+        //Body//
         displayBody = new JPanel();
+        displayBody.setLayout(cl);
         JLabel dateTime = new JLabel(String.valueOf(getFullDate()), SwingConstants.CENTER);
         dateTime.setFont(new Font("Arial", Font.BOLD, 30));
-        displayBody.setLayout(new GridLayout(2, 1));
-        displayBody.add(dateTime);
-        displayBody.add(background);
-        displayBody.setBorder(BorderFactory.createMatteBorder(3 , 0 , 3 , 3 ,Color.DARK_GRAY));
+        menu = new JPanel();
+        menu.setLayout(new GridLayout(2, 1));
+        menu.add(dateTime);
+        menu.add(background);
+        menu.setBorder(BorderFactory.createMatteBorder(3 , 0 , 3 , 3 ,Color.DARK_GRAY));
+//        frame.Body.add(menu, BorderLayout.CENTER);
+        select1 = new JPanel();
+        select1.setLayout(new BorderLayout());
+        attendanceConfirm = new JButton("Attendace");
+        attendanceConfirm.setBackground(Color.GREEN);
+        select1.add(attendanceConfirm);
+        attendanceConfirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                    
+            }
+        });
+        select1.add(attendanceConfirm);
+        select2 = new JPanel();
+        select2.setLayout(new BorderLayout());
+//        Tab2.add(aa);
+        select3 = new JPanel();
+        select3.setLayout(new BorderLayout());
+//        Tab3.add(aa);
+        select4 = new JPanel();
+        select4.setLayout(new BorderLayout());
+        select5 = new JPanel();
+        select5.setLayout(new BorderLayout());
+        select6 = new JPanel();
+        select6.setLayout(new BorderLayout());
+        displayBody.add(menu, "1");
+        displayBody.add(select1, "2");
+        displayBody.add(select2, "3");
+        displayBody.add(select3, "4");
+        displayBody.add(select4, "5");
+        displayBody.add(select5, "6");
+        displayBody.add(select6, "7");
+        cl.show(displayBody, "1");
         frame.Body.add(displayBody, BorderLayout.CENTER);
         logout.addActionListener(new ActionListener() {
             @Override
@@ -92,11 +130,7 @@ public class RegisteredStudent extends DateTime{
         viewCoach.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
-                displayBody.removeAll();
-               
-                //displayBody.add(a);
-                displayBody.repaint();
+                cl.show(displayBody, "2");
             }
         });
         viewRecord.addActionListener(new ActionListener() {
@@ -126,13 +160,7 @@ public class RegisteredStudent extends DateTime{
         attendance.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-//                displayBody.setVisible(true);
-//                attendancePanel = new JPanel();
-//                attendanceConfirm = new JButton("Attendace");
-//                attendanceConfirm.setBackground(Color.GREEN);
-//                attendancePanel.add(attendanceConfirm);
-//                attendancePanel.setVisible(false);
-//                frame.Body.add(attendancePanel, BorderLayout.CENTER);
+                cl.show(displayBody, "2");
             }
         });
         payment.addActionListener(new ActionListener() {
