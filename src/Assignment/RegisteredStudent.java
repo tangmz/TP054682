@@ -1,18 +1,16 @@
 package Assignment;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -79,18 +77,45 @@ public class RegisteredStudent extends DateTime{
         //Body//
         displayBody = new JPanel();
         displayBody.setLayout(cl);
+        JLabel time = new JLabel(String.valueOf(getFullDate()), SwingConstants.CENTER);
+        time.setFont(new Font("Arial", Font.BOLD, 30));
         JLabel dateTime = new JLabel(String.valueOf(getFullDate()), SwingConstants.CENTER);
         dateTime.setFont(new Font("Arial", Font.BOLD, 30));
         menu = new JPanel();
         menu.setLayout(new GridLayout(2, 1));
-        menu.add(dateTime);
+        menu.add(time);
         menu.add(background);
         menu.setBorder(BorderFactory.createMatteBorder(3 , 0 , 3 , 3 ,Color.DARK_GRAY));
 //        frame.Body.add(menu, BorderLayout.CENTER);
         select1 = new JPanel();
-        select1.setLayout(new BorderLayout());
+        select1.setLayout(new GridLayout(2, 1));
+        select1.add(dateTime);
+        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
+        SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
+        Date date = new Date();
+        String dayCheck = dayFormat.format(date);
+        String hourCheck = hourFormat.format(date);
+        System.out.println(dayCheck);
+        System.out.println(hourCheck);
+        String day = "Monday";
+        int hourCheckInteger = Integer.parseInt(hourCheck);
+        int i = 1;
+        int startTime = 10;
+        int endTime = 12;
+        if (i == 1){
+            startTime = 10;
+            endTime = 12;
+        }
+        if (dayCheck == day){
+            if ((hourCheckInteger > startTime)&&(hourCheckInteger <endTime)){
+                
+            }
+            
+                
+        }
         attendanceConfirm = new JButton("Attendace");
         attendanceConfirm.setBackground(Color.GREEN);
+        attendanceConfirm.setFont(new Font("Arial", Font.BOLD, 30));
         select1.add(attendanceConfirm);
         attendanceConfirm.addActionListener(new ActionListener() {
             @Override
