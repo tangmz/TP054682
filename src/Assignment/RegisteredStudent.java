@@ -4,9 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -19,10 +21,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class RegisteredStudent extends DateTime{    
-    private JPanel header, menuBody, displayBody, sidePanel, attendancePanel, menu, select1, select2, select3, select4, select5, select6;
+    private JPanel header, menuBody, displayBody, sidePanel, attendancePanel, menu, select1, select2, select3, select4, select5, select6, select7, b1, b2, b3, b4, b5, b6, b7, c1,c2,c3,c4,c5,c6,c7, modifyPanel;
+    private TextField stuID, stuName, stuUserN, stuPass, stuPlace, stuGender, stuPhone, modifyID, modifyName, modifyUserN, modifyPass, modifyPlace, modifyGender, modifyPhone;
     private String user, time;
-    private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, attendanceConfirm, logout; 
-    private JLabel background;
+    private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, attendanceConfirm, logout, modify; 
+    private JLabel background, b1L, b2L, b3L, b4L, b5L, b6L, b7L,c1L,c2L,c3L,c4L,c5L,c6L,c7L;
     private ImageIcon viewCoachLogo, viewRecordLogo, viewRegSportLogo, modifyLogo, feedbackLogo, attendanceLogo, paymentLogo, logoutLogo, backgroundImage;
     public void FrameLoad(String UserName){
         //++Logout Button++//
@@ -89,53 +92,171 @@ public class RegisteredStudent extends DateTime{
 //        frame.Body.add(menu, BorderLayout.CENTER);
         select1 = new JPanel();
         select1.setLayout(new GridLayout(2, 1));
-        select1.add(dateTime);
-        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
-        SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
-        Date date = new Date();
-        String dayCheck = dayFormat.format(date);
-        String hourCheck = hourFormat.format(date);
-        System.out.println(dayCheck);
-        System.out.println(hourCheck);
-        String day = "Monday";
-        int hourCheckInteger = Integer.parseInt(hourCheck);
-        int i = 1;
-        int startTime = 10;
-        int endTime = 12;
-        if (i == 1){
-            startTime = 10;
-            endTime = 12;
-        }
-        if (dayCheck == day){
-            if ((hourCheckInteger > startTime)&&(hourCheckInteger <endTime)){
-                
-            }
-            
-                
-        }
-        attendanceConfirm = new JButton("Attendace");
-        attendanceConfirm.setBackground(Color.GREEN);
-        attendanceConfirm.setFont(new Font("Arial", Font.BOLD, 30));
-        select1.add(attendanceConfirm);
-        attendanceConfirm.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                    
-            }
-        });
-        select1.add(attendanceConfirm);
+        
         select2 = new JPanel();
-        select2.setLayout(new BorderLayout());
-//        Tab2.add(aa);
+        select2.setLayout(new GridLayout(7, 1, 3, 3));
+        stuID = new TextField(15);
+        stuID.setEditable(false);
+        stuName = new TextField(15);
+        stuName.setEditable(false);
+        stuUserN = new TextField(15);
+        stuUserN.setEditable(false);
+        stuPass = new TextField(15);
+        stuPass.setEditable(false);
+        stuPlace = new TextField(15);
+        stuPlace.setEditable(false);
+        stuGender = new TextField(15);
+        stuGender.setEditable(false);
+        stuPhone = new TextField(15);
+        stuPhone.setEditable(false);
+        b1L = new JLabel("Student ID:                         ");
+        b2L = new JLabel("Student Name:                 ");
+        b3L = new JLabel("Student Username:          ");
+        b4L = new JLabel("Student Password:          ");
+        b5L = new JLabel("Student Location:             ");
+        b6L = new JLabel("Student Gender:               ");
+        b7L = new JLabel("Student Phone Number: ");
+        b1 = new JPanel();
+        b1.setLayout(new FlowLayout(FlowLayout.CENTER));
+        b1.add(b1L);
+        b1.add(stuID);
+        select2.add(b1);
+        b2 = new JPanel();
+        b2.setLayout(new FlowLayout(FlowLayout.CENTER));
+        b2.add(b2L);
+        b2.add(stuName);
+        select2.add(b2);
+        b3 = new JPanel();
+        b3.setLayout(new FlowLayout(FlowLayout.CENTER));
+        b3.add(b3L);
+        b3.add(stuUserN);
+        select2.add(b3);
+        b4 = new JPanel();
+        b4.setLayout(new FlowLayout(FlowLayout.CENTER));
+        b4.add(b4L);
+        b4.add(stuPass);
+        select2.add(b4);
+        b5 = new JPanel();
+        b5.setLayout(new FlowLayout(FlowLayout.CENTER));
+        b5.add(b5L);
+        b5.add(stuPlace);
+        select2.add(b5);
+        b6 = new JPanel();
+        b6.setLayout(new FlowLayout(FlowLayout.CENTER));
+        b6.add(b6L);
+        b6.add(stuGender);
+        select2.add(b6);
+        b7 = new JPanel();
+        b7.setLayout(new FlowLayout(FlowLayout.CENTER));
+        b7.add(b7L);
+        b7.add(stuPhone);
+        select2.add(b7);
         select3 = new JPanel();
         select3.setLayout(new BorderLayout());
 //        Tab3.add(aa);
         select4 = new JPanel();
-        select4.setLayout(new BorderLayout());
+        select4.setLayout(new GridLayout(8, 1, 3, 3));
+        modifyID = new TextField(15);
+        modifyID.setEditable(false);
+        modifyName = new TextField(15);
+        modifyName.setEditable(false);
+        modifyUserN = new TextField(15);
+        modifyUserN.setEditable(true);
+        modifyPass = new TextField(15);
+        modifyPass.setEditable(true);
+        modifyPlace = new TextField(15);
+        modifyPlace.setEditable(true);
+        modifyGender = new TextField(15);
+        modifyGender.setEditable(false);
+        modifyPhone = new TextField(15);
+        modifyPhone.setEditable(true);
+        c1L = new JLabel("Student ID:                         ");
+        c2L = new JLabel("Student Name:                 ");
+        c3L = new JLabel("Student Username:          ");
+        c4L = new JLabel("Student Password:          ");
+        c5L = new JLabel("Student Location:             ");
+        c6L = new JLabel("Student Gender:               ");
+        c7L = new JLabel("Student Phone Number: ");
+        c1 = new JPanel();
+        c1.setLayout(new FlowLayout(FlowLayout.CENTER));
+        c1.add(c1L);
+        c1.add(modifyID);
+        select4.add(c1);
+        c2 = new JPanel();
+        c2.setLayout(new FlowLayout(FlowLayout.CENTER));
+        c2.add(c2L);
+        c2.add(modifyName);
+        select4.add(c2);
+        c3 = new JPanel();
+        c3.setLayout(new FlowLayout(FlowLayout.CENTER));
+        c3.add(c3L);
+        c3.add(modifyUserN);
+        select4.add(c3);
+        c4 = new JPanel();
+        c4.setLayout(new FlowLayout(FlowLayout.CENTER));
+        c4.add(c4L);
+        c4.add(modifyPass);
+        select4.add(c4);
+        c5 = new JPanel();
+        c5.setLayout(new FlowLayout(FlowLayout.CENTER));
+        c5.add(c5L);
+        c5.add(modifyPlace);
+        select4.add(c5);
+        c6 = new JPanel();
+        c6.setLayout(new FlowLayout(FlowLayout.CENTER));
+        c6.add(c6L);
+        c6.add(modifyGender);
+        select4.add(c6);
+        c7 = new JPanel();
+        c7.setLayout(new FlowLayout(FlowLayout.CENTER));
+        c7.add(c7L);
+        c7.add(modifyPhone);
+        select4.add(c7);
+        modify = new JButton("Modify");
+        modify.setFont(new Font ("Arial", Font.BOLD, 30));
+        modifyPanel = new JPanel();
+        modifyPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        modifyPanel.add(modify);
+        select4.add(modify);
         select5 = new JPanel();
         select5.setLayout(new BorderLayout());
         select6 = new JPanel();
         select6.setLayout(new BorderLayout());
+        select6.add(dateTime, BorderLayout.NORTH);
+//        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
+//        SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
+//        Date date = new Date();
+//        String dayCheck = dayFormat.format(date);
+//        String hourCheck = hourFormat.format(date);
+//        String day = "Monday";
+//        int hourCheckInteger = Integer.parseInt(hourCheck);
+//        int i = 1;
+//        int startTime = 10;
+//        int endTime = 12;
+//        if (i == 1){
+//            startTime = 10;
+//            endTime = 12;
+//        }
+//        if (dayCheck == day){
+//            if ((hourCheckInteger > startTime)&&(hourCheckInteger <endTime)){
+//                
+//            }
+//            
+//                
+//        }
+//        attendanceConfirm = new JButton("Attendace");
+//        attendanceConfirm.setBackground(Color.GREEN);
+//        attendanceConfirm.setFont(new Font("Arial", Font.BOLD, 30));
+//        select6.add(attendanceConfirm, BorderLayout.CENTER);
+//        attendanceConfirm.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent ae) {
+//                    
+//            }
+//        });
+        select7 = new JPanel();
+        select7.setLayout(new BorderLayout());
+        
         displayBody.add(menu, "1");
         displayBody.add(select1, "2");
         displayBody.add(select2, "3");
@@ -143,6 +264,7 @@ public class RegisteredStudent extends DateTime{
         displayBody.add(select4, "5");
         displayBody.add(select5, "6");
         displayBody.add(select6, "7");
+        displayBody.add(select7, "8");
         cl.show(displayBody, "1");
         frame.Body.add(displayBody, BorderLayout.CENTER);
         logout.addActionListener(new ActionListener() {
@@ -161,7 +283,19 @@ public class RegisteredStudent extends DateTime{
         viewRecord.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-
+                cl.show(displayBody, "3");
+                for(int i=0; i<Assignment.studentInfo.size(); i++){
+                    Student c = Assignment.studentInfo.get(i);
+                    if(UserName.equals(c.getStuUserN())){
+                        stuID.setText(c.getStuID());
+                        stuName.setText(c.getStuName());
+                        stuUserN.setText(c.getStuUserN());
+                        stuPass.setText(c.getStuPass());
+                        stuPlace.setText(c.getStuPlace());
+                        stuGender.setText(c.getStuGender());
+                        stuPhone.setText(c.getStuPhone());
+                    }
+                }
             }
         });
         viewRegSport.addActionListener(new ActionListener() {
@@ -173,7 +307,19 @@ public class RegisteredStudent extends DateTime{
         modifyRecord.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-
+                cl.show(displayBody, "5");
+                for(int i=0; i<Assignment.studentInfo.size(); i++){
+                    Student c = Assignment.studentInfo.get(i);
+                    if(UserName.equals(c.getStuUserN())){
+                        modifyID.setText(c.getStuID());
+                        modifyName.setText(c.getStuName());
+                        modifyUserN.setText(c.getStuUserN());
+                        modifyPass.setText(c.getStuPass());
+                        modifyPlace.setText(c.getStuPlace());
+                        modifyGender.setText(c.getStuGender());
+                        modifyPhone.setText(c.getStuPhone());
+                    }
+                }
             }
         });
         feedbackCoach.addActionListener(new ActionListener() {
@@ -185,7 +331,7 @@ public class RegisteredStudent extends DateTime{
         attendance.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                cl.show(displayBody, "2");
+                cl.show(displayBody, "7");
             }
         });
         payment.addActionListener(new ActionListener() {
