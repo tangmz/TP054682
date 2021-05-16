@@ -31,8 +31,7 @@ public class Register extends JFrame implements ActionListener{
     private JList regLocation;
     private JFrame x;
     private JPanel Header, Body, b1, b2, b3, b4, b5, b6, b7, Footer;
-    private JRadioButton adminB, studentB;
-    private JRadioButton female, male;
+    private JRadioButton adminB, studentB, female, male;
     private JComboBox locationReg = new JComboBox();
     public Register(){
         adminB = new JRadioButton("Admin");
