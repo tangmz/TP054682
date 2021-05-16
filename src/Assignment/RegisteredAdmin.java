@@ -38,6 +38,8 @@ public class RegisteredAdmin extends DateTime{
         JFrameFormat frame = new JFrameFormat(UserName);
         AdminAddFunc aa = new AdminAddFunc();
         AdminSearchFunc as = new AdminSearchFunc();
+        ViewCoachFunc vc = new ViewCoachFunc();
+        ScheduleFunc sch = new ScheduleFunc();
         frame.setVisible(true);
         frame.CenLocation.setSelectedItem(Location.valueOf(cenLocation));
         while(Check = true){
@@ -147,19 +149,19 @@ public class RegisteredAdmin extends DateTime{
         CoachRecord.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                cl.show(displayBody, "1");
+                cl.show(displayBody, "4");
             }
         });
         ScheduleB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+                cl.show(displayBody, "5");
             }
         });
         manageSystem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+                cl.show(displayBody, "1");
             }
         });
         
@@ -186,10 +188,10 @@ public class RegisteredAdmin extends DateTime{
         Tab2.add(as);
         Tab3 = new JPanel();
         Tab3.setLayout(new BorderLayout());
-//        Tab3.add(aa);
+        Tab3.add(vc);
         Tab4 = new JPanel();
         Tab4.setLayout(new BorderLayout());
-//        Tab4.add(aa);
+        Tab4.add(sch);
         displayBody.setBorder(BorderFactory.createMatteBorder(3 , 0 , 3 , 3 ,Color.DARK_GRAY));
         JLabel time = new JLabel(String.valueOf(getFullDate()), SwingConstants.CENTER);
         time.setFont(new Font("Arial", Font.BOLD, 60));

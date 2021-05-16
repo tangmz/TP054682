@@ -117,7 +117,6 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         CTDate.setEnabled(false);
         
         //++PanelDesign//++
-//        Test = new JLabel("Hiiiiiii");
         PanelTSelect = new JPanel();
         PanelTSelect.setLayout(new GridLayout(3,1));
         PanelTSelect.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -162,7 +161,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         PanelTop.add(PanelTView, BorderLayout.EAST);
         
         GridLayout gL = new GridLayout(4,4);
-        gL.setVgap(15);
+        gL.setVgap(50);
         PanelBody = new JPanel();
         PanelBody.setLayout(gL);
         PanelBody.add(CNameL);
@@ -190,7 +189,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         PanelSouthButtons.add(AddCoach);
         PanelSouth.add(PanelSouthButtons, BorderLayout.SOUTH);
         
-        setLayout(new BorderLayout());
+        setLayout(new BorderLayout(0,20));
         add(PanelTop, BorderLayout.NORTH);
         add(PanelBody, BorderLayout.CENTER);
         add(PanelSouth, BorderLayout.SOUTH);
