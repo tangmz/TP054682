@@ -24,9 +24,9 @@ public class RegisteredStudent extends DateTime{
     private JPanel header, menuBody, displayBody, sidePanel, attendancePanel, menu, select1, select2, select3, select4, select5, select6, select7, b1, b2, b3, b4, b5, b6, b7, c1,c2,c3,c4,c5,c6,c7, modifyPanel;
     private TextField stuID, stuName, stuUserN, stuPass, stuPlace, stuGender, stuPhone, modifyID, modifyName, modifyUserN, modifyPass, modifyPlace, modifyGender, modifyPhone;
     private String user, time;
-    private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, attendanceConfirm, logout, modify; 
+    private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, subscribeSport, attendanceConfirm, logout, modify, subscription, subscribe, unsubscribe; 
     private JLabel background, b1L, b2L, b3L, b4L, b5L, b6L, b7L,c1L,c2L,c3L,c4L,c5L,c6L,c7L;
-    private ImageIcon viewCoachLogo, viewRecordLogo, viewRegSportLogo, modifyLogo, feedbackLogo, attendanceLogo, paymentLogo, logoutLogo, backgroundImage;
+    private ImageIcon viewCoachLogo, viewRecordLogo, viewRegSportLogo, modifyLogo, feedbackLogo, attendanceLogo, paymentLogo, logoutLogo, backgroundImage, subscriptionLogo, subscribeLogo, unsubscribeLogo;
     public void FrameLoad(String UserName){
         //++Logout Button++//
         CardLayout cl = new CardLayout();
@@ -58,13 +58,22 @@ public class RegisteredStudent extends DateTime{
         logout.setBackground(Color.WHITE);
         backgroundImage = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/background.png")).getImage());
         background = new JLabel(backgroundImage);
+        subscriptionLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/subscription.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        subscription = new JButton("Subscription Sport", subscriptionLogo);
+        subscription.setBackground(Color.WHITE);
+        subscribeLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/subscribe.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        subscribe = new JButton("Subscribe", subscribeLogo);
+        subscribe.setBackground(Color.WHITE);
+        unsubscribeLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/cancelSubscription.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        unsubscribe = new JButton("Unsubscribe", unsubscribeLogo);
+        unsubscribe.setBackground(Color.WHITE);
         frame.welcome.setText("Student Panel");
         frame.setTitle("Student Panel");
         menuBody = new JPanel();
         menuBody.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 3));
         menuBody.setPreferredSize(new Dimension(210, frame.getHeight()));
         menuBody.setBackground(Color.WHITE);
-        menuBody.setLayout(new GridLayout(8,1));
+        menuBody.setLayout(new GridLayout(9,1));
         menuBody.add(viewCoach);
         menuBody.add(viewRecord);
         menuBody.add(viewRegSport);
@@ -73,6 +82,7 @@ public class RegisteredStudent extends DateTime{
         
         menuBody.add(modifyRecord);
         menuBody.add(feedbackCoach);
+        menuBody.add(subscription);
         menuBody.add(attendance);
         menuBody.add(payment);
         menuBody.add(logout);
@@ -214,46 +224,44 @@ public class RegisteredStudent extends DateTime{
         select4.add(c7);
         modify = new JButton("Modify");
         modify.setFont(new Font ("Arial", Font.BOLD, 30));
-        modifyPanel = new JPanel();
-        modifyPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        modifyPanel.add(modify);
+        modify.setBackground(Color.WHITE);
         select4.add(modify);
         select5 = new JPanel();
         select5.setLayout(new BorderLayout());
         select6 = new JPanel();
         select6.setLayout(new BorderLayout());
         select6.add(dateTime, BorderLayout.NORTH);
-//        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
-//        SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
-//        Date date = new Date();
-//        String dayCheck = dayFormat.format(date);
-//        String hourCheck = hourFormat.format(date);
-//        String day = "Monday";
-//        int hourCheckInteger = Integer.parseInt(hourCheck);
-//        int i = 1;
-//        int startTime = 10;
-//        int endTime = 12;
-//        if (i == 1){
-//            startTime = 10;
-//            endTime = 12;
-//        }
-//        if (dayCheck == day){
-//            if ((hourCheckInteger > startTime)&&(hourCheckInteger <endTime)){
-//                
-//            }
-//            
-//                
-//        }
-//        attendanceConfirm = new JButton("Attendace");
-//        attendanceConfirm.setBackground(Color.GREEN);
-//        attendanceConfirm.setFont(new Font("Arial", Font.BOLD, 30));
-//        select6.add(attendanceConfirm, BorderLayout.CENTER);
-//        attendanceConfirm.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent ae) {
-//                    
-//            }
-//        });
+        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
+        SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
+        Date date = new Date();
+        String dayCheck = dayFormat.format(date);
+        String hourCheck = hourFormat.format(date);
+        String day = "Monday";
+        int hourCheckInteger = Integer.parseInt(hourCheck);
+        int i = 1;
+        int startTime = 10;
+        int endTime = 12;
+        if (i == 1){
+            startTime = 10;
+            endTime = 12;
+        }
+        if (dayCheck == day){
+            if ((hourCheckInteger > startTime)&&(hourCheckInteger <endTime)){
+                
+            }
+            
+                
+        }
+        attendanceConfirm = new JButton("Attendace");
+        attendanceConfirm.setBackground(Color.GREEN);
+        attendanceConfirm.setFont(new Font("Arial", Font.BOLD, 30));
+        select6.add(attendanceConfirm, BorderLayout.CENTER);
+        attendanceConfirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                    
+            }
+        });
         select7 = new JPanel();
         select7.setLayout(new BorderLayout());
         
