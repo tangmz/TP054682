@@ -15,8 +15,7 @@ public class Assignment {
     public static Date DateTime = new Date();
         
     public static void main(String[] args) {
-        try{
-            
+        try{ 
             Scanner s = new Scanner(new File("studentLogin.txt"));
             while(s.hasNext()){
                 String a = s.nextLine();
@@ -43,6 +42,8 @@ public class Assignment {
                 s.nextLine();
                 Admin admin = new Admin(h,i,j,k,l,m,n,o);
                 adminInfo.add(admin);
+                //allCustomer.add(c);
+            
                 //allCustomer.add(c);
             }
         }catch(Exception ex){

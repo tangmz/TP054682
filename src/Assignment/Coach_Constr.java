@@ -1,8 +1,21 @@
 package Assignment;
 
 public class Coach_Constr {
-    private String CoachId, CoachN, CoachTel, CoachHRate, CorachStar, CoachCenter, CoachSp_Id, CoachAdd, JDate, TDate;
+    private String CoachId, CoachN, CoachTel, CoachHRate, CoachStar, CoachCenter, CoachSp_Id, CoachAdd, JDate, TDate;
 
+    public Coach_Constr(String CoachId, String CoachN, String CoachTel, String CoachHRate, String CoachStar, String CoachCenter, String CoachSp_Id, String CoachAdd, String JDate, String TDate) {
+        this.CoachId = CoachId;
+        this.CoachN = CoachN;
+        this.CoachTel = CoachTel;
+        this.CoachHRate = CoachHRate;
+        this.CoachStar = CoachStar;
+        this.CoachCenter = CoachCenter;
+        this.CoachSp_Id = CoachSp_Id;
+        this.CoachAdd = CoachAdd;
+        this.JDate = JDate;
+        this.TDate = TDate;
+    }
+    
     public String getCoachId() {
         return CoachId;
     }
@@ -35,12 +48,12 @@ public class Coach_Constr {
         this.CoachHRate = CoachHRate;
     }
 
-    public String getCorachStar() {
-        return CorachStar;
+    public String getCoachStar() {
+        return CoachStar;
     }
 
-    public void setCorachStar(String CorachStar) {
-        this.CorachStar = CorachStar;
+    public void setCoachStar(String CoachStar) {
+        this.CoachStar = CoachStar;
     }
 
     public String getCoachCenter() {
@@ -83,16 +96,5 @@ public class Coach_Constr {
         this.TDate = TDate;
     }
 
-    public Coach_Constr(String CoachId, String CoachN, String CoachTel, String CoachHRate, String CorachStar, String CoachCenter, String CoachSp_Id, String CoachAdd, String JDate, String TDate) {
-        this.CoachId = CoachId;
-        this.CoachN = CoachN;
-        this.CoachTel = CoachTel;
-        this.CoachHRate = CoachHRate;
-        this.CorachStar = CorachStar;
-        this.CoachCenter = CoachCenter;
-        this.CoachSp_Id = CoachSp_Id;
-        this.CoachAdd = CoachAdd;
-        this.JDate = JDate;
-        this.TDate = TDate;
-    }
+
 }
