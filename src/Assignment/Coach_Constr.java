@@ -15,7 +15,7 @@ public class Coach_Constr {
         this.JDate = JDate;
         this.TDate = TDate;
     }
-
+    
     public String getCoachId() {
         return CoachId;
     }

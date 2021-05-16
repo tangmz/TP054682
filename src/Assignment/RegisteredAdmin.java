@@ -1,7 +1,5 @@
 package Assignment;
 
-import static Assignment.Assignment.adminInfo;
-import static Assignment.Assignment.studentInfo;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.CardLayout;
@@ -21,7 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class RegisteredAdmin extends DateTime{
-    
     public static ArrayList <Coach_Constr> Coach = new ArrayList<Coach_Constr>();
     public static ArrayList <Schedule_Constr> Schedule = new ArrayList<Schedule_Constr>();
     public static ArrayList <Sport_Constr> Sport = new ArrayList<Sport_Constr>();
@@ -121,29 +118,30 @@ public class RegisteredAdmin extends DateTime{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 cl.show(displayBody, "2");
-//                Coach_Constr coach = new Coach_Constr(getCoachId(), getCoachN(), getCoachTel(), getCoachHRate(), getCorachStar(), getCoachCenter(), getCoachSp_Id(), getCoachAdd(), getJDate(), getTDate());
-//                    Assignment.adminInfo.add(adminReg);
-//                    try{
-//                        PrintWriter f = new PrintWriter("adminLogin.txt");
-//                        for(int i=0; i<Assignment.adminInfo.size(); i++){
-//                            Admin c = Assignment.adminInfo.get(i);
-//                            f.println(c.getAdId());
-//                            f.println(c.getAdName());
-//                            f.println(c.getAdUserN());
-//                            f.println(c.getAdPass());
-//                            f.println(c.getAdPlace());
-//                            f.println(c.getAdGender());
-//                            f.println(c.getAdPhone());
-//                            f.println(c.getSuperRole());
-//                            f.println();
-//                        }
-//                        f.close();
-//                        this.dispose();
-//                        Assignment.login.setVisible(true);
-//                    } catch(Exception ex){
-//                        System.out.println("Error in stop!");
-//                    }
-//            
+                Coach_Constr coach = new Coach_Constr();
+                    Coach.add();
+                try{
+                PrintWriter f = new PrintWriter("adminLogin.txt");
+                for(int i=0; i<Coach.size(); i++){
+                Coach_Constr c = Coach.get(i);
+                f.println(c.getAdId());
+                f.println(c.getAdName());
+                f.println(c.getAdUserN());
+                f.println(c.getAdPass());
+                f.println(c.getAdPlace());
+                f.println(c.getAdGender());
+                f.println(c.getAdPhone());
+                f.println(c.getSuperRole());
+                f.println();
+            }
+            f.close();
+                        
+            Assignment.login.setVisible(true);
+                    } catch(Exception ex){
+                        System.out.println("Error in stop!");
+                    }
+        }
+            
             }
         });
         SearchRecord.addActionListener(new ActionListener() {
@@ -170,6 +168,7 @@ public class RegisteredAdmin extends DateTime{
                 
             }
         });
+        
         
         //++Design Panels and Layout++//
         //menu//
