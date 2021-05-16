@@ -22,12 +22,12 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class RegisteredStudent extends DateTime{    
-    private JPanel header, menuBody, displayBody, sidePanel, attendancePanel, menu, select1, select2, select3, select4, select5, select6, select7, select8, b1, b2, b3, b4, b5, b6, b7, c1,c2,c3,c4,c5,c6,c7, modifyPanel;
+    private JPanel header, menuBody, displayBody, sidePanel, attendancePanel, menu, select1, select2, select3, select4, select5, select6, select7, select8, b1, b2, b3, b4, b5, b6, b7, c1,c2,c3,c4,c5,c6,c7, modifyPanel, d1, d2;
     private TextField stuID, stuName, stuUserN, stuPass, stuPlace, stuGender, stuPhone, modifyID, modifyName, modifyUserN, modifyPass, modifyPlace, modifyGender, modifyPhone;
     private String user, time;
     private Checkbox basketball, badminton;
     private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, subscribeSport, attendanceConfirm, logout, modify, subscription, subscribe, unsubscribe; 
-    private JLabel background, b1L, b2L, b3L, b4L, b5L, b6L, b7L,c1L,c2L,c3L,c4L,c5L,c6L,c7L;
+    private JLabel background, b1L, b2L, b3L, b4L, b5L, b6L, b7L,c1L,c2L,c3L,c4L,c5L,c6L,c7L, subscriptionTitle;
     private ImageIcon viewCoachLogo, viewRecordLogo, viewRegSportLogo, modifyLogo, feedbackLogo, attendanceLogo, paymentLogo, logoutLogo, backgroundImage, subscriptionLogo, subscribeLogo, unsubscribeLogo;
     public void FrameLoad(String UserName){
         //++Logout Button++//
@@ -230,12 +230,18 @@ public class RegisteredStudent extends DateTime{
         select4.add(modify);
         select5 = new JPanel();
         select5.setLayout(new BorderLayout());
+        subscriptionTitle = new JLabel("Subscription Sport", JLabel.CENTER);
+        subscriptionTitle.setFont(new Font("Arial", Font.BOLD, 50));
         badminton = new Checkbox("Badminton");
-        badminton.setBounds(100,100, 50,50);
+        badminton.setFont(new Font("Arial", Font.BOLD, 30));
         basketball = new Checkbox("Basketball");
-        basketball.setBounds(100,150,50,50);
-        select5.add(badminton);
-        select5.add(basketball);
+        basketball.setFont(new Font("Arial", Font.BOLD, 30));
+        select5.add(subscriptionTitle, BorderLayout.NORTH);
+        d1 = new JPanel();
+        d1.setLayout(new FlowLayout());
+        d1.add(badminton);
+        d1.add(basketball);
+        select5.add(d1, BorderLayout.CENTER);
         select6 = new JPanel();
         select6.setLayout(new BorderLayout());
         select6.add(dateTime, BorderLayout.NORTH);
@@ -343,7 +349,7 @@ public class RegisteredStudent extends DateTime{
         subscription.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-
+                cl.show(displayBody, "6");
             }
         });
         feedbackCoach.addActionListener(new ActionListener() {
