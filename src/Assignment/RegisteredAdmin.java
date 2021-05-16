@@ -23,7 +23,8 @@ public class RegisteredAdmin extends DateTime{
     public static ArrayList <Schedule_Constr> Schedule = new ArrayList<Schedule_Constr>();
     public static ArrayList <Sport_Constr> Sport = new ArrayList<Sport_Constr>();
     public JPanel header, menuBody, displayBody, Tab1, Tab2, Tab3, Tab4;
-    public int counter;
+    private int counter;
+    public static String centerLocation;
     public Button AddModRecord, SearchRecord, CoachRecord, ScheduleB, manageSystem, logout; //SearchRecord inclusive of Sorting
     public boolean Check = true;
     
@@ -31,6 +32,7 @@ public class RegisteredAdmin extends DateTime{
     public void FrameLoad(String UserName, String cenLocation, int counter){
         
         this.counter = counter;
+        this.centerLocation = cenLocation;
         CardLayout cl = new CardLayout();
         //++Create JFrame++//
         JFrameFormat frame = new JFrameFormat(UserName);
@@ -39,7 +41,7 @@ public class RegisteredAdmin extends DateTime{
         ViewCoachFunc vc = new ViewCoachFunc();
         ScheduleFunc sch = new ScheduleFunc();
         frame.setVisible(true);
-        frame.CenLocation.setSelectedItem(Location.valueOf(cenLocation));
+        frame.CenLocation.setSelectedItem(Location.valueOf(centerLocation));
         while(Check = true){
             Admin c = Assignment.adminInfo.get(this.counter);
             if("no".equals(c.getSuperRole())){
@@ -136,30 +138,6 @@ public class RegisteredAdmin extends DateTime{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 cl.show(displayBody, "2");
-                Coach_Constr coach = new Coach_Constr();
-                    Coach.add();
-                try{
-                PrintWriter f = new PrintWriter("adminLogin.txt");
-                for(int i=0; i<Coach.size(); i++){
-                Coach_Constr c = Coach.get(i);
-                f.println(c.getAdId());
-                f.println(c.getAdName());
-                f.println(c.getAdUserN());
-                f.println(c.getAdPass());
-                f.println(c.getAdPlace());
-                f.println(c.getAdGender());
-                f.println(c.getAdPhone());
-                f.println(c.getSuperRole());
-                f.println();
-            }
-            f.close();
-                        
-            Assignment.login.setVisible(true);
-                    } catch(Exception ex){
-                        System.out.println("Error in stop!");
-                    }
-        }
-            
             }
         });
         SearchRecord.addActionListener(new ActionListener() {

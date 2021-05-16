@@ -13,6 +13,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.PrintWriter;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
@@ -24,16 +25,18 @@ import javax.swing.SwingConstants;
 
 public class AdminAddFunc extends JPanel implements ActionListener{
     private JLabel SportSelc , SportIdL, SportNameL, CIdL, CNameL, CPhoneL, CRatePayL, CStarL, CAddressL, CJDateL, CTDateL;
-    private JTextField SportIdIn, SportNameIn, CId, CName, CPhone, CRatePay, CStar, CAddress, CJDate, CTDate;
+    private static JTextField SportIdIn, SportNameIn, CId, CName, CPhone, CRatePay, CStar, CAddress, CJDate, CTDate;
     public JPanel PanelTop, PanelTSelect, PanelTView, PanelTSNorth, PanelTSCenter, PanelTV1, PanelTV2, PanelTV3, PanelTV4,
             PanelBody, PanelSouth, PanelSouthButtons; 
-    private JComboBox SportComB;
+    private static JComboBox SportComB;
     private JRadioButton AddB, ModB;
     private ButtonGroup AddModSelection;
     private Button Search, AddSport, AddCoach, TerminateCoach;
     private static RegisteredAdmin rAd = new RegisteredAdmin();
     private DateTime dateTime = new DateTime();
+    private static String coachId, sportId, whichOperation;
     AdminAddFunc(){
+        retrieve r = new retrieve();
         
         SportComB = new JComboBox();
         SportComB.addItem("Hiiiiiii");
@@ -42,6 +45,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         SportIdL = new JLabel("Sport ID:  ");
         SportNameL = new JLabel("Sport:       ");
         SportIdIn = new JTextField(15);
+        SportIdIn.setText(sportId);
         SportIdIn.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent ke) {
@@ -74,6 +78,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         CTDateL = new JLabel("Quit Date:", SwingConstants.CENTER);
         
         CId = new JTextField(15);
+        CId.setText(sportId);
         CId.setHorizontalAlignment(JTextField.CENTER);
         CName = new JTextField(15);
         CName.setHorizontalAlignment(JTextField.CENTER);
@@ -96,13 +101,13 @@ public class AdminAddFunc extends JPanel implements ActionListener{
             @Override
             public void keyReleased(KeyEvent ke) {}
         });
-        CStar = new JTextField(15);
+        CStar = new JTextField("0");
         CStar.setHorizontalAlignment(JTextField.CENTER);
         CAddress = new JTextField(15);
         CAddress.setHorizontalAlignment(JTextField.CENTER);
         CJDate = new JTextField(dateTime.getPartialDate());
         CJDate.setHorizontalAlignment(JTextField.CENTER);
-        CTDate = new JTextField(15);
+        CTDate = new JTextField("-");
         CTDate.setHorizontalAlignment(JTextField.CENTER);
         Search = new Button("Search");
         AddSport = new Button("Add Sport");
@@ -207,53 +212,78 @@ public class AdminAddFunc extends JPanel implements ActionListener{
             AddSport.setVisible(false);
             AddCoach.setVisible(false);
             TerminateCoach.setVisible(true);
+        }else if(ae.getSource() == AddSport){
+            whichOperation = "Sport";
+            writeFile writeFile = new writeFile(whichOperation);
+        }else if(ae.getSource() == AddCoach){
+            whichOperation = "Coach";
+            writeFile writeFile = new writeFile(whichOperation);
         }
     }
-
-    private void writeFile() {
+    
     //++Write File++//
-//    if(e.getSource() == create){
-//                    String pinAdmin = JOptionPane.showInputDialog(this, "Pin");
-//                    if (pinAdmin.equals("admin1234")){
-//                        boolean flag = true;
-//                        for(int i = 0; i<rAd.Coach.size(); i++){
-//                            Admin adminA = Assignment.adminInfo.get(i);
-//                            if(visitorName.equals(adminA.getAdName())){
-//                                flag = false;
-//                                break;
-//                            }
-//                        }
-//                        String nextID = String.valueOf(i+1);
-//                        adID = "AN"+(nextID);
-//                        if (flag){
-//                            Admin adminReg = new Admin(adID, visitorName,visitorUserN,visitorPass,selectedLocation, visitorGender, visitorPhone, "no");
-//                            Assignment.adminInfo.add(adminReg);
-//                            try{
-//                                PrintWriter f = new PrintWriter("adminLogin.txt");
-//                                for(i=0; i<Assignment.adminInfo.size(); i++){
-//                                    Admin c = Assignment.adminInfo.get(i);
-//                                    f.println(c.getAdId());
-//                                    f.println(c.getAdName());
-//                                    f.println(c.getAdUserN());
-//                                    f.println(c.getAdPass());
-//                                    f.println(c.getAdPlace());
-//                                    f.println(c.getAdGender());
-//                                    f.println(c.getAdPhone());
-//                                    f.println(c.getSuperRole());
-//                                    f.println();
-//                                }
-//                                f.close();
-//                                this.dispose();
-//                                Assignment.login.setVisible(true);
-//                            } catch(Exception ex){
-//                                System.out.println("Error in stop!");
-//                            }
-//                        } else{
-//                            JOptionPane.showMessageDialog(create, "Name has been used!");
-//                        }
-//                    }else{
-//                    JOptionPane.showMessageDialog(adminB, "Wrong Pin");
-//                    }
-//                }
+    private static class writeFile {
+
+        public writeFile(String whichButton) {
+            if(whichButton.equals("Coach")){
+                Coach_Constr writeC = new Coach_Constr(CId.getText(),CName.getText(),CPhone.getText(),CRatePay.getText(),CStar.getText(),
+                rAd.centerLocation,SportIdIn.getText(),CAddress.getText(), CJDate.getText(), CTDate.getText());
+                rAd.Coach.add(writeC);
+                try{
+                    PrintWriter f = new PrintWriter("coach.txt");
+                    for(int i=0; i<rAd.Coach.size(); i++){
+                        Coach_Constr c = rAd.Coach.get(i);
+                        f.println(c.getCoachId());
+                        f.println(c.getCoachN());
+                        f.println(c.getCoachTel());
+                        f.println(c.getCoachHRate());
+                        f.println(c.getCoachStar());
+                        f.println(c.getCoachCenter());
+                        f.println(c.getCoachSp_Id());
+                        f.println(c.getCoachAdd());
+                        f.println(c.getJDate());
+                        f.println(c.getTDate());
+                        f.println();
+                    }
+                    f.close();   
+                    Assignment.login.setVisible(true);
+                } catch(Exception ex){
+                    System.out.println("Error in stop!");
+                }
+            }else if(whichButton.equals("Sport")){
+                Sport_Constr writeS = new Sport_Constr(SportIdIn.getText(),SportNameIn.getText(),rAd.centerLocation,CName.getText());
+                rAd.Sport.add(writeS);
+                try{
+                    PrintWriter f = new PrintWriter("sport.txt");
+                    for(int i=0; i<rAd.Coach.size(); i++){
+                        Sport_Constr c = rAd.Sport.get(i);
+                        f.println(c.getSprtId());
+                        f.println(c.getSportN());
+                        f.println(c.getCenter());
+                        f.println(c.getCoachN());
+                        f.println();
+                    }
+                    f.close();   
+                    Assignment.login.setVisible(true);
+                } catch(Exception ex){
+                    System.out.println("Error in stop!");
+                }
+            }
+        }
+    }
+    
+    private class retrieve {
+
+        public retrieve() {
+            String nextID = "";
+            int i = 0;
+            i = rAd.Coach.size();
+            nextID = String.valueOf(i+1);
+            coachId = "CN0"+(nextID);
+            i = rAd.Coach.size();
+            nextID = String.valueOf(i+1);
+            sportId = "RCS0"+(nextID);
+            System.out.println(rAd.centerLocation);
+        }
     }
 }
