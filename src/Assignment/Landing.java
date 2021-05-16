@@ -243,7 +243,7 @@ public class Landing extends JFrame implements ActionListener{
                         flag = false;
                         if(passInput.equals(c.getAdPass())){
                             if(selectedLocation.equals(c.getAdPlace())){
-                                Assignment.registeredAd.FrameLoad(c.getAdUserN(),c.getAdPlace());
+                                Assignment.registeredAd.FrameLoad(c.getAdUserN(),c.getAdPlace(),i);
                                 this.dispose();
                                 break;
                             } else{

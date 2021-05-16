@@ -9,6 +9,8 @@ import java.awt.GridLayout;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
@@ -18,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class AdminAddFunc extends JPanel implements ActionListener{
     private JLabel SportSelc , SportIdL, SportNameL, CIdL, CNameL, CPhoneL, CRatePayL, CStarL, CAddressL, CJDateL, CTDateL;
@@ -39,6 +42,18 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         SportIdL = new JLabel("Sport ID:  ");
         SportNameL = new JLabel("Sport:       ");
         SportIdIn = new JTextField(15);
+        SportIdIn.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent ke) {
+                char c = ke.getKeyChar();{
+                  ke.consume();
+               }
+            }
+            @Override
+            public void keyPressed(KeyEvent ke) {}
+            @Override
+            public void keyReleased(KeyEvent ke) {}
+        });
         SportNameIn = new JTextField(15);
         
         AddB = new JRadioButton("New Record");
@@ -49,14 +64,14 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         AddB.addActionListener(this);
         ModB.addActionListener(this);
         
-        CIdL = new JLabel("Coach ID:");
-        CNameL = new JLabel("Name:");
-        CPhoneL = new JLabel("Phone:");
-        CRatePayL = new JLabel("Hourly Pay:");
-        CStarL = new JLabel("Rating :");
-        CAddressL = new JLabel("Address:");
-        CJDateL = new JLabel("Joined Date:");
-        CTDateL = new JLabel("Quit Date:");
+        CIdL = new JLabel("Coach ID:", SwingConstants.CENTER);
+        CNameL = new JLabel("Name:", SwingConstants.CENTER);
+        CPhoneL = new JLabel("Phone:", SwingConstants.CENTER);
+        CRatePayL = new JLabel("Hourly Pay:", SwingConstants.CENTER);
+        CStarL = new JLabel("Rating :", SwingConstants.CENTER);
+        CAddressL = new JLabel("Address:", SwingConstants.CENTER);
+        CJDateL = new JLabel("Joined Date:", SwingConstants.CENTER);
+        CTDateL = new JLabel("Quit Date:", SwingConstants.CENTER);
         
         CId = new JTextField(15);
         CId.setHorizontalAlignment(JTextField.CENTER);
@@ -73,7 +88,6 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                 if (!((c >= '0') && (c <= '9') ||
                     (c == KeyEvent.VK_BACK_SPACE) ||
                     (c == KeyEvent.VK_DELETE))) {
-                  getToolkit().beep();
                   ke.consume();
                }
             }
@@ -90,7 +104,6 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         CJDate.setHorizontalAlignment(JTextField.CENTER);
         CTDate = new JTextField(15);
         CTDate.setHorizontalAlignment(JTextField.CENTER);
-        
         Search = new Button("Search");
         AddSport = new Button("Add Sport");
         AddCoach = new Button("Add Coach");
@@ -152,20 +165,20 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         gL.setVgap(15);
         PanelBody = new JPanel();
         PanelBody.setLayout(gL);
-        PanelBody.add(CIdL);
-        PanelBody.add(CId);
         PanelBody.add(CNameL);
         PanelBody.add(CName);
+        PanelBody.add(CIdL);
+        PanelBody.add(CId);
         PanelBody.add(CPhoneL);
         PanelBody.add(CPhone);
-        PanelBody.add(CRatePayL);
-        PanelBody.add(CRatePay);
         PanelBody.add(CStarL);
         PanelBody.add(CStar);
         PanelBody.add(CAddressL);
         PanelBody.add(CAddress);
         PanelBody.add(CJDateL);
         PanelBody.add(CJDate);
+        PanelBody.add(CRatePayL);
+        PanelBody.add(CRatePay);
         PanelBody.add(CTDateL);
         PanelBody.add(CTDate);
         
@@ -188,9 +201,13 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         if(AddB.isSelected()){
             SportComB.setEnabled(false);
             AddSport.setVisible(true);
+            TerminateCoach.setVisible(false);
+            AddCoach.setVisible(true);
         }else if(ModB.isSelected()){
             SportComB.setEnabled(true);
             AddSport.setVisible(false);
+            AddCoach.setVisible(false);
+            TerminateCoach.setVisible(true);
         }
     }
 

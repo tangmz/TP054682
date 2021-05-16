@@ -25,17 +25,33 @@ public class RegisteredAdmin extends DateTime{
     public static ArrayList <Schedule_Constr> Schedule = new ArrayList<Schedule_Constr>();
     public static ArrayList <Sport_Constr> Sport = new ArrayList<Sport_Constr>();
     public JPanel header, menuBody, displayBody, Tab1, Tab2, Tab3, Tab4;
-    public String user;
+    public int counter;
     public Button AddModRecord, SearchRecord, CoachRecord, ScheduleB, manageSystem, logout; //SearchRecord inclusive of Sorting
+    public boolean Check = true;
     
-    public void FrameLoad(String UserName, String cenLocation){
         
+    public void FrameLoad(String UserName, String cenLocation, int counter){
+        
+        this.counter = counter;
         CardLayout cl = new CardLayout();
         //++Create JFrame++//
         JFrameFormat frame = new JFrameFormat(UserName);
+        AdminAddFunc aa = new AdminAddFunc();
+        AdminSearchFunc as = new AdminSearchFunc();
         frame.setVisible(true);
         frame.CenLocation.setSelectedItem(Location.valueOf(cenLocation));
-        AdminAddFunc aa = new AdminAddFunc();
+        while(Check = true){
+            Admin c = Assignment.adminInfo.get(this.counter);
+            if("no".equals(c.getSuperRole())){
+                frame.CenLocation.setEnabled(false);
+                Check = false;
+                break;
+            } else{
+                frame.CenLocation.setEnabled(true);
+                Check = false;
+                break;
+            }
+        }
         
         //++Read File++//
         try{
@@ -125,13 +141,13 @@ public class RegisteredAdmin extends DateTime{
         SearchRecord.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                cl.show(displayBody, "1");
+                cl.show(displayBody, "3");
             }
         });
         CoachRecord.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+                cl.show(displayBody, "1");
             }
         });
         ScheduleB.addActionListener(new ActionListener() {
@@ -167,7 +183,7 @@ public class RegisteredAdmin extends DateTime{
         Tab1.add(aa);
         Tab2 = new JPanel();
         Tab2.setLayout(new BorderLayout());
-//        Tab2.add(aa);
+        Tab2.add(as);
         Tab3 = new JPanel();
         Tab3.setLayout(new BorderLayout());
 //        Tab3.add(aa);
