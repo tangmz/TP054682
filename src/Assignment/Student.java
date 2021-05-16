@@ -12,9 +12,7 @@ public class Student {
         this.stuGender = stuGender;
         this.stuPhone = stuPhone;
     }
-
-
-
+    
     public String getStuID() {
         return stuID;
     }
