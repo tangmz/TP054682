@@ -12,6 +12,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.BorderFactory;
@@ -120,6 +121,29 @@ public class RegisteredAdmin extends DateTime{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 cl.show(displayBody, "2");
+//                Coach_Constr coach = new Coach_Constr(getCoachId(), getCoachN(), getCoachTel(), getCoachHRate(), getCorachStar(), getCoachCenter(), getCoachSp_Id(), getCoachAdd(), getJDate(), getTDate());
+//                    Assignment.adminInfo.add(adminReg);
+//                    try{
+//                        PrintWriter f = new PrintWriter("adminLogin.txt");
+//                        for(int i=0; i<Assignment.adminInfo.size(); i++){
+//                            Admin c = Assignment.adminInfo.get(i);
+//                            f.println(c.getAdId());
+//                            f.println(c.getAdName());
+//                            f.println(c.getAdUserN());
+//                            f.println(c.getAdPass());
+//                            f.println(c.getAdPlace());
+//                            f.println(c.getAdGender());
+//                            f.println(c.getAdPhone());
+//                            f.println(c.getSuperRole());
+//                            f.println();
+//                        }
+//                        f.close();
+//                        this.dispose();
+//                        Assignment.login.setVisible(true);
+//                    } catch(Exception ex){
+//                        System.out.println("Error in stop!");
+//                    }
+//            
             }
         });
         SearchRecord.addActionListener(new ActionListener() {
