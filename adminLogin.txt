@@ -2,7 +2,8 @@ AN1
 a
 a
 a
-Petaling Jaya
+PetalingJaya
 Male
 123
+no
 

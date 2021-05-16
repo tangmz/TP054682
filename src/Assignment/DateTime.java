@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.Timer;
 
 public class DateTime{
-    private String Year, Month, Date, hour, Day, FullDate;
+    private String Year, Month, Date, hour, Day, FullDate, PartialDate;
 
     public DateTime(){
         ClockTick();
@@ -48,6 +48,8 @@ public class DateTime{
         Date = dateFormat.format(dateRead);
         DateFormat hourFormat = new SimpleDateFormat("HH");
         hour = hourFormat.format(dateRead);
+        DateFormat partialDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        PartialDate = partialDateFormat.format(dateRead);
         FullDate = (Day+", "+Date+" "+Month+" "+Year);
     }
     public String getFullDate() {
@@ -73,4 +75,13 @@ public class DateTime{
     public String getDay() {
         return Day;
     }
+    
+    public String getPartialDate() {
+        return PartialDate;
+    }
+
+    public void setPartialDate(String PartialDate) {
+        this.PartialDate = PartialDate;
+    }
+
 }

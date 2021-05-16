@@ -22,7 +22,7 @@ public class JFrameFormat extends JFrame{
     public JLabel welcome, LogoFrame, UserFrame;
     private ImageIcon Logo, User;
     public String UserName;
-    public JComboBox Location;
+    public JComboBox CenLocation;
 
     public JFrameFormat(String UserName){
         this.UserName = UserName;
@@ -39,8 +39,8 @@ public class JFrameFormat extends JFrame{
         User = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/AccountHeader.png")).getImage().getScaledInstance(35,35,Image.SCALE_SMOOTH));
         UserFrame = new JLabel(User);
         UserFrame.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Color.DARK_GRAY));
-        Location = new JComboBox();
-        Location.addItem("No Location");
+        CenLocation = new JComboBox(Location.values());
+        CenLocation.setSelectedIndex(-1);
         ///////////////////////////
         header = new JPanel();
         header.setBorder(new LineBorder(Color.DARK_GRAY, 2));
@@ -51,7 +51,7 @@ public class JFrameFormat extends JFrame{
         headerUser.setLayout(new FlowLayout());
         headerUser.add(UserFrame);
         headerUser.add(UserLoggedIn);
-        headerUser.add(Location);
+        headerUser.add(CenLocation);
         header.add(headerUser, BorderLayout.EAST);
         mainCont.add(header, BorderLayout.NORTH);
         Body = new JPanel();

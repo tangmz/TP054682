@@ -39,8 +39,9 @@ public class Assignment {
                 String l = s.nextLine();
                 String m = s.nextLine();
                 String n = s.nextLine();
+                String o = s.nextLine();
                 s.nextLine();
-                Admin admin = new Admin(h,i,j,k,l,m,n);
+                Admin admin = new Admin(h,i,j,k,l,m,n,o);
                 adminInfo.add(admin);
                 //allCustomer.add(c);
             }

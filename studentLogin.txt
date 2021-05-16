@@ -2,7 +2,7 @@ SN1
 Hi
 hi
 hi
-Bukit Jalil
+BukitJalil
 Male
 123
 
@@ -10,7 +10,7 @@ SN2
 Ng
 Ng
 Ng
-Petaling Jaya
+PetalingJaya
 Male
 123
 

@@ -1,9 +1,9 @@
 package Assignment;
 
 public class Admin {
-    private String adId, adUserN, adPass, adName, adPlace, adGender, adPhone;
-
-    public Admin(String adId, String adUserN, String adPass, String adName, String adPlace, String adGender, String adPhone) {
+    private String adId, adUserN, adPass, adName, adPlace, adGender, adPhone, superRole;
+    
+    public Admin(String adId, String adUserN, String adPass, String adName, String adPlace, String adGender, String adPhone, String superRole) {
         this.adId = adId;
         this.adUserN = adUserN;
         this.adPass = adPass;
@@ -11,6 +11,7 @@ public class Admin {
         this.adPlace = adPlace;
         this.adGender = adGender;
         this.adPhone = adPhone;
+        this.superRole = superRole;
     }
 
     public String getAdId() {
@@ -67,5 +68,13 @@ public class Admin {
 
     public void setAdPhone(String adPhone) {
         this.adPhone = adPhone;
+    }
+    
+    public String getSuperRole() {
+        return superRole;
+    }
+
+    public void setSuperRole(String superRole) {
+        this.superRole = superRole;
     }
 }

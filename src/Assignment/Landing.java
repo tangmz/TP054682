@@ -47,8 +47,8 @@ public class Landing extends JFrame implements ActionListener{
         exitLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/logout.png")).getImage().getScaledInstance(20,20, Image.SCALE_SMOOTH));
         exit = new JButton("Exit", exitLogo);
         exit.setBackground(Color.WHITE);
-        locationLogin.addItem("Petaling Jaya");
-        locationLogin.setSelectedItem("Petaling jaya");
+        locationLogin.addItem("PetalingJaya");
+        locationLogin.setSelectedItem("Petalingjaya");
         setSize(400,420);
         setLocation(800,250);
         Container mainCont = this.getContentPane();
@@ -216,7 +216,7 @@ public class Landing extends JFrame implements ActionListener{
                         flag = false;
                         if(passInput.equals(c.getStuPass())){
                             if(selectedLocation.equals(c.getStuPlace())){
-                                Assignment.registeredStu.FrameLoad(c.getStuUserN());
+                                Assignment.registeredStu.FrameLoad(c.getStuUserN(),c.getStuPlace());
                                 this.dispose();
                                 break;
                             }else{
@@ -243,7 +243,7 @@ public class Landing extends JFrame implements ActionListener{
                         flag = false;
                         if(passInput.equals(c.getAdPass())){
                             if(selectedLocation.equals(c.getAdPlace())){
-                                Assignment.registeredAd.FrameLoad(c.getAdUserN());
+                                Assignment.registeredAd.FrameLoad(c.getAdUserN(),c.getAdPlace());
                                 this.dispose();
                                 break;
                             } else{

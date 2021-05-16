@@ -55,8 +55,8 @@ public class Register extends JFrame implements ActionListener{
         s = new Panel();    //FlowLayout by default
         x.add(s,BorderLayout.SOUTH);
         x.setVisible(true);*/
-        locationReg.addItem("Petaling Jaya");
-        locationReg.setSelectedItem("Petaling jaya");
+        locationReg.addItem("PetalingJaya");
+        locationReg.setSelectedItem("PetalingJaya");
         setSize(400,380);
         setLocation(800,300);
         Container mainCont = this.getContentPane();
@@ -175,7 +175,7 @@ public class Register extends JFrame implements ActionListener{
                         String nextID = String.valueOf(i+1);
                         adID = "AN"+(nextID);
                         if (flag){
-                            Admin adminReg = new Admin(adID, visitorName,visitorUserN,visitorPass,selectedLocation, visitorGender, visitorPhone);
+                            Admin adminReg = new Admin(adID, visitorName,visitorUserN,visitorPass,selectedLocation, visitorGender, visitorPhone, "no");
                             Assignment.adminInfo.add(adminReg);
                             try{
                                 PrintWriter f = new PrintWriter("adminLogin.txt");
@@ -188,6 +188,7 @@ public class Register extends JFrame implements ActionListener{
                                     f.println(c.getAdPlace());
                                     f.println(c.getAdGender());
                                     f.println(c.getAdPhone());
+                                    f.println(c.getSuperRole());
                                     f.println();
                                 }
                                 f.close();

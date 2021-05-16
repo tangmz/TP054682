@@ -27,11 +27,13 @@ public class RegisteredStudent extends DateTime{
     private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, attendanceConfirm, logout, modify; 
     private JLabel background, b1L, b2L, b3L, b4L, b5L, b6L, b7L,c1L,c2L,c3L,c4L,c5L,c6L,c7L;
     private ImageIcon viewCoachLogo, viewRecordLogo, viewRegSportLogo, modifyLogo, feedbackLogo, attendanceLogo, paymentLogo, logoutLogo, backgroundImage;
-    public void FrameLoad(String UserName){
+    public void FrameLoad(String UserName, String cenLocation){
         //++Logout Button++//
         CardLayout cl = new CardLayout();
         JFrameFormat frame = new JFrameFormat(UserName);
         frame.setVisible(true);
+        frame.CenLocation.setSelectedItem(Location.valueOf(cenLocation));
+        frame.CenLocation.setEnabled(false);
         viewCoachLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/staff.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
         viewCoach = new JButton("View Coach", viewCoachLogo);
         viewCoach.setBackground(Color.WHITE);
