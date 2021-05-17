@@ -12,15 +12,16 @@ import java.awt.Image;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -33,6 +34,7 @@ public class RegisteredStudent extends DateTime{
     private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, subscribeSport, attendanceConfirm, logout, modify, subscription, subscribe, unsubscribe; 
     private JLabel background, b1L, b2L, b3L, b4L, b5L, b6L, b7L,c1L,c2L,c3L,c4L,c5L,c6L,c7L, subscriptionTitle;
     private ImageIcon viewCoachLogo, viewRecordLogo, viewRegSportLogo, modifyLogo, feedbackLogo, attendanceLogo, paymentLogo, logoutLogo, backgroundImage, subscriptionLogo, subscribeLogo, unsubscribeLogo;
+    private JComboBox locationReg;
     public void FrameLoad(String UserName, String cenLocation){
         //++Logout Button++//
         CardLayout cl = new CardLayout();
@@ -182,8 +184,6 @@ public class RegisteredStudent extends DateTime{
         modifyUserN.setEditable(false);
         modifyPass = new TextField(15);
         modifyPass.setEditable(true);
-        modifyPlace = new TextField(15);
-        modifyPlace.setEditable(true);
         modifyGender = new TextField(15);
         modifyGender.setEditable(false);
         modifyPhone = new TextField(15);
@@ -218,7 +218,10 @@ public class RegisteredStudent extends DateTime{
         c5 = new JPanel();
         c5.setLayout(new FlowLayout(FlowLayout.CENTER));
         c5.add(c5L);
-        c5.add(modifyPlace);
+        locationReg = new JComboBox();
+        locationReg.addItem(cenLocation);
+        locationReg.setSelectedItem(cenLocation);
+        c5.add(locationReg);
         select4.add(c5);
         c6 = new JPanel();
         c6.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -251,27 +254,27 @@ public class RegisteredStudent extends DateTime{
         select6 = new JPanel();
         select6.setLayout(new BorderLayout());
         select6.add(dateTime, BorderLayout.NORTH);
-        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
-        SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
-        Date date = new Date();
-        String dayCheck = dayFormat.format(date);
-        String hourCheck = hourFormat.format(date);
-        String day = "Monday";
-        int hourCheckInteger = Integer.parseInt(hourCheck);
-        int i = 1;
-        int startTime = 10;
-        int endTime = 12;
-        if (i == 1){
-            startTime = 10;
-            endTime = 12;
-        }
-        if (dayCheck == day){
-            if ((hourCheckInteger > startTime)&&(hourCheckInteger <endTime)){
-                
-            }
-            
-                
-        }
+//        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
+//        SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
+//        Date date = new Date();
+//        String dayCheck = dayFormat.format(date);
+//        String hourCheck = hourFormat.format(date);
+//        String day = "Monday";
+//        int hourCheckInteger = Integer.parseInt(hourCheck);
+//        int i = 1;
+//        int startTime = 10;
+//        int endTime = 12;
+//        if (i == 1){
+//            startTime = 10;
+//            endTime = 12;
+//        }
+//        if (dayCheck == day){
+//            if ((hourCheckInteger > startTime)&&(hourCheckInteger <endTime)){
+//                
+//            }
+//            
+//                
+//        }
         attendanceConfirm = new JButton("Attendace");
         attendanceConfirm.setBackground(Color.GREEN);
         attendanceConfirm.setFont(new Font("Arial", Font.BOLD, 30));
@@ -334,6 +337,19 @@ public class RegisteredStudent extends DateTime{
 
             }
         });
+        locationReg.addFocusListener(new FocusListener(){
+            @Override
+            public void focusGained(FocusEvent fe) {
+                locationReg.setModel(new DefaultComboBoxModel(Location.values()));
+                locationReg.showPopup();
+            }
+
+            @Override
+            public void focusLost(FocusEvent fe) {
+                
+            }
+            
+        });
         modifyRecord.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -345,7 +361,7 @@ public class RegisteredStudent extends DateTime{
                         modifyName.setText(c.getStuName());
                         modifyUserN.setText(c.getStuUserN());
                         modifyPass.setText(c.getStuPass());
-                        modifyPlace.setText(c.getStuPlace());
+                        
                         modifyGender.setText(c.getStuGender());
                         modifyPhone.setText(c.getStuPhone());
                     }
@@ -355,8 +371,9 @@ public class RegisteredStudent extends DateTime{
         modify.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                String selectedLocation = locationReg.getSelectedItem().toString();
                 modPass = modifyPass.getText();
-                modPlace = modifyPlace.getText();
+//                modPlace = modifyPlace.getText();
                 modPhone = modifyPhone.getText();
                 try{
                     PrintWriter f = new PrintWriter("studentLogin.txt");
@@ -364,7 +381,7 @@ public class RegisteredStudent extends DateTime{
                         Student c = Assignment.studentInfo.get(i);
                         if(UserName.equals(c.getStuUserN())){
                             c.setStuPass(modPass);
-                            c.setStuPlace(modPlace);
+                            c.setStuPlace(selectedLocation);
                             c.setStuPhone(modPhone);
                         }    
 //                        }else{
