@@ -60,13 +60,6 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         });
         SportNameIn = new JTextField(15);
         
-        AddB = new JRadioButton("New Record");
-        ModB = new JRadioButton("Modify Record");
-        AddModSelection = new ButtonGroup();
-        AddModSelection.add(AddB);
-        AddModSelection.add(ModB);
-        AddB.addActionListener(this);
-        ModB.addActionListener(this);
         
         CIdL = new JLabel("Coach ID:", SwingConstants.CENTER);
         CNameL = new JLabel("Name:", SwingConstants.CENTER);
@@ -78,7 +71,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         CTDateL = new JLabel("Quit Date:", SwingConstants.CENTER);
         
         CId = new JTextField(15);
-        CId.setText(sportId);
+        CId.setText(coachId);
         CId.setHorizontalAlignment(JTextField.CENTER);
         CName = new JTextField(15);
         CName.setHorizontalAlignment(JTextField.CENTER);
@@ -112,7 +105,29 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         Search = new Button("Search");
         AddSport = new Button("Add Sport");
         AddCoach = new Button("Add Coach");
+        AddSport.addActionListener(this);
+        AddCoach.addActionListener(this);
         TerminateCoach = new Button("Terminate Coach");
+        
+        AddB = new JRadioButton("New Record");
+        ModB = new JRadioButton("Modify Record");
+        AddModSelection = new ButtonGroup();
+        AddModSelection.add(AddB);
+        AddModSelection.add(ModB);
+        ModB.setSelected(true);
+        if(AddB.isSelected()){
+            SportComB.setEnabled(false);
+            AddSport.setVisible(true);
+            TerminateCoach.setVisible(false);
+            AddCoach.setVisible(true);
+        }else if(ModB.isSelected()){
+            SportComB.setEnabled(true);
+            AddSport.setVisible(false);
+            AddCoach.setVisible(false);
+            TerminateCoach.setVisible(true);
+        }
+//        AddB.addActionListener(this);
+//        ModB.addActionListener(this);
         
         //++Set Component Disabled by Default++//
         SportComB.setEnabled(false);
@@ -202,17 +217,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if(AddB.isSelected()){
-            SportComB.setEnabled(false);
-            AddSport.setVisible(true);
-            TerminateCoach.setVisible(false);
-            AddCoach.setVisible(true);
-        }else if(ModB.isSelected()){
-            SportComB.setEnabled(true);
-            AddSport.setVisible(false);
-            AddCoach.setVisible(false);
-            TerminateCoach.setVisible(true);
-        }else if(ae.getSource() == AddSport){
+        if(ae.getSource() == AddSport){
             whichOperation = "Sport";
             writeFile writeFile = new writeFile(whichOperation);
         }else if(ae.getSource() == AddCoach){
@@ -246,7 +251,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                         f.println();
                     }
                     f.close();   
-                    Assignment.login.setVisible(true);
+                    
                 } catch(Exception ex){
                     System.out.println("Error in stop!");
                 }
@@ -264,7 +269,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                         f.println();
                     }
                     f.close();   
-                    Assignment.login.setVisible(true);
+                    
                 } catch(Exception ex){
                     System.out.println("Error in stop!");
                 }
@@ -280,6 +285,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
             i = rAd.Coach.size();
             nextID = String.valueOf(i+1);
             coachId = "CN0"+(nextID);
+            
             i = rAd.Coach.size();
             nextID = String.valueOf(i+1);
             sportId = "RCS0"+(nextID);
