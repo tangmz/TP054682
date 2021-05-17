@@ -113,17 +113,16 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         AddModSelection.add(AddB);
         AddModSelection.add(ModB);
         ModB.setSelected(true);
-        AddSport.setVisible(false);
-        AddCoach.setVisible(false);
         AddB.addActionListener(this);
         ModB.addActionListener(this);
         
         //++Set Component Disabled by Default++//
-        SportComB.setEnabled(false);
         CId.setEnabled(false);
         CStar.setEnabled(false);
         CJDate.setEnabled(false);
         CTDate.setEnabled(false);
+        AddSport.setVisible(false);
+        AddCoach.setVisible(false);
         
         //++Retrieve Data++//
         retrieve r = new retrieve();
