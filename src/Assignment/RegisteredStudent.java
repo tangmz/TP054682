@@ -12,6 +12,8 @@ import java.awt.Image;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.BorderFactory;
@@ -24,7 +26,7 @@ import javax.swing.SwingConstants;
 public class RegisteredStudent extends DateTime{    
     private JPanel header, menuBody, displayBody, sidePanel, attendancePanel, menu, select1, select2, select3, select4, select5, select6, select7, select8, b1, b2, b3, b4, b5, b6, b7, c1,c2,c3,c4,c5,c6,c7, modifyPanel, d1, d2;
     private TextField stuID, stuName, stuUserN, stuPass, stuPlace, stuGender, stuPhone, modifyID, modifyName, modifyUserN, modifyPass, modifyPlace, modifyGender, modifyPhone;
-    private String user, time;
+    private String user, time,modUserName, modPass, modPlace, modPhone;
     private Checkbox basketball, badminton;
     private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, subscribeSport, attendanceConfirm, logout, modify, subscription, subscribe, unsubscribe; 
     private JLabel background, b1L, b2L, b3L, b4L, b5L, b6L, b7L,c1L,c2L,c3L,c4L,c5L,c6L,c7L, subscriptionTitle;
@@ -344,6 +346,36 @@ public class RegisteredStudent extends DateTime{
                         modifyPlace.setText(c.getStuPlace());
                         modifyGender.setText(c.getStuGender());
                         modifyPhone.setText(c.getStuPhone());
+                        modify.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent ae) {
+                            modUserName = modifyUserN.getText();
+                            modPass = modifyPass.getText();
+                            modPlace = modifyPlace.getText();
+                            modPhone = modifyPhone.getText();
+                            Student modifyStu = new Student(c.getStuID(), c.getStuName(),modUserName,modPass,modPlace, c.getStuGender(), modPhone);
+                            Assignment.studentInfo.add(modifyStu);
+                            File oldFile = new File("studentLogin.txt");
+                            File newFile = new File("studentTemp.txt");
+                            try{
+                                PrintWriter f = new PrintWriter("studentLogin.txt");
+                                for(int i=0; i<Assignment.studentInfo.size(); i++){
+                                    Student c = Assignment.studentInfo.get(i);
+                                    f.println(c.getStuID());
+                                    f.println(c.getStuName());
+                                    f.println(modUserName);
+                                    f.println(modPass);
+                                    f.println(modPlace);
+                                    f.println(c.getStuGender());
+                                    f.println(modPhone);
+                                    f.println();
+                                }
+                                f.close();
+                            } catch(Exception ex){
+                                System.out.println("Error in stop!");
+                            }
+                        }
+                    });
                     }
                 }
             }
@@ -373,7 +405,7 @@ public class RegisteredStudent extends DateTime{
             }
         });
 
-        
+
     }
 }
 
