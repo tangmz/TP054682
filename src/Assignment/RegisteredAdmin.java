@@ -10,9 +10,12 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,6 +34,77 @@ public class RegisteredAdmin extends DateTime{
         
     public void FrameLoad(String UserName, String cenLocation, int counter){
         
+        //++Read File++//
+            
+        Scanner s = null;
+        try {
+            s = new Scanner(new File("sport.txt"));
+        } catch (FileNotFoundException ex) {
+            System.out.println("Empty Read");
+        }
+            while(s.hasNext()){
+                String sp1 = s.nextLine();
+                String sp2 = s.nextLine();
+                String sp3 = s.nextLine();
+                String sp4 = s.nextLine();
+                Sport_Constr sport_read = new Sport_Constr(sp1,sp2,sp3,sp4);
+                Sport.add(sport_read);
+            }
+        s = null;
+        try {
+            s = new Scanner(new File("coach.txt"));
+        } catch (FileNotFoundException ex) {
+            System.out.println("Empty Read");
+        }
+            while(s.hasNext()){
+                String c1 = s.nextLine();
+                String c2 = s.nextLine();
+                String c3 = s.nextLine();
+                String c4 = s.nextLine();
+                String c5 = s.nextLine();
+                String c6 = s.nextLine();
+                String c7 = s.nextLine();
+                String c8 = s.nextLine();
+                String c9 = s.nextLine();
+                String c10 = s.nextLine();
+                s.nextLine();
+                Coach_Constr coach_read = new Coach_Constr(c1,c2,c3,c4,c5,c6,c7,c8,c9,c10);
+                Coach.add(coach_read);
+            }
+            /////////////////////////////////NOT READY//////////////////////////
+//        try {
+//            s = new Scanner(new File("schedule.txt"));
+//        } catch (FileNotFoundException ex) {
+//            System.out.println("Empty Read");
+//        }
+//            while(s.hasNext()){
+//                String sc1 = s.nextLine();
+//                String sc2 = s.nextLine();
+//                String sc3 = s.nextLine();
+//                String sc4 = s.nextLine();
+//                String sc5 = s.nextLine();
+//                String sc6 = s.nextLine();
+//                String sc7 = s.nextLine();
+//                String sc8 = s.nextLine();
+//                String sc9 = s.nextLine();
+//                String sc10 = s.nextLine();
+//                String sc11 = s.nextLine();
+//                String sc12 = s.nextLine();
+//                String sc13 = s.nextLine();
+//                String sc14 = s.nextLine();
+//                String sc15 = s.nextLine();
+//                String sc16 = s.nextLine();
+//                String sc17 = s.nextLine();
+//                String sc18 = s.nextLine();
+//                String sc19 = s.nextLine();
+//                String sc20 = s.nextLine();
+//                String sc21 = s.nextLine();
+//                String sc22 = s.nextLine();
+//                s.nextLine();
+//                Schedule_Constr schedule_read = new Schedule_Constr(sc1,sc2,sc3,sc4,sc5,sc6,sc7,sc8,sc9,sc10,sc11,sc12,sc13,sc14,sc15,sc16,sc17,sc18,sc19,sc20,sc21,sc22);
+//                Schedule.add(schedule_read);
+//            }
+
         this.counter = counter;
         this.centerLocation = cenLocation;
         CardLayout cl = new CardLayout();
@@ -53,67 +127,6 @@ public class RegisteredAdmin extends DateTime{
                 Check = false;
                 break;
             }
-        }
-        
-        //++Read File++//
-        try{
-            
-            Scanner s = new Scanner(new File("Sport.txt"));
-            while(s.hasNext()){
-                String sp1 = s.nextLine();
-                String sp2 = s.nextLine();
-                String sp3 = s.nextLine();
-                String sp4 = s.nextLine();
-                Sport_Constr sport_read = new Sport_Constr(sp1,sp2,sp3,sp4);
-                Sport.add(sport_read);
-            }
-            s = new Scanner(new File("Coach.txt"));
-            while(s.hasNext()){
-                String c1 = s.nextLine();
-                String c2 = s.nextLine();
-                String c3 = s.nextLine();
-                String c4 = s.nextLine();
-                String c5 = s.nextLine();
-                String c6 = s.nextLine();
-                String c7 = s.nextLine();
-                String c8 = s.nextLine();
-                String c9 = s.nextLine();
-                String c10 = s.nextLine();
-                s.nextLine();
-                Coach_Constr coach_read = new Coach_Constr(c1,c2,c3,c4,c5,c6,c7,c8,c9,c10);
-                Coach.add(coach_read);
-            }
-            s = new Scanner(new File("Schedule.txt"));
-            while(s.hasNext()){
-                String sc1 = s.nextLine();
-                String sc2 = s.nextLine();
-                String sc3 = s.nextLine();
-                String sc4 = s.nextLine();
-                String sc5 = s.nextLine();
-                String sc6 = s.nextLine();
-                String sc7 = s.nextLine();
-                String sc8 = s.nextLine();
-                String sc9 = s.nextLine();
-                String sc10 = s.nextLine();
-                String sc11 = s.nextLine();
-                String sc12 = s.nextLine();
-                String sc13 = s.nextLine();
-                String sc14 = s.nextLine();
-                String sc15 = s.nextLine();
-                String sc16 = s.nextLine();
-                String sc17 = s.nextLine();
-                String sc18 = s.nextLine();
-                String sc19 = s.nextLine();
-                String sc20 = s.nextLine();
-                String sc21 = s.nextLine();
-                String sc22 = s.nextLine();
-                s.nextLine();
-                Schedule_Constr schedule_read = new Schedule_Constr(sc1,sc2,sc3,sc4,sc5,sc6,sc7,sc8,sc9,sc10,sc11,sc12,sc13,sc14,sc15,sc16,sc17,sc18,sc19,sc20,sc21,sc22);
-                Schedule.add(schedule_read);
-            }
-            
-        }catch(Exception ex){
-            System.out.println("Empty Read");
         }
         
         //++create Components++//
