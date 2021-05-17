@@ -28,7 +28,6 @@ public class Register extends JFrame implements ActionListener{
     private Button create, exit;
     private Label title, nameL, usernameL, passwordL, locationL, genderL, phoneL, roleL;
     private TextField userName, userLoginName, userPass, userPhone;
-    private JList regLocation;
     private JFrame x;
     private JPanel Header, Body, b1, b2, b3, b4, b5, b6, b7, Footer;
     private JRadioButton adminB, studentB, female, male;
