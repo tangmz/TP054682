@@ -254,27 +254,27 @@ public class RegisteredStudent extends DateTime{
         select6 = new JPanel();
         select6.setLayout(new BorderLayout());
         select6.add(dateTime, BorderLayout.NORTH);
-        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
-        SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
-        Date date = new Date();
-        String dayCheck = dayFormat.format(date);
-        String hourCheck = hourFormat.format(date);
-        String day = "Monday";
-        int hourCheckInteger = Integer.parseInt(hourCheck);
-        int i = 1;
-        int startTime = 10;
-        int endTime = 12;
-        if (i == 1){
-            startTime = 10;
-            endTime = 12;
-        }
-        if (dayCheck == day){
-            if ((hourCheckInteger > startTime)&&(hourCheckInteger <endTime)){
-                
-            }
-            
-                
-        }
+//        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
+//        SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
+//        Date date = new Date();
+//        String dayCheck = dayFormat.format(date);
+//        String hourCheck = hourFormat.format(date);
+//        String day = "Monday";
+//        int hourCheckInteger = Integer.parseInt(hourCheck);
+//        int i = 1;
+//        int startTime = 10;
+//        int endTime = 12;
+//        if (i == 1){
+//            startTime = 10;
+//            endTime = 12;
+//        }
+//        if (dayCheck == day){
+//            if ((hourCheckInteger > startTime)&&(hourCheckInteger <endTime)){
+//                
+//            }
+//            
+//                
+//        }
         attendanceConfirm = new JButton("Attendace");
         attendanceConfirm.setBackground(Color.GREEN);
         attendanceConfirm.setFont(new Font("Arial", Font.BOLD, 30));
