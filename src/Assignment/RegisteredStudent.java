@@ -363,11 +363,10 @@ public class RegisteredStudent extends DateTime{
                 File newFile = new File("studentTemp.txt");
                 for(int i=0; i<Assignment.studentInfo.size(); i++){
                     Student c = Assignment.studentInfo.get(i);
-                    
-                    if(UserName.equals(c.getStuUserN())){
-                        System.out.println(c.getStuID());
-                        try{
-                            PrintWriter tempF = new PrintWriter("studentTemp.txt");
+                    try{
+                        PrintWriter tempF = new PrintWriter("studentTemp.txt");
+                        if(UserName.equals(c.getStuUserN())){
+                            System.out.println(c.getStuID());
                             tempF.println(c.getStuID());
                             tempF.println(c.getStuName());
                             tempF.println(modUserName);
@@ -376,14 +375,23 @@ public class RegisteredStudent extends DateTime{
                             tempF.println(c.getStuGender());
                             tempF.println(modPhone);
                             tempF.println(); 
-                        
-                            tempF.close();
-                            tempF.flush();
-                            oldFile.delete();
-                            newFile.renameTo(oldFile);
-                        } catch(Exception ex){
-                            System.out.println("Error in stop!");
+                        }else{
+                            tempF.println(c.getStuID());
+                            tempF.println(c.getStuName());
+                            tempF.println(c.getStuUserN());
+                            tempF.println(c.getStuPass());
+                            tempF.println(c.getStuPlace());
+                            tempF.println(c.getStuGender());
+                            tempF.println(c.getStuPhone());
+                            tempF.println();
                         }
+                        tempF.close();
+//                        tempF.flush();
+//                        oldFile.delete();
+//                        newFile.renameTo(oldFile);
+                     
+                    } catch(Exception ex){
+                            System.out.println("Error in stop!");
                     }
                 }
             }
