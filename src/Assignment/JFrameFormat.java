@@ -26,8 +26,8 @@ public class JFrameFormat extends JFrame{
 
     public JFrameFormat(String UserName){
         this.UserName = UserName;
-        setSize(900,650);
-        setLocation(500,200);
+        setSize(1150,650);
+        setLocation(450,200);
         Container mainCont = this.getContentPane();
         mainCont.setLayout(new BorderLayout(8,6));
         welcome = new JLabel("", JLabel.CENTER);

@@ -3,7 +3,8 @@ package Assignment;
 public class Coach_Constr {
     private String CoachId, CoachN, CoachTel, CoachHRate, CoachStar, CoachCenter, CoachSp_Id, CoachAdd, JDate, TDate;
 
-    public Coach_Constr(String CoachId, String CoachN, String CoachTel, String CoachHRate, String CoachStar, String CoachCenter, String CoachSp_Id, String CoachAdd, String JDate, String TDate) {
+    public Coach_Constr(String CoachId, String CoachN, String CoachTel, String CoachHRate, String CoachStar, 
+            String CoachCenter, String CoachSp_Id, String CoachAdd, String JDate, String TDate) {
         this.CoachId = CoachId;
         this.CoachN = CoachN;
         this.CoachTel = CoachTel;

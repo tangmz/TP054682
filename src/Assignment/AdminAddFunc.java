@@ -37,7 +37,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
     AdminAddFunc(){
         
         SportComB = new JComboBox();
-        SportComB.addItem("Hiiiiiii");
+        SportComB.addItem("Hiiiiiii");/////////////Delete Later
 //        SportMod.setModel(cbm);
         SportSelc = new JLabel("Sport:  ");
         SportIdL = new JLabel("Sport ID:  ");
@@ -59,14 +59,14 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         SportNameIn = new JTextField(15);
         
         
-        CIdL = new JLabel("Coach ID:", SwingConstants.CENTER);
-        CNameL = new JLabel("Name:", SwingConstants.CENTER);
-        CPhoneL = new JLabel("Phone:", SwingConstants.CENTER);
-        CRatePayL = new JLabel("Hourly Pay:", SwingConstants.CENTER);
-        CStarL = new JLabel("Rating :", SwingConstants.CENTER);
-        CAddressL = new JLabel("Address:", SwingConstants.CENTER);
-        CJDateL = new JLabel("Joined Date:", SwingConstants.CENTER);
-        CTDateL = new JLabel("Quit Date:", SwingConstants.CENTER);
+        CIdL = new JLabel("Coach ID:");
+        CNameL = new JLabel("Name:");
+        CPhoneL = new JLabel("Phone:");
+        CRatePayL = new JLabel("Hourly Pay:");
+        CStarL = new JLabel("Rating :");
+        CAddressL = new JLabel("Residing City:");
+        CJDateL = new JLabel("Joined Date:");
+        CTDateL = new JLabel("Quit Date:");
         
         CId = new JTextField(15);
         CId.setText(coachId);
@@ -128,10 +128,18 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         retrieve r = new retrieve();
         
         //++PanelDesign//++
+        
+        setLayout(new BorderLayout(0,20));
+        
         PanelTSelect = new JPanel();
-        PanelTSelect.setLayout(new GridLayout(3,1));
-        PanelTSelect.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        PanelTSelect.setPreferredSize(new Dimension(400,150));
+        int TopWidth = (this.getWidth());
+        System.out.print(TopWidth);
+        GridLayout gL = new GridLayout(3,1);
+        gL.setVgap(20);
+        gL.setHgap(10);
+        PanelTSelect.setLayout(gL);
+        PanelTSelect.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true));
+        PanelTSelect.setPreferredSize(new Dimension(500,150));
         PanelTSNorth = new JPanel();
         PanelTSNorth.setLayout(new FlowLayout());
         PanelTSNorth.add(ModB);
@@ -146,8 +154,8 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         
         PanelTView = new JPanel();
         PanelTView.setLayout(new BorderLayout(5,5));
-        PanelTView.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        PanelTView.setPreferredSize(new Dimension(400,150));
+        PanelTView.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1 , true));
+        PanelTView.setPreferredSize(new Dimension(550,150));
         PanelTV1 = new JPanel();
         PanelTV1.setLayout(new FlowLayout(FlowLayout.CENTER));
         PanelTV1.add(SportIdL);
@@ -171,10 +179,11 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         PanelTop.add(PanelTSelect, BorderLayout.WEST);
         PanelTop.add(PanelTView, BorderLayout.EAST);
         
-        GridLayout gL = new GridLayout(4,4);
-        gL.setVgap(50);
+        GridLayout gL1 = new GridLayout(4,4);
+        gL1.setVgap(50);
+        gL1.setHgap(10);
         PanelBody = new JPanel();
-        PanelBody.setLayout(gL);
+        PanelBody.setLayout(gL1);
         PanelBody.add(CNameL);
         PanelBody.add(CName);
         PanelBody.add(CIdL);
@@ -200,7 +209,6 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         PanelSouthButtons.add(AddCoach);
         PanelSouth.add(PanelSouthButtons, BorderLayout.SOUTH);
         
-        setLayout(new BorderLayout(0,20));
         add(PanelTop, BorderLayout.NORTH);
         add(PanelBody, BorderLayout.CENTER);
         add(PanelSouth, BorderLayout.SOUTH);

@@ -108,6 +108,7 @@ public class RegisteredAdmin extends DateTime{
         this.counter = counter;
         this.centerLocation = cenLocation;
         CardLayout cl = new CardLayout();
+        
         //++Create JFrame++//
         JFrameFormat frame = new JFrameFormat(UserName);
         AdminAddFunc aa = new AdminAddFunc();
@@ -133,7 +134,7 @@ public class RegisteredAdmin extends DateTime{
         logout = new Button("Logout");
         AddModRecord = new Button("Add/Modify Record");
         SearchRecord = new Button("Search Record");
-        CoachRecord = new Button("View Coaches");
+        CoachRecord = new Button("Coaches");
         ScheduleB = new Button("Sport Schedule");
         manageSystem = new Button("Manage System");
         frame.welcome.setText("Admin Panel");
