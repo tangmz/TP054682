@@ -358,8 +358,8 @@ public class RegisteredStudent extends DateTime{
                 modPass = modifyPass.getText();
                 modPlace = modifyPlace.getText();
                 modPhone = modifyPhone.getText();
-                File oldFile = new File("studentLogin.txt");
-                File newFile = new File("studentTemp.txt");
+//                File oldFile = new File("studentLogin.txt");
+//                File newFile = new File("studentTemp.txt");
                 try{
                     PrintWriter tempF = new PrintWriter("studentTemp.txt");
                     Scanner x = new Scanner(new File("studentLogin.txt"));

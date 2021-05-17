@@ -112,6 +112,8 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         Search = new Button("Search");
         AddSport = new Button("Add Sport");
         AddCoach = new Button("Add Coach");
+        AddSport.addActionListener(this);
+        AddCoach.addActionListener(this);
         TerminateCoach = new Button("Terminate Coach");
         
         //++Set Component Disabled by Default++//
@@ -246,7 +248,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                         f.println();
                     }
                     f.close();   
-                    Assignment.login.setVisible(true);
+                    
                 } catch(Exception ex){
                     System.out.println("Error in stop!");
                 }
@@ -264,7 +266,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                         f.println();
                     }
                     f.close();   
-                    Assignment.login.setVisible(true);
+                    
                 } catch(Exception ex){
                     System.out.println("Error in stop!");
                 }
