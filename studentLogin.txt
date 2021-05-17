@@ -1,15 +1,15 @@
 SN1
-Hi
-hi
-hi
-BukitJalil
+a
+a
+a
+PetalingJaya
 Male
 123
 
 SN2
-Ng
-Ng
-Ng
+b
+b
+b
 PetalingJaya
 Male
 123
