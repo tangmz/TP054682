@@ -303,7 +303,6 @@ public class AdminAddFunc extends JPanel implements ActionListener{
             String nextID = "";
             int i = 0;
             i = RegisteredAdmin.Coach.size();
-            System.out.println(RegisteredAdmin.Coach.size());
             nextID = String.valueOf(i+1);
             coachId = "CN0"+(nextID);
             CId.setText(coachId);
@@ -311,7 +310,6 @@ public class AdminAddFunc extends JPanel implements ActionListener{
             i = RegisteredAdmin.Coach.size();
             nextID = String.valueOf(i+1);
             sportId = "RCS0"+(nextID);
-            System.out.println(RegisteredAdmin.centerLocation);
             SportIdIn.setText(sportId);
         }
     }
