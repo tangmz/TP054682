@@ -12,7 +12,6 @@ import java.awt.Image;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -361,39 +360,58 @@ public class RegisteredStudent extends DateTime{
                 modPhone = modifyPhone.getText();
                 File oldFile = new File("studentLogin.txt");
                 File newFile = new File("studentTemp.txt");
-                for(int i=0; i<Assignment.studentInfo.size(); i++){
-                    Student c = Assignment.studentInfo.get(i);
-                    try{
-                        PrintWriter tempF = new PrintWriter("studentTemp.txt");
-                        if(UserName.equals(c.getStuUserN())){
-                            System.out.println(c.getStuID());
-                            tempF.println(c.getStuID());
-                            tempF.println(c.getStuName());
+                try{
+                    PrintWriter tempF = new PrintWriter("studentTemp.txt");
+                    Scanner x = new Scanner(new File("studentLogin.txt"));
+                    x.useDelimiter("[\n]");
+//                    for(int i=0; i<Assignment.studentInfo.size(); i++){
+//                        Student c = Assignment.studentInfo.get(i);
+//                        if(UserName.equals(c.getStuUserN())){
+                    while(x.hasNext()){
+                        String ID = x.nextLine();
+                        String name = x.nextLine();
+                        String userName = x.nextLine();
+                        String userPass = x.nextLine();
+                        String userPlace = x.nextLine();
+                        String userGender = x.nextLine();
+                        String userPhone = x.nextLine();
+                        x.nextLine();
+                        if(UserName.equals(userName)){
+                            tempF.println(ID);
+                            tempF.println(name);
                             tempF.println(modUserName);
                             tempF.println(modPass);
                             tempF.println(modPlace);
-                            tempF.println(c.getStuGender());
+                            tempF.println(userGender);
                             tempF.println(modPhone);
-                            tempF.println(); 
                         }else{
-                            tempF.println(c.getStuID());
-                            tempF.println(c.getStuName());
-                            tempF.println(c.getStuUserN());
-                            tempF.println(c.getStuPass());
-                            tempF.println(c.getStuPlace());
-                            tempF.println(c.getStuGender());
-                            tempF.println(c.getStuPhone());
-                            tempF.println();
+                            tempF.println(ID);
+                            tempF.println(name);
+                            tempF.println(userName);
+                            tempF.println(userPass);
+                            tempF.println(userPlace);
+                            tempF.println(userGender);
+                            tempF.println(userPhone);
+//                                }else{
+//                                    System.out.println(c.getStuID());
+//                                    tempF.println(c.getStuID());
+//                                    tempF.println(c.getStuName());
+//                                    tempF.println(c.getStuUserN());
+//                                    tempF.println(c.getStuPass());
+//                                    tempF.println(c.getStuPlace());
+//                                    tempF.println(c.getStuGender());
+//                                    tempF.println(c.getStuPhone());
+//                                    tempF.println();
                         }
                         tempF.close();
 //                        tempF.flush();
 //                        oldFile.delete();
 //                        newFile.renameTo(oldFile);
                      
-                    } catch(Exception ex){
+                    }
+                } catch(Exception ex){
                             System.out.println("Error in stop!");
                     }
-                }
             }
         });
         subscription.addActionListener(new ActionListener() {

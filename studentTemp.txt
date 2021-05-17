@@ -1,8 +1,7 @@
-SN2
-b
-b
-b
+SN1
+a
+a
+a
 PetalingJaya
 Male
 123
-
