@@ -33,12 +33,13 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
     private static ButtonGroup AddModSelection;
     private static Button search;
     private static final DateTime dateTime = new DateTime();
-    private static String coachId, sportId, whichOperation;
+    private static String coachId, sportId, whichOperation, location;
     private static String sportType[] = {"swimming", "badminton", "football", "archery", "gymnastic", "volleyball", "basketball", "cricket", "tennis", "table tennis"};
     private ArrayList<String> sportID = new ArrayList<String>();
     public ViewCoachDetail(String cenLocation){
         //List for the location
         sportComB = new JComboBox();
+        location = cenLocation;
         for(int i = 0; i<Assignment.sportInfo.size(); i++){
             Sport_Constr sport = Assignment.sportInfo.get(i);
             for(int counter = 0; counter<10; counter++){
@@ -48,29 +49,7 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
                 }
             }
         }
-        String selectedSport = sportComB.getSelectedItem().toString();
-        for(int i=0; i<Assignment.coachInfo.size(); i++){
-            Coach_Constr coach = Assignment.coachInfo.get(i);
-            if (coach.equals(cenLocation)){
-                for(int counter = 0; counter<10; counter++){
-                    if (coach.equals(sportID.get(counter))){
-                        coachIdText.setText(coach.getCoachId());
-                        coachNameText.setText(coach.getCoachN());
-                        coachPhoneText.setText(coach.getCoachTel());
-                        coachStarText.setText(coach.getCoachStar());
-                        int coachSportFees = Integer.parseInt(coach.getCoachHRate());
-                        int coachFees = coachSportFees/2;
-                        sportFeesText.setText(Integer.toString(coachFees));
-                        coachJDateText.setText(coach.getJDate());
-                        coachTDateText.setText(coach.getTDate());
-                    }
-                    else{
-                        System.out.println("Error");
-                    }
-                }
-                
-            }
-        }
+
 //        SportMod.setModel(cbm);
         timeL = new JLabel(String.valueOf(dateTime.getFullDate()), SwingConstants.CENTER);
         timeL.setFont(new Font("Arial", Font.BOLD, 30));
@@ -121,6 +100,7 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
         
         //++Button++//
         search = new Button("Search");
+        search.addActionListener(this);
         
         //++PanelDesign//++
         
@@ -198,6 +178,32 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (ae.getSource()==search){
+            String selectedSport = sportComB.getSelectedItem().toString();
+            for(int i=0; i<Assignment.coachInfo.size(); i++){
+                Coach_Constr coach = Assignment.coachInfo.get(i);
+                System.out.println(coach);
+                if (coach.equals(location)){
+                    for(int counter = 0; counter<10; counter++){
+                        if (coach.equals(sportID.get(counter))){
+                            coachIdText.setText(coach.getCoachId());
+                            coachNameText.setText(coach.getCoachN());
+                            coachPhoneText.setText(coach.getCoachTel());
+                            coachStarText.setText(coach.getCoachStar());
+                            int coachSportFees = Integer.parseInt(coach.getCoachHRate());
+                            int coachFees = coachSportFees/2;
+                            sportFeesText.setText(Integer.toString(coachFees));
+                            coachJDateText.setText(coach.getJDate());
+                            coachTDateText.setText(coach.getTDate());
+                        }
+                        else{
+                            System.out.println("Error");
+                        }
+                    }
+                }
+                
+            }
+        }
+        
     }
 }
