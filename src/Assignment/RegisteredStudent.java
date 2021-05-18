@@ -15,8 +15,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -111,8 +109,9 @@ public class RegisteredStudent extends DateTime{
         menu.setBorder(BorderFactory.createMatteBorder(3 , 0 , 3 , 3 ,Color.DARK_GRAY));
 //        frame.Body.add(menu, BorderLayout.CENTER);
         select1 = new JPanel();
-        select1.setLayout(new GridLayout(2, 1));
-        
+        select1.setLayout(new BorderLayout());
+        ViewCoachDetail a = new ViewCoachDetail(cenLocation);
+        select1.add(a);
         select2 = new JPanel();
         select2.setLayout(new GridLayout(7, 1, 3, 3));
         stuID = new TextField(15);

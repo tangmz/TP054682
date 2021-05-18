@@ -34,7 +34,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
     private static Button Search, AddSport, AddCoach, TerminateCoach;
     private static final DateTime dateTime = new DateTime();
     private static String coachId, sportId, whichOperation;
-    AdminAddFunc(){
+    public AdminAddFunc(){
         
         SportComB = new JComboBox();
         SportComB.addItem("Hiiiiiii");/////////////Delete Later
