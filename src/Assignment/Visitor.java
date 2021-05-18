@@ -71,6 +71,7 @@ public class Visitor implements ActionListener{
         view = new JPanel();
         view.setLayout(new GridLayout(2,5));
         view.setBorder(BorderFactory.createTitledBorder("Sports: "));
+        
         view.add(swimmingB);
         view.add(badmintonB);
         view.add(footballB);

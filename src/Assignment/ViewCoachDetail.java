@@ -38,6 +38,7 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
     private ArrayList<String> sportID = new ArrayList<String>();
     public ViewCoachDetail(String cenLocation){
         //List for the location
+        
         sportComB = new JComboBox();
         location = cenLocation;
         for(int i = 0; i<Assignment.sportInfo.size(); i++){
@@ -175,17 +176,18 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
         add(PanelBody, BorderLayout.CENTER);
         add(PanelSouth, BorderLayout.SOUTH);
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource()==search){
             String selectedSport = sportComB.getSelectedItem().toString();
             for(int i=0; i<Assignment.coachInfo.size(); i++){
                 Coach_Constr coach = Assignment.coachInfo.get(i);
-                System.out.println(coach);
-                if (coach.equals(location)){
+                if (coach.getCoachCenter().equals(location)){
+                    System.out.println("HI");
                     for(int counter = 0; counter<10; counter++){
-                        if (coach.equals(sportID.get(counter))){
+                        if (coach.getCoachSp_Id().equals(sportID.get(i))){
+                            sportIdInText.setText(coach.getCoachSp_Id());
                             coachIdText.setText(coach.getCoachId());
                             coachNameText.setText(coach.getCoachN());
                             coachPhoneText.setText(coach.getCoachTel());
