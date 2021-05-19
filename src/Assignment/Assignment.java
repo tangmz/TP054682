@@ -59,8 +59,9 @@ public class Assignment {
                 String c8 = s.nextLine();
                 String c9 = s.nextLine();
                 String c10 = s.nextLine();
+                String c11 = s.nextLine();
                 s.nextLine();
-                Coach_Constr coach = new Coach_Constr(c1,c2,c3,c4,c5,c6,c7,c8,c9,c10);
+                Coach_Constr coach = new Coach_Constr(c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11);
                 coachInfo.add(coach);
             }
             s = new Scanner(new File("sport.txt"));

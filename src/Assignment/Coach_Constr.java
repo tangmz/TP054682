@@ -1,10 +1,9 @@
 package Assignment;
 
 public class Coach_Constr {
-    private String CoachId, CoachN, CoachTel, CoachHRate, CoachStar, CoachCenter, CoachSp_Id, CoachAdd, JDate, TDate;
+    private String CoachId, CoachN, CoachTel, CoachHRate, CoachStar, CoachCenter, CoachSp_Id, coach_Sp_N, CoachAdd, JDate, TDate;
 
-    public Coach_Constr(String CoachId, String CoachN, String CoachTel, String CoachHRate, String CoachStar, 
-            String CoachCenter, String CoachSp_Id, String CoachAdd, String JDate, String TDate) {
+    public Coach_Constr(String CoachId, String CoachN, String CoachTel, String CoachHRate, String CoachStar, String CoachCenter, String CoachSp_Id, String coach_Sp_N, String CoachAdd, String JDate, String TDate) {
         this.CoachId = CoachId;
         this.CoachN = CoachN;
         this.CoachTel = CoachTel;
@@ -12,11 +11,12 @@ public class Coach_Constr {
         this.CoachStar = CoachStar;
         this.CoachCenter = CoachCenter;
         this.CoachSp_Id = CoachSp_Id;
+        this.coach_Sp_N = coach_Sp_N;
         this.CoachAdd = CoachAdd;
         this.JDate = JDate;
         this.TDate = TDate;
     }
-    
+
     public String getCoachId() {
         return CoachId;
     }
@@ -73,6 +73,14 @@ public class Coach_Constr {
         this.CoachSp_Id = CoachSp_Id;
     }
 
+    public String getCoach_Sp_N() {
+        return coach_Sp_N;
+    }
+
+    public void setCoach_Sp_N(String coach_Sp_N) {
+        this.coach_Sp_N = coach_Sp_N;
+    }
+
     public String getCoachAdd() {
         return CoachAdd;
     }
@@ -96,6 +104,5 @@ public class Coach_Constr {
     public void setTDate(String TDate) {
         this.TDate = TDate;
     }
-
 
 }

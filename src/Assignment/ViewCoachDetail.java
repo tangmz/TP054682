@@ -47,7 +47,7 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
                 if(sport.getCenter().equals(location)){
                     if(sport.getSportN().equals(sportType[counter])){
                         sportComB.addItem(sport.getSportN());
-                        sportID.add(sport.getSprtId());
+//                        sportID.add(sport.getSprtId());
                     }
                 }
             }
@@ -80,11 +80,11 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
         coachPhoneText.setHorizontalAlignment(JTextField.CENTER);
         sportFeesText = new JTextField(15);
         sportFeesText.setHorizontalAlignment(JTextField.CENTER);
-        coachStarText = new JTextField("0");
+        coachStarText = new JTextField(15);
         coachStarText.setHorizontalAlignment(JTextField.CENTER);
-        coachJDateText = new JTextField(dateTime.getPartialDate());
+        coachJDateText = new JTextField(15);
         coachJDateText.setHorizontalAlignment(JTextField.CENTER);
-        coachTDateText = new JTextField("-");
+        coachTDateText = new JTextField(15);
         coachTDateText.setHorizontalAlignment(JTextField.CENTER);
 
         
@@ -185,23 +185,22 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
             for(int i=0; i<Assignment.coachInfo.size(); i++){
                 Coach_Constr coach = Assignment.coachInfo.get(i);
                 if (coach.getCoachCenter().equals(location)){
-                    System.out.println("HI");
-                    for(int counter = 0; counter<10; counter++){
-                        if (coach.getCoachSp_Id().equals(sportID.get(i))){
-                            sportIdInText.setText(coach.getCoachSp_Id());
-                            coachIdText.setText(coach.getCoachId());
-                            coachNameText.setText(coach.getCoachN());
-                            coachPhoneText.setText(coach.getCoachTel());
-                            coachStarText.setText(coach.getCoachStar());
-                            int coachSportFees = Integer.parseInt(coach.getCoachHRate());
-                            int coachFees = coachSportFees/2;
-                            sportFeesText.setText(Integer.toString(coachFees));
-                            coachJDateText.setText(coach.getJDate());
-                            coachTDateText.setText(coach.getTDate());
-                        }
-                        else{
-                            System.out.println("Error");
-                        }
+//                    for(int counter = 0; counter<sportID.size(); counter++){
+                    if (coach.getCoach_Sp_N().equals(selectedSport)){
+                        sportIdInText.setText(coach.getCoachSp_Id());
+                        coachIdText.setText(coach.getCoachId());
+                        coachNameText.setText(coach.getCoachN());
+                        coachPhoneText.setText(coach.getCoachTel());
+                        coachStarText.setText(coach.getCoachStar());
+                        int coachSportFees = Integer.parseInt(coach.getCoachHRate());
+                        int coachFees = coachSportFees/2;
+                        sportFeesText.setText(Integer.toString(coachFees));
+                        coachJDateText.setText(coach.getJDate());
+                        coachTDateText.setText(coach.getTDate());
+                    }
+                    else{
+                        System.out.println("Error");
+                        
                     }
                 }
                 

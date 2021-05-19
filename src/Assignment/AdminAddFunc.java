@@ -237,7 +237,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         private writeFile(String whichButton) {
             if(whichButton.equals("Coach")){
                 Coach_Constr writeC = new Coach_Constr(CId.getText(),CName.getText(),CPhone.getText(),CRatePay.getText(),CStar.getText(),
-                RegisteredAdmin.centerLocation,SportIdIn.getText(),CAddress.getText(), CJDate.getText(), CTDate.getText());
+                RegisteredAdmin.centerLocation,SportIdIn.getText(),SportNameIn.getText(),CAddress.getText(), CJDate.getText(), CTDate.getText());
                 RegisteredAdmin.Coach.add(writeC);
                 try{
                     PrintWriter f = new PrintWriter("coach.txt");
@@ -250,6 +250,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                         f.println(c.getCoachStar());
                         f.println(c.getCoachCenter());
                         f.println(c.getCoachSp_Id());
+                        f.println(c.getCoach_Sp_N());
                         f.println(c.getCoachAdd());
                         f.println(c.getJDate());
                         f.println(c.getTDate());
