@@ -27,12 +27,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class RegisteredStudent extends DateTime{    
-    private JPanel header, menuBody, displayBody, sidePanel, attendancePanel, menu, select1, select2, select3, select4, select5, select6, select7, select8, d1;
-    private String user, time, modPass, modPlace, modPhone, readID,readName, readUserN, readPass, readPlace, readGender, readPhone;
-    private Checkbox basketball, badminton, swimming, football, archery, gymnastic, volleyball, cricket, tennis, tableTennis;
-    private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, subscribeSport, attendanceConfirm, logout, modify, subscription, subscribe, unsubscribe; 
-    private JLabel background, subscriptionTitle;
-    private ImageIcon viewCoachLogo, viewRecordLogo, viewRegSportLogo, modifyLogo, feedbackLogo, attendanceLogo, paymentLogo, logoutLogo, backgroundImage, subscriptionLogo, subscribeLogo, unsubscribeLogo;
+    private JPanel header, menuBody, displayBody, sidePanel, attendancePanel, menu, select1, select2, select3, select4, select5, select6, select7, select8;
+    private String time;
+    private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, subscribeSport, attendanceConfirm, logout, modify, subscription;
+    private JLabel background;
+    private ImageIcon viewCoachLogo, viewRecordLogo, viewRegSportLogo, modifyLogo, feedbackLogo, attendanceLogo, paymentLogo, logoutLogo, backgroundImage, subscriptionLogo;
     private JComboBox locationReg;
     public void FrameLoad(String UserName, String cenLocation){
         //++Logout Button++//
@@ -70,12 +69,8 @@ public class RegisteredStudent extends DateTime{
         subscriptionLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/subscription.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
         subscription = new JButton("Subscription Sport", subscriptionLogo);
         subscription.setBackground(Color.WHITE);
-        subscribeLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/subscribe.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
-        subscribe = new JButton("Subscribe", subscribeLogo);
-        subscribe.setBackground(Color.WHITE);
-        unsubscribeLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/cancelSubscription.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
-        unsubscribe = new JButton("Unsubscribe", unsubscribeLogo);
-        unsubscribe.setBackground(Color.WHITE);
+        //Design Panel and Layout
+        //MenuBody Panel
         frame.welcome.setText("Student Panel");
         frame.setTitle("Student Panel");
         menuBody = new JPanel();
@@ -86,9 +81,6 @@ public class RegisteredStudent extends DateTime{
         menuBody.add(viewCoach);
         menuBody.add(viewRecord);
         menuBody.add(viewRegSport);
-        //frame.Body.add(menuBody, BorderLayout.CENTER);
-        //sidePanel = new JPanel();
-        
         menuBody.add(modifyRecord);
         menuBody.add(subscription);
         menuBody.add(feedbackCoach);
@@ -96,90 +88,40 @@ public class RegisteredStudent extends DateTime{
         menuBody.add(payment);
         menuBody.add(logout);
         frame.Body.add(menuBody, BorderLayout.WEST);
-        //Body//
+        //DisplayBody
         displayBody = new JPanel();
         displayBody.setLayout(cl);
         JLabel time = new JLabel(String.valueOf(getFullDate()), SwingConstants.CENTER);
         time.setFont(new Font("Arial", Font.BOLD, 30));
         JLabel dateTime = new JLabel(String.valueOf(getFullDate()), SwingConstants.CENTER);
         dateTime.setFont(new Font("Arial", Font.BOLD, 30));
+        //menu Panel
         menu = new JPanel();
         menu.setLayout(new GridLayout(2, 1));
         menu.add(time);
         menu.add(background);
         menu.setBorder(BorderFactory.createMatteBorder(3 , 0 , 3 , 3 ,Color.DARK_GRAY));
-//        frame.Body.add(menu, BorderLayout.CENTER);
+        //select1 Panel for Viewing Coach
         select1 = new JPanel();
         select1.setLayout(new BorderLayout());
         ViewCoachDetail a = new ViewCoachDetail(cenLocation);
         select1.add(a);
+        //select2 Panel for Viewing Self Record
         select2 = new JPanel();
         ViewRecord b = new ViewRecord(UserName);
         select2.add(b);
+        //select3 Panel for Viewing Registered Sport Schedule
         select3 = new JPanel();
         select3.setLayout(new BorderLayout());
-//        Tab3.add(aa);
+        //select4 Panel for Modifying Self Record
         select4 = new JPanel();
         ModifyRecord c = new ModifyRecord(UserName, cenLocation);
         select4.add(c);
-//        Subscription Sport Panel
+        //select5 Panel for subscribing or unsubscribing sports
         select5 = new JPanel();
-        select5.setLayout(new BorderLayout());
-        subscriptionTitle = new JLabel("Subscription Sport", JLabel.CENTER);
-        subscriptionTitle.setFont(new Font("Arial", Font.BOLD, 50));
-        select5.add(subscriptionTitle, BorderLayout.NORTH);
-        d1 = new JPanel();
-        d1.setLayout(new FlowLayout());
-        //List for the location
-        for(int i = 0; i<Assignment.sportInfo.size(); i++){
-            Sport_Constr sport = Assignment.sportInfo.get(i);
-            for(int counter = 0; counter<Assignment.sportInfo.size(); counter++){
-                if(sport.getCenter().equals(cenLocation)){
-                    if(sport.getSportN().equals("swimming")){
-                        swimming = new Checkbox("Swimming");
-                        d1.add(swimming);
-                    }
-                    if (sport.getSportN().equals("badminton")){
-                        badminton = new Checkbox("Badminton");
-                        d1.add(badminton);
-                    }
-                    if (sport.getSportN().equals("football")){
-                        football = new Checkbox("Football");
-                        d1.add(football);
-                    }
-                    if (sport.getSportN().equals("archery")){
-                        archery = new Checkbox("Archery");
-                        d1.add(archery);
-                    }
-                    if (sport.getSportN().equals("gymnastic")){
-                        gymnastic = new Checkbox("Gymnastic");
-                        d1.add(gymnastic);
-                    }
-                    if (sport.getSportN().equals("volleyball")){
-                        volleyball = new Checkbox("Volleyball");
-                        d1.add(volleyball);
-                    }
-                    if (sport.getSportN().equals("basketball")){
-                        basketball = new Checkbox("Basketball");
-                        d1.add(basketball);
-                    }
-                    if (sport.getSportN().equals("cricket")){
-                        cricket = new Checkbox("Cricket");
-                        d1.add(cricket);
-                    }
-                    if (sport.getSportN().equals("tennis")){
-                        tennis = new Checkbox("Tennis");
-                        d1.add(tennis);
-                    }
-                    if (sport.getSportN().equals("table tennis")){
-                        tableTennis = new Checkbox("Table Tennis");
-                        d1.add(tableTennis);
-                    }
-                }
-            }
-        }
-
-        select5.add(d1, BorderLayout.CENTER);
+        SubscriptionSport d = new SubscriptionSport(cenLocation);
+        select5.add(d);
+        //Attendance Panel for taking Attendance
         select6 = new JPanel();
         select6.setLayout(new BorderLayout());
         select6.add(dateTime, BorderLayout.NORTH);
@@ -214,7 +156,7 @@ public class RegisteredStudent extends DateTime{
                     
             }
         });
-        
+        //select7 for payment 
         select7 = new JPanel();
         select7.setLayout(new BorderLayout());
 
@@ -316,12 +258,6 @@ public class RegisteredStudent extends DateTime{
 //            }
 //        });
         subscription.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                cl.show(displayBody, "6");
-            }
-        });
-        subscribe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 cl.show(displayBody, "6");

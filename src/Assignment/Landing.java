@@ -53,7 +53,6 @@ public class Landing extends JFrame implements ActionListener{
         setLocation(800,250);
         Container mainCont = this.getContentPane();
         mainCont.setLayout(new BorderLayout(8,6));
-//        gbc.insets = new Insets(5,6,5,6);
         Header = new JPanel();
         Subheader = new JPanel();
         Center = new JPanel();
@@ -65,8 +64,6 @@ public class Landing extends JFrame implements ActionListener{
         admin = new JButton("Admin");
         visitorView = new JButton("Visitor View");
         visitorView.setBackground(Color.WHITE);
-        //id = new Label("Username: ");
-        //password = new Label("Password");
         idIn = new TextField("Username",15);
         passIn = new TextField("Password",15);
         title = new Label("Sport Academy System", Label.CENTER);
@@ -121,34 +118,18 @@ public class Landing extends JFrame implements ActionListener{
             }
             
         });
-//        gbc.gridx = 1;
-//        gbc.gridy = 0;
-//        gbc.anchor = GridBagConstraints.CENTER;
         Header.setLayout(new BorderLayout());
         Header.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 3));
         Header.add(LogoFrame,BorderLayout.NORTH);
         title.setFont(new Font("Verdana", Font.BOLD, 20));
         Header.add(title, BorderLayout.CENTER);
         mainCont.add(Header, BorderLayout.NORTH);
-//        gbc.anchor = GridBagConstraints.CENTER;
-//        gbc.gridx =1;
-//        gbc.gridy = 1;
-//        add(locationLogin, gbc);
-//        gbc.gridx = 1;
-//        gbc.gridy = 1;
-//        gbc.anchor = GridBagConstraints.WEST;
         Center.setLayout(new BorderLayout());
         SelectionBody.setLayout(new FlowLayout(FlowLayout.CENTER));
         SelectionBody.add(student);
         student.setBackground(Color.GREEN);
-//        gbc.gridx = 1;
-//        gbc.gridy = 1;
-//        gbc.anchor = GridBagConstraints.EAST;
         SelectionBody.add(admin);
         admin.setBackground(Color.LIGHT_GRAY);
-//        //add(id);
-//        gbc.gridy = 2;
-//        gbc.anchor = GridBagConstraints.CENTER;
         Center.add(SelectionBody, BorderLayout.NORTH);
         JPanel gridPanel = new JPanel();
         gridPanel.setLayout(new GridLayout(3,1,10,10));
@@ -159,35 +140,17 @@ public class Landing extends JFrame implements ActionListener{
         InputBody.add(gridPanel);
         Center.add(InputBody, BorderLayout.CENTER);
         mainCont.add(Center, BorderLayout.CENTER);
-//        //add(password);
-//        gbc.gridy = 3;
-//        gbc.anchor = GridBagConstraints.CENTER;
-//        add(passIn, gbc);
-//        gbc.gridx = 0;
-//        gbc.gridy = 4;
         Footer.setLayout(new BorderLayout());
         ButtonBody.setLayout(new FlowLayout(FlowLayout.CENTER));
         ButtonBody.add(login);
         ButtonBody.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.DARK_GRAY));
-//        gbc.gridx = 1;
-//        gbc.gridy = 4;
-//        gbc.anchor = GridBagConstraints.WEST;
         ButtonBody.add(register);
-//        gbc.gridx = 1;
-//        gbc.gridy = 4;
-//        gbc.anchor = GridBagConstraints.EAST;
         ButtonBody.add(clear);
-//        gbc.gridx = 2;
-//        gbc.gridy = 4;
         ButtonBody.add(exit);
         Footer.add(ButtonBody, BorderLayout.NORTH);
-//        gbc.gridx = 1;
-//        gbc.gridy = 5;
-//        gbc.anchor = GridBagConstraints.CENTER;
         Footer.add(visitorView, BorderLayout.CENTER);
         mainCont.add(Footer, BorderLayout.SOUTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        setUndecorated(true);
         setTitle("REAL Champion Sport Academy");
         setResizable(false);
         setVisible(true);
@@ -228,10 +191,6 @@ public class Landing extends JFrame implements ActionListener{
                             break;
                         }
                     }
-          
-//                    } else{
-//                        JOptionPane.showMessageDialog(login, "Wrong Username!");
-//                        break;
                 }
                 if (flag){
                         JOptionPane.showMessageDialog(login, "Wrong Username!");
@@ -260,15 +219,15 @@ public class Landing extends JFrame implements ActionListener{
                         JOptionPane.showMessageDialog(login, "Wrong Username!");
                     }
             }
-        } else if (e.getSource() == register){
+        }else if (e.getSource() == register){ //If register button clicked then will show register menu from Register
             setVisible(false);
             Assignment.register.setVisible(true);
-        }else if (e.getSource() == clear){
+        }else if (e.getSource() == clear){ //If clear button clicked, it will clear user input in username and password TextField
             idIn.setText("Username");
             passIn.setText("Password");
-        }else if (e.getSource() == exit){
+        }else if (e.getSource() == exit){ //If exit button clicked, it will exit the system
             System.exit(0);
-        } else if (e.getSource() == visitorView){
+        }else if (e.getSource() == visitorView){//If visitorView clicked, it will show visitor menu from Visitor
             setVisible(false);
             Assignment.visitorView.Visitor();
         }
