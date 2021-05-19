@@ -15,12 +15,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -28,7 +30,7 @@ public class RegisteredStudent extends DateTime{
     private JPanel header, menuBody, displayBody, sidePanel, attendancePanel, menu, select1, select2, select3, select4, select5, select6, select7, select8, b1, b2, b3, b4, b5, b6, b7, c1,c2,c3,c4,c5,c6,c7, modifyPanel, d1, d2;
     private TextField stuID, stuName, stuUserN, stuPass, stuPlace, stuGender, stuPhone, modifyID, modifyName, modifyUserN, modifyPass, modifyPlace, modifyGender, modifyPhone;
     private String user, time, modPass, modPlace, modPhone, readID,readName, readUserN, readPass, readPlace, readGender, readPhone;
-    private Checkbox basketball, badminton;
+    private Checkbox basketball, badminton, swimming, football, archery, gymnastic, volleyball, cricket, tennis, tableTennis;
     private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, subscribeSport, attendanceConfirm, logout, modify, subscription, subscribe, unsubscribe; 
     private JLabel background, b1L, b2L, b3L, b4L, b5L, b6L, b7L,c1L,c2L,c3L,c4L,c5L,c6L,c7L, subscriptionTitle;
     private ImageIcon viewCoachLogo, viewRecordLogo, viewRegSportLogo, modifyLogo, feedbackLogo, attendanceLogo, paymentLogo, logoutLogo, backgroundImage, subscriptionLogo, subscribeLogo, unsubscribeLogo;
@@ -236,19 +238,63 @@ public class RegisteredStudent extends DateTime{
         modify.setFont(new Font ("Arial", Font.BOLD, 30));
         modify.setBackground(Color.WHITE);
         select4.add(modify);
+//        Subscription Sport Panel
         select5 = new JPanel();
         select5.setLayout(new BorderLayout());
         subscriptionTitle = new JLabel("Subscription Sport", JLabel.CENTER);
         subscriptionTitle.setFont(new Font("Arial", Font.BOLD, 50));
-        badminton = new Checkbox("Badminton");
-        badminton.setFont(new Font("Arial", Font.BOLD, 30));
-        basketball = new Checkbox("Basketball");
-        basketball.setFont(new Font("Arial", Font.BOLD, 30));
         select5.add(subscriptionTitle, BorderLayout.NORTH);
         d1 = new JPanel();
         d1.setLayout(new FlowLayout());
-        d1.add(badminton);
-        d1.add(basketball);
+        //List for the location
+        for(int i = 0; i<Assignment.sportInfo.size(); i++){
+            Sport_Constr sport = Assignment.sportInfo.get(i);
+            for(int counter = 0; counter<Assignment.sportInfo.size(); counter++){
+                if(sport.getCenter().equals(cenLocation)){
+                    if(sport.getSportN().equals("swimming")){
+                        swimming = new Checkbox("Swimming");
+                        d1.add(swimming);
+                    }
+                    if (sport.getSportN().equals("badminton")){
+                        badminton = new Checkbox("Badminton");
+                        d1.add(badminton);
+                    }
+                    if (sport.getSportN().equals("football")){
+                        football = new Checkbox("Football");
+                        d1.add(football);
+                    }
+                    if (sport.getSportN().equals("archery")){
+                        archery = new Checkbox("Archery");
+                        d1.add(archery);
+                    }
+                    if (sport.getSportN().equals("gymnastic")){
+                        gymnastic = new Checkbox("Gymnastic");
+                        d1.add(gymnastic);
+                    }
+                    if (sport.getSportN().equals("volleyball")){
+                        volleyball = new Checkbox("Volleyball");
+                        d1.add(volleyball);
+                    }
+                    if (sport.getSportN().equals("basketball")){
+                        basketball = new Checkbox("Basketball");
+                        d1.add(basketball);
+                    }
+                    if (sport.getSportN().equals("cricket")){
+                        cricket = new Checkbox("Cricket");
+                        d1.add(cricket);
+                    }
+                    if (sport.getSportN().equals("tennis")){
+                        tennis = new Checkbox("Tennis");
+                        d1.add(tennis);
+                    }
+                    if (sport.getSportN().equals("table tennis")){
+                        tableTennis = new Checkbox("Table Tennis");
+                        d1.add(tableTennis);
+                    }
+                }
+            }
+        }
+
         select5.add(d1, BorderLayout.CENTER);
         select6 = new JPanel();
         select6.setLayout(new BorderLayout());

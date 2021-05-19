@@ -44,9 +44,11 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
         for(int i = 0; i<Assignment.sportInfo.size(); i++){
             Sport_Constr sport = Assignment.sportInfo.get(i);
             for(int counter = 0; counter<10; counter++){
-                if(sport.getSportN().equals(sportType[counter])){
-                    sportComB.addItem(sport.getSportN());
-                    sportID.add(sport.getSprtId());
+                if(sport.getCenter().equals(location)){
+                    if(sport.getSportN().equals(sportType[counter])){
+                        sportComB.addItem(sport.getSportN());
+                        sportID.add(sport.getSprtId());
+                    }
                 }
             }
         }
