@@ -47,9 +47,9 @@ public class AdminSearchFunc extends JPanel{
 //        TMSp.setColumnIdentifiers(SportIdentifier);
 //        TMCo.setColumnIdentifiers(CoachIdentifier);
 //        TMStu.setColumnIdentifiers(StudentIdentifier);
-        String[][] SportData = new String[RegisteredAdmin.Sport.size()][4];
-        for(int i = 0; i<RegisteredAdmin.Sport.size(); i++){
-            Sport_Constr sp = RegisteredAdmin.Sport.get(i);
+        String[][] SportData = new String[Assignment.sportInfo.size()][4];
+        for(int i = 0; i<Assignment.sportInfo.size(); i++){
+            Sport_Constr sp = Assignment.sportInfo.get(i);
             SportData[i][0] = sp.getSprtId();
             SportData[i][1] = sp.getSportN();
             SportData[i][2] = sp.getCenter();
@@ -60,9 +60,9 @@ public class AdminSearchFunc extends JPanel{
         TableSp = new JTable(TMSp);
         TableSp.setAutoCreateRowSorter(true);
         ScrollSp = new JScrollPane(TableSp);
-        String[][] CoachData = new String[RegisteredAdmin.Coach.size()][10];
-        for(int i = 0; i<RegisteredAdmin.Coach.size(); i++){
-            Coach_Constr co = RegisteredAdmin.Coach.get(i);
+        String[][] CoachData = new String[Assignment.coachInfo.size()][10];
+        for(int i = 0; i<Assignment.coachInfo.size(); i++){
+            Coach_Constr co = Assignment.coachInfo.get(i);
             CoachData[i][0] = co.getCoachId();
             CoachData[i][1] = co.getCoachN();
             CoachData[i][2] = co.getCoachTel();
