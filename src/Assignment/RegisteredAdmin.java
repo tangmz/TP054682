@@ -47,6 +47,7 @@ public class RegisteredAdmin extends DateTime{
                 String sp2 = s.nextLine();
                 String sp3 = s.nextLine();
                 String sp4 = s.nextLine();
+                s.nextLine();
                 Sport_Constr sport_read = new Sport_Constr(sp1,sp2,sp3,sp4);
                 Sport.add(sport_read);
             }

@@ -27,6 +27,17 @@ public class SubscriptionSport extends JPanel implements ActionListener{
         unsubscribeLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/cancelSubscription.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
         unsubscribe = new JButton("Unsubscribe", unsubscribeLogo);
         unsubscribe.setBackground(Color.WHITE);
+        //Checkbox for Sports
+        swimming = new Checkbox("Swimming");
+        badminton = new Checkbox("Badminton");
+        football = new Checkbox("Football");
+        archery = new Checkbox("Archery");
+        gymnastic = new Checkbox("Gymnastic");
+        volleyball = new Checkbox("Volleyball");
+        basketball = new Checkbox("Basketball");
+        cricket = new Checkbox("Cricket");
+        tennis = new Checkbox("Tennis");
+        tableTennis = new Checkbox("Table Tennis");
         //Panel Design
         setLayout(new BorderLayout());
         subscriptionTitle = new JLabel("Subscription Sport", JLabel.CENTER);
@@ -40,43 +51,33 @@ public class SubscriptionSport extends JPanel implements ActionListener{
             for(int counter = 0; counter<Assignment.sportInfo.size(); counter++){
                 if(sport.getCenter().equals(cenLocation)){
                     if(sport.getSportN().equals("swimming")){
-                        swimming = new Checkbox("Swimming");
                         d1.add(swimming, BorderLayout.CENTER);
-                    }
-                    if (sport.getSportN().equals("badminton")){
-                        badminton = new Checkbox("Badminton");
+                    }else if (sport.getSportN().equals("badminton")){
+                        
                        d1. add(badminton, BorderLayout.CENTER);
-                    }
-                    if (sport.getSportN().equals("football")){
-                        football = new Checkbox("Football");
+                    }else if (sport.getSportN().equals("football")){
+                        
                         d1.add(football, BorderLayout.CENTER);
-                    }
-                    if (sport.getSportN().equals("archery")){
-                        archery = new Checkbox("Archery");
+                    }else if (sport.getSportN().equals("archery")){
+                        
                         d1.add(archery, BorderLayout.CENTER);
-                    }
-                    if (sport.getSportN().equals("gymnastic")){
-                        gymnastic = new Checkbox("Gymnastic");
+                    }else if (sport.getSportN().equals("gymnastic")){
+                        
                         d1.add(gymnastic, BorderLayout.CENTER);
-                    }
-                    if (sport.getSportN().equals("volleyball")){
-                        volleyball = new Checkbox("Volleyball");
+                    }else if (sport.getSportN().equals("volleyball")){
+                        
                         d1.add(volleyball, BorderLayout.CENTER);
-                    }
-                    if (sport.getSportN().equals("basketball")){
-                        basketball = new Checkbox("Basketball");
+                    }else if (sport.getSportN().equals("basketball")){
+                        
                         d1.add(basketball, BorderLayout.CENTER);
-                    }
-                    if (sport.getSportN().equals("cricket")){
-                        cricket = new Checkbox("Cricket");
+                    }else if (sport.getSportN().equals("cricket")){
+                       
                         d1.add(cricket, BorderLayout.CENTER);
-                    }
-                    if (sport.getSportN().equals("tennis")){
-                        tennis = new Checkbox("Tennis");
+                    }else if (sport.getSportN().equals("tennis")){
+                        
                         d1.add(tennis, BorderLayout.CENTER);
-                    }
-                    if (sport.getSportN().equals("table tennis")){
-                        tableTennis = new Checkbox("Table Tennis");
+                    }else if (sport.getSportN().equals("table tennis")){
+                        
                         d1.add(tableTennis, BorderLayout.CENTER);
                     }
                 }

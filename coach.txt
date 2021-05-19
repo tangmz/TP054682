@@ -20,3 +20,25 @@ PetalingJaya
 2021-05-19
 -
 
+CN03
+Ng
+0123920232
+100
+0
+PetalingJaya
+RCS02
+PetalingJaya
+2021-05-19
+-
+
+CN04
+Tang
+0123920234
+100
+0
+PetalingJaya
+RCS03
+PetalingJaya
+2021-05-19
+-
+

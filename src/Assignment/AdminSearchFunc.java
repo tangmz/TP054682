@@ -9,10 +9,10 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
-import static javax.swing.BorderFactory.createLineBorder;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -30,8 +30,9 @@ public class AdminSearchFunc extends JPanel{
     private JLabel IdL;
     private JTextField IdIn;
     private JScrollPane ScrollSp,ScrollCo, ScrollStu;
+    private boolean flag = true;
     
-    AdminSearchFunc(){
+    public AdminSearchFunc(){
         
         //Create components
         BGroup = new ButtonGroup();
@@ -172,10 +173,20 @@ public class AdminSearchFunc extends JPanel{
                 cl.show(Body, "3");
             }
         });
+        
         SearchBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                for(int i = 0; i<RegisteredAdmin.Sport.size(); i++){
+                    Sport_Constr sport = RegisteredAdmin.Sport.get(i);
+                    if (IdIn.getText().equals(sport.getSprtId())){
+                        JOptionPane.showMessageDialog(IdIn, sport.getSportN());
+                        flag = false;
+                    }
+                }
+                if(flag){
+                    JOptionPane.showMessageDialog(IdIn, "Invalid Sport ID");
+                }
             }
         });
         IdIn.setSize(20, 10);
