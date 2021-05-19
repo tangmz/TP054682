@@ -111,7 +111,6 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
         
         PanelTSelect = new JPanel();
         int TopWidth = (this.getWidth());
-        System.out.print(TopWidth);
         GridLayout gL = new GridLayout(3,1);
         gL.setVgap(20);
         gL.setHgap(10);
