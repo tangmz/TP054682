@@ -27,12 +27,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class RegisteredStudent extends DateTime{    
-    private JPanel header, menuBody, displayBody, sidePanel, attendancePanel, menu, select1, select2, select3, select4, select5, select6, select7, select8, b1, b2, b3, b4, b5, b6, b7, c1,c2,c3,c4,c5,c6,c7, modifyPanel, d1, d2;
-    private TextField stuID, stuName, stuUserN, stuPass, stuPlace, stuGender, stuPhone, modifyID, modifyName, modifyUserN, modifyPass, modifyPlace, modifyGender, modifyPhone;
+    private JPanel header, menuBody, displayBody, sidePanel, attendancePanel, menu, select1, select2, select3, select4, select5, select6, select7, select8, d1;
     private String user, time, modPass, modPlace, modPhone, readID,readName, readUserN, readPass, readPlace, readGender, readPhone;
     private Checkbox basketball, badminton, swimming, football, archery, gymnastic, volleyball, cricket, tennis, tableTennis;
     private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, subscribeSport, attendanceConfirm, logout, modify, subscription, subscribe, unsubscribe; 
-    private JLabel background, b1L, b2L, b3L, b4L, b5L, b6L, b7L,c1L,c2L,c3L,c4L,c5L,c6L,c7L, subscriptionTitle;
+    private JLabel background, subscriptionTitle;
     private ImageIcon viewCoachLogo, viewRecordLogo, viewRegSportLogo, modifyLogo, feedbackLogo, attendanceLogo, paymentLogo, logoutLogo, backgroundImage, subscriptionLogo, subscribeLogo, unsubscribeLogo;
     private JComboBox locationReg;
     public void FrameLoad(String UserName, String cenLocation){
@@ -115,69 +114,14 @@ public class RegisteredStudent extends DateTime{
         ViewCoachDetail a = new ViewCoachDetail(cenLocation);
         select1.add(a);
         select2 = new JPanel();
-        select2.setLayout(new GridLayout(7, 1, 3, 3));
-        stuID = new TextField(15);
-        stuID.setEditable(false);
-        stuName = new TextField(15);
-        stuName.setEditable(false);
-        stuUserN = new TextField(15);
-        stuUserN.setEditable(false);
-        stuPass = new TextField(15);
-        stuPass.setEditable(false);
-        stuPlace = new TextField(15);
-        stuPlace.setEditable(false);
-        stuGender = new TextField(15);
-        stuGender.setEditable(false);
-        stuPhone = new TextField(15);
-        stuPhone.setEditable(false);
-        b1L = new JLabel("Student ID:                         ");
-        b2L = new JLabel("Student Name:                 ");
-        b3L = new JLabel("Student Username:          ");
-        b4L = new JLabel("Student Password:          ");
-        b5L = new JLabel("Student Location:             ");
-        b6L = new JLabel("Student Gender:               ");
-        b7L = new JLabel("Student Phone Number: ");
-        b1 = new JPanel();
-        b1.setLayout(new FlowLayout(FlowLayout.CENTER));
-        b1.add(b1L);
-        b1.add(stuID);
-        select2.add(b1);
-        b2 = new JPanel();
-        b2.setLayout(new FlowLayout(FlowLayout.CENTER));
-        b2.add(b2L);
-        b2.add(stuName);
-        select2.add(b2);
-        b3 = new JPanel();
-        b3.setLayout(new FlowLayout(FlowLayout.CENTER));
-        b3.add(b3L);
-        b3.add(stuUserN);
-        select2.add(b3);
-        b4 = new JPanel();
-        b4.setLayout(new FlowLayout(FlowLayout.CENTER));
-        b4.add(b4L);
-        b4.add(stuPass);
-        select2.add(b4);
-        b5 = new JPanel();
-        b5.setLayout(new FlowLayout(FlowLayout.CENTER));
-        b5.add(b5L);
-        b5.add(stuPlace);
-        select2.add(b5);
-        b6 = new JPanel();
-        b6.setLayout(new FlowLayout(FlowLayout.CENTER));
-        b6.add(b6L);
-        b6.add(stuGender);
-        select2.add(b6);
-        b7 = new JPanel();
-        b7.setLayout(new FlowLayout(FlowLayout.CENTER));
-        b7.add(b7L);
-        b7.add(stuPhone);
-        select2.add(b7);
+        ViewRecord b = new ViewRecord(UserName);
+        select2.add(b);
         select3 = new JPanel();
         select3.setLayout(new BorderLayout());
 //        Tab3.add(aa);
         select4 = new JPanel();
-        ModifyRecord b = new ModifyRecord(UserName, cenLocation);
-        select4.add(b);
+        ModifyRecord c = new ModifyRecord(UserName, cenLocation);
+        select4.add(c);
 //        Subscription Sport Panel
         select5 = new JPanel();
         select5.setLayout(new BorderLayout());
@@ -302,18 +246,6 @@ public class RegisteredStudent extends DateTime{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 cl.show(displayBody, "3");
-                for(int i=0; i<Assignment.studentInfo.size(); i++){
-                    Student c = Assignment.studentInfo.get(i);
-                    if(UserName.equals(c.getStuUserN())){
-                        stuID.setText(c.getStuID());
-                        stuName.setText(c.getStuName());
-                        stuUserN.setText(c.getStuUserN());
-                        stuPass.setText(c.getStuPass());
-                        stuPlace.setText(c.getStuPlace());
-                        stuGender.setText(c.getStuGender());
-                        stuPhone.setText(c.getStuPhone());
-                    }
-                }
             }
         });
         viewRegSport.addActionListener(new ActionListener() {

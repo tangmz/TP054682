@@ -55,7 +55,7 @@ public class ModifyRecord extends JPanel implements ActionListener {
         }
         //Label for all the TextFields
         titleL = new JLabel("Modify Self Record");
-        titleL.setFont(new Font("Arial", Font.BOLD, 30));
+        titleL.setFont(new Font("Arial", Font.BOLD, 40));
         c1L = new JLabel("Student ID:                         ");
         c2L = new JLabel("Student Name:                 ");
         c3L = new JLabel("Student Username:          ");
