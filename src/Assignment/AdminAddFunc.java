@@ -261,12 +261,12 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                     System.out.println("Error in stop!");
                 }
             }
-            if(whichButton.equals("Sport")){
+            else if(whichButton.equals("Sport")){
                 Sport_Constr writeS = new Sport_Constr(SportIdIn.getText(),SportNameIn.getText(),RegisteredAdmin.centerLocation,CName.getText());
                 RegisteredAdmin.Sport.add(writeS);
                 try{
                     PrintWriter f = new PrintWriter("sport.txt");
-                    for(int i=0; i<RegisteredAdmin.Coach.size(); i++){
+                    for(int i=0; i<RegisteredAdmin.Sport.size(); i++){
                         Sport_Constr c = RegisteredAdmin.Sport.get(i);
                         f.println(c.getSprtId());
                         f.println(c.getSportN());
@@ -314,7 +314,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
             coachId = "CN0"+(nextID);
             CId.setText(coachId);
             
-            i = RegisteredAdmin.Coach.size();
+            i = RegisteredAdmin.Sport.size();
             nextID = String.valueOf(i+1);
             sportId = "RCS0"+(nextID);
             SportIdIn.setText(sportId);
