@@ -32,6 +32,9 @@ public class AdminSearchFunc extends JPanel{
     private JScrollPane ScrollSp,ScrollCo, ScrollStu;
     private boolean flag = true;
     private int selection = 1;
+    public static String[][] SportData = new String[Assignment.sportInfo.size()][4];
+    public static String[][] CoachData = new String[Assignment.coachInfo.size()][10];
+    public static String[][] StudentData = new String[Assignment.studentInfo.size()][6];
     
     public AdminSearchFunc(){
         
@@ -42,13 +45,12 @@ public class AdminSearchFunc extends JPanel{
         RbStu = new JRadioButton("Search Student");
         SearchBtn = new JButton("Search");
         IdL = new JLabel("ID: ");
-        IdIn = new JTextField(2);
+        IdIn = new JTextField(10);
         
         //++Creating Table++//
 //        TMSp.setColumnIdentifiers(SportIdentifier);
 //        TMCo.setColumnIdentifiers(CoachIdentifier);
 //        TMStu.setColumnIdentifiers(StudentIdentifier);
-        String[][] SportData = new String[Assignment.sportInfo.size()][4];
         for(int i = 0; i<Assignment.sportInfo.size(); i++){
             Sport_Constr sp = Assignment.sportInfo.get(i);
             SportData[i][0] = sp.getSprtId();
@@ -61,7 +63,6 @@ public class AdminSearchFunc extends JPanel{
         TableSp = new JTable(TMSp);
         TableSp.setAutoCreateRowSorter(true);
         ScrollSp = new JScrollPane(TableSp);
-        String[][] CoachData = new String[Assignment.coachInfo.size()][10];
         for(int i = 0; i<Assignment.coachInfo.size(); i++){
             Coach_Constr co = Assignment.coachInfo.get(i);
             CoachData[i][0] = co.getCoachId();
@@ -80,7 +81,6 @@ public class AdminSearchFunc extends JPanel{
         TableCo = new JTable(TMCo);
         TableCo.setAutoCreateRowSorter(true);
         ScrollCo = new JScrollPane(TableCo);
-        String[][] StudentData = new String[Assignment.studentInfo.size()][6];
         for(int i = 0; i<Assignment.studentInfo.size(); i++){
             Student stu = Assignment.studentInfo.get(i);
             StudentData[i][0] = stu.getStuID();
@@ -182,8 +182,8 @@ public class AdminSearchFunc extends JPanel{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if (selection ==1){
-                    for(int i = 0; i<RegisteredAdmin.Sport.size(); i++){
-                        Sport_Constr sport = RegisteredAdmin.Sport.get(i);
+                    for(int i = 0; i<Assignment.sportInfo.size(); i++){
+                        Sport_Constr sport = Assignment.sportInfo.get(i);
                         if (IdIn.getText().equals(sport.getSprtId())){
                             JOptionPane.showMessageDialog(IdIn, "Sport ID: "+ sport.getSprtId() + "\nSport Name: "+sport.getSportN()+"\nSport Center: "+sport.getCenter()+"\nCoach Assigned: "+sport.getCoachN());
                             flag = false;
@@ -195,8 +195,8 @@ public class AdminSearchFunc extends JPanel{
                     }
                     
                 }else if (selection ==2){
-                    for(int i = 0; i<RegisteredAdmin.Coach.size(); i++){
-                        Coach_Constr coach = RegisteredAdmin.Coach.get(i);
+                    for(int i = 0; i<Assignment.coachInfo.size(); i++){
+                        Coach_Constr coach = Assignment.coachInfo.get(i);
                         if (IdIn.getText().equals(coach.getCoachId())){
                             JOptionPane.showMessageDialog(IdIn, "Coach ID: "+coach.getCoachId() +"\nCoach Name: "+ coach.getCoachN()+"\nCoach Phone Number: "+ coach.getCoachTel()+"\nCoach Hourly Rate: "+ coach.getCoachHRate()+"\nCoach Rating: "+coach.getCoachStar()+"\nCoach Sport Center: "+ coach.getCoachCenter()+"\nCoach Sport ID: "+ coach.getCoachSp_Id()+"\nCoach Sport Name: "+coach.getCoach_Sp_N()+"\nCoach Home Address: "+coach.getCoachAdd()+"\nCoach Joined Date: "+ coach.getJDate()+"\nCoach Terminated Date: "+ coach.getTDate());
                             flag = false;

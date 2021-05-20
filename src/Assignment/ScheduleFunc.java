@@ -4,10 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.PrintWriter;
+import java.time.Month;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 class ScheduleFunc  extends JPanel{
@@ -18,8 +24,27 @@ class ScheduleFunc  extends JPanel{
             Thu1Sch, Thu2Sch, Thu3Sch, Fri1Sch, Fri2Sch, Fri3Sch, Sat1Sch, Sat2Sch, Sat3Sch, Sun1Sch, Sun2Sch, Sun3Sch;
     private JLabel MonthL, Mon1L, Mon2L, Mon3L, Tue1L, Tue2L, Tue3L, Wed1L, Wed2L, Wed3L, 
             Thu1L, Thu2L, Thu3L, Fri1L, Fri2L, Fri3L, Sat1L, Sat2L, Sat3L, Sun1L, Sun2L, Sun3L;
+    private static ArrayList <String> sportsAvailable = new ArrayList <String>();
+    private static ArrayList <String> Months = new ArrayList <String>();
+    private static boolean Found=false;
     DateTime dT = new DateTime();
     ScheduleFunc(){
+        
+        //++Filter Sports Name Found for Specific Center Only++//
+        for(int i = 0; i<Assignment.sportInfo.size();i++){
+            Sport_Constr sp = Assignment.sportInfo.get(i);
+            if(sp.getCenter().equals(RegisteredAdmin.centerLocation)){
+                sportsAvailable.add(sp.getSportN());
+            }
+        }
+        
+        //++Filter only current and future available Months++//
+        int month = Integer.parseInt(dT.getPartialMonth());
+        String[] monthString = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        while(month<=12){
+            Months.add(monthString[month-1]);
+            month++;
+        }
         
         //++Create Components++//
         MonthL = new JLabel("Schedule For Entire Month Of: ");
@@ -45,31 +70,174 @@ class ScheduleFunc  extends JPanel{
         Sun2L = new JLabel("1pm ~ 3pm");
         Sun3L = new JLabel("3pm ~ 5pm");
         
-        Month = new JComboBox();
-        Mon1Sch = new JComboBox();
-        Mon2Sch = new JComboBox();
-        Mon3Sch = new JComboBox();
-        Tue1Sch = new JComboBox();
-        Tue2Sch = new JComboBox();
-        Tue3Sch = new JComboBox();
-        Wed1Sch = new JComboBox();
-        Wed2Sch = new JComboBox();
-        Wed3Sch = new JComboBox();
-        Thu1Sch = new JComboBox();
-        Thu2Sch = new JComboBox();
-        Thu3Sch = new JComboBox();
-        Fri1Sch = new JComboBox();
-        Fri2Sch = new JComboBox();
-        Fri3Sch = new JComboBox();
-        Sat1Sch = new JComboBox();
-        Sat2Sch = new JComboBox();
-        Sat3Sch = new JComboBox();
-        Sun1Sch = new JComboBox();
-        Sun2Sch = new JComboBox();
-        Sun3Sch = new JComboBox();
+        Month = new JComboBox(Months.toArray());
+        Mon1Sch = new JComboBox(sportsAvailable.toArray());
+        Mon2Sch = new JComboBox(sportsAvailable.toArray());
+        Mon3Sch = new JComboBox(sportsAvailable.toArray());
+        Tue1Sch = new JComboBox(sportsAvailable.toArray());
+        Tue2Sch = new JComboBox(sportsAvailable.toArray());
+        Tue3Sch = new JComboBox(sportsAvailable.toArray());
+        Wed1Sch = new JComboBox(sportsAvailable.toArray());
+        Wed2Sch = new JComboBox(sportsAvailable.toArray());
+        Wed3Sch = new JComboBox(sportsAvailable.toArray());
+        Thu1Sch = new JComboBox(sportsAvailable.toArray());
+        Thu2Sch = new JComboBox(sportsAvailable.toArray());
+        Thu3Sch = new JComboBox(sportsAvailable.toArray());
+        Fri1Sch = new JComboBox(sportsAvailable.toArray());
+        Fri2Sch = new JComboBox(sportsAvailable.toArray());
+        Fri3Sch = new JComboBox(sportsAvailable.toArray());
+        Sat1Sch = new JComboBox(sportsAvailable.toArray());
+        Sat2Sch = new JComboBox(sportsAvailable.toArray());
+        Sat3Sch = new JComboBox(sportsAvailable.toArray());
+        Sun1Sch = new JComboBox(sportsAvailable.toArray());
+        Sun2Sch = new JComboBox(sportsAvailable.toArray());
+        Sun3Sch = new JComboBox(sportsAvailable.toArray());
         
         Confirm = new JButton("Confirm");
         Delete = new JButton("Delete");
+        Confirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                Schedule_Constr writeSch = new Schedule_Constr(Month.getSelectedItem().toString(),Mon1Sch.getSelectedItem().toString(),Mon2Sch.getSelectedItem().toString(),Mon3Sch.getSelectedItem().toString(),
+                        Tue1Sch.getSelectedItem().toString(),Tue2Sch.getSelectedItem().toString(),Tue3Sch.getSelectedItem().toString(),Wed1Sch.getSelectedItem().toString(),Wed2Sch.getSelectedItem().toString(),
+                        Wed3Sch.getSelectedItem().toString(),Thu1Sch.getSelectedItem().toString(),Thu2Sch.getSelectedItem().toString(),Thu3Sch.getSelectedItem().toString(),Fri1Sch.getSelectedItem().toString(),
+                        Fri2Sch.getSelectedItem().toString(),Fri3Sch.getSelectedItem().toString(),Sat1Sch.getSelectedItem().toString(),Sat2Sch.getSelectedItem().toString(),Sat3Sch.getSelectedItem().toString(),
+                        Sun1Sch.getSelectedItem().toString(),Sun2Sch.getSelectedItem().toString(),Sun3Sch.getSelectedItem().toString());
+                
+                System.out.println(Found);
+                for(int i = 0;i<Assignment.schedule.size();i++){
+                    Schedule_Constr schedule = Assignment.schedule.get(i);
+                    if(schedule.SchMonth.equals(Month.getSelectedItem())){
+                        Found = true;
+                        Assignment.schedule.set(i, writeSch);   //replace existing data to new data first before write into file
+                    }else{
+                        Found = false;
+                    }
+                }
+                if(Found == false){
+                    System.out.println("aaa123");
+                    Assignment.schedule.add(writeSch);
+                    try{
+                        PrintWriter f = new PrintWriter("schedule.txt");
+                        for(int i=0; i<Assignment.schedule.size(); i++){
+                            Schedule_Constr s = Assignment.schedule.get(i);
+                            f.println(s.SchMonth);
+                            f.println(s.Mon1);
+                            f.println(s.Mon2);
+                            f.println(s.Mon3);
+                            f.println(s.Tue1);
+                            f.println(s.Tue2);
+                            f.println(s.Tue3);
+                            f.println(s.Wed1);
+                            f.println(s.Wed2);
+                            f.println(s.Wed3);
+                            f.println(s.Thu1);
+                            f.println(s.Thu2);
+                            f.println(s.Thu3);
+                            f.println(s.Fri1);
+                            f.println(s.Fri2);
+                            f.println(s.Fri3);
+                            f.println(s.Sat1);
+                            f.println(s.Sat2);
+                            f.println(s.Sat3);
+                            f.println(s.Sun1);
+                            f.println(s.Sun2);
+                            f.println(s.Sun3);
+                            f.println();
+                        }
+                        f.close();   
+
+                    } catch(Exception ex){
+                        System.out.println("Error in stop!");
+                    }
+                }else if(Found == true){
+                    try{
+                        PrintWriter f = new PrintWriter("schedule.txt");
+                        for(int i=0; i<Assignment.schedule.size(); i++){
+                            Schedule_Constr s = Assignment.schedule.get(i);
+                            f.println(s.SchMonth);
+                            f.println(s.Mon1);
+                            f.println(s.Mon2);
+                            f.println(s.Mon3);
+                            f.println(s.Tue1);
+                            f.println(s.Tue2);
+                            f.println(s.Tue3);
+                            f.println(s.Wed1);
+                            f.println(s.Wed2);
+                            f.println(s.Wed3);
+                            f.println(s.Thu1);
+                            f.println(s.Thu2);
+                            f.println(s.Thu3);
+                            f.println(s.Fri1);
+                            f.println(s.Fri2);
+                            f.println(s.Fri3);
+                            f.println(s.Sat1);
+                            f.println(s.Sat2);
+                            f.println(s.Sat3);
+                            f.println(s.Sun1);
+                            f.println(s.Sun2);
+                            f.println(s.Sun3);
+                            f.println();
+                        }
+                        f.close();
+                        Found = false;
+
+                    } catch(Exception ex){
+                        System.out.println("Error in stop!");
+                    }
+                }
+                
+            }
+        });
+        Delete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                for(int i = 0;i<Assignment.schedule.size();i++){
+                    Schedule_Constr schedule = Assignment.schedule.get(i);
+                    if(schedule.SchMonth.equals(Month.getSelectedItem())){
+                        Found = true;
+                        Assignment.schedule.remove(i);   //remove existing data
+                    }
+                }
+                if(Found == true){
+                    try{
+                        PrintWriter f = new PrintWriter("schedule.txt");
+                        for(int i=0; i<Assignment.schedule.size(); i++){
+                            Schedule_Constr s = Assignment.schedule.get(i);
+                            f.println(s.SchMonth);
+                            f.println(s.Mon1);
+                            f.println(s.Mon2);
+                            f.println(s.Mon3);
+                            f.println(s.Tue1);
+                            f.println(s.Tue2);
+                            f.println(s.Tue3);
+                            f.println(s.Wed1);
+                            f.println(s.Wed2);
+                            f.println(s.Wed3);
+                            f.println(s.Thu1);
+                            f.println(s.Thu2);
+                            f.println(s.Thu3);
+                            f.println(s.Fri1);
+                            f.println(s.Fri2);
+                            f.println(s.Fri3);
+                            f.println(s.Sat1);
+                            f.println(s.Sat2);
+                            f.println(s.Sat3);
+                            f.println(s.Sun1);
+                            f.println(s.Sun2);
+                            f.println(s.Sun3);
+                            f.println();
+                        }
+                        f.close();   
+
+                    } catch(Exception ex){
+                        System.out.println("Error in stop!");
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(Delete, "No Schedule Record Found!");
+                }
+            }
+        });
         
         
         Top = new JPanel();

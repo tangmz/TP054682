@@ -133,7 +133,6 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         
         PanelTSelect = new JPanel();
         int TopWidth = (this.getWidth());
-        System.out.print(TopWidth);
         GridLayout gL = new GridLayout(3,1);
         gL.setVgap(20);
         gL.setHgap(10);
@@ -220,6 +219,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
             whichOperation = "Sport";
             writeFile writeFile = new writeFile(whichOperation);
             retrieve r = new retrieve();
+            
         }else if(ae.getSource() == AddCoach){
             whichOperation = "Coach";
             writeFile writeFile = new writeFile(whichOperation);
@@ -238,11 +238,11 @@ public class AdminAddFunc extends JPanel implements ActionListener{
             if(whichButton.equals("Coach")){
                 Coach_Constr writeC = new Coach_Constr(CId.getText(),CName.getText(),CPhone.getText(),CRatePay.getText(),CStar.getText(),
                 RegisteredAdmin.centerLocation,SportIdIn.getText(),SportNameIn.getText(),CAddress.getText(), CJDate.getText(), CTDate.getText());
-                RegisteredAdmin.Coach.add(writeC);
+                Assignment.coachInfo.add(writeC);
                 try{
                     PrintWriter f = new PrintWriter("coach.txt");
-                    for(int i=0; i<RegisteredAdmin.Coach.size(); i++){
-                        Coach_Constr c = RegisteredAdmin.Coach.get(i);
+                    for(int i=0; i<Assignment.coachInfo.size(); i++){
+                        Coach_Constr c = Assignment.coachInfo.get(i);
                         f.println(c.getCoachId());
                         f.println(c.getCoachN());
                         f.println(c.getCoachTel());
@@ -264,11 +264,11 @@ public class AdminAddFunc extends JPanel implements ActionListener{
             }
             else if(whichButton.equals("Sport")){
                 Sport_Constr writeS = new Sport_Constr(SportIdIn.getText(),SportNameIn.getText(),RegisteredAdmin.centerLocation,CName.getText());
-                RegisteredAdmin.Sport.add(writeS);
+                Assignment.sportInfo.add(writeS);
                 try{
                     PrintWriter f = new PrintWriter("sport.txt");
-                    for(int i=0; i<RegisteredAdmin.Sport.size(); i++){
-                        Sport_Constr c = RegisteredAdmin.Sport.get(i);
+                    for(int i=0; i<Assignment.sportInfo.size(); i++){
+                        Sport_Constr c = Assignment.sportInfo.get(i);
                         f.println(c.getSprtId());
                         f.println(c.getSportN());
                         f.println(c.getCenter());
@@ -310,15 +310,28 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         private retrieve() {
             String nextID = "";
             int i = 0;
-            i = RegisteredAdmin.Coach.size();
+            i = Assignment.coachInfo.size();
             nextID = String.valueOf(i+1);
             coachId = "CN0"+(nextID);
             CId.setText(coachId);
             
-            i = RegisteredAdmin.Sport.size();
-            nextID = String.valueOf(i+1);
-            sportId = "RCS0"+(nextID);
-            SportIdIn.setText(sportId);
+            int x;
+            x = Assignment.sportInfo.size();
+            nextID = String.valueOf(x+1);
+            
+            if(RegisteredAdmin.centerLocation.equals("BukitJalil")){
+                sportId = "RCSBJ0"+(nextID);
+                SportIdIn.setText(sportId);
+            }else if(RegisteredAdmin.centerLocation.equals("PetalingJaya")){
+                sportId = "RCSPJ0"+(nextID);
+                SportIdIn.setText(sportId);
+            }else if(RegisteredAdmin.centerLocation.equals("Putrajaya")){
+                sportId = "RCSPU0"+(nextID);
+                SportIdIn.setText(sportId);
+            }else if(RegisteredAdmin.centerLocation.equals("ShahAlam")){
+                sportId = "RCSSA0"+(nextID);
+                SportIdIn.setText(sportId);
+            }
         }
     }
 }

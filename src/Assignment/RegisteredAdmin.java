@@ -22,9 +22,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class RegisteredAdmin extends DateTime{
-    public static ArrayList <Coach_Constr> Coach = new ArrayList<Coach_Constr>();
-    public static ArrayList <Schedule_Constr> Schedule = new ArrayList<Schedule_Constr>();
-    public static ArrayList <Sport_Constr> Sport = new ArrayList<Sport_Constr>();
     public JPanel header, menuBody, displayBody, Tab1, Tab2, Tab3, Tab4;
     private int counter;
     public static String centerLocation;
@@ -36,43 +33,43 @@ public class RegisteredAdmin extends DateTime{
         
         //++Read File++//
             
-        Scanner s = null;
-        try {
-            s = new Scanner(new File("sport.txt"));
-        } catch (FileNotFoundException ex) {
-            System.out.println("Empty Read");
-        }
-            while(s.hasNext()){
-                String sp1 = s.nextLine();
-                String sp2 = s.nextLine();
-                String sp3 = s.nextLine();
-                String sp4 = s.nextLine();
-                s.nextLine();
-                Sport_Constr sport_read = new Sport_Constr(sp1,sp2,sp3,sp4);
-                Sport.add(sport_read);
-            }
-        s = null;
-        try {
-            s = new Scanner(new File("coach.txt"));
-        } catch (FileNotFoundException ex) {
-            System.out.println("Empty Read");
-        }
-            while(s.hasNext()){
-                String c1 = s.nextLine();
-                String c2 = s.nextLine();
-                String c3 = s.nextLine();
-                String c4 = s.nextLine();
-                String c5 = s.nextLine();
-                String c6 = s.nextLine();
-                String c7 = s.nextLine();
-                String c8 = s.nextLine();
-                String c9 = s.nextLine();
-                String c10 = s.nextLine();
-                String c11 = s.nextLine();
-                s.nextLine();
-                Coach_Constr coach_read = new Coach_Constr(c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11);
-                Coach.add(coach_read);
-            }
+//        Scanner s = null;
+//        try {
+//            s = new Scanner(new File("sport.txt"));
+//        } catch (FileNotFoundException ex) {
+//            System.out.println("Empty Read");
+//        }
+//            while(s.hasNext()){
+//                String sp1 = s.nextLine();
+//                String sp2 = s.nextLine();
+//                String sp3 = s.nextLine();
+//                String sp4 = s.nextLine();
+//                s.nextLine();
+//                Sport_Constr sport_read = new Sport_Constr(sp1,sp2,sp3,sp4);
+//                Assignment.sportInfo.add(sport_read);
+//            }
+//        s = null;
+//        try {
+//            s = new Scanner(new File("coach.txt"));
+//        } catch (FileNotFoundException ex) {
+//            System.out.println("Empty Read");
+//        }
+//            while(s.hasNext()){
+//                String c1 = s.nextLine();
+//                String c2 = s.nextLine();
+//                String c3 = s.nextLine();
+//                String c4 = s.nextLine();
+//                String c5 = s.nextLine();
+//                String c6 = s.nextLine();
+//                String c7 = s.nextLine();
+//                String c8 = s.nextLine();
+//                String c9 = s.nextLine();
+//                String c10 = s.nextLine();
+//                String c11 = s.nextLine();
+//                s.nextLine();
+//                Coach_Constr coach_read = new Coach_Constr(c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11);
+//                Assignment.coachInfo.add(coach_read);
+//            }
             /////////////////////////////////NOT READY//////////////////////////
 //        try {
 //            s = new Scanner(new File("schedule.txt"));

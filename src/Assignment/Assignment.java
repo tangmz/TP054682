@@ -11,9 +11,11 @@ public class Assignment {
     public static RegisteredAdmin registeredAd = new RegisteredAdmin();
     public static RegisteredStudent registeredStu = new RegisteredStudent();
     public static ArrayList <Student> studentInfo = new ArrayList<Student>();
+    public static ArrayList<Admin> adminInfo = new ArrayList<Admin>();
     public static ArrayList <Coach_Constr> coachInfo = new ArrayList<Coach_Constr>();
     public static ArrayList <Sport_Constr> sportInfo = new ArrayList<Sport_Constr>();
-    public static ArrayList<Admin> adminInfo = new ArrayList<Admin>();
+    public static ArrayList<Schedule_Constr> schedule = new ArrayList<Schedule_Constr>();
+    
     public static Date DateTime = new Date();
         
     public static void main(String[] args) {
@@ -73,6 +75,34 @@ public class Assignment {
                 s.nextLine();
                 Sport_Constr coach = new Sport_Constr(d1,d2,d3,d4);
                 sportInfo.add(coach);
+            }
+            s = new Scanner(new File("schedule.txt"));
+            while(s.hasNext()){
+                String sc1 = s.nextLine();
+                String sc2 = s.nextLine();
+                String sc3 = s.nextLine();
+                String sc4 = s.nextLine();
+                String sc5 = s.nextLine();
+                String sc6 = s.nextLine();
+                String sc7 = s.nextLine();
+                String sc8 = s.nextLine();
+                String sc9 = s.nextLine();
+                String sc10 = s.nextLine();
+                String sc11 = s.nextLine();
+                String sc12 = s.nextLine();
+                String sc13 = s.nextLine();
+                String sc14 = s.nextLine();
+                String sc15 = s.nextLine();
+                String sc16 = s.nextLine();
+                String sc17 = s.nextLine();
+                String sc18 = s.nextLine();
+                String sc19 = s.nextLine();
+                String sc20 = s.nextLine();
+                String sc21 = s.nextLine();
+                String sc22 = s.nextLine();
+                s.nextLine();
+                Schedule_Constr schedule_read = new Schedule_Constr(sc1,sc2,sc3,sc4,sc5,sc6,sc7,sc8,sc9,sc10,sc11,sc12,sc13,sc14,sc15,sc16,sc17,sc18,sc19,sc20,sc21,sc22);
+                schedule.add(schedule_read);
             }
         }catch(Exception ex){
             System.out.println("Error Reading Files");

@@ -1,16 +1,12 @@
 package Assignment;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import javax.swing.JLabel;
-import javax.swing.Timer;
 
 public class DateTime{
-    private String Year, Month, Date, hour, Day, FullDate, PartialDate;
+    private String Year, FullMonth, PartialMonth, Date, hour, Day, FullDate, PartialDate;
 
     public DateTime(){
         ClockTick();
@@ -37,20 +33,23 @@ public class DateTime{
 //            hour = String.valueOf(calendar.get(Calendar.HOUR));
 //            minute = String.valueOf(calendar.get(Calendar.DAY_OF_WEEK));
 //            FullDate = (Year+"a"+Date+"b"+hour+"c"+minute);
-        Date dateRead = new Date();
+//        Date dateRead = new Date();
+        Calendar dateRead = Calendar.getInstance();
         DateFormat dayFormat = new SimpleDateFormat("EEEE");
-        Day = dayFormat.format(dateRead);
+        Day = dayFormat.format(dateRead.getTime());
         DateFormat yearFormat = new SimpleDateFormat("YYYY");
-        Year = yearFormat.format(dateRead);
-        DateFormat monthFormat = new SimpleDateFormat("MMMM");
-        Month = monthFormat.format(dateRead);
+        Year = yearFormat.format(dateRead.getTime());
+        DateFormat FullmonthFormat = new SimpleDateFormat("MMMM");
+        FullMonth = FullmonthFormat.format(dateRead.getTime());
+        DateFormat SimplemonthFormat = new SimpleDateFormat("M");
+        PartialMonth = SimplemonthFormat.format(dateRead.getTime());
         DateFormat dateFormat = new SimpleDateFormat("dd");
-        Date = dateFormat.format(dateRead);
+        Date = dateFormat.format(dateRead.getTime());
         DateFormat hourFormat = new SimpleDateFormat("HH");
-        hour = hourFormat.format(dateRead);
+        hour = hourFormat.format(dateRead.getTime());
         DateFormat partialDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        PartialDate = partialDateFormat.format(dateRead);
-        FullDate = (Day+", "+Date+" "+Month+" "+Year);
+        PartialDate = partialDateFormat.format(dateRead.getTime());
+        FullDate = (Day+", "+Date+" "+FullMonth+" "+Year);
     }
     public String getFullDate() {
         return FullDate;
@@ -68,8 +67,12 @@ public class DateTime{
         return hour;
     }
 
-    public String getMonth() {
-        return Month;
+    public String getFullMonth() {
+        return FullMonth;
+    }
+    
+    public String getPartialMonth() {
+        return PartialMonth;
     }
 
     public String getDay() {
