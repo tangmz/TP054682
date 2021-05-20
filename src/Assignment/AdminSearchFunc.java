@@ -31,6 +31,7 @@ public class AdminSearchFunc extends JPanel{
     private JTextField IdIn;
     private JScrollPane ScrollSp,ScrollCo, ScrollStu;
     private boolean flag = true;
+    private int selection = 1;
     
     public AdminSearchFunc(){
         
@@ -159,36 +160,69 @@ public class AdminSearchFunc extends JPanel{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 cl.show(Body, "1");
+                selection = 1;
             }
         });
         RbCo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 cl.show(Body, "2");
+                selection = 2;
             }
         });
         RbStu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 cl.show(Body, "3");
+                selection =3;
             }
         });
         
         SearchBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                for(int i = 0; i<RegisteredAdmin.Sport.size(); i++){
-                    Sport_Constr sport = RegisteredAdmin.Sport.get(i);
-                    if (IdIn.getText().equals(sport.getSprtId())){
-                        JOptionPane.showMessageDialog(IdIn, sport.getSportN());
-                        flag = false;
+                if (selection ==1){
+                    for(int i = 0; i<RegisteredAdmin.Sport.size(); i++){
+                        Sport_Constr sport = RegisteredAdmin.Sport.get(i);
+                        if (IdIn.getText().equals(sport.getSprtId())){
+                            JOptionPane.showMessageDialog(IdIn, "Sport ID: "+ sport.getSprtId() + "\nSport Name: "+sport.getSportN()+"\nSport Center: "+sport.getCenter()+"\nCoach Assigned: "+sport.getCoachN());
+                            flag = false;
+                        
+                        }
                     }
-                }
-                if(flag){
-                    JOptionPane.showMessageDialog(IdIn, "Invalid Sport ID");
+                    if(flag){
+                        JOptionPane.showMessageDialog(IdIn, "Invalid Sport ID");
+                    }
+                    
+                }else if (selection ==2){
+                    for(int i = 0; i<RegisteredAdmin.Coach.size(); i++){
+                        Coach_Constr coach = RegisteredAdmin.Coach.get(i);
+                        if (IdIn.getText().equals(coach.getCoachId())){
+                            JOptionPane.showMessageDialog(IdIn, "Coach ID: "+coach.getCoachId() +"\nCoach Name: "+ coach.getCoachN()+"\nCoach Phone Number: "+ coach.getCoachTel()+"\nCoach Hourly Rate: "+ coach.getCoachHRate()+"\nCoach Rating: "+coach.getCoachStar()+"\nCoach Sport Center: "+ coach.getCoachCenter()+"\nCoach Sport ID: "+ coach.getCoachSp_Id()+"\nCoach Sport Name: "+coach.getCoach_Sp_N()+"\nCoach Home Address: "+coach.getCoachAdd()+"\nCoach Joined Date: "+ coach.getJDate()+"\nCoach Terminated Date: "+ coach.getTDate());
+                            flag = false;
+                        }
+                    }
+                    if(flag){
+                        JOptionPane.showMessageDialog(IdIn, "Invalid Sport ID");
+                    }
+                }else if (selection ==3){
+                    for(int i = 0; i<Assignment.studentInfo.size(); i++){
+                        Student student = Assignment.studentInfo.get(i);
+                        if (IdIn.getText().equals(student.getStuID())){
+                            JOptionPane.showMessageDialog(IdIn, "Student ID: "+ student.getStuID() + "\nStudent Name: "+student.getStuName()+"\nStudent Username: "+student.getStuUserN()+"\nStudent Center: "+student.getStuPlace()+"\nStudent Gender: "+student.getStuGender()+"\nStudent Phone Number: "+student.getStuPhone());
+                            flag = false;
+                        }
+                    }
+                    if(flag){
+                        JOptionPane.showMessageDialog(IdIn, "Invalid Student ID");
+                    }
+                    
                 }
             }
         });
+                        
+                
+                
         IdIn.setSize(20, 10);
         IdIn.setHorizontalAlignment(JTextField.CENTER);
         
