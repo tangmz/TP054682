@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.PrintWriter;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,7 +20,7 @@ public class SubscriptionSport extends JPanel implements ActionListener{
     private Checkbox swimming, badminton, football, archery, gymnastic, volleyball, basketball, cricket, tennis, tableTennis;
     private ImageIcon subscribeLogo, unsubscribeLogo;
     private JButton subscribe, unsubscribe;
-    public SubscriptionSport(String cenLocation){
+    public SubscriptionSport(String userName, String cenLocation){
         //Image and JButton
         subscribeLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/subscribe.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
         subscribe = new JButton("Subscribe", subscribeLogo);
@@ -94,7 +95,19 @@ public class SubscriptionSport extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource()== subscribe){
-            
+//            try{
+//                PrintWriter f = new PrintWriter("adminLogin.txt");
+//                for(i=0; i<Assignment.adminInfo.size(); i++){
+//                Admin c = Assignment.adminInfo.get(i);
+//                    f.println(c.getAdId());
+//                    f.println(c.getAdName());
+//                    f.println(c.getAdUserN());
+//                    f.println(c.getAdPass());
+//                    f.println(c.getAdPlace());
+//                    f.println(c.getAdGender());
+//                    f.println(c.getAdPhone());
+//                    f.println(c.getSuperRole());
+//                    f.println();
         }else if(ae.getSource() == unsubscribe){
             
         }
