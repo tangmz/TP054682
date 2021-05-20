@@ -143,16 +143,6 @@ public class ModifyRecord extends JPanel implements ActionListener {
                         c.setStuPlace(selectedLocation);
                         c.setStuPhone(modPhone);
                     }    
-//                        }else{
-//                            System.out.println(c.getStuID());
-//                            tempF.println(c.getStuID());
-//                            tempF.println(c.getStuName());
-//                            tempF.println(c.getStuUserN());
-//                            tempF.println(c.getStuPass());
-//                            tempF.println(c.getStuPlace());
-//                            tempF.println(c.getStuGender());
-//                            tempF.println(c.getStuPhone());
-//                            tempF.println();
                     f.println(c.getStuID());
                     f.println(c.getStuName());
                     f.println(c.getStuUserN());
@@ -171,7 +161,7 @@ public class ModifyRecord extends JPanel implements ActionListener {
                     
             } catch(Exception ex){
                 System.out.println("Error in stop!");
-                }
+            }
         }
     }
 }

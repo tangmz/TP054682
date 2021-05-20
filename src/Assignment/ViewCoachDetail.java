@@ -198,10 +198,9 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
                         coachJDateText.setText(coach.getJDate());
                         coachTDateText.setText(coach.getTDate());
                     }
-                    else{
-                        System.out.println("Error");
-                        
-                    }
+                }
+                else{
+                    System.out.println("Error");
                 }
                 
             }
