@@ -119,7 +119,7 @@ public class RegisteredStudent extends DateTime{
         select4.add(c);
         //select5 Panel for subscribing or unsubscribing sports
         select5 = new JPanel();
-        SubscriptionSport d = new SubscriptionSport(cenLocation);
+        SubscriptionSport d = new SubscriptionSport(UserName, cenLocation);
         select5.add(d);
         //Attendance Panel for taking Attendance
         select6 = new JPanel();
