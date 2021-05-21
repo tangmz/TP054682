@@ -21,11 +21,12 @@ public class SubscriptionSport extends JPanel implements ActionListener{
     private JLabel subscriptionTitle;
     private ImageIcon subscribeLogo, unsubscribeLogo;
     private JButton subscribe, unsubscribe;
-    private String location, studentName,selectedSport;
+    private String location, studentName,selectedSport, feedback;
     private JComboBox sportComB;
     private static ArrayList <String> sportsType = new ArrayList <String>();
     public SubscriptionSport(String userName, String cenLocation){
         //Image and JButton
+        feedback = "0";
         studentName = userName;
         location = cenLocation;
         subscribeLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/subscribe.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
@@ -70,7 +71,7 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                 Coach_Constr coach = Assignment.coachInfo.get(i);
                 if (coach.getCoachCenter().equals(location)){
                     if (coach.getCoach_Sp_N().equals(selectedSport)){
-                        Subscription_Constr sub = new Subscription_Constr(studentName, location, selectedSport, coach.getCoachHRate());
+                        Subscription_Constr sub = new Subscription_Constr(studentName, location, selectedSport, coach.getCoachHRate(), feedback);
                         Assignment.subscription.add(sub);
                         try{
                             PrintWriter f = new PrintWriter("subscriptionSport.txt");
