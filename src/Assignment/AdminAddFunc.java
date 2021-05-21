@@ -13,8 +13,10 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
@@ -33,7 +35,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
     private static JComboBox SportComB;
     private static JRadioButton AddB, ModB;
     private static ButtonGroup AddModSelection;
-    private static Button Search, AddSport, AddCoach, TerminateCoach;
+    private static Button Search, AddSport, AddCoach, TerminateCoach, modify;
     private static final DateTime dateTime = new DateTime();
     private static String coachId, sportId, whichOperation;
     private static boolean Found = false;
@@ -131,16 +133,18 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         AddSport.addActionListener(this);
         AddCoach.addActionListener(this);
         TerminateCoach = new Button("Terminate Coach");
-        
+        modify = new Button("Modify");
         AddB = new JRadioButton("New Record");
         ModB = new JRadioButton("Modify Record");
         AddModSelection = new ButtonGroup();
         AddModSelection.add(AddB);
         AddModSelection.add(ModB);
         ModB.setSelected(true);
+        modify.addActionListener(this);
         Search.addActionListener(this);
         AddB.addActionListener(this);
         ModB.addActionListener(this);
+        TerminateCoach.addActionListener(this);
         
         //++Set Component Disabled by Default++//
         CId.setEnabled(false);
@@ -233,6 +237,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         PanelSouth.setLayout(new BorderLayout(5,5));
         PanelSouthButtons = new JPanel();
         PanelSouthButtons.setLayout(new FlowLayout());
+        PanelSouthButtons.add(modify);
         PanelSouthButtons.add(TerminateCoach);
         PanelSouthButtons.add(AddCoach);
         PanelSouth.add(PanelSouthButtons, BorderLayout.SOUTH);
@@ -288,6 +293,37 @@ public class AdminAddFunc extends JPanel implements ActionListener{
             CPhone.setText("");
             CRatePay.setText("");
             CAddress.setText("");
+        }else if(ae.getSource() == modify){
+            whichOperation = "Modify";
+            for(int i = 0; i<Assignment.coachInfo.size();i++){
+                Coach_Constr c = Assignment.coachInfo.get(i);
+                if(c.getCoachN().equals(CName.getText())&&c.getCoachCenter().equals(RegisteredAdmin.centerLocation)){
+                    
+                    Found = true;
+                }else{
+                    Found = false;
+                }
+                if(Found == false){
+                    writeFile writeFile = new writeFile(whichOperation);
+                }
+            }
+        }else if(ae.getSource() == TerminateCoach){
+            whichOperation = "Terminate";
+            try{
+                for(int i=0; i<Assignment.coachInfo.size(); i++){
+                    Coach_Constr c = Assignment.coachInfo.get(i);
+                    if(c.getCoachN().equals(CName.getText())&&c.getCoachCenter().equals(RegisteredAdmin.centerLocation)){
+                        Found = true;
+                    }else{
+                        Found = false;
+                    }
+                    if(Found==false){
+                        writeFile writeFile = new writeFile(whichOperation);
+                    }
+                }
+            }catch(Exception ex){
+                System.out.println("Error File");
+            }
         }else if(ae.getSource() == Search){
             for(int i=0; i<Assignment.sportInfo.size(); i++){
                 Sport_Constr s = Assignment.sportInfo.get(i);
@@ -299,6 +335,10 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                 }else{
                     Found = false;
                 }
+                if(Found==false){
+                    writeFile writeFile = new writeFile(whichOperation);
+                }
+                
             }
             if(Found == true){
                 for(int i=0; i<Assignment.coachInfo.size(); i++){
@@ -323,6 +363,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
             retrieve r = new retrieve();
             SportNameIn.setText("");
             CName.setText("");
+            CName.setEnabled(true);
             CPhone.setText("");
             CRatePay.setText("");
             CStar.setText("0");
@@ -335,6 +376,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
             SportIdIn.setText("");
             CId.setText("");
             CName.setText("");
+            CName.setEnabled(false);
             CPhone.setText("");
             CRatePay.setText("");
             CStar.setText("");
@@ -342,6 +384,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
             CJDate.setText("");
             CTDate.setText("");
         }
+        
     }
     
     //++Write File++//
@@ -378,7 +421,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                 }
             }
             else if(whichButton.equals("SportA")){
-                Sport_Constr writeS = new Sport_Constr(SportIdIn.getText(),SportNcap,RegisteredAdmin.centerLocation,"-");
+                Sport_Constr writeS = new Sport_Constr(SportIdIn.getText(),SportNcap,RegisteredAdmin.centerLocation,CName.getText());
                 Assignment.sportInfo.add(writeS);
                 try{
                     PrintWriter f = new PrintWriter("sport.txt");
@@ -395,6 +438,81 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                 } catch(Exception ex){
                     System.out.println("Error in stop!");
                 }
+            }else if (whichButton.equals("Modify")){
+                try{
+                    PrintWriter f = new PrintWriter("coach.txt");
+                    for(int i=0; i<Assignment.coachInfo.size(); i++){
+                        Coach_Constr c = Assignment.coachInfo.get(i);
+                        if(c.getCoachN().equals(CName.getText())&&c.getCoachCenter().equals(RegisteredAdmin.centerLocation)){
+                            c.setCoachTel(CPhone.getText());
+                            c.setCoachAdd(CAddress.getText());
+                            c.setCoachHRate(CRatePay.getText());
+                        }
+                        f.println(c.getCoachId());
+                        f.println(c.getCoachN());
+                        f.println(c.getCoachTel());
+                        f.println(c.getCoachHRate());
+                        f.println(c.getCoachStar());
+                        f.println(c.getCoachCenter());
+                        f.println(c.getCoachSp_Id());
+                        f.println(c.getCoach_Sp_N());
+                        f.println(c.getCoachAdd());
+                        f.println(c.getJDate());
+                        f.println(c.getTDate());
+                        f.println();
+                    }
+                    f.close();   
+                } catch(Exception ex){
+                    System.out.println("Error in stop!"); 
+                }            
+            }else if (whichButton.equals("Terminate")){
+                try{
+                    PrintWriter f = new PrintWriter("coach.txt");
+                    for(int i=0; i<Assignment.coachInfo.size(); i++){
+                        Coach_Constr c = Assignment.coachInfo.get(i);
+                        if(c.getCoachN().equals(CName.getText())&&c.getCoachCenter().equals(RegisteredAdmin.centerLocation)){
+                            c.setTDate(dateTime.getPartialDate());
+                            c.setCoachSp_Id("TERMINATED");
+                            c.setCoach_Sp_N("TERMINATED");
+                        }
+                        f.println(c.getCoachId());
+                        f.println(c.getCoachN());
+                        f.println(c.getCoachTel());
+                        f.println(c.getCoachHRate());
+                        f.println(c.getCoachStar());
+                        f.println(c.getCoachCenter());
+                        f.println(c.getCoachSp_Id());
+                        f.println(c.getCoach_Sp_N());
+                        f.println(c.getCoachAdd());
+                        f.println(c.getJDate());
+                        f.println(c.getTDate());
+                        f.println();
+                    }
+                    f.close(); 
+                }catch(Exception ex){
+                    System.out.println("Error");
+                }
+                try{
+                     
+                    PrintWriter fw = new PrintWriter("sport.txt");
+                    for (int i = 0; i<Assignment.sportInfo.size(); i++){
+                        Sport_Constr c = Assignment.sportInfo.get(i);
+                        if(c.getCoachN().equals(CName.getText())&&c.getCenter().equals(RegisteredAdmin.centerLocation)){
+                            Assignment.sportInfo.remove(c);
+                            break;
+                        }
+                        fw.println(c.getSprtId());
+                        fw.println(c.getSportN());
+                        fw.println(c.getCenter());
+                        fw.println(c.getCoachN());
+                        fw.println();
+                    }
+                    fw.close();
+
+                 } catch(Exception ex){
+                    System.out.println("Error in stop!"); 
+                }  
+                
             }
         }
     }
