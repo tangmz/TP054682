@@ -19,14 +19,14 @@ import javax.swing.JPanel;
 public class SubscriptionSport extends JPanel implements ActionListener{
     private JPanel d1,d2;
     private JLabel subscriptionTitle;
-    private Checkbox swimming, badminton, football, archery, gymnastic, volleyball, basketball, cricket, tennis, tableTennis;
     private ImageIcon subscribeLogo, unsubscribeLogo;
     private JButton subscribe, unsubscribe;
-    private String location;
+    private String location, studentName,selectedSport;
     private JComboBox sportComB;
     private static ArrayList <String> sportsType = new ArrayList <String>();
     public SubscriptionSport(String userName, String cenLocation){
         //Image and JButton
+        studentName = userName;
         location = cenLocation;
         subscribeLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/subscribe.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
         subscribe = new JButton("Subscribe", subscribeLogo);
@@ -34,17 +34,8 @@ public class SubscriptionSport extends JPanel implements ActionListener{
         unsubscribeLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/cancelSubscription.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
         unsubscribe = new JButton("Unsubscribe", unsubscribeLogo);
         unsubscribe.setBackground(Color.WHITE);
-        //Checkbox for Sports
-        swimming = new Checkbox("Swimming");
-        badminton = new Checkbox("Badminton");
-        football = new Checkbox("Football");
-        archery = new Checkbox("Archery");
-        gymnastic = new Checkbox("Gymnastic");
-        volleyball = new Checkbox("Volleyball");
-        basketball = new Checkbox("Basketball");
-        cricket = new Checkbox("Cricket");
-        tennis = new Checkbox("Tennis");
-        tableTennis = new Checkbox("Table Tennis");
+        subscribe.addActionListener(this);
+        unsubscribe.addActionListener(this);
         //Panel Design
         setLayout(new BorderLayout());
         subscriptionTitle = new JLabel("Subscription Sport", JLabel.CENTER);
@@ -63,6 +54,7 @@ public class SubscriptionSport extends JPanel implements ActionListener{
             }
         }
         sportComB = new JComboBox(sportsType.toArray());
+        d1.add(sportComB);
         add(d1, BorderLayout.CENTER);
         d2 = new JPanel();
         d2.setLayout(new FlowLayout());
@@ -70,16 +62,35 @@ public class SubscriptionSport extends JPanel implements ActionListener{
         d2.add(unsubscribe);
         add(d2, BorderLayout.SOUTH);
     }
-
     @Override
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource()== subscribe){
-//            for(int i=0; i<Assignment.coachInfo.size(); i++){
-//                Coach_Constr coach = Assignment.coachInfo.get(i);
-//                if (coach.getCoachCenter().equals(location)){
-//                    
-//                }
+            selectedSport = sportComB.getSelectedItem().toString();
+            for(int i=0; i<Assignment.coachInfo.size(); i++){
+                Coach_Constr coach = Assignment.coachInfo.get(i);
+                if (coach.getCoachCenter().equals(location)){
+                    if (coach.getCoach_Sp_N().equals(selectedSport)){
+                        Subscription_Constr sub = new Subscription_Constr(studentName, location, selectedSport, coach.getCoachHRate());
+                        Assignment.subscription.add(sub);
+                        try{
+                            PrintWriter f = new PrintWriter("subscriptionSport.txt");
+                            for(i=0; i<Assignment.subscription.size(); i++){
+                                Subscription_Constr c = Assignment.subscription.get(i);
+                                f.println(c.getSubscriptionName());
+                                f.println(c.getSubscriptionLocation());
+                                f.println(c.getSubscriptionSport());
+                                f.println(c.getSubscriptionFee());
+                                f.println();
+                            }
+                            f.close();
 
+                        } catch(Exception ex){
+                            System.out.println("Error in stop!");
+                            
+                        }
+                    }
+                }
+            }
         }else if(ae.getSource() == unsubscribe){
             
         }

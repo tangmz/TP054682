@@ -36,6 +36,7 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
     private static String coachId, sportId, whichOperation, location;
     private ArrayList<String> sportID = new ArrayList<String>();
     private static ArrayList <String> sportsType = new ArrayList <String>();
+    private String selectedSport;
     public ViewCoachDetail(String cenLocation){
         //List for the location
         
@@ -176,7 +177,7 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource()==search){
-            String selectedSport = sportComB.getSelectedItem().toString();
+            selectedSport = sportComB.getSelectedItem().toString();
             for(int i=0; i<Assignment.coachInfo.size(); i++){
                 Coach_Constr coach = Assignment.coachInfo.get(i);
                 if (coach.getCoachCenter().equals(location)){

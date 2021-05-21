@@ -15,7 +15,7 @@ public class Assignment {
     public static ArrayList <Coach_Constr> coachInfo = new ArrayList<Coach_Constr>();
     public static ArrayList <Sport_Constr> sportInfo = new ArrayList<Sport_Constr>();
     public static ArrayList<Schedule_Constr> schedule = new ArrayList<Schedule_Constr>();
-    
+    public static ArrayList<Subscription_Constr> subscription = new ArrayList<Subscription_Constr>();
     public static Date DateTime = new Date();
         
     public static void main(String[] args) {
@@ -103,6 +103,16 @@ public class Assignment {
                 s.nextLine();
                 Schedule_Constr schedule_read = new Schedule_Constr(sc1,sc2,sc3,sc4,sc5,sc6,sc7,sc8,sc9,sc10,sc11,sc12,sc13,sc14,sc15,sc16,sc17,sc18,sc19,sc20,sc21,sc22);
                 schedule.add(schedule_read);
+            }
+                s = new Scanner(new File("subscriptionSport.txt"));
+                while(s.hasNext()){
+                String d1 = s.nextLine();
+                String d2 = s.nextLine();
+                String d3 = s.nextLine();
+                String d4 = s.nextLine();
+                s.nextLine();
+                Subscription_Constr sub = new Subscription_Constr(d1,d2,d3,d4);
+                subscription.add(sub);
             }
         }catch(Exception ex){
             System.out.println("Error Reading Files");
