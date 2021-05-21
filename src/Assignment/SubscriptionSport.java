@@ -81,6 +81,7 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                                 f.println(c.getSubscriptionLocation());
                                 f.println(c.getSubscriptionSport());
                                 f.println(c.getSubscriptionFee());
+                                f.println(c.getFeedback());
                                 f.println();
                             }
                             f.close();
