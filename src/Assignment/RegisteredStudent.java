@@ -113,14 +113,16 @@ public class RegisteredStudent extends DateTime{
         //select3 Panel for Viewing Registered Sport Schedule
         select3 = new JPanel();
         select3.setLayout(new BorderLayout());
+        ViewSchedule c = new ViewSchedule(cenLocation, UserName);
+        select3.add(c);
         //select4 Panel for Modifying Self Record
         select4 = new JPanel();
-        ModifyRecord c = new ModifyRecord(UserName, cenLocation);
-        select4.add(c);
+        ModifyRecord d = new ModifyRecord(UserName, cenLocation);
+        select4.add(d);
         //select5 Panel for subscribing or unsubscribing sports
         select5 = new JPanel();
-        SubscriptionSport d = new SubscriptionSport(UserName, cenLocation);
-        select5.add(d);
+        SubscriptionSport e = new SubscriptionSport(UserName, cenLocation);
+        select5.add(e);
         //Attendance Panel for taking Attendance
         select6 = new JPanel();
         select6.setLayout(new BorderLayout());
@@ -193,7 +195,7 @@ public class RegisteredStudent extends DateTime{
         viewRegSport.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-
+                cl.show(displayBody, "4");
             }
         });
 //        locationReg.addFocusListener(new FocusListener(){
