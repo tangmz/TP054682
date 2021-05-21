@@ -35,10 +35,10 @@ public class AdminAddFunc extends JPanel implements ActionListener{
     private static JComboBox SportComB;
     private static JRadioButton AddB, ModB;
     private static ButtonGroup AddModSelection;
-    private static Button Search, AddSport, AddCoach, TerminateCoach, modify;
+    private static Button Search, AddCoach, TerminateCoach, modify;
     private static final DateTime dateTime = new DateTime();
     private static String coachId, sportId, whichOperation;
-    private static boolean Found = false;
+    private static boolean Found = false, Found1 = false, Found2=false;
     private static ArrayList <String> sportsAvailable = new ArrayList <String>();
     public AdminAddFunc(){
         
@@ -128,9 +128,9 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         CTDate = new JTextField();
         CTDate.setHorizontalAlignment(JTextField.CENTER);
         Search = new Button("Search");
-        AddSport = new Button("Add Sport");
+
         AddCoach = new Button("Add Coach");
-        AddSport.addActionListener(this);
+
         AddCoach.addActionListener(this);
         TerminateCoach = new Button("Terminate Coach");
         modify = new Button("Modify");
@@ -151,7 +151,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         CStar.setEnabled(false);
         CJDate.setEnabled(false);
         CTDate.setEnabled(false);
-        AddSport.setVisible(false);
+
         AddCoach.setVisible(false);
         
 //        //++Retrieve Data++// ////////////////////////////Delete Later/////////////
@@ -198,7 +198,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         PanelTV2.add(SportNameIn);
         PanelTV3 = new JPanel();
         PanelTV3.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        PanelTV3.add(AddSport);
+
         PanelTV4 = new JPanel();
         PanelTV4.setLayout(new BorderLayout(5,5));
         PanelTV4.add(PanelTV2, BorderLayout.NORTH);
@@ -249,9 +249,33 @@ public class AdminAddFunc extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if(ae.getSource() == AddSport){
-            whichOperation = "SportA";
+//        if(ae.getSource() == AddSport){
+//            whichOperation = "SportA";
+//            for(int i=0; i<Assignment.sportInfo.size(); i++){
+//                Sport_Constr s = Assignment.sportInfo.get(i);
+//                if(s.getSportN().equals(SportNameIn.getText())&&s.getCenter().equals(RegisteredAdmin.centerLocation)){
+//                    Found = true;
+//                }else{
+//                    Found = false;
+//                }
+//            }
+//            if(Found==false){
+//                writeFile writeFile = new writeFile(whichOperation);
+//            }else if (Found == true){
+//                JOptionPane.showMessageDialog(AddCoach, "Sport existed!");
+//            }
+//            
+//            retrieve r = new retrieve();
+//            SportNameIn.setText("");
+//            CName.setText("");
+//            CPhone.setText("");
+//            CRatePay.setText("");
+//            CAddress.setText("");
+        if(ae.getSource() == AddCoach){
+//            whichOperation = "CoachA";
+            whichOperation ="CoachA";
             for(int i=0; i<Assignment.sportInfo.size(); i++){
+                
                 Sport_Constr s = Assignment.sportInfo.get(i);
                 if(s.getSportN().equals(SportNameIn.getText())&&s.getCenter().equals(RegisteredAdmin.centerLocation)){
                     Found = true;
@@ -260,33 +284,25 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                 }
             }
             if(Found==false){
-                writeFile writeFile = new writeFile(whichOperation);
+                System.out.println("Sport Not existed");
             }else if (Found == true){
                 JOptionPane.showMessageDialog(AddCoach, "Sport existed!");
+                
             }
             
-            retrieve r = new retrieve();
-            SportNameIn.setText("");
-            CName.setText("");
-            CPhone.setText("");
-            CRatePay.setText("");
-            CAddress.setText("");
-        }else if(ae.getSource() == AddCoach){
-            whichOperation = "CoachA";
             for(int i=0; i<Assignment.coachInfo.size(); i++){
                 Coach_Constr c = Assignment.coachInfo.get(i);
                 if(c.getCoachN().equals(CName.getText())&&c.getCoachCenter().equals(RegisteredAdmin.centerLocation)){
-                    Found = true;
+                    Found1 = true;
                 }else{
-                    Found = false;
+                    Found1 = false;
                 }
             }
-            if(Found==false){
+            if(Found1==false&&Found==false){
                 writeFile writeFile = new writeFile(whichOperation);
-            }else if (Found == true){
+            }else if (Found==false &&Found1 == true){
                 JOptionPane.showMessageDialog(AddCoach, "Coach existed!");
             }
-            
             retrieve r = new retrieve();
             SportNameIn.setText("");
             CName.setText("");
@@ -415,8 +431,6 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                 } catch(Exception ex){
                     System.out.println("Error in stop!");
                 }
-            }
-            else if(whichButton.equals("SportA")){
                 Sport_Constr writeS = new Sport_Constr(SportIdIn.getText(),SportNcap,RegisteredAdmin.centerLocation,CName.getText());
                 Assignment.sportInfo.add(writeS);
                 try{
@@ -434,6 +448,25 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                 } catch(Exception ex){
                     System.out.println("Error in stop!");
                 }
+            
+//            else if(whichButton.equals("SportA")){
+//                Sport_Constr writeS = new Sport_Constr(SportIdIn.getText(),SportNcap,RegisteredAdmin.centerLocation,CName.getText());
+//                Assignment.sportInfo.add(writeS);
+//                try{
+//                    PrintWriter f = new PrintWriter("sport.txt");
+//                    for(int i=0; i<Assignment.sportInfo.size(); i++){
+//                        Sport_Constr c = Assignment.sportInfo.get(i);
+//                        f.println(c.getSprtId());
+//                        f.println(c.getSportN());
+//                        f.println(c.getCenter());
+//                        f.println(c.getCoachN());
+//                        f.println();
+//                    }
+//                    f.close();   
+//                    
+//                } catch(Exception ex){
+//                    System.out.println("Error in stop!");
+//                }
             }else if (whichButton.equals("Modify")){
                 try{
                     PrintWriter f = new PrintWriter("coach.txt");
@@ -485,10 +518,10 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                         f.println();
                     }
                     f.close(); 
-                }catch(Exception ex){
-                    System.out.println("Error");
-                }
-                try{
+//                }catch(Exception ex){
+//                    System.out.println("Error");
+//                }
+//                try{
                      
                     PrintWriter fw = new PrintWriter("sport.txt");
                     for (int i = 0; i<Assignment.sportInfo.size(); i++){
@@ -504,8 +537,8 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                         fw.println();
                     }
                     fw.close();
-
-                 } catch(Exception ex){
+                  
+                } catch(Exception ex){
                     System.out.println("Error in stop!"); 
                 }  
                 
@@ -518,7 +551,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         private Selection(int RadioB) {
             if(RadioB == 1){
                 Search.setVisible(false);
-                AddSport.setVisible(true);
+                modify.setVisible(false);
                 AddCoach.setVisible(true);
                 TerminateCoach.setVisible(false);
                 SportComB.setEnabled(false);
@@ -526,8 +559,8 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                 PanelSouthButtons.repaint();
             }else if(RadioB == 2){
                 Search.setVisible(true);
+                modify.setVisible(true);
                 TerminateCoach.setVisible(true);
-                AddSport.setVisible(false);
                 AddCoach.setVisible(false);
                 SportComB.setEnabled(true);
                 PanelSouthButtons.revalidate();
@@ -545,10 +578,20 @@ public class AdminAddFunc extends JPanel implements ActionListener{
             nextID = String.valueOf(i+1);
             coachId = "CN0"+(nextID);
             CId.setText(coachId);
-            
-            int x;
-            x = Assignment.sportInfo.size();
-            nextID = String.valueOf(x+1);
+            try{
+                
+                for(i=0; i<Assignment.sportInfo.size(); i++){
+                    Sport_Constr c = Assignment.sportInfo.get(i);
+                    if(c.getCoachN().equals(CName.getText())&&c.getCenter().equals(RegisteredAdmin.centerLocation)){
+//                        String x = Integer.parseInt(c.getSprtId());
+                        int x = Integer.parseInt(c.getSprtId().replaceAll("[^0-9]", ""));
+                        nextID = String.valueOf(x+1);
+                    }
+                }
+            }catch(Exception e){
+                System.out.println("Error");
+            }
+ 
             
             if(RegisteredAdmin.centerLocation.equals("BukitJalil")){
                 sportId = "RCSBJ0"+(nextID);
