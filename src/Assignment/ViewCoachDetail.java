@@ -34,25 +34,20 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
     private static Button search;
     private static final DateTime dateTime = new DateTime();
     private static String coachId, sportId, whichOperation, location;
-    private static String sportType[] = {"swimming", "badminton", "football", "archery", "gymnastic", "volleyball", "basketball", "cricket", "tennis", "table tennis"};
     private ArrayList<String> sportID = new ArrayList<String>();
+    private static ArrayList <String> sportsType = new ArrayList <String>();
     public ViewCoachDetail(String cenLocation){
         //List for the location
         
-        sportComB = new JComboBox();
         location = cenLocation;
         for(int i = 0; i<Assignment.sportInfo.size(); i++){
             Sport_Constr sport = Assignment.sportInfo.get(i);
-            for(int counter = 0; counter<10; counter++){
-                if(sport.getCenter().equals(location)){
-                    if(sport.getSportN().equals(sportType[counter])){
-                        sportComB.addItem(sport.getSportN());
-//                        sportID.add(sport.getSprtId());
-                    }
-                }
+            if(sport.getCenter().equals(location)){
+                sportsType.add(sport.getSportN()); 
+                
             }
         }
-
+        sportComB = new JComboBox(sportsType.toArray());
 //        SportMod.setModel(cbm);
         timeL = new JLabel(String.valueOf(dateTime.getFullDate()), SwingConstants.CENTER);
         timeL.setFont(new Font("Arial", Font.BOLD, 30));
@@ -66,7 +61,7 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
         coachIdL = new JLabel("Coach ID:");
         coachNameL = new JLabel("Name:");
         coachPhoneL = new JLabel("Phone:");
-        coachSportFeesL = new JLabel("Sport Fees:");
+        coachSportFeesL = new JLabel("Sport Fees per class (2 hours):");
         coachStarL = new JLabel("Rating:");
         coachJDateL = new JLabel("Joined Date:");
         coachTDateL = new JLabel("Quit Date:");
@@ -193,7 +188,7 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
                         coachPhoneText.setText(coach.getCoachTel());
                         coachStarText.setText(coach.getCoachStar());
                         int coachSportFees = Integer.parseInt(coach.getCoachHRate());
-                        int coachFees = coachSportFees/2;
+                        int coachFees = coachSportFees;
                         sportFeesText.setText(Integer.toString(coachFees));
                         coachJDateText.setText(coach.getJDate());
                         coachTDateText.setText(coach.getTDate());

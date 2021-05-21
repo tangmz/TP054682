@@ -32,6 +32,7 @@ public class Register extends JFrame implements ActionListener{
     private JPanel Header, Body, b1, b2, b3, b4, b5, b6, b7, Footer;
     private JRadioButton adminB, studentB, female, male;
     private JComboBox locationReg = new JComboBox();
+    private String adID, stuID, visitorName, visitorUserN ,visitorPass,visitorPhone,visitorGender, selectedLocation;
     public Register(){
         adminB = new JRadioButton("Admin");
         studentB = new JRadioButton("Student");
@@ -149,16 +150,16 @@ public class Register extends JFrame implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e){
-        String selectedLocation = locationReg.getSelectedItem().toString();
+        selectedLocation = locationReg.getSelectedItem().toString();
         //String selectedLocation = (String)comboBox.getSelectedItem().toString();
-        String adID = "AN1";
-        String stuID = "SN1";
+        adID = "AN1";
+        stuID = "SN1";
         int i = 0;
-        String visitorName = userName.getText();
-        String visitorUserN = userLoginName.getText();
-        String visitorPass = userPass.getText();
-        String visitorPhone = userPhone.getText();
-        String visitorGender = "Male";
+        visitorName = userName.getText();
+        visitorUserN = userLoginName.getText();
+        visitorPass = userPass.getText();
+        visitorPhone = userPhone.getText();
+        visitorGender = "Male";
         if (adminB.isSelected()){
                 if(e.getSource() == create){
                     String pinAdmin = JOptionPane.showInputDialog(this, "Pin");
