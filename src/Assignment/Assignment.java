@@ -100,8 +100,9 @@ public class Assignment {
                 String sc20 = s.nextLine();
                 String sc21 = s.nextLine();
                 String sc22 = s.nextLine();
+                String sc23 = s.nextLine();
                 s.nextLine();
-                Schedule_Constr schedule_read = new Schedule_Constr(sc1,sc2,sc3,sc4,sc5,sc6,sc7,sc8,sc9,sc10,sc11,sc12,sc13,sc14,sc15,sc16,sc17,sc18,sc19,sc20,sc21,sc22);
+                Schedule_Constr schedule_read = new Schedule_Constr(sc1,sc2,sc3,sc4,sc5,sc6,sc7,sc8,sc9,sc10,sc11,sc12,sc13,sc14,sc15,sc16,sc17,sc18,sc19,sc20,sc21,sc22,sc23);
                 schedule.add(schedule_read);
             }
                 s = new Scanner(new File("subscriptionSport.txt"));
