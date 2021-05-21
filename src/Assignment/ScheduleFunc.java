@@ -31,6 +31,7 @@ class ScheduleFunc  extends JPanel{
     ScheduleFunc(){
         
         //++Filter Sports Name Found for Specific Center Only++//
+        sportsAvailable.removeAll(sportsAvailable);
         for(int i = 0; i<Assignment.sportInfo.size();i++){
             Sport_Constr sp = Assignment.sportInfo.get(i);
             if(sp.getCenter().equals(RegisteredAdmin.centerLocation)){
@@ -111,6 +112,7 @@ class ScheduleFunc  extends JPanel{
                         if(schedule.SchMonth.equals(Month.getSelectedItem())){
                             Found = true;
                             Assignment.schedule.set(i, writeSch);   //replace existing data to new data first before write into file
+                            break;
                         }else{
                             Found = false;
                         }
@@ -154,6 +156,7 @@ class ScheduleFunc  extends JPanel{
                     } catch(Exception ex){
                         System.out.println("Error in stop!");
                     }
+                    JOptionPane.showMessageDialog(Confirm, "Schedule is Created!");
                 }else if(Found == true){
                     try{
                         PrintWriter f = new PrintWriter("schedule.txt");
@@ -190,6 +193,7 @@ class ScheduleFunc  extends JPanel{
                     } catch(Exception ex){
                         System.out.println("Error in stop!");
                     }
+                    JOptionPane.showMessageDialog(Confirm, "Schedule is Updated!");
                 }
                 
             }
