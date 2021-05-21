@@ -111,8 +111,9 @@ public class Assignment {
                 String d2 = s.nextLine();
                 String d3 = s.nextLine();
                 String d4 = s.nextLine();
+                String d5 = s.nextLine();
                 s.nextLine();
-                Subscription_Constr sub = new Subscription_Constr(d1,d2,d3,d4);
+                Subscription_Constr sub = new Subscription_Constr(d1,d2,d3,d4,d5);
                 subscription.add(sub);
             }
         }catch(Exception ex){

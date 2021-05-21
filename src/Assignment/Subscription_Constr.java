@@ -1,13 +1,6 @@
 package Assignment;
 public class Subscription_Constr {
-    private String subscriptionName, subscriptionLocation, subscriptionSport, subscriptionFee;
-
-    public Subscription_Constr(String subscriptionName, String subscriptionLocation, String subscriptionSport, String subscriptionFee) {
-        this.subscriptionName = subscriptionName;
-        this.subscriptionLocation = subscriptionLocation;
-        this.subscriptionSport = subscriptionSport;
-        this.subscriptionFee = subscriptionFee;
-    }
+    private String subscriptionName, subscriptionLocation, subscriptionSport, subscriptionFee, feedback;
 
     public String getSubscriptionName() {
         return subscriptionName;
@@ -39,6 +32,22 @@ public class Subscription_Constr {
 
     public void setSubscriptionFee(String subscriptionFee) {
         this.subscriptionFee = subscriptionFee;
+    }
+
+    public String getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
+
+    public Subscription_Constr(String subscriptionName, String subscriptionLocation, String subscriptionSport, String subscriptionFee, String feedback) {
+        this.subscriptionName = subscriptionName;
+        this.subscriptionLocation = subscriptionLocation;
+        this.subscriptionSport = subscriptionSport;
+        this.subscriptionFee = subscriptionFee;
+        this.feedback = feedback;
     }
 
 }

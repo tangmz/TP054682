@@ -126,7 +126,8 @@ public class RegisteredStudent extends DateTime{
         //Attendance Panel for taking Attendance
         select6 = new JPanel();
         select6.setLayout(new BorderLayout());
-        select6.add(dateTime, BorderLayout.NORTH);
+        Feedback f = new Feedback(cenLocation, UserName);
+        select6.add(f);
 //        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
 //        SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
 //        Date date = new Date();
@@ -148,20 +149,22 @@ public class RegisteredStudent extends DateTime{
 //            
 //                
 //        }
+        //select7 for payment 
+        select7 = new JPanel();
+        select7.setLayout(new BorderLayout());
+        select7.add(dateTime, BorderLayout.NORTH);
         attendanceConfirm = new JButton("Attendace");
         attendanceConfirm.setBackground(Color.GREEN);
         attendanceConfirm.setFont(new Font("Arial", Font.BOLD, 30));
-        select6.add(attendanceConfirm, BorderLayout.CENTER);
+        select7.add(attendanceConfirm, BorderLayout.CENTER);
         attendanceConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                     
             }
         });
-        //select7 for payment 
-        select7 = new JPanel();
-        select7.setLayout(new BorderLayout());
-
+        select8 = new JPanel();
+        select8.setLayout(new BorderLayout());
         
         displayBody.add(menu, "1");
         displayBody.add(select1, "2");
@@ -171,6 +174,7 @@ public class RegisteredStudent extends DateTime{
         displayBody.add(select5, "6");
         displayBody.add(select6, "7");
         displayBody.add(select7, "8");
+        displayBody.add(select8, "9");
         cl.show(displayBody, "1");
         frame.Body.add(displayBody, BorderLayout.CENTER);
         logout.addActionListener(new ActionListener() {
@@ -268,13 +272,13 @@ public class RegisteredStudent extends DateTime{
         feedbackCoach.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-
+                cl.show(displayBody, "7");
             }
         });
         attendance.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                cl.show(displayBody, "7");
+                cl.show(displayBody, "8");
             }
         });
         payment.addActionListener(new ActionListener() {
