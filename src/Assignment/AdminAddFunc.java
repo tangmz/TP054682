@@ -335,10 +335,6 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                 }else{
                     Found = false;
                 }
-                if(Found==false){
-                    writeFile writeFile = new writeFile(whichOperation);
-                }
-                
             }
             if(Found == true){
                 for(int i=0; i<Assignment.coachInfo.size(); i++){

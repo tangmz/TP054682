@@ -1,5 +1,6 @@
 package Assignment;
 
+import static Assignment.Assignment.sportInfo;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -8,6 +9,9 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Scanner;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -35,6 +39,7 @@ public class AdminSearchFunc extends JPanel{
     public static String[][] SportData = new String[Assignment.sportInfo.size()][4];
     public static String[][] CoachData = new String[Assignment.coachInfo.size()][10];
     public static String[][] StudentData = new String[Assignment.studentInfo.size()][6];
+    public static ArrayList<String> sportType = new ArrayList<String>();
     
     public AdminSearchFunc(){
         
