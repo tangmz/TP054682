@@ -69,27 +69,26 @@ public class SubscriptionSport extends JPanel implements ActionListener{
             selectedSport = sportComB.getSelectedItem().toString();
             for(int i=0; i<Assignment.coachInfo.size(); i++){
                 Coach_Constr coach = Assignment.coachInfo.get(i);
-                if (coach.getCoachCenter().equals(location)){
-                    if (coach.getCoach_Sp_N().equals(selectedSport)){
-                        Subscription_Constr sub = new Subscription_Constr(studentName, location, selectedSport, coach.getCoachHRate(), feedback);
-                        Assignment.subscription.add(sub);
-                        try{
-                            PrintWriter f = new PrintWriter("subscriptionSport.txt");
-                            for(i=0; i<Assignment.subscription.size(); i++){
-                                Subscription_Constr c = Assignment.subscription.get(i);
-                                f.println(c.getSubscriptionName());
-                                f.println(c.getSubscriptionLocation());
-                                f.println(c.getSubscriptionSport());
-                                f.println(c.getSubscriptionFee());
-                                f.println(c.getFeedback());
-                                f.println();
-                            }
-                            f.close();
-
-                        } catch(Exception ex){
-                            System.out.println("Error in stop!");
-                            
+                if (coach.getCoachCenter().equals(location)&&(coach.getCoach_Sp_N().equals(selectedSport))){
+                    Subscription_Constr sub = new Subscription_Constr(studentName, location, selectedSport, coach.getCoachHRate(), feedback);
+                    Assignment.subscription.add(sub);
+                        
+                    try{
+                        PrintWriter f = new PrintWriter("subscriptionSport.txt");
+                        for(i=0; i<Assignment.subscription.size(); i++){
+                            Subscription_Constr c = Assignment.subscription.get(i);
+                            f.println(c.getSubscriptionName());
+                            f.println(c.getSubscriptionLocation());
+                            f.println(c.getSubscriptionSport());
+                            f.println(c.getSubscriptionFee());
+                            f.println(c.getFeedback());
+                            f.println();
                         }
+                        f.close();
+                    } catch(Exception ex){
+                        System.out.println("Error in stop!");
+                            
+                        
                     }
                 }
             }

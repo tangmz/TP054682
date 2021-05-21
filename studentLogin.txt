@@ -1,32 +1,32 @@
 SN1
-a
-a
-a
+Ng
+Ng
+123
 PetalingJaya
 Male
-123
+0124652384
 
 SN2
-b
-b
-b
+Jordan
+Jordan
+123
 PetalingJaya
 Male
-123
+0176532654
 
 SN3
-c
-c
-c
+John
+John
+123
 PetalingJaya
 Male
-123
+0123459862
 
 SN4
-d
-d
-d
+Allen
+Allen
+123
 PetalingJaya
 Male
-123
+0125648956
 
