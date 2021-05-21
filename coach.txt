@@ -5,7 +5,7 @@ Tang
 0
 PetalingJaya
 RCSPJ01
-Badminton
+badminton
 PJ
 2021-05-20
 -
@@ -16,7 +16,7 @@ Ng
 100
 0
 PetalingJaya
-RCSPJ03
+RCSPJ02
 basketball
 Kajang
 2021-05-20

@@ -9,8 +9,10 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -20,8 +22,12 @@ public class SubscriptionSport extends JPanel implements ActionListener{
     private Checkbox swimming, badminton, football, archery, gymnastic, volleyball, basketball, cricket, tennis, tableTennis;
     private ImageIcon subscribeLogo, unsubscribeLogo;
     private JButton subscribe, unsubscribe;
+    private String location;
+    private JComboBox sportComB;
+    private static ArrayList <String> sportsType = new ArrayList <String>();
     public SubscriptionSport(String userName, String cenLocation){
         //Image and JButton
+        location = cenLocation;
         subscribeLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/subscribe.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
         subscribe = new JButton("Subscribe", subscribeLogo);
         subscribe.setBackground(Color.WHITE);
@@ -47,43 +53,16 @@ public class SubscriptionSport extends JPanel implements ActionListener{
         d1 = new JPanel();
         d1.setLayout(new FlowLayout());
         //Sport that matched with the sportInfo if true then it will create Checkbox
+        
+        location = cenLocation;
         for(int i = 0; i<Assignment.sportInfo.size(); i++){
             Sport_Constr sport = Assignment.sportInfo.get(i);
-            for(int counter = 0; counter<Assignment.sportInfo.size(); counter++){
-                if(sport.getCenter().equals(cenLocation)){
-                    if(sport.getSportN().equals("swimming")){
-                        d1.add(swimming, BorderLayout.CENTER);
-                    }else if (sport.getSportN().equals("badminton")){
-                        
-                       d1. add(badminton, BorderLayout.CENTER);
-                    }else if (sport.getSportN().equals("football")){
-                        
-                        d1.add(football, BorderLayout.CENTER);
-                    }else if (sport.getSportN().equals("archery")){
-                        
-                        d1.add(archery, BorderLayout.CENTER);
-                    }else if (sport.getSportN().equals("gymnastic")){
-                        
-                        d1.add(gymnastic, BorderLayout.CENTER);
-                    }else if (sport.getSportN().equals("volleyball")){
-                        
-                        d1.add(volleyball, BorderLayout.CENTER);
-                    }else if (sport.getSportN().equals("basketball")){
-                        
-                        d1.add(basketball, BorderLayout.CENTER);
-                    }else if (sport.getSportN().equals("cricket")){
-                       
-                        d1.add(cricket, BorderLayout.CENTER);
-                    }else if (sport.getSportN().equals("tennis")){
-                        
-                        d1.add(tennis, BorderLayout.CENTER);
-                    }else if (sport.getSportN().equals("table tennis")){
-                        
-                        d1.add(tableTennis, BorderLayout.CENTER);
-                    }
-                }
+            if(sport.getCenter().equals(location)){
+                sportsType.add(sport.getSportN()); 
+                
             }
         }
+        sportComB = new JComboBox(sportsType.toArray());
         add(d1, BorderLayout.CENTER);
         d2 = new JPanel();
         d2.setLayout(new FlowLayout());
@@ -95,19 +74,12 @@ public class SubscriptionSport extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource()== subscribe){
-//            try{
-//                PrintWriter f = new PrintWriter("adminLogin.txt");
-//                for(i=0; i<Assignment.adminInfo.size(); i++){
-//                Admin c = Assignment.adminInfo.get(i);
-//                    f.println(c.getAdId());
-//                    f.println(c.getAdName());
-//                    f.println(c.getAdUserN());
-//                    f.println(c.getAdPass());
-//                    f.println(c.getAdPlace());
-//                    f.println(c.getAdGender());
-//                    f.println(c.getAdPhone());
-//                    f.println(c.getSuperRole());
-//                    f.println();
+//            for(int i=0; i<Assignment.coachInfo.size(); i++){
+//                Coach_Constr coach = Assignment.coachInfo.get(i);
+//                if (coach.getCoachCenter().equals(location)){
+//                    
+//                }
+
         }else if(ae.getSource() == unsubscribe){
             
         }

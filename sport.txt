@@ -1,5 +1,5 @@
 RCSPJ01
-Badminton
+badminton
 PetalingJaya
 Tang
 
