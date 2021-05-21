@@ -245,7 +245,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource() == AddSport){
-            whichOperation = "Sport";
+            whichOperation = "SportA";
             for(int i=0; i<Assignment.sportInfo.size(); i++){
                 Sport_Constr s = Assignment.sportInfo.get(i);
                 if(s.getSportN().equals(SportNameIn.getText())&&s.getCenter().equals(RegisteredAdmin.centerLocation)){
@@ -254,9 +254,9 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                     Found = false;
                 }
             }
-            if(Found==true){
+            if(Found==false){
                 writeFile writeFile = new writeFile(whichOperation);
-            }else if (Found == false){
+            }else if (Found == true){
                 JOptionPane.showMessageDialog(AddCoach, "Sport existed!");
             }
             
@@ -267,7 +267,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
             CRatePay.setText("");
             CAddress.setText("");
         }else if(ae.getSource() == AddCoach){
-            whichOperation = "Coach";
+            whichOperation = "CoachA";
             for(int i=0; i<Assignment.coachInfo.size(); i++){
                 Coach_Constr c = Assignment.coachInfo.get(i);
                 if(c.getCoachN().equals(CName.getText())&&c.getCoachCenter().equals(RegisteredAdmin.centerLocation)){
@@ -276,9 +276,9 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                     Found = false;
                 }
             }
-            if(Found==true){
+            if(Found==false){
                 writeFile writeFile = new writeFile(whichOperation);
-            }else if (Found == false){
+            }else if (Found == true){
                 JOptionPane.showMessageDialog(AddCoach, "Coach existed!");
             }
             
@@ -350,7 +350,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         String SportPre = SportNameIn.getText();
         String SportNcap = SportPre.toUpperCase();
         private writeFile(String whichButton) {
-            if(whichButton.equals("Coach")){
+            if(whichButton.equals("CoachA")){
                 Coach_Constr writeC = new Coach_Constr(CId.getText(),CName.getText(),CPhone.getText(),CRatePay.getText(),CStar.getText(),
                 RegisteredAdmin.centerLocation,SportIdIn.getText(),SportNcap,CAddress.getText(), CJDate.getText(), CTDate.getText());
                 Assignment.coachInfo.add(writeC);
@@ -377,8 +377,8 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                     System.out.println("Error in stop!");
                 }
             }
-            else if(whichButton.equals("Sport")){
-                Sport_Constr writeS = new Sport_Constr(SportIdIn.getText(),SportNcap,RegisteredAdmin.centerLocation,CName.getText());
+            else if(whichButton.equals("SportA")){
+                Sport_Constr writeS = new Sport_Constr(SportIdIn.getText(),SportNcap,RegisteredAdmin.centerLocation,"-");
                 Assignment.sportInfo.add(writeS);
                 try{
                     PrintWriter f = new PrintWriter("sport.txt");
