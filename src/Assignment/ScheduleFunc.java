@@ -98,30 +98,34 @@ class ScheduleFunc  extends JPanel{
         Confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                Schedule_Constr writeSch = new Schedule_Constr(Month.getSelectedItem().toString(),Mon1Sch.getSelectedItem().toString(),Mon2Sch.getSelectedItem().toString(),Mon3Sch.getSelectedItem().toString(),
+                Schedule_Constr writeSch = new Schedule_Constr(Month.getSelectedItem().toString(),RegisteredAdmin.centerLocation,Mon1Sch.getSelectedItem().toString(),Mon2Sch.getSelectedItem().toString(),Mon3Sch.getSelectedItem().toString(),
                         Tue1Sch.getSelectedItem().toString(),Tue2Sch.getSelectedItem().toString(),Tue3Sch.getSelectedItem().toString(),Wed1Sch.getSelectedItem().toString(),Wed2Sch.getSelectedItem().toString(),
                         Wed3Sch.getSelectedItem().toString(),Thu1Sch.getSelectedItem().toString(),Thu2Sch.getSelectedItem().toString(),Thu3Sch.getSelectedItem().toString(),Fri1Sch.getSelectedItem().toString(),
                         Fri2Sch.getSelectedItem().toString(),Fri3Sch.getSelectedItem().toString(),Sat1Sch.getSelectedItem().toString(),Sat2Sch.getSelectedItem().toString(),Sat3Sch.getSelectedItem().toString(),
                         Sun1Sch.getSelectedItem().toString(),Sun2Sch.getSelectedItem().toString(),Sun3Sch.getSelectedItem().toString());
                 
-                System.out.println(Found);
+//                System.out.println(Found);
                 for(int i = 0;i<Assignment.schedule.size();i++){
                     Schedule_Constr schedule = Assignment.schedule.get(i);
-                    if(schedule.SchMonth.equals(Month.getSelectedItem())){
-                        Found = true;
-                        Assignment.schedule.set(i, writeSch);   //replace existing data to new data first before write into file
+                    if(RegisteredAdmin.centerLocation.equals(schedule.Center)){
+                        if(schedule.SchMonth.equals(Month.getSelectedItem())){
+                            Found = true;
+                            Assignment.schedule.set(i, writeSch);   //replace existing data to new data first before write into file
+                        }else{
+                            Found = false;
+                        }
                     }else{
                         Found = false;
                     }
                 }
                 if(Found == false){
-                    System.out.println("aaa123");
                     Assignment.schedule.add(writeSch);
                     try{
                         PrintWriter f = new PrintWriter("schedule.txt");
                         for(int i=0; i<Assignment.schedule.size(); i++){
                             Schedule_Constr s = Assignment.schedule.get(i);
                             f.println(s.SchMonth);
+                            f.println(s.Center);
                             f.println(s.Mon1);
                             f.println(s.Mon2);
                             f.println(s.Mon3);
@@ -156,6 +160,7 @@ class ScheduleFunc  extends JPanel{
                         for(int i=0; i<Assignment.schedule.size(); i++){
                             Schedule_Constr s = Assignment.schedule.get(i);
                             f.println(s.SchMonth);
+                            f.println(s.Center);
                             f.println(s.Mon1);
                             f.println(s.Mon2);
                             f.println(s.Mon3);

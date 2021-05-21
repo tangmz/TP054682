@@ -234,10 +234,12 @@ public class AdminAddFunc extends JPanel implements ActionListener{
     //++Write File++//
     private static class writeFile {
 
+        String SportPre = SportNameIn.getText();
+        String SportNcap = SportPre.toUpperCase();
         private writeFile(String whichButton) {
             if(whichButton.equals("Coach")){
                 Coach_Constr writeC = new Coach_Constr(CId.getText(),CName.getText(),CPhone.getText(),CRatePay.getText(),CStar.getText(),
-                RegisteredAdmin.centerLocation,SportIdIn.getText(),SportNameIn.getText(),CAddress.getText(), CJDate.getText(), CTDate.getText());
+                RegisteredAdmin.centerLocation,SportIdIn.getText(),SportNcap,CAddress.getText(), CJDate.getText(), CTDate.getText());
                 Assignment.coachInfo.add(writeC);
                 try{
                     PrintWriter f = new PrintWriter("coach.txt");
@@ -263,7 +265,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                 }
             }
             else if(whichButton.equals("Sport")){
-                Sport_Constr writeS = new Sport_Constr(SportIdIn.getText(),SportNameIn.getText(),RegisteredAdmin.centerLocation,CName.getText());
+                Sport_Constr writeS = new Sport_Constr(SportIdIn.getText(),SportNcap,RegisteredAdmin.centerLocation,CName.getText());
                 Assignment.sportInfo.add(writeS);
                 try{
                     PrintWriter f = new PrintWriter("sport.txt");
