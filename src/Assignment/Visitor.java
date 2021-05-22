@@ -28,6 +28,7 @@ public class Visitor implements ActionListener{
     private static ArrayList <String> locationType = new ArrayList <String>();
     private JComboBox location, sportList;
     private String selectedLocation, selectedSport;
+    private boolean flag = true;
     public void Visitor(){
         //Image and Button Design
         registerLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/sign up.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
@@ -67,8 +68,8 @@ public class Visitor implements ActionListener{
             locationType.add(sport.getCenter());        
         }
         view.add(location);
-        selectedLocation = location.getSelectedItem().toString();
-        selectedSport = sportList.getSelectedItem().toString();
+        
+//        selectedSport = sportList.getSelectedItem().toString();
         
         frame.Body.add(view, BorderLayout.CENTER);
         Footer = new JPanel();
@@ -89,17 +90,33 @@ public class Visitor implements ActionListener{
     @Override
     public void actionPerformed (ActionEvent ae) {
         if(ae.getSource() == viewB){
+            selectedLocation = location.getSelectedItem().toString();
             for(int i = 0; i<Assignment.schedule.size(); i++){
                 Schedule_Constr schedule = Assignment.schedule.get(i);
-                if (selectedLocation.equals(schedule.getCenter())){
+                if (schedule.getCenter().equals(selectedLocation)){
                     JOptionPane.showMessageDialog(viewB, "Monday: "+schedule.getMon1()+", "+schedule.getMon2()+", "+schedule.getMon3()+"\nTuesday: "+schedule.getTue1()+", "+schedule.getTue2()+", "+schedule.getTue3()+"\nWednesday: "+schedule.getWed1()+", "+schedule.getWed2()+", "+schedule.getWed3()+"\nThursday: "+schedule.getThu1()+", "+schedule.getThu2()+", "+schedule.getThu3()+"\nFriday: "+schedule.getFri1()+", "+schedule.getFri2()+", "+schedule.getFri3()+"\nSaturday: "+schedule.getSat1()+", "+schedule.getSat2()+", "+schedule.getSat3()+"\nSunday: "+schedule.getSun1()+", "+schedule.getSun2()+", "+schedule.getSun3());
-                }else if (selectedLocation.equals("BukitJalil")){
-                    JOptionPane.showMessageDialog(viewB, "Monday: "+schedule.getMon1()+", "+schedule.getMon2()+", "+schedule.getMon3()+"\nTuesday: "+schedule.getTue1()+", "+schedule.getTue2()+", "+schedule.getTue3()+"\nWednesday: "+schedule.getWed1()+", "+schedule.getWed2()+", "+schedule.getWed3()+"\nThursday: "+schedule.getThu1()+", "+schedule.getThu2()+", "+schedule.getThu3()+"\nFriday: "+schedule.getFri1()+", "+schedule.getFri2()+", "+schedule.getFri3()+"\nSaturday: "+schedule.getSat1()+", "+schedule.getSat2()+", "+schedule.getSat3()+"\nSunday: "+schedule.getSun1()+", "+schedule.getSun2()+", "+schedule.getSun3());
-                }else if (selectedLocation.equals("PutraJaya")){
-                    JOptionPane.showMessageDialog(viewB, "Monday: "+schedule.getMon1()+", "+schedule.getMon2()+", "+schedule.getMon3()+"\nTuesday: "+schedule.getTue1()+", "+schedule.getTue2()+", "+schedule.getTue3()+"\nWednesday: "+schedule.getWed1()+", "+schedule.getWed2()+", "+schedule.getWed3()+"\nThursday: "+schedule.getThu1()+", "+schedule.getThu2()+", "+schedule.getThu3()+"\nFriday: "+schedule.getFri1()+", "+schedule.getFri2()+", "+schedule.getFri3()+"\nSaturday: "+schedule.getSat1()+", "+schedule.getSat2()+", "+schedule.getSat3()+"\nSunday: "+schedule.getSun1()+", "+schedule.getSun2()+", "+schedule.getSun3());
+                    flag = false;
+                    break;
                 }else{
-                    JOptionPane.showMessageDialog(viewB, "Monday: "+schedule.getMon1()+", "+schedule.getMon2()+", "+schedule.getMon3()+"\nTuesday: "+schedule.getTue1()+", "+schedule.getTue2()+", "+schedule.getTue3()+"\nWednesday: "+schedule.getWed1()+", "+schedule.getWed2()+", "+schedule.getWed3()+"\nThursday: "+schedule.getThu1()+", "+schedule.getThu2()+", "+schedule.getThu3()+"\nFriday: "+schedule.getFri1()+", "+schedule.getFri2()+", "+schedule.getFri3()+"\nSaturday: "+schedule.getSat1()+", "+schedule.getSat2()+", "+schedule.getSat3()+"\nSunday: "+schedule.getSun1()+", "+schedule.getSun2()+", "+schedule.getSun3());
+                    flag = true;
                 }
+            }
+            if (flag){
+                JOptionPane.showMessageDialog(viewB, "No Schedule has been found");
+            }
+            for(int i = 0; i<Assignment.sportInfo.size(); i++){
+                Sport_Constr c = Assignment.sportInfo.get(i);
+                if (c.getCenter().equals(selectedLocation)){
+                    JOptionPane.showMessageDialog(viewB, "Availble Sport: "+c.getSportN());
+                    flag = false;
+                    break;
+                }else{
+                    flag = true;
+                }
+            }
+            if (flag){
+                JOptionPane.showMessageDialog(viewB, "No available Sport in "+selectedLocation);
+                
             }
             
         

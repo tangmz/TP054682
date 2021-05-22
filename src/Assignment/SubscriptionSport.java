@@ -73,15 +73,19 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                 Subscription_Constr sub = Assignment.subscription.get(i);
                 if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionSport().equals(selectedSport)&&sub.getSubscriptionLocation().equals(location)){
                     found = false;
+                    break;
                 }else{
                     found = true;
+                    break;
                 }
             }
             if(found){
                 for(int i=0; i<Assignment.coachInfo.size(); i++){
                     Coach_Constr coach = Assignment.coachInfo.get(i);
                     if (coach.getCoachCenter().equals(location)&&(coach.getCoach_Sp_N().equals(selectedSport))){
-                        Subscription_Constr sub = new Subscription_Constr(studentName, location, selectedSport, coach.getCoachHRate(), feedback);
+                        int coachSportFees = Integer.parseInt(coach.getCoachHRate());
+                        int coachFees = coachSportFees*4;
+                        Subscription_Constr sub = new Subscription_Constr(studentName, location, selectedSport, Integer.toString(coachFees), feedback);
                         Assignment.subscription.add(sub);
                     }
                 }
