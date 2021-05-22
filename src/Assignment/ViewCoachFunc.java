@@ -31,7 +31,7 @@ class ViewCoachFunc  extends JPanel{
     private JScrollPane ScrollCo;
     private boolean flag = true;
     private int selection = 1;
-    public static String[][] CoachData = new String[Assignment.coachInfo.size()][10];
+    public static String[][] CoachData = new String[Assignment.coachInfo.size()][11];
     
     public ViewCoachFunc(){
         
@@ -53,11 +53,12 @@ class ViewCoachFunc  extends JPanel{
             CoachData[i][4] = co.getCoachStar();
             CoachData[i][5] = co.getCoachCenter();
             CoachData[i][6] = co.getCoachSp_Id();
-            CoachData[i][7] = co.getCoachAdd();
-            CoachData[i][8] = co.getJDate();
-            CoachData[i][9] = co.getTDate();
+            CoachData[i][7] = co.getCoach_Sp_N();
+            CoachData[i][8] = co.getCoachAdd();
+            CoachData[i][9] = co.getJDate();
+            CoachData[i][10] = co.getTDate();
         }
-        String[] CoachIdentifier = {"Coach ID","Name","TelNo.", "HourlyRate (RM)","RatingStars(/5)","Center","Sport ID", "ResidingCity","Joined","Quit"};
+        String[] CoachIdentifier = {"Coach ID","Name","TelNo.", "HourlyRate (RM)","RatingStars(/5)","Center","Sport ID","Sport Name", "ResidingCity","Joined","Quit"};
         TMCo = new DefaultTableModel(CoachData, CoachIdentifier);
         TableCo = new JTable(TMCo);
         TableCo.setAutoCreateRowSorter(true);

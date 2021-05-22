@@ -37,7 +37,7 @@ public class AdminSearchFunc extends JPanel{
     private boolean flag = true;
     private int selection = 1;
     public static String[][] SportData = new String[Assignment.sportInfo.size()][4];
-    public static String[][] CoachData = new String[Assignment.coachInfo.size()][10];
+    public static String[][] CoachData = new String[Assignment.coachInfo.size()][11];
     public static String[][] StudentData = new String[Assignment.studentInfo.size()][6];
     public static ArrayList<String> sportType = new ArrayList<String>();
     
@@ -77,11 +77,12 @@ public class AdminSearchFunc extends JPanel{
             CoachData[i][4] = co.getCoachStar();
             CoachData[i][5] = co.getCoachCenter();
             CoachData[i][6] = co.getCoachSp_Id();
-            CoachData[i][7] = co.getCoachAdd();
-            CoachData[i][8] = co.getJDate();
-            CoachData[i][9] = co.getTDate();
+            CoachData[i][7] = co.getCoach_Sp_N();
+            CoachData[i][8] = co.getCoachAdd();
+            CoachData[i][9] = co.getJDate();
+            CoachData[i][10] = co.getTDate();
         }
-        String[] CoachIdentifier = {"Coach ID","Name","TelNo.", "HourlyRate (RM)","RatingStars(/5)","Center","Sport ID", "ResidingCity","Joined","Quit"};
+        String[] CoachIdentifier = {"Coach ID","Name","TelNo.", "HourlyRate (RM)","RatingStars(/5)","Center","Sport ID","Sport Name", "ResidingCity","Joined","Quit"};
         TMCo = new DefaultTableModel(CoachData, CoachIdentifier);
         TableCo = new JTable(TMCo);
         TableCo.setAutoCreateRowSorter(true);
