@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class RegisteredAdmin extends DateTime{
-    public JPanel header, menuBody, displayBody, Tab1, Tab2, Tab3, Tab4;
+    public JPanel header, menuBody, displayBody, Tab1, Tab2, Tab3, Tab4,Tab5;
     private int counter;
     public static String centerLocation;
     public Button AddModRecord, SearchRecord, CoachRecord, ScheduleB, manageSystem, logout; //SearchRecord inclusive of Sorting
@@ -114,6 +114,7 @@ public class RegisteredAdmin extends DateTime{
         AdminSearchFunc as = new AdminSearchFunc();
         ViewCoachFunc vc = new ViewCoachFunc();
         ScheduleFunc sch = new ScheduleFunc();
+        AdminManageSystem adMS = new AdminManageSystem();
         frame.setVisible(true);
         frame.CenLocation.setSelectedItem(Location.valueOf(centerLocation));
         while(Check = true){
@@ -174,7 +175,7 @@ public class RegisteredAdmin extends DateTime{
         manageSystem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                cl.show(displayBody, "1");
+                cl.show(displayBody, "6");
             }
         });
         
@@ -206,6 +207,9 @@ public class RegisteredAdmin extends DateTime{
         Tab4 = new JPanel();
         Tab4.setLayout(new BorderLayout());
         Tab4.add(sch);
+        Tab5 = new JPanel();
+        Tab5.setLayout(new BorderLayout());
+        Tab5.add(adMS);
         displayBody.setBorder(BorderFactory.createMatteBorder(3 , 0 , 3 , 3 ,Color.DARK_GRAY));
         JLabel time = new JLabel(String.valueOf(getFullDate()), SwingConstants.CENTER);
         time.setFont(new Font("Arial", Font.BOLD, 60));
@@ -216,6 +220,7 @@ public class RegisteredAdmin extends DateTime{
         displayBody.add(Tab2, "3");
         displayBody.add(Tab3, "4");
         displayBody.add(Tab4, "5");
+        displayBody.add(Tab5, "6");
         cl.show(displayBody, "1");
         frame.Body.add(menuBody, BorderLayout.WEST);
         frame.Body.add(displayBody, BorderLayout.CENTER);

@@ -255,7 +255,7 @@ class ScheduleFunc  extends JPanel{
         Top.add(Month);
         
         GridLayout gL = new GridLayout(3,2);
-        gL.setHgap(15);
+        gL.setHgap(10);
         gL.setVgap(50);
         Dimension dim = new Dimension(300, 200);
         MonP = new JPanel();
@@ -330,14 +330,14 @@ class ScheduleFunc  extends JPanel{
         SunP.add(Sun3Sch);
         
         ScheduleTopRow = new JPanel();
-        ScheduleTopRow.setLayout(new FlowLayout(FlowLayout.CENTER, 40,1));
+        ScheduleTopRow.setLayout(new FlowLayout(FlowLayout.CENTER, 5,1));
         ScheduleTopRow.add(MonP);
         ScheduleTopRow.add(TueP);
         ScheduleTopRow.add(WedP);
         ScheduleTopRow.add(ThuP);
         
         ScheduleBottomRow = new JPanel();
-        ScheduleBottomRow.setLayout(new FlowLayout(FlowLayout.CENTER, 50,1));
+        ScheduleBottomRow.setLayout(new FlowLayout(FlowLayout.CENTER, 30,1));
         ScheduleBottomRow.add(FriP);
         ScheduleBottomRow.add(SatP);
         ScheduleBottomRow.add(SunP);

@@ -191,7 +191,7 @@ public class ViewSchedule extends JPanel{
         Top.add(Month);
         
         GridLayout gL = new GridLayout(3,2);
-        gL.setHgap(15);
+        gL.setHgap(10);
         gL.setVgap(50);
         Dimension dim = new Dimension(300, 200);
         MonP = new JPanel();
@@ -266,7 +266,7 @@ public class ViewSchedule extends JPanel{
         SunP.add(Sun3Sch);
         
         ScheduleTopRow = new JPanel();
-        ScheduleTopRow.setLayout(new FlowLayout(FlowLayout.CENTER, 40,1));
+        ScheduleTopRow.setLayout(new FlowLayout(FlowLayout.CENTER, 5,1));
         ScheduleTopRow.add(MonP);
         ScheduleTopRow.add(TueP);
         ScheduleTopRow.add(WedP);
