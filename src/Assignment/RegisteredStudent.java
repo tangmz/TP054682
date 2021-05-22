@@ -117,35 +117,16 @@ public class RegisteredStudent extends DateTime{
         select6.setLayout(new BorderLayout());
         Feedback f = new Feedback(cenLocation, UserName);
         select6.add(f);
-//        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
-//        SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
-//        Date date = new Date();
-//        String dayCheck = dayFormat.format(date);
-//        String hourCheck = hourFormat.format(date);
-//        String day = "Monday";
-//        int hourCheckInteger = Integer.parseInt(hourCheck);
-//        int i = 1;
-//        int startTime = 10;
-//        int endTime = 12;
-//        if (i == 1){
-//            startTime = 10;
-//            endTime = 12;
-//        }
-//        if (dayCheck == day){
-//            if ((hourCheckInteger > startTime)&&(hourCheckInteger <endTime)){
-//                
-//            }
-//            
-//                
-//        }
-        //select7 for payment 
+        //select7 for student attendance
         select7 = new JPanel();
         select7.setLayout(new BorderLayout());
         Attendance g = new Attendance(UserName, cenLocation);
         select7.add(g);
-
+        //select8 for student payment
         select8 = new JPanel();
         select8.setLayout(new BorderLayout());
+        Payment h = new Payment(UserName, cenLocation);
+        select8.add(h);
         //DisplayBody for the cardLayout
         displayBody.add(menu, "1");
         displayBody.add(select1, "2");

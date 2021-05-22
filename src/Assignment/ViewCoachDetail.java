@@ -62,7 +62,7 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
         coachIdL = new JLabel("Coach ID:");
         coachNameL = new JLabel("Name:");
         coachPhoneL = new JLabel("Phone:");
-        coachSportFeesL = new JLabel("Sport Fees per class (2 hours):");
+        coachSportFeesL = new JLabel("Sport Fees per month (8 classes):");
         coachStarL = new JLabel("Rating:");
         coachJDateL = new JLabel("Joined Date:");
         coachTDateL = new JLabel("Quit Date:");
@@ -189,7 +189,7 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
                         coachPhoneText.setText(coach.getCoachTel());
                         coachStarText.setText(coach.getCoachStar());
                         int coachSportFees = Integer.parseInt(coach.getCoachHRate());
-                        int coachFees = coachSportFees;
+                        int coachFees = coachSportFees*4;
                         sportFeesText.setText(Integer.toString(coachFees));
                         coachJDateText.setText(coach.getJDate());
                         coachTDateText.setText(coach.getTDate());

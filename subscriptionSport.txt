@@ -1,12 +1,12 @@
 Ng
 PetalingJaya
 BADMINTON
-150
-4
+600
+0
 
 Ng
 PetalingJaya
 BASKETBALL
-100
-3
+400
+0
 
