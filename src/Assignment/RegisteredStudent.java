@@ -141,17 +141,9 @@ public class RegisteredStudent extends DateTime{
         //select7 for payment 
         select7 = new JPanel();
         select7.setLayout(new BorderLayout());
-        select7.add(dateTime, BorderLayout.NORTH);
-        attendanceConfirm = new JButton("Attendace");
-        attendanceConfirm.setBackground(Color.GREEN);
-        attendanceConfirm.setFont(new Font("Arial", Font.BOLD, 30));
-        select7.add(attendanceConfirm, BorderLayout.CENTER);
-        attendanceConfirm.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                    
-            }
-        });
+        Attendance g = new Attendance(UserName, cenLocation);
+        select7.add(g);
+
         select8 = new JPanel();
         select8.setLayout(new BorderLayout());
         //DisplayBody for the cardLayout

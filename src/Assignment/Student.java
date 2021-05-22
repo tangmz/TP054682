@@ -1,8 +1,8 @@
 package Assignment;
-
+//Encapsulation for Student Login Details
 public class Student {
     private String stuID, stuName, stuUserN, stuPass, stuPlace, stuGender, stuPhone;
-
+    //Constructor
     public Student(String stuID, String stuName, String stuUserN, String stuPass, String stuPlace, String stuGender, String stuPhone) {
         this.stuID = stuID;
         this.stuName = stuName;
@@ -12,7 +12,7 @@ public class Student {
         this.stuGender = stuGender;
         this.stuPhone = stuPhone;
     }
-    
+    //Getter and Setter
     public String getStuID() {
         return stuID;
     }
