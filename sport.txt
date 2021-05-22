@@ -1,10 +1,10 @@
-RCSPJ04
-CRICKET
+RCSPJ01
+BADMINTON
 PetalingJaya
-Josephine
+Alexander
 
-RCSPJ06
+RCSPJ02
 BASKETBALL
 PetalingJaya
-Roland
+Josephine
 

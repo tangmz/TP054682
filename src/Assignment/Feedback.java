@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -19,22 +20,22 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class Feedback extends JPanel implements ActionListener{
-    private static JLabel timeL, sportIdL, sportNameL, coachIdL, coachNameL, coachPhoneL, coachSportFeesL, coachStarL, coachJDateL, coachTDateL;
+    private static JLabel timeL, sportIdL, sportNameL, coachIdL, coachNameL, coachPhoneL, coachSportFeesL, coachStarL, coachJDateL, coachTDateL, feedbackL;
     private static JTextField sportIdInText, sportNameInText, coachIdText, coachNameText, coachPhoneText, sportFeesText, coachStarText, coachJDateText, coachTDateText;
     public static JPanel PanelTop, PanelTSelect, PanelTView, PanelTV1, PanelTV2, PanelTV3, PanelTV4,
             PanelBody, PanelSouth, PanelSouthButtons; 
     private static JComboBox sportComB;
     private static JRadioButton AddB, ModB;
     private static ButtonGroup AddModSelection;
-    private static Button search;
+    private static Button search, submitFeedback;
     private static final DateTime dateTime = new DateTime();
     private static String coachId, sportId, whichOperation, location;
     private ArrayList<String> sportID = new ArrayList<String>();
     private static ArrayList <String> sportsType = new ArrayList <String>();
-    private String selectedSport;
+    private String selectedSport, studentName;
     public Feedback(String cenLocation, String userName){
         //List for the location
-        
+        studentName = userName;
         location = cenLocation;
         for(int i = 0; i<Assignment.subscription.size(); i++){
             Subscription_Constr sub = Assignment.subscription.get(i);
@@ -61,6 +62,7 @@ public class Feedback extends JPanel implements ActionListener{
         coachStarL = new JLabel("Rating:");
         coachJDateL = new JLabel("Joined Date:");
         coachTDateL = new JLabel("Quit Date:");
+        feedbackL = new JLabel("Feedback: ");
         
         coachIdText = new JTextField(15);
         coachIdText.setText(coachId);
@@ -95,6 +97,8 @@ public class Feedback extends JPanel implements ActionListener{
         //++Button++//
         search = new Button("Search");
         search.addActionListener(this);
+        submitFeedback = new Button("Submit Feedback");
+        submitFeedback.addActionListener(this);
         
         //++PanelDesign//++
         
@@ -157,6 +161,8 @@ public class Feedback extends JPanel implements ActionListener{
         PanelBody.add(sportFeesText);
         PanelBody.add(coachTDateL);
         PanelBody.add(coachTDateText);
+        PanelBody.add(feedbackL);
+        PanelBody.add(submitFeedback);
         
         PanelSouth = new JPanel();
         PanelSouth.setLayout(new BorderLayout(5,5));
@@ -182,7 +188,7 @@ public class Feedback extends JPanel implements ActionListener{
                         coachIdText.setText(coach.getCoachId());
                         coachNameText.setText(coach.getCoachN());
                         coachPhoneText.setText(coach.getCoachTel());
-                        coachStarText.setText(coach.getCoachStar());
+
                         int coachSportFees = Integer.parseInt(coach.getCoachHRate());
                         int coachFees = coachSportFees;
                         sportFeesText.setText(Integer.toString(coachFees));
@@ -195,6 +201,27 @@ public class Feedback extends JPanel implements ActionListener{
                 }
                 
             }
+        }else if (ae.getSource()==submitFeedback){
+            try{
+                PrintWriter f = new PrintWriter("subscriptionSport.txt");
+                for(int i =0; i<Assignment.subscription.size(); i++){
+                    selectedSport = sportComB.getSelectedItem().toString();
+                    Subscription_Constr sub = Assignment.subscription.get(i);
+                    if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionLocation().equals(location)&&sub.getSubscriptionSport().equals(selectedSport)){
+                        sub.setFeedback(coachStarText.getText());
+                    }
+                    f.println(sub.getSubscriptionName());
+                    f.println(sub.getSubscriptionLocation());
+                    f.println(sub.getSubscriptionSport());
+                    f.println(sub.getSubscriptionFee());
+                    f.println(sub.getFeedback());
+                    f.println();
+                }
+                 f.close();   
+            } catch(Exception ex){
+                    System.out.println("Error in stop!"); 
+            } 
+                
         }
         
     }
