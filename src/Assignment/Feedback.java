@@ -25,11 +25,9 @@ public class Feedback extends JPanel implements ActionListener{
     public static JPanel PanelTop, PanelTSelect, PanelTView, PanelTV1, PanelTV2, PanelTV3, PanelTV4,
             PanelBody, PanelSouth, PanelSouthButtons; 
     private static JComboBox sportComB, feedbackComB;
-    private static JRadioButton AddB, ModB;
-    private static ButtonGroup AddModSelection;
     private static Button search, submitFeedback;
     private static final DateTime dateTime = new DateTime();
-    private static String coachId, sportId, whichOperation, location;
+    private static String coachId, sportId, location;
     private ArrayList<String> sportID = new ArrayList<String>();
     private static ArrayList <String> sportsType = new ArrayList <String>();
     private String selectedSport, studentName, selectedRating;
@@ -75,8 +73,6 @@ public class Feedback extends JPanel implements ActionListener{
         coachPhoneText.setHorizontalAlignment(JTextField.CENTER);
         sportFeesText = new JTextField(15);
         sportFeesText.setHorizontalAlignment(JTextField.CENTER);
-        coachStarText = new JTextField(15);
-        coachStarText.setHorizontalAlignment(JTextField.CENTER);
         coachJDateText = new JTextField(15);
         coachJDateText.setHorizontalAlignment(JTextField.CENTER);
         coachTDateText = new JTextField(15);
@@ -91,7 +87,6 @@ public class Feedback extends JPanel implements ActionListener{
         coachNameText.setEnabled(false);
         coachPhoneText.setEnabled(false);
         sportFeesText.setEnabled(false);
-        coachStarText.setEnabled(true);
         coachJDateText.setEnabled(false);
         coachTDateText.setEnabled(false);
 
