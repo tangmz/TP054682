@@ -110,6 +110,7 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                 
             
         }else if(ae.getSource() == unsubscribe){
+            selectedSport = sportComB.getSelectedItem().toString();
             try{
                 PrintWriter f = new PrintWriter("subscriptionSport.txt");
                 for (int i = 0; i<Assignment.subscription.size(); i++){
