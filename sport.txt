@@ -3,11 +3,6 @@ CRICKET
 PetalingJaya
 Josephine
 
-RCSPJ05
-BADMINTON
-PetalingJaya
-Ng
-
 RCSPJ06
 BASKETBALL
 PetalingJaya

@@ -27,8 +27,9 @@ public class Visitor implements ActionListener{
     private static ArrayList <String> sportsType = new ArrayList <String>();
     private static ArrayList <String> locationType = new ArrayList <String>();
     private JComboBox location, sportList;
-    private String selectedLocation;
+    private String selectedLocation, selectedSport;
     public void Visitor(){
+        //Image and Button Design
         registerLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/sign up.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
         register = new JButton("Register",registerLogo);
         register.setFont(new Font("Arial", Font.BOLD, 20));
@@ -41,11 +42,21 @@ public class Visitor implements ActionListener{
         viewB = new JButton("View", viewLogo);
         viewB.setFont(new Font("Arial", Font.BOLD,20));
         viewB.setBackground(Color.LIGHT_GRAY);
+        //Frame Design
         frame.welcome.setText("Welcome To Real Champion Sport Academy");
         frame.setSize(950,600);
+        //JComboBox to let user to choose for location
         location = new JComboBox(Location.values());
- 
         location.setSelectedItem("PetalingJaya");
+        for(int i = 0; i<Assignment.sportInfo.size(); i++){
+            Sport_Constr sport = Assignment.sportInfo.get(i);
+            if(sport.getCenter().equals(location)){
+                sportsType.add(sport.getSportN()); 
+                
+            }
+        }
+        sportList = new JComboBox(sportsType.toArray());
+        //Panel
         view = new JPanel();
         view.setLayout(new GridLayout(2,1));
         view.setBorder(BorderFactory.createTitledBorder("Location: "));
@@ -57,6 +68,7 @@ public class Visitor implements ActionListener{
         }
         view.add(location);
         selectedLocation = location.getSelectedItem().toString();
+        selectedSport = sportList.getSelectedItem().toString();
         
         frame.Body.add(view, BorderLayout.CENTER);
         Footer = new JPanel();
@@ -79,7 +91,7 @@ public class Visitor implements ActionListener{
         if(ae.getSource() == viewB){
             for(int i = 0; i<Assignment.schedule.size(); i++){
                 Schedule_Constr schedule = Assignment.schedule.get(i);
-                if (selectedLocation.equals("PetalingJaya")){
+                if (selectedLocation.equals(schedule.getCenter())){
                     JOptionPane.showMessageDialog(viewB, "Monday: "+schedule.getMon1()+", "+schedule.getMon2()+", "+schedule.getMon3()+"\nTuesday: "+schedule.getTue1()+", "+schedule.getTue2()+", "+schedule.getTue3()+"\nWednesday: "+schedule.getWed1()+", "+schedule.getWed2()+", "+schedule.getWed3()+"\nThursday: "+schedule.getThu1()+", "+schedule.getThu2()+", "+schedule.getThu3()+"\nFriday: "+schedule.getFri1()+", "+schedule.getFri2()+", "+schedule.getFri3()+"\nSaturday: "+schedule.getSat1()+", "+schedule.getSat2()+", "+schedule.getSat3()+"\nSunday: "+schedule.getSun1()+", "+schedule.getSun2()+", "+schedule.getSun3());
                 }else if (selectedLocation.equals("BukitJalil")){
                     JOptionPane.showMessageDialog(viewB, "Monday: "+schedule.getMon1()+", "+schedule.getMon2()+", "+schedule.getMon3()+"\nTuesday: "+schedule.getTue1()+", "+schedule.getTue2()+", "+schedule.getTue3()+"\nWednesday: "+schedule.getWed1()+", "+schedule.getWed2()+", "+schedule.getWed3()+"\nThursday: "+schedule.getThu1()+", "+schedule.getThu2()+", "+schedule.getThu3()+"\nFriday: "+schedule.getFri1()+", "+schedule.getFri2()+", "+schedule.getFri3()+"\nSaturday: "+schedule.getSat1()+", "+schedule.getSat2()+", "+schedule.getSat3()+"\nSunday: "+schedule.getSun1()+", "+schedule.getSun2()+", "+schedule.getSun3());

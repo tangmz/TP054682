@@ -2,37 +2,26 @@ package Assignment;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class RegisteredStudent extends DateTime{    
-    private JPanel header, menuBody, displayBody, sidePanel, attendancePanel, menu, select1, select2, select3, select4, select5, select6, select7, select8;
-    private String time;
-    private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, subscribeSport, attendanceConfirm, logout, modify, subscription;
+    private JPanel menuBody, displayBody, menu, select1, select2, select3, select4, select5, select6, select7, select8;
+    private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, attendanceConfirm, logout, subscription;
     private JLabel background;
     private ImageIcon viewCoachLogo, viewRecordLogo, viewRegSportLogo, modifyLogo, feedbackLogo, attendanceLogo, paymentLogo, logoutLogo, backgroundImage, subscriptionLogo;
-    private JComboBox locationReg;
     public void FrameLoad(String UserName, String cenLocation){
         //++Logout Button++//
         CardLayout cl = new CardLayout();
@@ -123,7 +112,7 @@ public class RegisteredStudent extends DateTime{
         select5 = new JPanel();
         SubscriptionSport e = new SubscriptionSport(UserName, cenLocation);
         select5.add(e);
-        //Attendance Panel for taking Attendance
+        //select 6 Panel is feedback Panel that allow student to give feedback to the coach
         select6 = new JPanel();
         select6.setLayout(new BorderLayout());
         Feedback f = new Feedback(cenLocation, UserName);
@@ -165,7 +154,7 @@ public class RegisteredStudent extends DateTime{
         });
         select8 = new JPanel();
         select8.setLayout(new BorderLayout());
-        
+        //DisplayBody for the cardLayout
         displayBody.add(menu, "1");
         displayBody.add(select1, "2");
         displayBody.add(select2, "3");
@@ -202,67 +191,13 @@ public class RegisteredStudent extends DateTime{
                 cl.show(displayBody, "4");
             }
         });
-//        locationReg.addFocusListener(new FocusListener(){
-//            @Override
-//            public void focusGained(FocusEvent fe) {
-//                locationReg.setModel(new DefaultComboBoxModel(Location.values()));
-//                locationReg.showPopup();
-//            }
-//
-//            @Override
-//            public void focusLost(FocusEvent fe) {
-//                
-//            }
-//            
-//        });
+
         modifyRecord.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 cl.show(displayBody, "5");
-////                for(int i=0; i<Assignment.studentInfo.size(); i++){
-////                    Student c = Assignment.studentInfo.get(i);
-////                    if(UserName.equals(c.getStuUserN())){
-////                        modifyID.setText(c.getStuID());
-////                        modifyName.setText(c.getStuName());
-////                        modifyUserN.setText(c.getStuUserN());
-////                        modifyPass.setText(c.getStuPass());
-////                        
-////                        modifyGender.setText(c.getStuGender());
-////                        modifyPhone.setText(c.getStuPhone());
-//                    }
-//                }
             }
         });
-//        modify.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent ae) {
-//                String selectedLocation = locationReg.getSelectedItem().toString();
-//                modPass = modifyPass.getText();
-//                modPhone = modifyPhone.getText();
-//                try{
-//                    PrintWriter f = new PrintWriter("studentLogin.txt");
-//                    for(int i=0; i<Assignment.studentInfo.size(); i++){
-//                        Student c = Assignment.studentInfo.get(i);
-//                        if(UserName.equals(c.getStuUserN())){
-//                            c.setStuPass(modPass);
-//                            c.setStuPlace(selectedLocation);
-//                            c.setStuPhone(modPhone);
-//                        }    
-//                        f.println(c.getStuID());
-//                        f.println(c.getStuName());
-//                        f.println(c.getStuUserN());
-//                        f.println(c.getStuPass());
-//                        f.println(c.getStuPlace());
-//                        f.println(c.getStuGender());
-//                        f.println(c.getStuPhone());
-//                        f.println();
-//                    }
-//                    f.close();
-//                } catch(Exception ex){
-//                            System.out.println("Error in stop!");
-//                    }
-//            }
-//        });
         subscription.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -284,53 +219,10 @@ public class RegisteredStudent extends DateTime{
         payment.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-
+                cl.show(displayBody, "9");
             }
         });
 
 
     }
 }
-
-//    @Override
-//    public void actionPerformed(ActionEvent ae) {
-//        
-//    }
-//}
-//    private JButton view, modify, feedback, exit;
-//    Image newImage = new ImageIcon(this.getClass().getResource("/PicLibrary/badminton.png")).getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-//    Icon image1 = new ImageIcon(newImage);
-//    private JPanel header, menuBody, menuTop, menuR1, menuR2;
-//    private String user;
-//    private Button logout;
-//    public void FrameLoad(String userName){
-//        JFrameFormat frame = new JFrameFormat(userName);
-//        frame.setVisible(true);
-//        logout = new Button("Logout");
-//        logout.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent ae) {
-//                frame.dispose();
-//                Assignment.login.setVisible(true);
-//            }
-//        });
-//        frame.Body.add(logout);
-//    }
-//}
-//    
-//    public RegisteredStudent(){
-//        setSize(300,200);
-//        setLocation(800,300);
-//        setLayout(new FlowLayout());
-//        setBackground(Color.white);
-//        view = new JButton(image1);
-//        add(view);
-//        setVisible(false);
-//    }
-//
-//    @Override
-//    public void actionPerformed(ActionEvent ae) {
-//     
-//    }
-//    
-//}

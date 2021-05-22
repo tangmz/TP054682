@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class SubscriptionSport extends JPanel implements ActionListener{
@@ -23,6 +24,7 @@ public class SubscriptionSport extends JPanel implements ActionListener{
     private JButton subscribe, unsubscribe;
     private String location, studentName,selectedSport, feedback;
     private JComboBox sportComB;
+    private boolean found=true;
     private static ArrayList <String> sportsType = new ArrayList <String>();
     public SubscriptionSport(String userName, String cenLocation){
         //Image and JButton
@@ -66,34 +68,69 @@ public class SubscriptionSport extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource()== subscribe){
-            selectedSport = sportComB.getSelectedItem().toString();
-            for(int i=0; i<Assignment.coachInfo.size(); i++){
-                Coach_Constr coach = Assignment.coachInfo.get(i);
-                if (coach.getCoachCenter().equals(location)&&(coach.getCoach_Sp_N().equals(selectedSport))){
-                    Subscription_Constr sub = new Subscription_Constr(studentName, location, selectedSport, coach.getCoachHRate(), feedback);
-                    Assignment.subscription.add(sub);
-                        
-                    try{
-                        PrintWriter f = new PrintWriter("subscriptionSport.txt");
-                        for(i=0; i<Assignment.subscription.size(); i++){
-                            Subscription_Constr c = Assignment.subscription.get(i);
-                            f.println(c.getSubscriptionName());
-                            f.println(c.getSubscriptionLocation());
-                            f.println(c.getSubscriptionSport());
-                            f.println(c.getSubscriptionFee());
-                            f.println(c.getFeedback());
-                            f.println();
-                        }
-                        f.close();
-                    } catch(Exception ex){
-                        System.out.println("Error in stop!");
-                            
-                        
-                    }
+           selectedSport = sportComB.getSelectedItem().toString();
+           for(int i = 0; i <Assignment.subscription.size(); i++){
+                Subscription_Constr sub = Assignment.subscription.get(i);
+                if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionSport().equals(selectedSport)&&sub.getSubscriptionLocation().equals(location)){
+                    found = false;
+                }else{
+                    found = true;
                 }
             }
-        }else if(ae.getSource() == unsubscribe){
+            if(found){
+                for(int i=0; i<Assignment.coachInfo.size(); i++){
+                    Coach_Constr coach = Assignment.coachInfo.get(i);
+                    if (coach.getCoachCenter().equals(location)&&(coach.getCoach_Sp_N().equals(selectedSport))){
+                        Subscription_Constr sub = new Subscription_Constr(studentName, location, selectedSport, coach.getCoachHRate(), feedback);
+                        Assignment.subscription.add(sub);
+                    }
+                }
+                try{
+                    PrintWriter f = new PrintWriter("subscriptionSport.txt");
+                    for(int i=0; i<Assignment.subscription.size(); i++){
+                        Subscription_Constr c = Assignment.subscription.get(i);
+                        f.println(c.getSubscriptionName());
+                        f.println(c.getSubscriptionLocation());
+                        f.println(c.getSubscriptionSport());
+                        f.println(c.getSubscriptionFee());
+                        f.println(c.getFeedback());
+                        f.println();
+                    }
+                    f.close();
+                    JOptionPane.showMessageDialog(unsubscribe, "You have subscribed "+selectedSport);
+                } catch(Exception ex){
+                    System.out.println("Error!");
+                }
+           }else{
+               JOptionPane.showMessageDialog(subscribe, "Sport has subscribed");
+           }
+                            
+                        
+                    
+                
             
+        }else if(ae.getSource() == unsubscribe){
+            try{
+                PrintWriter f = new PrintWriter("subscriptionSport.txt");
+                for (int i = 0; i<Assignment.subscription.size(); i++){
+                    Subscription_Constr sub = Assignment.subscription.get(i);
+                    if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionSport().equals(selectedSport)&&sub.getSubscriptionLocation().equals(location)){
+                        Assignment.subscription.remove(sub);
+                        break;
+                    }
+                    f.println(sub.getSubscriptionName());
+                    f.println(sub.getSubscriptionLocation());
+                    f.println(sub.getSubscriptionSport());
+                    f.println(sub.getSubscriptionFee());
+                    f.println(sub.getFeedback());
+                    f.println();
+                }
+                f.close();
+                JOptionPane.showMessageDialog(unsubscribe, "You have unsubscribed "+selectedSport);
+                  
+            } catch(Exception ex){
+                System.out.println("Error!"); 
+            }  
         }
     }
 }
