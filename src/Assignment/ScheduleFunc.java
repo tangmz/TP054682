@@ -34,7 +34,7 @@ class ScheduleFunc  extends JPanel{
         sportsAvailable.removeAll(sportsAvailable);
         for(int i = 0; i<Assignment.sportInfo.size();i++){
             Sport_Constr sp = Assignment.sportInfo.get(i);
-            if(sp.getCenter().equals(RegisteredAdmin.centerLocation)&&!sp.getCoachN().equals("-")){
+            if(sp.getCenter().equals(RegisteredAdmin.centerLocation)){
                 sportsAvailable.add(sp.getSportN());
             }
         }

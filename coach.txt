@@ -1,7 +1,7 @@
 CN01
 Alexander
 0123298909
-150
+250
 0
 PetalingJaya
 RCSPJ01
@@ -13,7 +13,7 @@ KL
 CN02
 Josephine
 012897678
-100
+150
 0
 PetalingJaya
 RCSPJ02

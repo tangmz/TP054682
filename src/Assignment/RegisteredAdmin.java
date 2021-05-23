@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class RegisteredAdmin extends DateTime{
-    public JPanel header, menuBody, displayBody, Tab1, Tab2, Tab3, Tab4,Tab5;
+    public static JPanel header, menuBody, displayBody, Tab1, Tab2, Tab3, Tab4, Tab5;
     private int counter;
     public static String centerLocation;
     public Button AddModRecord, SearchRecord, CoachRecord, ScheduleB, manageSystem, logout; //SearchRecord inclusive of Sorting
@@ -117,8 +117,9 @@ public class RegisteredAdmin extends DateTime{
         ScheduleFunc sch = new ScheduleFunc();
         AdminManageSystem adMS = new AdminManageSystem();
         frame.setVisible(true);
+        
         frame.CenLocation.setSelectedItem(Location.valueOf(centerLocation));
-        while(Check = true){
+        while(Check == true){
             Admin c = Assignment.adminInfo.get(this.counter);
             if("no".equals(c.getSuperRole())){
                 frame.CenLocation.setEnabled(false);
@@ -225,5 +226,72 @@ public class RegisteredAdmin extends DateTime{
         cl.show(displayBody, "1");
         frame.Body.add(menuBody, BorderLayout.WEST);
         frame.Body.add(displayBody, BorderLayout.CENTER);
+        
+        frame.CenLocation.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(frame.CenLocation.getSelectedItem().equals(Location.Putrajaya)){
+                    RegisteredAdmin.centerLocation = Location.Putrajaya.toString();
+                    Tab1.remove(aa);
+                    Tab2.remove(as);
+                    Tab3.remove(vc);
+                    Tab4.remove(sch);
+                    Tab5.remove(adMS);
+                    Repaint repaint = new Repaint();
+                }else if(frame.CenLocation.getSelectedItem().equals(Location.BukitJalil)){
+                    RegisteredAdmin.centerLocation = Location.BukitJalil.toString();
+                    Tab1.remove(aa);
+                    Tab2.remove(as);
+                    Tab3.remove(vc);
+                    Tab4.remove(sch);
+                    Tab5.remove(adMS);
+                    Repaint repaint = new Repaint();
+                }
+                else if(frame.CenLocation.getSelectedItem().equals(Location.PetalingJaya)){
+                    RegisteredAdmin.centerLocation = Location.PetalingJaya.toString();
+                    Tab1.remove(aa);
+                    Tab2.remove(as);
+                    Tab3.remove(vc);
+                    Tab4.remove(sch);
+                    Tab5.remove(adMS);
+                    Repaint repaint = new Repaint();
+                }
+                else if(frame.CenLocation.getSelectedItem().equals(Location.ShahAlam)){
+                    RegisteredAdmin.centerLocation = Location.ShahAlam.toString();
+                    Tab1.remove(aa);
+                    Tab2.remove(as);
+                    Tab3.remove(vc);
+                    Tab4.remove(sch);
+                    Tab5.remove(adMS);
+                    Repaint repaint = new Repaint();
+                }
+            }
+        });
+    }
+
+    private static class Repaint {
+
+        public Repaint() {
+            AdminAddFunc aa = new AdminAddFunc();
+            AdminSearchFunc as = new AdminSearchFunc();
+            ViewCoachFunc vc = new ViewCoachFunc();
+            ScheduleFunc sch = new ScheduleFunc();
+            AdminManageSystem adMS = new AdminManageSystem();
+            Tab1.add(aa);
+            Tab1.revalidate();
+            Tab1.repaint();
+            Tab2.add(as);
+            Tab2.revalidate();
+            Tab2.repaint();
+            Tab3.add(vc);
+            Tab3.revalidate();
+            Tab3.repaint();
+            Tab4.add(sch);
+            Tab4.revalidate();
+            Tab4.repaint();
+            Tab5.add(adMS);
+            Tab5.revalidate();
+            Tab5.repaint();
+        }
     }
 }
