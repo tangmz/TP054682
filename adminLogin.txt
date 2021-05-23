@@ -1,7 +1,7 @@
 AN1
 Alex
-123
 Alex
+123
 PetalingJaya
 Male
 0123265468
@@ -21,6 +21,15 @@ c
 c
 c
 BukitJalil
+Male
+123
+no
+
+AN4
+a
+a
+a
+PetalingJaya
 Male
 123
 no
