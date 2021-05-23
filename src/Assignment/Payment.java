@@ -1,8 +1,5 @@
 package Assignment;
 
-import static Assignment.AdminAddFunc.PanelSouth;
-import static Assignment.AdminAddFunc.PanelSouthButtons;
-import static Assignment.Feedback.PanelTV1;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
@@ -13,25 +10,25 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.swing.BorderFactory;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class Payment extends JPanel implements ActionListener {
-    private static JLabel timeL, studentNameL, outstandingFeesL, amountPayL, title;
-    private static JTextField amountPayText, studentNameText,sportFeesText;
+    private static JLabel timeL, studentNameL, outstandingFeesL, amountPayL, title, totalPayL;
+    private static JTextField amountPayText, studentNameText,sportFeesText, totalPayText;
     public static JPanel PanelTop, PanelTSelect, PanelTView, PanelTV1, PanelTV2, PanelTV3, PanelTV4,
             PanelBody, PanelSouth, PanelSouthButtons; 
     private static Button pay,paymentDetail;
     private static final DateTime dateTime = new DateTime();
-    private static String location;
-    private String studentName;
+    private static String location, studentAttendance = "0";
+    private String studentName, totalFee,tempFee;
     private int sportFees;
-    public Payment(String cenLocation, String userName){
+    private boolean flag = true;
+    public Payment(String userName, String cenLocation){
         //List for the location
         studentName = userName;
         location = cenLocation;
@@ -43,7 +40,8 @@ public class Payment extends JPanel implements ActionListener {
         title = new JLabel("Payment", JLabel.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 30));
         studentNameL = new JLabel("Student Name:");
-        outstandingFeesL = new JLabel("Total Outstanding Payment:");
+        outstandingFeesL = new JLabel("Outstanding Balance:");
+        totalPayL = new JLabel("Total Payment:");
         amountPayL = new JLabel("Amount payment: ");
 
         studentNameText = new JTextField(15);
@@ -52,6 +50,8 @@ public class Payment extends JPanel implements ActionListener {
         sportFeesText.setHorizontalAlignment(JTextField.CENTER);
         amountPayText = new JTextField(15);
         amountPayText.setHorizontalAlignment(JTextField.CENTER);
+        totalPayText = new JTextField(15);
+        totalPayText.setHorizontalAlignment(JTextField.CENTER);
 
 
         
@@ -60,8 +60,10 @@ public class Payment extends JPanel implements ActionListener {
         studentNameText.setEnabled(false);
         sportFeesText.setEnabled(false);
         amountPayText.setEnabled(true);
+        totalPayText.setEnabled(false);
 
-        //Retrieve data from subscriptionSport.txt
+        //Set Text for Student Name
+        studentNameText.setText(studentName);
         
         //++Button++//
         pay = new Button("Pay");
@@ -107,6 +109,8 @@ public class Payment extends JPanel implements ActionListener {
         PanelBody.setLayout(gL1);
         PanelBody.add(studentNameL);
         PanelBody.add(studentNameText);
+        PanelBody.add(totalPayL);
+        PanelBody.add(totalPayText);
         PanelBody.add(outstandingFeesL);
         PanelBody.add(sportFeesText);
         PanelBody.add(amountPayL);
@@ -129,19 +133,23 @@ public class Payment extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource()==pay){
             try{
-                PrintWriter f = new PrintWriter("subscriptionSport.txt");
-                for(int i=0; i<Assignment.subscription.size(); i++){
-                    Subscription_Constr c = Assignment.subscription.get(i);
-                    if(c.getSubscriptionName().equals(studentName)&&c.getSubscriptionLocation().equals(location)){
+                PrintWriter f = new PrintWriter("studentPayment.txt");
+                for(int i=0; i<Assignment.payment.size(); i++){
+                    StudentPayment c = Assignment.payment.get(i);
+                    if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
+                        System.out.println("HI");
+                        int totalAmountPay = Integer.parseInt(c.getStudentBalance());
                         int amountPay = Integer.parseInt(amountPayText.getText());
-                        int totalAmountPay = Integer.parseInt(c.getSubscriptionFee());
-                        c.setSubscriptionFee(amountPayText.getText());
+                        int outstandingBalance = totalAmountPay - amountPay;
+                        String finalOutBalance = Integer.toString(outstandingBalance);
+                        JOptionPane.showMessageDialog(pay, "Your current outstanding balance: "+finalOutBalance);
+                        c.setStudentBalance(finalOutBalance);
                     }
-                    f.println(c.getSubscriptionName());
-                    f.println(c.getSubscriptionLocation());
-                    f.println(c.getSubscriptionSport());
-                    f.println(c.getSubscriptionFee());
-                    f.println(c.getFeedback());
+                    f.println(c.getStudentName());
+                    f.println(c.getStudentLocation());
+                    f.println(c.getStudentTotalPayment());
+                    f.println(c.getStudentBalance());
+                    f.println(c.getStudentAttendance());
                     f.println();
                 }
                 f.close();   
@@ -152,11 +160,50 @@ public class Payment extends JPanel implements ActionListener {
             for(int i=0; i<Assignment.subscription.size(); i++){
             Subscription_Constr c = Assignment.subscription.get(i);
                 if(c.getSubscriptionName().equals(studentName)&&c.getSubscriptionLocation().equals(location)){
-                    studentNameText.setText(c.getSubscriptionName());
-                    System.out.println(c.getSubscriptionFee());
                     int coachSportFees = Integer.parseInt(c.getSubscriptionFee());
-                    sportFees = coachSportFees*4;
-                    sportFeesText.setText(Integer.toString(sportFees));
+                    sportFees = sportFees + coachSportFees;
+                    totalFee = Integer.toString(sportFees);
+                    totalPayText.setText(totalFee);
+                    flag = true;
+                }else{
+                    flag = false;
+                   
+                }
+            }
+            if (flag){
+                for(int i=0; i<Assignment.payment.size(); i++){
+                    StudentPayment c = Assignment.payment.get(i);
+                    if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
+                        tempFee = c.getStudentBalance();
+                        flag = false;
+                        break;
+                    }else{
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag){
+                    sportFeesText.setText(totalFee);
+                    StudentPayment studentPay = new StudentPayment(studentName, location, totalPayText.getText(), totalPayText.getText(), studentAttendance);
+                    Assignment.payment.add(studentPay);
+                    try{
+                        PrintWriter f = new PrintWriter("studentPayment.txt");
+                        for(int i=0; i<Assignment.payment.size(); i++){
+                            StudentPayment c = Assignment.payment.get(i);
+                            f.println(c.getStudentName());
+                            f.println(c.getStudentLocation());
+                            f.println(c.getStudentTotalPayment());
+                            f.println(c.getStudentBalance());
+                            f.println(c.getStudentAttendance());
+                            f.println();
+                        }
+                        f.close();
+                    } catch(Exception ex){
+                        System.out.println("Error in stop!");
+                    }
+                }else{
+                    sportFeesText.setText(tempFee);
+                    JOptionPane.showMessageDialog(paymentDetail, "Your payment details has created");
                 }
             }
         }

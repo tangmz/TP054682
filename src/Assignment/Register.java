@@ -44,6 +44,8 @@ public class Register extends JFrame implements ActionListener{
         ButtonGroup buttonGender = new ButtonGroup();
         buttonGender.add(female);
         buttonGender.add(male);
+        male.addActionListener(this);
+        female.addActionListener(this);
         /*JComboBox comboBox = new JComboBox();
         x = new JFrame();
         x.setSize(500, 300);
@@ -159,7 +161,6 @@ public class Register extends JFrame implements ActionListener{
         visitorUserN = userLoginName.getText();
         visitorPass = userPass.getText();
         visitorPhone = userPhone.getText();
-        visitorGender = "Male";
         if (adminB.isSelected()){
                 if(e.getSource() == create){
                     String pinAdmin = JOptionPane.showInputDialog(this, "Pin");
@@ -249,6 +250,10 @@ public class Register extends JFrame implements ActionListener{
             userPass.setText("");
             this.dispose();
             Assignment.login.setVisible(true);
+        }else if(e.getSource() == male){
+            visitorGender = "Male";
+        }else if (e.getSource() == female){
+            visitorGender = "Female";
         }
     }
 }

@@ -4,29 +4,29 @@ Ng
 123
 PetalingJaya
 Male
-0124652384
+0123290890
 
 SN2
-Jordan
-Jordan
+Alex
+Alex
 123
 PetalingJaya
 Male
-0176532654
+01232923232
 
 SN3
-John
-John
+Tang
+tang
 123
 PetalingJaya
 Male
-0123459862
+0123290982
 
 SN4
-Allen
-Allen
-123
+a
+a
+a
 PetalingJaya
-Male
-0125648956
+Female
+1123
 
