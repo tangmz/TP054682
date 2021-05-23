@@ -104,7 +104,7 @@ public class Visitor implements ActionListener{
             for(int i = 0; i<Assignment.sportInfo.size(); i++){
                 Sport_Constr c = Assignment.sportInfo.get(i);
                 if (c.getCenter().equals(selectedLocation)){
-                    JOptionPane.showMessageDialog(viewB, "Availble Sport: "+c.getSportN());
+                    JOptionPane.showMessageDialog(viewB, "Available Sport: "+c.getSportN());
                     flag = false;
                     break;
                 }else{
