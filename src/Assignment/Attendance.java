@@ -31,12 +31,10 @@ public class Attendance extends JPanel implements ActionListener{
     public Attendance(String userName, String cenLocation){
         studentName = userName;
         currentMonth = month.getFullMonth();
+        dayCheck = month.getDay();
+        hourCheck = month.getHour();
+        
         setLayout(new BorderLayout());
-        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE");
-        SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
-        Date date = new Date();
-        dayCheck = dayFormat.format(date);
-        hourCheck = hourFormat.format(date);
         location = cenLocation;
         //Read the data from subscription Array and put into JComboBox
         sportName.removeAll(sportName);

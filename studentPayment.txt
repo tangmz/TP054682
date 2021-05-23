@@ -1,13 +1,13 @@
 Ng
 PetalingJaya
 1000
-800
+600
 5
 
 Ng
 PetalingJaya
 1000
-800
+600
 5
 
 tang
