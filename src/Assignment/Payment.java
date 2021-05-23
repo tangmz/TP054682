@@ -24,7 +24,7 @@ public class Payment extends JPanel implements ActionListener {
             PanelBody, PanelSouth, PanelSouthButtons; 
     private static Button pay,paymentDetail;
     private static final DateTime dateTime = new DateTime();
-    private static String location, studentAttendance = "0";
+    private static String location, studentAttendance = "8";
     private String studentName, totalFee,tempFee;
     private int sportFees;
     private boolean flag = true;
@@ -167,7 +167,7 @@ public class Payment extends JPanel implements ActionListener {
                     flag = true;
                 }else{
                     flag = false;
-                   
+                    break;
                 }
             }
             if (flag){
@@ -178,13 +178,13 @@ public class Payment extends JPanel implements ActionListener {
                         flag = false;
                         break;
                     }else{
+                        sportFeesText.setText(totalFee);
                         flag = true;
                         break;
                     }
                 }
                 if (flag){
-                    sportFeesText.setText(totalFee);
-                    StudentPayment studentPay = new StudentPayment(studentName, location, totalPayText.getText(), totalPayText.getText(), studentAttendance);
+                    StudentPayment studentPay = new StudentPayment(studentName, location, totalPayText.getText(), sportFeesText.getText(), studentAttendance);
                     Assignment.payment.add(studentPay);
                     try{
                         PrintWriter f = new PrintWriter("studentPayment.txt");

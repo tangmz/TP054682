@@ -22,15 +22,18 @@ public class SubscriptionSport extends JPanel implements ActionListener{
     private JLabel subscriptionTitle;
     private ImageIcon subscribeLogo, unsubscribeLogo;
     private JButton subscribe, unsubscribe;
-    private String location, studentName,selectedSport, feedback;
+    private String location, studentName,selectedSport, feedback, totalFee, studentAttendance, monthlyFee;
+    private int sportFees;
     private JComboBox sportComB;
-    private boolean found=true;
+    private boolean found=true, found2=false;
     private static ArrayList <String> sportsType = new ArrayList <String>();
     public SubscriptionSport(String userName, String cenLocation){
-        //Image and JButton
+        //Define default variable for studentAttendace, feedback, studentName and location
+        studentAttendance = "8"; //8 classes per month
         feedback = "0";
         studentName = userName;
         location = cenLocation;
+        //Image and JButton
         subscribeLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/subscribe.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
         subscribe = new JButton("Subscribe", subscribeLogo);
         subscribe.setBackground(Color.WHITE);
@@ -104,6 +107,63 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                     JOptionPane.showMessageDialog(unsubscribe, "You have subscribed "+selectedSport);
                 } catch(Exception ex){
                     System.out.println("Error!");
+                }
+                sportFees = 0;
+                for(int i=0; i<Assignment.subscription.size(); i++){
+                Subscription_Constr c = Assignment.subscription.get(i);
+                    if(c.getSubscriptionName().equals(studentName)&&c.getSubscriptionLocation().equals(location)){
+                        monthlyFee = c.getSubscriptionFee();
+                        int coachSportFees = Integer.parseInt(monthlyFee);
+                        sportFees = sportFees + coachSportFees;
+                        totalFee = Integer.toString(sportFees);
+                        found = true;
+                    }else{
+                        found = false;
+                        
+                    }
+                }
+                if (found){
+                    for(int i=0; i<Assignment.payment.size(); i++){
+                        StudentPayment c = Assignment.payment.get(i);
+                        System.out.println(c.getStudentTotalPayment());
+                        System.out.println(monthlyFee);
+                        if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)&&c.getStudentTotalPayment().equals(monthlyFee)){
+                            found2 = false;
+                            break;
+                        }else{
+                            found2= true;
+                            break;
+                        }
+                    }
+                    if (found2){
+                        System.out.println("Data has created");
+                    }else{
+                        
+                        StudentPayment studentPay = new StudentPayment(studentName, location, totalFee, totalFee, studentAttendance);
+                        Assignment.payment.add(studentPay);
+                    }
+                    try{
+                        PrintWriter f = new PrintWriter("studentPayment.txt"); 
+                        for(int i=0; i<Assignment.payment.size(); i++){
+                            StudentPayment c = Assignment.payment.get(i);
+                            if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
+                                c.setStudentTotalPayment(totalFee);
+                                c.setStudentBalance(totalFee);
+                            }
+                            f.println(c.getStudentName());
+                            f.println(c.getStudentLocation());
+                            f.println(c.getStudentTotalPayment());
+                            f.println(c.getStudentBalance());
+                            f.println(c.getStudentAttendance());
+                            f.println();
+                        }
+                        f.close();
+                        
+                    } catch(Exception ex){
+                        System.out.println("Error in stop!");
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(subscribe, "Data not found");
                 }
            }else{
                JOptionPane.showMessageDialog(subscribe, "Sport has subscribed");
