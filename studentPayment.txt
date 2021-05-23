@@ -10,3 +10,9 @@ PetalingJaya
 800
 7
 
+tang
+PetalingJaya
+600
+600
+8
+

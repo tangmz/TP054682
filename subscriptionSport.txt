@@ -10,3 +10,9 @@ BASKETBALL
 400
 0
 
+tang
+PetalingJaya
+BADMINTON
+600
+2
+
