@@ -25,7 +25,7 @@ public class SubscriptionSport extends JPanel implements ActionListener{
     private String location, studentName,selectedSport, feedback, totalFee, studentAttendance, monthlyFee;
     private int sportFees;
     private JComboBox sportComB;
-    private boolean found=true, found2=false;
+    private boolean found=true, found2=false, found3 =false;
     private static ArrayList <String> sportsType = new ArrayList <String>();
     public SubscriptionSport(String userName, String cenLocation){
         //Define default variable for studentAttendace, feedback, studentName and location
@@ -50,7 +50,7 @@ public class SubscriptionSport extends JPanel implements ActionListener{
         d1 = new JPanel();
         d1.setLayout(new FlowLayout());
         //Sport that matched with the sportInfo if true then it will create Checkbox
-        
+        sportsType.removeAll(sportsType);
         location = cenLocation;
         for(int i = 0; i<Assignment.sportInfo.size(); i++){
             Sport_Constr sport = Assignment.sportInfo.get(i);
@@ -76,10 +76,10 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                 Subscription_Constr sub = Assignment.subscription.get(i);
                 if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionSport().equals(selectedSport)&&sub.getSubscriptionLocation().equals(location)){
                     found = false;
-                    break;
+                    
                 }else{
                     found = true;
-                    break;
+                    
                 }
             }
             if(found){
@@ -116,57 +116,32 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                         int coachSportFees = Integer.parseInt(monthlyFee);
                         sportFees = sportFees + coachSportFees;
                         totalFee = Integer.toString(sportFees);
-                        found = true;
-                    }else{
-                        found = false;
-                        
                     }
                 }
-                if (found){
+                StudentPayment studentPay = new StudentPayment(studentName, location, totalFee, totalFee, studentAttendance);
+                Assignment.payment.add(studentPay);
+                try{
+                    PrintWriter f = new PrintWriter("studentPayment.txt"); 
                     for(int i=0; i<Assignment.payment.size(); i++){
                         StudentPayment c = Assignment.payment.get(i);
-                        System.out.println(c.getStudentTotalPayment());
-                        System.out.println(monthlyFee);
-                        if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)&&c.getStudentTotalPayment().equals(monthlyFee)){
-                            found2 = false;
-                            break;
-                        }else{
-                            found2= true;
-                            break;
+                        if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
+                            c.setStudentTotalPayment(totalFee);
+                            c.setStudentBalance(totalFee);
                         }
+                        f.println(c.getStudentName());
+                        f.println(c.getStudentLocation());
+                        f.println(c.getStudentTotalPayment());
+                        f.println(c.getStudentBalance());
+                        f.println(c.getStudentAttendance());
+                        f.println();
                     }
-                    if (found2){
-                        System.out.println("Data has created");
-                    }else{
+                    f.close();
                         
-                        StudentPayment studentPay = new StudentPayment(studentName, location, totalFee, totalFee, studentAttendance);
-                        Assignment.payment.add(studentPay);
-                    }
-                    try{
-                        PrintWriter f = new PrintWriter("studentPayment.txt"); 
-                        for(int i=0; i<Assignment.payment.size(); i++){
-                            StudentPayment c = Assignment.payment.get(i);
-                            if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
-                                c.setStudentTotalPayment(totalFee);
-                                c.setStudentBalance(totalFee);
-                            }
-                            f.println(c.getStudentName());
-                            f.println(c.getStudentLocation());
-                            f.println(c.getStudentTotalPayment());
-                            f.println(c.getStudentBalance());
-                            f.println(c.getStudentAttendance());
-                            f.println();
-                        }
-                        f.close();
-                        
-                    } catch(Exception ex){
-                        System.out.println("Error in stop!");
-                    }
-                }else{
-                    JOptionPane.showMessageDialog(subscribe, "Data not found");
+                } catch(Exception ex){
+                    System.out.println("Error in stop!");
                 }
            }else{
-               JOptionPane.showMessageDialog(subscribe, "Sport has subscribed");
+               JOptionPane.showMessageDialog(subscribe, "Sport has subscribed"); 
            }
                             
                         

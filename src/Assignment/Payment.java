@@ -25,7 +25,7 @@ public class Payment extends JPanel implements ActionListener {
     private static Button pay,paymentDetail;
     private static final DateTime dateTime = new DateTime();
     private static String location, studentAttendance = "8";
-    private String studentName, totalFee,tempFee;
+    private String studentName,finalOutBalance;
     private int sportFees;
     private boolean flag = true;
     public Payment(String userName, String cenLocation){
@@ -137,12 +137,10 @@ public class Payment extends JPanel implements ActionListener {
                 for(int i=0; i<Assignment.payment.size(); i++){
                     StudentPayment c = Assignment.payment.get(i);
                     if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
-                        System.out.println("HI");
                         int totalAmountPay = Integer.parseInt(c.getStudentBalance());
                         int amountPay = Integer.parseInt(amountPayText.getText());
                         int outstandingBalance = totalAmountPay - amountPay;
-                        String finalOutBalance = Integer.toString(outstandingBalance);
-                        JOptionPane.showMessageDialog(pay, "Your current outstanding balance: "+finalOutBalance);
+                        finalOutBalance = Integer.toString(outstandingBalance);
                         c.setStudentBalance(finalOutBalance);
                     }
                     f.println(c.getStudentName());
@@ -151,61 +149,22 @@ public class Payment extends JPanel implements ActionListener {
                     f.println(c.getStudentBalance());
                     f.println(c.getStudentAttendance());
                     f.println();
+                    
                 }
-                f.close();   
+                f.close(); 
+                sportFeesText.setText(finalOutBalance);
             } catch(Exception ex){
                 System.out.println("Error in stop!"); 
             }  
         }else if(ae.getSource()==paymentDetail){
-            for(int i=0; i<Assignment.subscription.size(); i++){
-            Subscription_Constr c = Assignment.subscription.get(i);
-                if(c.getSubscriptionName().equals(studentName)&&c.getSubscriptionLocation().equals(location)){
-                    int coachSportFees = Integer.parseInt(c.getSubscriptionFee());
-                    sportFees = sportFees + coachSportFees;
-                    totalFee = Integer.toString(sportFees);
-                    totalPayText.setText(totalFee);
-                    flag = true;
-                }else{
-                    flag = false;
-                    break;
+            for(int i=0; i<Assignment.payment.size(); i++){
+                StudentPayment c = Assignment.payment.get(i);
+                if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
+                    totalPayText.setText(c.getStudentTotalPayment());
+                    sportFeesText.setText(c.getStudentBalance());
                 }
             }
-            if (flag){
-                for(int i=0; i<Assignment.payment.size(); i++){
-                    StudentPayment c = Assignment.payment.get(i);
-                    if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
-                        tempFee = c.getStudentBalance();
-                        flag = false;
-                        break;
-                    }else{
-                        sportFeesText.setText(totalFee);
-                        flag = true;
-                        break;
-                    }
-                }
-                if (flag){
-                    StudentPayment studentPay = new StudentPayment(studentName, location, totalPayText.getText(), sportFeesText.getText(), studentAttendance);
-                    Assignment.payment.add(studentPay);
-                    try{
-                        PrintWriter f = new PrintWriter("studentPayment.txt");
-                        for(int i=0; i<Assignment.payment.size(); i++){
-                            StudentPayment c = Assignment.payment.get(i);
-                            f.println(c.getStudentName());
-                            f.println(c.getStudentLocation());
-                            f.println(c.getStudentTotalPayment());
-                            f.println(c.getStudentBalance());
-                            f.println(c.getStudentAttendance());
-                            f.println();
-                        }
-                        f.close();
-                    } catch(Exception ex){
-                        System.out.println("Error in stop!");
-                    }
-                }else{
-                    sportFeesText.setText(tempFee);
-                    JOptionPane.showMessageDialog(paymentDetail, "Your payment details has created");
-                }
-            }
+            
         }
         
         

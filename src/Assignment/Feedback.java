@@ -36,6 +36,7 @@ public class Feedback extends JPanel implements ActionListener{
         //List for the location
         studentName = userName;
         location = cenLocation;
+        sportsType.removeAll(sportsType);
         for(int i = 0; i<Assignment.subscription.size(); i++){
             Subscription_Constr sub = Assignment.subscription.get(i);
             if(sub.getSubscriptionLocation().equals(location)){

@@ -36,6 +36,7 @@ public class ViewSchedule extends JPanel{
         }
         
         //++Filter only current and future available Months++//
+        Months.removeAll(Months);
         int month = Integer.parseInt(dT.getPartialMonth());
         String[] monthString = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         while(month<=12){

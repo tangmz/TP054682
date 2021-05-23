@@ -41,6 +41,7 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
         //List for the location
         
         location = cenLocation;
+        sportsType.removeAll(sportsType);
         for(int i = 0; i<Assignment.sportInfo.size(); i++){
             Sport_Constr sport = Assignment.sportInfo.get(i);
             if(sport.getCenter().equals(location)){
