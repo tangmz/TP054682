@@ -29,6 +29,7 @@ public class AdminManageSystem extends JPanel{
     private static final ArrayList <String> StudentUsername = new <String> ArrayList();
     public AdminManageSystem(){
         CardLayout cl = new CardLayout();
+        StudentUsername.removeAll(StudentUsername);
         
         for(int i = 0; i<Assignment.studentInfo.size();i++){
             Student c = Assignment.studentInfo.get(i);
@@ -68,6 +69,14 @@ public class AdminManageSystem extends JPanel{
         Lab4 = new JLabel("New Password:    ");
         Lab5 = new JLabel("Announcement Message:    ");
         cB1 = new JCheckBox();
+        cB1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+            }
+        });
+        
+        SuperAdmin sAd = new SuperAdmin();
         
         setLayout(new BorderLayout());
         
@@ -125,5 +134,18 @@ public class AdminManageSystem extends JPanel{
         
         add(Header, BorderLayout.NORTH);
         add(Body, BorderLayout.CENTER);
+    }
+    
+    class SuperAdmin{
+        SuperAdmin(){
+                    for(int i = 0; i<Assignment.adminInfo.size();i++){
+                    Admin a = Assignment.adminInfo.get(i);
+                    if(a.getAdUserN().equals(RegisteredAdmin.Username)&&a.getSuperRole().equals("yes")){
+                        cB1.setSelected(true);
+                    }else{
+                        cB1.setSelected(false);
+                    }
+        }
+        }
     }
 }
