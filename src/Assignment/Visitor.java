@@ -20,29 +20,37 @@ import javax.swing.JPanel;
 public class Visitor implements ActionListener{
     private JButton register, exit, viewB;
     private JPanel view, Footer; 
-    private JLabel welcome;
-    private ImageIcon exitLogo, viewLogo, registerLogo;
-    private java.util.Date date = new java.util.Date();
+    private JLabel welcomeL, background;
+    private ImageIcon exitLogo, viewLogo, registerLogo, backgroundImage;
     private JFrameFormat frame = new JFrameFormat("Visitor");
     private static ArrayList <String> sportsType = new ArrayList <String>();
     private static ArrayList <String> locationType = new ArrayList <String>();
-    private JComboBox location, sportList;
-    private String selectedLocation, selectedSport;
+    private JComboBox location;
+    private String selectedLocation;
     private boolean flag = true;
     public void Visitor(){
-        //Image and Button Design
+        //Create Image
+        backgroundImage = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/background.png")).getImage().getScaledInstance(300,300, Image.SCALE_SMOOTH));
         registerLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/sign up.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+        exitLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/logout.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+        viewLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/view.png")).getImage().getScaledInstance(100,100,Image.SCALE_SMOOTH));
+
+        //Create new Button and Design
         register = new JButton("Register",registerLogo);
         register.setFont(new Font("Arial", Font.BOLD, 20));
         register.setBackground(Color.LIGHT_GRAY);
-        exitLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/logout.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
         exit = new JButton ("Exit",exitLogo);
         exit.setFont(new Font("Arial", Font.BOLD, 20));
         exit.setBackground(Color.LIGHT_GRAY);
-        viewLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/view.png")).getImage().getScaledInstance(100,100,Image.SCALE_SMOOTH));
         viewB = new JButton("View", viewLogo);
         viewB.setFont(new Font("Arial", Font.BOLD,20));
         viewB.setBackground(Color.LIGHT_GRAY);
+        
+        //Create new label
+        welcomeL = new JLabel("Example", JLabel.CENTER);
+        welcomeL.setFont(new Font("Arial", Font.BOLD, 30));
+        background = new JLabel(backgroundImage);
+        
         //Frame Design
         frame.welcome.setText("Welcome To Real Champion Sport Academy");
         frame.setSize(950,600);
@@ -56,20 +64,12 @@ public class Visitor implements ActionListener{
                 
             }
         }
-        sportList = new JComboBox(sportsType.toArray());
         //Panel
         view = new JPanel();
         view.setLayout(new GridLayout(2,1));
-        view.setBorder(BorderFactory.createTitledBorder("Location: "));
-        
-        view.setBorder(BorderFactory.createTitledBorder("Sports: "));
-        for(int i = 0; i<Assignment.sportInfo.size(); i++){
-            Sport_Constr sport = Assignment.sportInfo.get(i);
-            locationType.add(sport.getCenter());        
-        }
-        view.add(location);
-        
-//        selectedSport = sportList.getSelectedItem().toString();
+        view.setBorder(BorderFactory.createTitledBorder("Announcement: "));
+        view.add(welcomeL);
+        view.add(background);
         
         frame.Body.add(view, BorderLayout.CENTER);
         Footer = new JPanel();
@@ -79,12 +79,9 @@ public class Visitor implements ActionListener{
         Footer.add(exit);
         frame.Body.add(Footer, BorderLayout.SOUTH);
         frame.setVisible(true);
-//        register = new Button("Register");
-//        exit = new Button("Exit");
         viewB.addActionListener(this);
         register.addActionListener((ActionListener) this);
         exit.addActionListener((ActionListener) this);
-//        setVisible(false);
     }
 
     @Override

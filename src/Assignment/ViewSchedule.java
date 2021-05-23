@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -12,10 +14,10 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ViewSchedule extends JPanel{
+public class ViewSchedule extends JPanel implements ActionListener{
     private JPanel Top, ScheduleBody, ScheduleTopRow, ScheduleBottomRow, ButtonPanel, MonP, TueP, WedP, ThuP, FriP, SatP, SunP;
-    private JButton Confirm, Delete;
-    private JComboBox Month;
+    private JButton search;
+    private JComboBox selectMonth;
     private JLabel MonthL, Mon1L, Mon2L, Mon3L, Tue1L, Tue2L, Tue3L, Wed1L, Wed2L, Wed3L, 
             Thu1L, Thu2L, Thu3L, Fri1L, Fri2L, Fri3L, Sat1L, Sat2L, Sat3L, Sun1L, Sun2L, Sun3L;
     private TextField Mon1Sch, Mon2Sch, Mon3Sch, Tue1Sch, Tue2Sch, Tue3Sch, Wed1Sch, Wed2Sch, Wed3Sch, 
@@ -23,10 +25,10 @@ public class ViewSchedule extends JPanel{
     private static ArrayList <String> registeredSport = new ArrayList <String>();
     private static ArrayList <String> Months = new ArrayList <String>();
     private static boolean Found=false;
-    private String sport;
+    private String sport, location;
     DateTime dT = new DateTime();
     public ViewSchedule(String cenLocation, String userName){
-        
+        location = cenLocation;
         //++Filter Sports Name Found for Specific Center Only++//
         for(int i = 0; i<Assignment.subscription.size();i++){
             Subscription_Constr sub = Assignment.subscription.get(i);
@@ -43,6 +45,9 @@ public class ViewSchedule extends JPanel{
             Months.add(monthString[month-1]);
             month++;
         }
+        //Create buttons
+        search = new JButton("Search");
+        search.addActionListener(this);
         
         //++Create Components++//
         MonthL = new JLabel("Schedule For Entire Month Of: ");
@@ -68,8 +73,8 @@ public class ViewSchedule extends JPanel{
         Sun1L = new JLabel("10am ~ 12pm");
         Sun2L = new JLabel("1pm ~ 3pm");
         Sun3L = new JLabel("3pm ~ 5pm");
-        
-        Month = new JComboBox(Months.toArray());
+        //ComboBox for the Months
+        selectMonth = new JComboBox(Months.toArray());
         //TextField for the sport time
         Mon1Sch = new TextField();
         Mon1Sch.setEnabled(false);
@@ -113,83 +118,12 @@ public class ViewSchedule extends JPanel{
         Sun2Sch.setEnabled(false);
         Sun3Sch = new TextField();
         Sun3Sch.setEnabled(false);
-        for(int i = 0; i<Assignment.schedule.size(); i++){
-            Schedule_Constr schedule = Assignment.schedule.get(i);
-            if(schedule.getCenter().equals(cenLocation)){
-                if(schedule.getMon1().equals(sport)){
-                    Mon1Sch.setText(sport);
-                }
-                if(schedule.getMon2().equals(sport)){
-                    Mon2Sch.setText(sport);
-                }
-                if(schedule.getMon3().equals(sport)){
-                    Mon3Sch.setText(sport);
-                }
-                if(schedule.getTue1().equals(sport)){
-                    Tue1Sch.setText(sport);
-                }
-                if(schedule.getTue2().equals(sport)){
-                    Tue2Sch.setText(sport);
-                }
-                if(schedule.getTue3().equals(sport)){
-                    Tue3Sch.setText(sport);
-                }
-                if(schedule.getWed1().equals(sport)){
-                    Wed1Sch.setText(sport);
-                }
-                if(schedule.getWed2().equals(sport)){
-                    Wed2Sch.setText(sport);
-                }
-                if(schedule.getWed3().equals(sport)){
-                    Wed3Sch.setText(sport);
-                }
-                if(schedule.getThu1().equals(sport)){
-                    Thu1Sch.setText(sport);
-                }
-                if(schedule.getThu2().equals(sport)){
-                    Thu2Sch.setText(sport);
-                }
-                if(schedule.getThu3().equals(sport)){
-                    Thu3Sch.setText(sport);
-                }
-                if(schedule.getFri1().equals(sport)){
-                    Fri1Sch.setText(sport);
-                }
-                if(schedule.getFri2().equals(sport)){
-                    Fri2Sch.setText(sport);
-                }
-                if(schedule.getFri3().equals(sport)){
-                    Fri3Sch.setText(sport);
-                }
-                if(schedule.getSat1().equals(sport)){
-                    Sat1Sch.setText(sport);
-                }
-                if(schedule.getSat2().equals(sport)){
-                    Sat2Sch.setText(sport);
-                }
-                if(schedule.getSat3().equals(sport)){
-                    Sat3Sch.setText(sport);
-                }
-                if(schedule.getSun1().equals(sport)){
-                    Sun1Sch.setText(sport);
-                }
-                if(schedule.getSun2().equals(sport)){
-                    Sun2Sch.setText(sport);
-                }
-                if(schedule.getSun3().equals(sport)){
-                    Sun3Sch.setText(sport);
-                }
-//            }
-//            if(schedule.getMon2().equals(registeredSport.get(i))){
-//                Mon2Sch.setSelectedItem(registeredSport.get(i));
-                
-            }
-        }
         
         Top = new JPanel();
         Top.setLayout(new FlowLayout(FlowLayout.CENTER));
         Top.add(MonthL);
-        Top.add(Month);
+        Top.add(selectMonth);
+        Top.add(search);
         
         GridLayout gL = new GridLayout(3,2);
         gL.setHgap(10);
@@ -293,6 +227,102 @@ public class ViewSchedule extends JPanel{
         add(Top, BorderLayout.NORTH);
         add(ScheduleBody, BorderLayout.CENTER);
         add(ButtonPanel, BorderLayout.SOUTH);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        if(ae.getSource()==search){
+            //setText to empty when user search a new month
+            Mon1Sch.setText("");
+            Mon2Sch.setText("");
+            Mon3Sch.setText("");
+            Tue1Sch.setText("");
+            Tue2Sch.setText("");
+            Tue3Sch.setText("");
+            Wed1Sch.setText("");
+            Wed2Sch.setText("");
+            Wed3Sch.setText("");
+            Thu1Sch.setText("");
+            Thu2Sch.setText("");
+            Thu3Sch.setText("");
+            Fri1Sch.setText("");
+            Fri2Sch.setText("");
+            Fri3Sch.setText("");
+            Sat1Sch.setText("");
+            Sat2Sch.setText("");
+            Sat3Sch.setText("");
+            Sun1Sch.setText("");
+            Sun2Sch.setText("");
+            Sun3Sch.setText("");
+            for(int i = 0; i<Assignment.schedule.size(); i++){
+                Schedule_Constr schedule = Assignment.schedule.get(i);
+                if(schedule.getCenter().equals(location)&&schedule.getSchMonth().equals(selectMonth.getSelectedItem().toString())){
+                    if(schedule.getMon1().equals(sport)){
+                        Mon1Sch.setText(sport);
+                    }
+                    if(schedule.getMon2().equals(sport)){
+                        Mon2Sch.setText(sport);
+                    }
+                    if(schedule.getMon3().equals(sport)){
+                        Mon3Sch.setText(sport);
+                    }
+                    if(schedule.getTue1().equals(sport)){
+                        Tue1Sch.setText(sport);
+                    }
+                    if(schedule.getTue2().equals(sport)){
+                        Tue2Sch.setText(sport);
+                    }
+                    if(schedule.getTue3().equals(sport)){
+                        Tue3Sch.setText(sport);
+                    }
+                    if(schedule.getWed1().equals(sport)){
+                        Wed1Sch.setText(sport);
+                    }
+                    if(schedule.getWed2().equals(sport)){
+                        Wed2Sch.setText(sport);
+                    }
+                    if(schedule.getWed3().equals(sport)){
+                        Wed3Sch.setText(sport);
+                    }
+                    if(schedule.getThu1().equals(sport)){
+                        Thu1Sch.setText(sport);
+                    }
+                    if(schedule.getThu2().equals(sport)){
+                        Thu2Sch.setText(sport);
+                    }
+                    if(schedule.getThu3().equals(sport)){
+                        Thu3Sch.setText(sport);
+                    }
+                    if(schedule.getFri1().equals(sport)){
+                        Fri1Sch.setText(sport);
+                    }
+                    if(schedule.getFri2().equals(sport)){
+                        Fri2Sch.setText(sport);
+                    }
+                    if(schedule.getFri3().equals(sport)){
+                        Fri3Sch.setText(sport);
+                    }
+                    if(schedule.getSat1().equals(sport)){
+                        Sat1Sch.setText(sport);
+                    }
+                    if(schedule.getSat2().equals(sport)){
+                        Sat2Sch.setText(sport);
+                    }
+                    if(schedule.getSat3().equals(sport)){
+                        Sat3Sch.setText(sport);
+                    }
+                    if(schedule.getSun1().equals(sport)){
+                        Sun1Sch.setText(sport);
+                    }
+                    if(schedule.getSun2().equals(sport)){
+                        Sun2Sch.setText(sport);
+                    }
+                    if(schedule.getSun3().equals(sport)){
+                        Sun3Sch.setText(sport);
+                    }
+                }
+            }        
+        }
     }
 
 }
