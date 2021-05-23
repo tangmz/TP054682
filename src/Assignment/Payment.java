@@ -137,11 +137,16 @@ public class Payment extends JPanel implements ActionListener {
                 for(int i=0; i<Assignment.payment.size(); i++){
                     StudentPayment c = Assignment.payment.get(i);
                     if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
-                        int totalAmountPay = Integer.parseInt(c.getStudentBalance());
-                        int amountPay = Integer.parseInt(amountPayText.getText());
-                        int outstandingBalance = totalAmountPay - amountPay;
-                        finalOutBalance = Integer.toString(outstandingBalance);
-                        c.setStudentBalance(finalOutBalance);
+                        if (Integer.parseInt(c.getStudentBalance())>=0){
+                            int totalAmountPay = Integer.parseInt(c.getStudentBalance());
+                            int amountPay = Integer.parseInt(amountPayText.getText());
+                            int outstandingBalance = totalAmountPay - amountPay;
+                            finalOutBalance = Integer.toString(outstandingBalance);
+                            c.setStudentBalance(finalOutBalance);
+                        }else{
+                            JOptionPane.showMessageDialog(pay, "You have paid");
+                            break;
+                        }
                     }
                     f.println(c.getStudentName());
                     f.println(c.getStudentLocation());

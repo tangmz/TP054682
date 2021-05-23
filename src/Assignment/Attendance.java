@@ -198,9 +198,14 @@ public class Attendance extends JPanel implements ActionListener{
                     StudentPayment c = Assignment.payment.get(i);
                     if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
                         int totalAtt = Integer.parseInt(c.getStudentAttendance());
-                        totalAtt = totalAtt - 1;
-                        finalAtt = Integer.toString(totalAtt);
-                        c.setStudentAttendance(finalAtt);
+                        if (totalAtt>=0){
+                            totalAtt = totalAtt - 1;
+                            finalAtt = Integer.toString(totalAtt);
+                            c.setStudentAttendance(finalAtt);
+                        }else{
+                            JOptionPane.showMessageDialog(attendanceConfirm, "You have attend all the classes");
+                            break;
+                        }
                     }
                     f.println(c.getStudentName());
                     f.println(c.getStudentLocation());
