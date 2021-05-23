@@ -1,6 +1,12 @@
 Ng
 PetalingJaya
 1000
+800
+8
+
+Ng
+PetalingJaya
 1000
+800
 8
 
