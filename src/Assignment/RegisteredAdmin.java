@@ -27,6 +27,7 @@ public class RegisteredAdmin extends DateTime{
     public static String centerLocation;
     public Button AddModRecord, SearchRecord, CoachRecord, ScheduleB, manageSystem, logout; //SearchRecord inclusive of Sorting
     public boolean Check = true;
+    public static String Username;
     
         
     public void FrameLoad(String UserName, String cenLocation, int counter){
@@ -103,9 +104,9 @@ public class RegisteredAdmin extends DateTime{
 //                Schedule_Constr schedule_read = new Schedule_Constr(sc1,sc2,sc3,sc4,sc5,sc6,sc7,sc8,sc9,sc10,sc11,sc12,sc13,sc14,sc15,sc16,sc17,sc18,sc19,sc20,sc21,sc22);
 //                Schedule.add(schedule_read);
 //            }
-
+        RegisteredAdmin.Username = UserName;
         this.counter = counter;
-        this.centerLocation = cenLocation;
+        RegisteredAdmin.centerLocation = cenLocation;
         CardLayout cl = new CardLayout();
         
         //++Create JFrame++//
