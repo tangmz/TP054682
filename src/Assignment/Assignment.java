@@ -16,6 +16,7 @@ public class Assignment {
     public static ArrayList <Sport_Constr> sportInfo = new ArrayList<Sport_Constr>();
     public static ArrayList<Schedule_Constr> schedule = new ArrayList<Schedule_Constr>();
     public static ArrayList<Subscription_Constr> subscription = new ArrayList<Subscription_Constr>();
+    public static ArrayList<StudentPayment> payment = new ArrayList<StudentPayment>();
     public static Date DateTime = new Date();
         
     public static void main(String[] args) {
@@ -105,8 +106,8 @@ public class Assignment {
                 Schedule_Constr schedule_read = new Schedule_Constr(sc1,sc2,sc3,sc4,sc5,sc6,sc7,sc8,sc9,sc10,sc11,sc12,sc13,sc14,sc15,sc16,sc17,sc18,sc19,sc20,sc21,sc22,sc23);
                 schedule.add(schedule_read);
             }
-                s = new Scanner(new File("subscriptionSport.txt"));
-                while(s.hasNext()){
+            s = new Scanner(new File("subscriptionSport.txt"));
+            while(s.hasNext()){
                 String d1 = s.nextLine();
                 String d2 = s.nextLine();
                 String d3 = s.nextLine();
@@ -116,6 +117,18 @@ public class Assignment {
                 Subscription_Constr sub = new Subscription_Constr(d1,d2,d3,d4,d5);
                 subscription.add(sub);
             }
+            s = new Scanner(new File("studentPayment.txt"));
+            while(s.hasNext()){
+                String e1 = s.nextLine();
+                String e2 = s.nextLine();
+                String e3 = s.nextLine();
+                String e4 = s.nextLine();
+                String e5 = s.nextLine();
+                s.nextLine();
+                StudentPayment studentPayment = new StudentPayment(e1,e2,e3,e4,e5);
+                payment.add(studentPayment);
+            }
+        
         }catch(Exception ex){
             System.out.println("Error Reading Files");
         }
