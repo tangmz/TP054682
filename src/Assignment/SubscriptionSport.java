@@ -22,7 +22,7 @@ public class SubscriptionSport extends JPanel implements ActionListener{
     private JLabel subscriptionTitle;
     private ImageIcon subscribeLogo, unsubscribeLogo;
     private JButton subscribe, unsubscribe;
-    private String location, studentName,selectedSport, feedback, totalFee, studentAttendance, monthlyFee,rating, coachName;
+    private String location, studentName,selectedSport, feedback, totalFee, studentAttendance, monthlyFee,rating, coachID;
     private int sportFees, coachFees;
     private JComboBox sportComB;
     private boolean found=true, found2=false, found3 =false;
@@ -88,11 +88,11 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                     if (coach.getCoachCenter().equals(location)&&(coach.getCoach_Sp_N().equals(selectedSport))){
                         int coachSportFees = Integer.parseInt(coach.getCoachHRate());
                         coachFees = coachSportFees*4;
-                        coachName = coach.getCoachN();
+                        coachID = coach.getCoachId();
                         found2 = true;
                     }
                 }
-                Subscription_Constr sub = new Subscription_Constr(studentName, location, coachName, selectedSport, Integer.toString(coachFees), rating, feedback);
+                Subscription_Constr sub = new Subscription_Constr(studentName, location, coachID, selectedSport, Integer.toString(coachFees), rating, feedback);
                 Assignment.subscription.add(sub);
                 
                 try{
@@ -101,7 +101,7 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                         Subscription_Constr c = Assignment.subscription.get(i);
                         f.println(c.getSubscriptionName());
                         f.println(c.getSubscriptionLocation());
-                        f.println(c.getCoachName());
+                        f.println(c.getCoachID());
                         f.println(c.getSubscriptionSport());
                         f.println(c.getSubscriptionFee());
                         f.println(c.getRating());
@@ -172,6 +172,7 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                     Subscription_Constr sub = Assignment.subscription.get(i);
                     f.println(sub.getSubscriptionName());
                     f.println(sub.getSubscriptionLocation());
+                    f.println(sub.getCoachID());
                     f.println(sub.getSubscriptionSport());
                     f.println(sub.getSubscriptionFee());
                     f.println(sub.getRating());

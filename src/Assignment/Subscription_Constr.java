@@ -1,11 +1,11 @@
 package Assignment;
 public class Subscription_Constr {
-    private String subscriptionName, subscriptionLocation, coachName, subscriptionSport, subscriptionFee, rating, feedback;
+    private String subscriptionName, subscriptionLocation, coachID, subscriptionSport, subscriptionFee, rating, feedback;
 
-    public Subscription_Constr(String subscriptionName, String subscriptionLocation, String coachName, String subscriptionSport, String subscriptionFee, String rating, String feedback) {
+    public Subscription_Constr(String subscriptionName, String subscriptionLocation, String coachID, String subscriptionSport, String subscriptionFee, String rating, String feedback) {
         this.subscriptionName = subscriptionName;
         this.subscriptionLocation = subscriptionLocation;
-        this.coachName = coachName;
+        this.coachID = coachID;
         this.subscriptionSport = subscriptionSport;
         this.subscriptionFee = subscriptionFee;
         this.rating = rating;
@@ -28,12 +28,12 @@ public class Subscription_Constr {
         this.subscriptionLocation = subscriptionLocation;
     }
 
-    public String getCoachName() {
-        return coachName;
+    public String getCoachID() {
+        return coachID;
     }
 
-    public void setCoachName(String coachName) {
-        this.coachName = coachName;
+    public void setCoachID(String coachID) {
+        this.coachID = coachID;
     }
 
     public String getSubscriptionSport() {
@@ -67,7 +67,5 @@ public class Subscription_Constr {
     public void setFeedback(String feedback) {
         this.feedback = feedback;
     }
-
-
 
 }
