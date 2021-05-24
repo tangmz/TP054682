@@ -51,22 +51,30 @@ public class Visitor implements ActionListener{
             public void actionPerformed(ActionEvent ae) {
                 if(frame.CenLocation.getSelectedItem().equals(Location.Putrajaya)){
                     frame.Body.removeAll();
-                    frame.dispose();
-                    Assignment.visitorView.Visitor(Location.Putrajaya.toString());
+                    frame.Body.add(view, BorderLayout.CENTER);
+                    frame.Body.add(Footer, BorderLayout.SOUTH);
+//                    frame.dispose();
+//                    Assignment.visitorView.Visitor(Location.Putrajaya.toString());
                 }else if(frame.CenLocation.getSelectedItem().equals(Location.BukitJalil)){
                     frame.Body.removeAll();
-                    frame.dispose();
-                    Assignment.visitorView.Visitor(Location.BukitJalil.toString());
+                    frame.Body.add(view, BorderLayout.CENTER);
+                    frame.Body.add(Footer, BorderLayout.SOUTH);
+//                    frame.dispose();
+//                    Assignment.visitorView.Visitor(Location.BukitJalil.toString());
                 }
                 else if(frame.CenLocation.getSelectedItem().equals(Location.PetalingJaya)){
                     frame.Body.removeAll();
-                    frame.dispose();
-                    Assignment.visitorView.Visitor(Location.PetalingJaya.toString());
+                    frame.Body.add(view, BorderLayout.CENTER);
+                    frame.Body.add(Footer, BorderLayout.SOUTH);
+//                    frame.dispose();
+//                    Assignment.visitorView.Visitor(Location.PetalingJaya.toString());
                 }
                 else if(frame.CenLocation.getSelectedItem().equals(Location.ShahAlam)){
                     frame.Body.removeAll();
-                    frame.dispose();
-                    Assignment.visitorView.Visitor(Location.ShahAlam.toString());
+                    frame.Body.add(view, BorderLayout.CENTER);
+                    frame.Body.add(Footer, BorderLayout.SOUTH);
+//                    frame.dispose();
+//                    Assignment.visitorView.Visitor(Location.ShahAlam.toString());
                 }
             }
         });

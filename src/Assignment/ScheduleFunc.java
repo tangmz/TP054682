@@ -237,6 +237,7 @@ class ScheduleFunc  extends JPanel{
                             f.println(s.getSun1());
                             f.println(s.getSun2());
                             f.println(s.getSun3());
+                            f.println();
                         }
                         f.close();   
 
