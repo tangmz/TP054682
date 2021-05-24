@@ -27,8 +27,9 @@ public class Attendance extends JPanel implements ActionListener{
     private static ArrayList <Integer> timeSport = new ArrayList <Integer>();
     private int hourCheckInteger;
     private boolean flag = true;
-    DateTime month = new DateTime();
     public Attendance(String userName, String cenLocation){
+        DateTime month = new DateTime();//To extract time from DateTime
+        //Store data into variables
         studentName = userName;
         currentMonth = month.getFullMonth();
         dayCheck = month.getDay();
