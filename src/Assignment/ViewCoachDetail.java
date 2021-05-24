@@ -24,10 +24,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class ViewCoachDetail extends JPanel implements ActionListener{
-    private static JLabel timeL, sportIdL, sportNameL, coachIdL, coachNameL, coachPhoneL, coachSportFeesL, coachStarL, coachJDateL, coachTDateL;
+    private static JLabel timeL, sportIdL, sportNameL, coachIdL, coachNameL, coachPhoneL, coachSportFeesL, coachStarL, coachJDateL;
     private static JTextField sportIdInText, sportNameInText, coachIdText, coachNameText, coachPhoneText, sportFeesText, coachStarText, coachJDateText, coachTDateText;
     public static JPanel PanelTop, PanelTSelect, PanelTView, PanelTV1, PanelTV2, PanelTV3, PanelTV4,
-            PanelBody, PanelSouth, PanelSouthButtons; 
+            PanelBody, PanelSouth; 
     private static JComboBox sportComB;
     private static JRadioButton AddB, ModB;
     private static ButtonGroup AddModSelection;
@@ -66,7 +66,6 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
         coachSportFeesL = new JLabel("Sport Fees per month (8 classes):");
         coachStarL = new JLabel("Rating:");
         coachJDateL = new JLabel("Joined Date:");
-        coachTDateL = new JLabel("Quit Date:");
         
         coachIdText = new JTextField(15);
         coachIdText.setText(coachId);
@@ -144,11 +143,12 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
         PanelTop.add(PanelTSelect, BorderLayout.WEST);
         PanelTop.add(PanelTView, BorderLayout.EAST);
         
-        GridLayout gL1 = new GridLayout(4,4);
+        GridLayout gL1 = new GridLayout(3,4);
         gL1.setVgap(50);
         gL1.setHgap(10);
         PanelBody = new JPanel();
         PanelBody.setLayout(gL1);
+        PanelBody.setBorder(BorderFactory.createTitledBorder("Coach:    "));
         PanelBody.add(coachNameL);
         PanelBody.add(coachNameText);
         PanelBody.add(coachIdL);
@@ -161,14 +161,9 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
         PanelBody.add(coachJDateText);
         PanelBody.add(coachSportFeesL);
         PanelBody.add(sportFeesText);
-        PanelBody.add(coachTDateL);
-        PanelBody.add(coachTDateText);
         
         PanelSouth = new JPanel();
         PanelSouth.setLayout(new BorderLayout(5,5));
-        PanelSouthButtons = new JPanel();
-        PanelSouthButtons.setLayout(new FlowLayout());
-        PanelSouth.add(PanelSouthButtons, BorderLayout.SOUTH);
         
         add(PanelTop, BorderLayout.NORTH);
         add(PanelBody, BorderLayout.CENTER);

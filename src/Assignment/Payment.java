@@ -132,40 +132,45 @@ public class Payment extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource()==pay){
-            for(int i=0; i<Assignment.payment.size(); i++){
-                StudentPayment c = Assignment.payment.get(i);
-                if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
-                    if (Integer.parseInt(c.getStudentBalance())>=0){
-                        int totalAmountPay = Integer.parseInt(c.getStudentBalance());
-                        int amountPay = Integer.parseInt(amountPayText.getText());
-                        int outstandingBalance = totalAmountPay - amountPay;
-                        finalOutBalance = Integer.toString(outstandingBalance);
-                        c.setStudentBalance(finalOutBalance);
-                    }else{
-                        JOptionPane.showMessageDialog(pay, "You have paid");
-                        break;
-                    }
-                }
-            }
             try{
-                PrintWriter f = new PrintWriter("studentPayment.txt");
                 for(int i=0; i<Assignment.payment.size(); i++){
                     StudentPayment c = Assignment.payment.get(i);
                     if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
-                        f.println(c.getStudentName());
-                        f.println(c.getStudentLocation());
-                        f.println(c.getStudentTotalPayment());
-                        f.println(c.getStudentBalance());
-                        f.println(c.getStudentAttendance());
-                        f.println();
-                    
+                        if (Integer.parseInt(c.getStudentBalance())>=0){
+                            int totalAmountPay = Integer.parseInt(c.getStudentBalance());
+                            int amountPay = Integer.parseInt(amountPayText.getText());
+                            int outstandingBalance = totalAmountPay - amountPay;
+                            finalOutBalance = Integer.toString(outstandingBalance);
+                            c.setStudentBalance(finalOutBalance);
+                        }else{
+                            JOptionPane.showMessageDialog(pay, "You have paid");
+                            break;
+                        }
                     }
-                    f.close(); 
-                    sportFeesText.setText(finalOutBalance);
                 }
-            } catch(Exception ex){
-                System.out.println("Error in stop!"); 
-            }  
+                try{
+                    PrintWriter f = new PrintWriter("studentPayment.txt");
+                    for(int i=0; i<Assignment.payment.size(); i++){
+                        StudentPayment c = Assignment.payment.get(i);
+                        if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
+                            f.println(c.getStudentName());
+                            f.println(c.getStudentLocation());
+                            f.println(c.getStudentTotalPayment());
+                            f.println(c.getStudentBalance());
+                            f.println(c.getStudentAttendance());
+                            f.println();
+
+                        }
+                        f.close(); 
+                        sportFeesText.setText(finalOutBalance);
+                    }
+                } catch(Exception ex){
+                    System.out.println("Error in stop!"); 
+                } 
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(this, "Please enter an amount!");
+            }
         }else if(ae.getSource()==paymentDetail){
             for(int i=0; i<Assignment.payment.size(); i++){
                 StudentPayment c = Assignment.payment.get(i);

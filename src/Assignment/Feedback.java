@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -139,11 +140,12 @@ public class Feedback extends JPanel implements ActionListener{
         PanelTop.add(PanelTSelect, BorderLayout.WEST);
         PanelTop.add(PanelTView, BorderLayout.EAST);
         
-        GridLayout gL1 = new GridLayout(4,4);
+        GridLayout gL1 = new GridLayout(3,4);
         gL1.setVgap(50);
         gL1.setHgap(10);
         PanelBody = new JPanel();
         PanelBody.setLayout(gL1);
+        PanelBody.setBorder(BorderFactory.createTitledBorder("Coach:    "));
         PanelBody.add(coachNameL);
         PanelBody.add(coachNameText);
         PanelBody.add(coachIdL);
@@ -156,15 +158,12 @@ public class Feedback extends JPanel implements ActionListener{
         PanelBody.add(coachJDateText);
         PanelBody.add(coachSportFeesL);
         PanelBody.add(sportFeesText);
-        PanelBody.add(feedbackL);
-        PanelBody.add(feedbackText);
-        PanelBody.add(ratingL);
-        PanelBody.add(submitFeedback);
         
         PanelSouth = new JPanel();
         PanelSouth.setLayout(new BorderLayout(5,5));
         PanelSouthButtons = new JPanel();
         PanelSouthButtons.setLayout(new FlowLayout());
+        PanelSouthButtons.add(submitFeedback);
         PanelSouth.add(PanelSouthButtons, BorderLayout.SOUTH);
         
         add(PanelTop, BorderLayout.NORTH);
@@ -196,33 +195,37 @@ public class Feedback extends JPanel implements ActionListener{
                 }
             }
         }else if (ae.getSource()==submitFeedback){
-            for(int i =0; i<Assignment.subscription.size(); i++){
-                selectedSport = sportComB.getSelectedItem().toString();
-                Subscription_Constr sub = Assignment.subscription.get(i);
-                if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionLocation().equals(location)&&sub.getSubscriptionSport().equals(selectedSport)){
-                    selectedRating = feedbackComB.getSelectedItem().toString();
-                    sub.setRating(selectedRating); 
-                    sub.setFeedback(feedbackText.getText());
-                } 
-            }
-            try{
-                PrintWriter f = new PrintWriter("subscriptionSport.txt");
+            if(!coachNameText.getText().equals("")){
                 for(int i =0; i<Assignment.subscription.size(); i++){
+                    selectedSport = sportComB.getSelectedItem().toString();
                     Subscription_Constr sub = Assignment.subscription.get(i);
-                    f.println(sub.getSubscriptionName());
-                    f.println(sub.getSubscriptionLocation());
-                    f.println(sub.getCoachID());
-                    f.println(sub.getSubscriptionSport());
-                    f.println(sub.getSubscriptionFee());
-                    f.println(sub.getRating());
-                    f.println(sub.getFeedback());
-                    f.println();
+                    if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionLocation().equals(location)&&sub.getSubscriptionSport().equals(selectedSport)){
+                        selectedRating = feedbackComB.getSelectedItem().toString();
+                        sub.setRating(selectedRating); 
+                        sub.setFeedback(feedbackText.getText());
+                    } 
                 }
-                 f.close();   
-            } catch(Exception ex){
-                    System.out.println("Error in stop!"); 
-            } 
-                
+                try{
+                    PrintWriter f = new PrintWriter("subscriptionSport.txt");
+                    for(int i =0; i<Assignment.subscription.size(); i++){
+                        Subscription_Constr sub = Assignment.subscription.get(i);
+                        f.println(sub.getSubscriptionName());
+                        f.println(sub.getSubscriptionLocation());
+                        f.println(sub.getCoachID());
+                        f.println(sub.getSubscriptionSport());
+                        f.println(sub.getSubscriptionFee());
+                        f.println(sub.getRating());
+                        f.println(sub.getFeedback());
+                        f.println();
+                    }
+                     f.close();   
+                     JOptionPane.showMessageDialog(this, "Feedback Submitted!");
+                } catch(Exception ex){
+                        System.out.println("Error in stop!"); 
+                } 
+            }else{
+                JOptionPane.showMessageDialog(this, "Please Select a Sport First!");
+            }
         }
         
     }
