@@ -211,7 +211,6 @@ public class Feedback extends JPanel implements ActionListener{
             try{
                 PrintWriter f = new PrintWriter("subscriptionSport.txt");
                 for(int i =0; i<Assignment.subscription.size(); i++){
-                    selectedSport = sportComB.getSelectedItem().toString();
                     Subscription_Constr sub = Assignment.subscription.get(i);
                     f.println(sub.getSubscriptionName());
                     f.println(sub.getSubscriptionLocation());

@@ -131,14 +131,12 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                     PrintWriter f = new PrintWriter("studentPayment.txt"); 
                     for(int i=0; i<Assignment.payment.size(); i++){
                         StudentPayment c = Assignment.payment.get(i);
-                        if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
-                            f.println(c.getStudentName());
-                            f.println(c.getStudentLocation());
-                            f.println(c.getStudentTotalPayment());
-                            f.println(c.getStudentBalance());
-                            f.println(c.getStudentAttendance());
-                            f.println();
-                        }
+                        f.println(c.getStudentName());
+                        f.println(c.getStudentLocation());
+                        f.println(c.getStudentTotalPayment());
+                        f.println(c.getStudentBalance());
+                        f.println(c.getStudentAttendance());
+                        f.println();
                     }
                     f.close();
                         
@@ -155,14 +153,18 @@ public class SubscriptionSport extends JPanel implements ActionListener{
             
         }else if(ae.getSource() == unsubscribe){
             selectedSport = sportComB.getSelectedItem().toString();
+            for (int i = 0; i<Assignment.subscription.size(); i++){
+                Subscription_Constr sub = Assignment.subscription.get(i);
+                if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionSport().equals(selectedSport)&&sub.getSubscriptionLocation().equals(location)){
+                    Assignment.subscription.remove(sub);
+                    break;
+                    
+                }
+            }
             try{
                 PrintWriter f = new PrintWriter("subscriptionSport.txt");
                 for (int i = 0; i<Assignment.subscription.size(); i++){
                     Subscription_Constr sub = Assignment.subscription.get(i);
-                    if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionSport().equals(selectedSport)&&sub.getSubscriptionLocation().equals(location)){
-                        Assignment.subscription.remove(sub);
-                        break;
-                    }
                     f.println(sub.getSubscriptionName());
                     f.println(sub.getSubscriptionLocation());
                     f.println(sub.getSubscriptionSport());
