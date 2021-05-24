@@ -38,13 +38,8 @@ public class AdminSearchFunc extends JPanel{
     private JScrollPane ScrollSp,ScrollCo, ScrollStu;
     private boolean flag = true;
     private int selection = 1;
-//    public static ArrayList<String> sportType = new ArrayList<String>();
     
     public AdminSearchFunc(){
-//        CoachData=null;
-//        StudentData=null;
-//        SportData=null;
-        
         //Create components
         BGroup = new ButtonGroup();
         RbSp = new JRadioButton("Search Sport");
@@ -55,9 +50,6 @@ public class AdminSearchFunc extends JPanel{
         IdIn = new JTextField(10);
         
         //++Creating Table++//
-//        TMSp.setColumnIdentifiers(SportIdentifier);
-//        TMCo.setColumnIdentifiers(CoachIdentifier);
-//        TMStu.setColumnIdentifiers(StudentIdentifier);
         String[] SportIdentifier = {"Sport ID","Sport Name","Center","Coach Assigned"};
         TMSp = new DefaultTableModel(SportIdentifier,0);
         for(int i = 0; i<Assignment.sportInfo.size(); i++){

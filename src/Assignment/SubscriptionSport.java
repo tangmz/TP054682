@@ -1,7 +1,7 @@
 package Assignment;
 
+import Assignment.RegisteredStudent.studentRepaint;
 import java.awt.BorderLayout;
-import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -89,7 +89,6 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                         int coachSportFees = Integer.parseInt(coach.getCoachHRate());
                         coachFees = coachSportFees*4;
                         coachID = coach.getCoachId();
-                        found2 = true;
                     }
                 }
                 Subscription_Constr sub = new Subscription_Constr(studentName, location, coachID, selectedSport, Integer.toString(coachFees), rating, feedback);
@@ -187,5 +186,6 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                 System.out.println("Error!"); 
             }  
         }
+        studentRepaint paint = new studentRepaint();
     }
 }

@@ -1,5 +1,10 @@
 package Assignment;
 
+import static Assignment.RegisteredAdmin.Tab1;
+import static Assignment.RegisteredAdmin.Tab2;
+import static Assignment.RegisteredAdmin.Tab3;
+import static Assignment.RegisteredAdmin.Tab4;
+import static Assignment.RegisteredAdmin.Tab5;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -18,11 +23,14 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class RegisteredStudent extends DateTime{    
-    private JPanel menuBody, displayBody, menu, select1, select2, select3, select4, select5, select6, select7, select8;
+    private static JPanel menuBody, displayBody, menu, select1, select2, select3, select4, select5, select6, select7, select8;
     private JButton viewCoach, viewRecord, viewRegSport, modifyRecord, feedbackCoach, payment, attendance, attendanceConfirm, logout, subscription;
     private JLabel background;
     private ImageIcon viewCoachLogo, viewRecordLogo, viewRegSportLogo, modifyLogo, feedbackLogo, attendanceLogo, paymentLogo, logoutLogo, backgroundImage, subscriptionLogo;
+    public static String location, studentName;
     public void FrameLoad(String UserName, String cenLocation){
+        location = cenLocation;
+        studentName = UserName;
         //++Logout Button++//
         CardLayout cl = new CardLayout();
         JFrameFormat frame = new JFrameFormat(UserName);
@@ -195,7 +203,75 @@ public class RegisteredStudent extends DateTime{
                 cl.show(displayBody, "9");
             }
         });
+        frame.CenLocation.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(frame.CenLocation.getSelectedItem().equals(Location.Putrajaya)){
+                    RegisteredStudent.location = Location.Putrajaya.toString();
+                    studentRepaint repaint = new studentRepaint();
+                }else if(frame.CenLocation.getSelectedItem().equals(Location.BukitJalil)){
+                    RegisteredStudent.location = Location.BukitJalil.toString();
+                    studentRepaint repaint = new studentRepaint();
+                }
+                else if(frame.CenLocation.getSelectedItem().equals(Location.PetalingJaya)){
+                    RegisteredStudent.location = Location.PetalingJaya.toString();
+                    studentRepaint repaint = new studentRepaint();
+                }
+                else if(frame.CenLocation.getSelectedItem().equals(Location.ShahAlam)){
+                    RegisteredStudent.location = Location.ShahAlam.toString();
+                    studentRepaint repaint = new studentRepaint();
+                }
+            }
+        });
+    }
 
+    public static class studentRepaint {
 
+        public studentRepaint() {
+            select1.removeAll();
+            select2.removeAll();
+            select3.removeAll();
+            select4.removeAll();
+            select5.removeAll();
+            select6.removeAll();
+            select7.removeAll();
+            select8.removeAll();
+            ViewCoachDetail a = new ViewCoachDetail(location);
+            ViewRecord b = new ViewRecord(studentName);
+            ViewSchedule c = new ViewSchedule(location, studentName);
+            ModifyRecord d = new ModifyRecord(studentName, location);
+            SubscriptionSport e = new SubscriptionSport(studentName, location);
+            Feedback f = new Feedback(location, studentName);
+            Attendance g = new Attendance(studentName, location);
+            Payment h = new Payment(studentName, location);
+            select1.add(a);
+            select1.revalidate();
+            select1.repaint();
+            select2.add(b);
+            select2.revalidate();
+            select2.repaint();
+            select3.add(c);
+            select3.revalidate();
+            select3.repaint();
+            select4.add(d);
+            select4.revalidate();
+            select4.repaint();
+            select5.add(e);
+            select5.revalidate();
+            select5.repaint();
+            select6.add(f);
+            select6.revalidate();
+            select6.repaint();
+            select7.add(g);
+            select7.revalidate();
+            select7.repaint();
+            select8.add(h);
+            select8.revalidate();
+            select8.repaint();
+
+        }
     }
 }
+
+    
+

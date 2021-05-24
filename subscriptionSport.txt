@@ -1,16 +1,16 @@
 Ng
 PetalingJaya
-CN01
-BADMINTON
-1000
-2
-Excellent
+CN05
+BASKETBALL
+600
+0
 
-tang
-BukitJalil
-CN04
-BADMINTON
-800
-2
-Excellent
+
+Ng
+PetalingJaya
+CN06
+SWIMMING
+400
+0
+
 
