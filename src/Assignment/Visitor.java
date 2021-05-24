@@ -25,7 +25,6 @@ public class Visitor implements ActionListener{
     private JFrameFormat frame = new JFrameFormat("Visitor");
     private static ArrayList <String> sportsType = new ArrayList <String>();
     private static ArrayList <String> locationType = new ArrayList <String>();
-    private JComboBox location;
     private String selectedLocation;
     private boolean flag = true;
     public void Visitor(String cenLocation){
@@ -50,31 +49,15 @@ public class Visitor implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if(frame.CenLocation.getSelectedItem().equals(Location.Putrajaya)){
-                    frame.Body.removeAll();
-                    frame.Body.add(view, BorderLayout.CENTER);
-                    frame.Body.add(Footer, BorderLayout.SOUTH);
-//                    frame.dispose();
-//                    Assignment.visitorView.Visitor(Location.Putrajaya.toString());
+                    notiChange();
                 }else if(frame.CenLocation.getSelectedItem().equals(Location.BukitJalil)){
-                    frame.Body.removeAll();
-                    frame.Body.add(view, BorderLayout.CENTER);
-                    frame.Body.add(Footer, BorderLayout.SOUTH);
-//                    frame.dispose();
-//                    Assignment.visitorView.Visitor(Location.BukitJalil.toString());
+                    notiChange();
                 }
                 else if(frame.CenLocation.getSelectedItem().equals(Location.PetalingJaya)){
-                    frame.Body.removeAll();
-                    frame.Body.add(view, BorderLayout.CENTER);
-                    frame.Body.add(Footer, BorderLayout.SOUTH);
-//                    frame.dispose();
-//                    Assignment.visitorView.Visitor(Location.PetalingJaya.toString());
+                    notiChange();
                 }
                 else if(frame.CenLocation.getSelectedItem().equals(Location.ShahAlam)){
-                    frame.Body.removeAll();
-                    frame.Body.add(view, BorderLayout.CENTER);
-                    frame.Body.add(Footer, BorderLayout.SOUTH);
-//                    frame.dispose();
-//                    Assignment.visitorView.Visitor(Location.ShahAlam.toString());
+                    notiChange();
                 }
             }
         });
@@ -83,31 +66,13 @@ public class Visitor implements ActionListener{
         welcomeL = new JLabel("Example", JLabel.CENTER);
         welcomeL.setFont(new Font("Arial", Font.BOLD, 30));
         welcomeL.setBorder(BorderFactory.createTitledBorder("Announcement:  "));
-        String noti = "";
-        for(int i = 0; i<Assignment.noti.size();i++){
-            VisitorAnnouncement va = Assignment.noti.get(i);
-            System.out.println(va.getMessage());
-            if(frame.CenLocation.getSelectedItem().equals(Location.valueOf(va.getCenLocation()))){
-                noti = va.getMessage();
-                break;
-            }
-        }
-        welcomeL.setText(noti);
+        notiChange();
         background = new JLabel(backgroundImage);
         
         //Frame Design
         frame.welcome.setText("Welcome To Real Champion Sport Academy");
 //        frame.setSize(950,600);
-        //JComboBox to let user to choose for location
-        location = new JComboBox(Location.values());
-        location.setSelectedItem("PetalingJaya");
-        for(int i = 0; i<Assignment.sportInfo.size(); i++){
-            Sport_Constr sport = Assignment.sportInfo.get(i);
-            if(sport.getCenter().equals(location)){
-                sportsType.add(sport.getSportN()); 
-                
-            }
-        }
+        
         //Panel
         view = new JPanel();
         view.setLayout(new GridLayout(2,1));
@@ -133,11 +98,14 @@ public class Visitor implements ActionListener{
     @Override
     public void actionPerformed (ActionEvent ae) {
         if(ae.getSource() == viewB){
-            selectedLocation = location.getSelectedItem().toString();
+            selectedLocation = frame.CenLocation.getSelectedItem().toString();
             for(int i = 0; i<Assignment.schedule.size(); i++){
                 Schedule_Constr schedule = Assignment.schedule.get(i);
                 if (schedule.getCenter().equals(selectedLocation)){
-                    JOptionPane.showMessageDialog(viewB, "Monday: "+schedule.getMon1()+", "+schedule.getMon2()+", "+schedule.getMon3()+"\nTuesday: "+schedule.getTue1()+", "+schedule.getTue2()+", "+schedule.getTue3()+"\nWednesday: "+schedule.getWed1()+", "+schedule.getWed2()+", "+schedule.getWed3()+"\nThursday: "+schedule.getThu1()+", "+schedule.getThu2()+", "+schedule.getThu3()+"\nFriday: "+schedule.getFri1()+", "+schedule.getFri2()+", "+schedule.getFri3()+"\nSaturday: "+schedule.getSat1()+", "+schedule.getSat2()+", "+schedule.getSat3()+"\nSunday: "+schedule.getSun1()+", "+schedule.getSun2()+", "+schedule.getSun3());
+                    JOptionPane.showMessageDialog(welcomeL, "Monday: "+schedule.getMon1()+", "+schedule.getMon2()+", "+schedule.getMon3()+"\n\nTuesday: "+schedule.getTue1()+", "+schedule.getTue2()+", "+schedule.getTue3()+
+                            "\n\nWednesday: "+schedule.getWed1()+", "+schedule.getWed2()+", "+schedule.getWed3()+"\n\nThursday: "+schedule.getThu1()+", "+schedule.getThu2()+", "+schedule.getThu3()+
+                            "\n\nFriday: "+schedule.getFri1()+", "+schedule.getFri2()+", "+schedule.getFri3()+"\n\nSaturday: "+schedule.getSat1()+", "+schedule.getSat2()+", "+schedule.getSat3()+
+                            "\n\nSunday: "+schedule.getSun1()+", "+schedule.getSun2()+", "+schedule.getSun3(), "Schedule of "+frame.CenLocation.getSelectedItem().toString(), 1);
                     flag = false;
                     break;
                 }else{
@@ -145,22 +113,21 @@ public class Visitor implements ActionListener{
                 }
             }
             if (flag){
-                JOptionPane.showMessageDialog(viewB, "No Schedule has been found");
+                JOptionPane.showMessageDialog(welcomeL, "No Schedule has been found");
             }
-            for(int i = 0; i<Assignment.sportInfo.size(); i++){
-                Sport_Constr c = Assignment.sportInfo.get(i);
-                if (c.getCenter().equals(selectedLocation)){
-                    JOptionPane.showMessageDialog(viewB, "Available Sport: "+c.getSportN());
-                    flag = false;
-                    break;
-                }else{
-                    flag = true;
-                }
-            }
-            if (flag){
-                JOptionPane.showMessageDialog(viewB, "No available Sport in "+selectedLocation);
-                
-            }
+//            String sportAvail = "";
+//            for(int i = 0; i<Assignment.sportInfo.size(); i++){
+//                Sport_Constr c = Assignment.sportInfo.get(i);
+//                System.out.println(c.getSportN());
+//                if (c.getCenter().equals(selectedLocation)&&!c.getSportN().equals("TERMINATED")){
+//                    sportAvail = sportAvail + c.getSportN()+"\t";
+//                }
+//            }
+//            JOptionPane.showMessageDialog(welcomeL, "Available Sport: "+sportAvail);
+//            if (flag){
+//                JOptionPane.showMessageDialog(welcomeL, "No available Sport in "+selectedLocation);
+//                flag = false;
+//            }
             
         
         }else if (ae.getSource() == register){
@@ -171,6 +138,18 @@ public class Visitor implements ActionListener{
             frame.Body.removeAll();
             frame.dispose();
             Assignment.login.setVisible(true);
+        }
+    }
+
+    private void notiChange() {
+        for(int i = 0; i<Assignment.noti.size();i++){
+            VisitorAnnouncement va = Assignment.noti.get(i);
+            if(frame.CenLocation.getSelectedItem().equals(Location.valueOf(va.getCenLocation()))){
+                welcomeL.setText(va.getMessage());
+                break;
+            }else{
+                welcomeL.setText("==NO UPDATES==");
+            }
         }
     }
 }

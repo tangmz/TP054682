@@ -138,7 +138,7 @@ public class AdminManageSystem extends JPanel{
         notiClear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                NotiTxt.setText("");
+                NotiTxt.setText("==NO UPDATES==");
             }
         });
         btn1.addActionListener(new ActionListener() {
