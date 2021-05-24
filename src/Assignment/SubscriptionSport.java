@@ -161,11 +161,12 @@ public class SubscriptionSport extends JPanel implements ActionListener{
             for (int i = 0; i<Assignment.subscription.size(); i++){
                 Subscription_Constr sub = Assignment.subscription.get(i);
                 if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionSport().equals(selectedSport)&&sub.getSubscriptionLocation().equals(location)){
-                    Assignment.subscription.remove(sub);
+                    Assignment.subscription.remove(i);
                     break;
                     
                 }
             }
+            
             try{
                 PrintWriter f = new PrintWriter("subscriptionSport.txt");
                 for (int i = 0; i<Assignment.subscription.size(); i++){
