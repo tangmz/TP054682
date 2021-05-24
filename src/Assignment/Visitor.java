@@ -28,7 +28,8 @@ public class Visitor implements ActionListener{
     private JComboBox location;
     private String selectedLocation;
     private boolean flag = true;
-    public void Visitor(){
+    public void Visitor(String cenLocation){
+        frame.CenLocation.setSelectedItem(Location.valueOf(cenLocation));
         //Create Image
         backgroundImage = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/background.png")).getImage().getScaledInstance(300,300, Image.SCALE_SMOOTH));
         registerLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/sign up.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
@@ -45,15 +46,50 @@ public class Visitor implements ActionListener{
         viewB = new JButton("View", viewLogo);
         viewB.setFont(new Font("Arial", Font.BOLD,20));
         viewB.setBackground(Color.LIGHT_GRAY);
+        frame.CenLocation.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(frame.CenLocation.getSelectedItem().equals(Location.Putrajaya)){
+                    frame.Body.removeAll();
+                    frame.dispose();
+                    Assignment.visitorView.Visitor(Location.Putrajaya.toString());
+                }else if(frame.CenLocation.getSelectedItem().equals(Location.BukitJalil)){
+                    frame.Body.removeAll();
+                    frame.dispose();
+                    Assignment.visitorView.Visitor(Location.BukitJalil.toString());
+                }
+                else if(frame.CenLocation.getSelectedItem().equals(Location.PetalingJaya)){
+                    frame.Body.removeAll();
+                    frame.dispose();
+                    Assignment.visitorView.Visitor(Location.PetalingJaya.toString());
+                }
+                else if(frame.CenLocation.getSelectedItem().equals(Location.ShahAlam)){
+                    frame.Body.removeAll();
+                    frame.dispose();
+                    Assignment.visitorView.Visitor(Location.ShahAlam.toString());
+                }
+            }
+        });
         
         //Create new label
         welcomeL = new JLabel("Example", JLabel.CENTER);
         welcomeL.setFont(new Font("Arial", Font.BOLD, 30));
+        welcomeL.setBorder(BorderFactory.createTitledBorder("Announcement:  "));
+        String noti = "";
+        for(int i = 0; i<Assignment.noti.size();i++){
+            VisitorAnnouncement va = Assignment.noti.get(i);
+            System.out.println(va.getMessage());
+            if(frame.CenLocation.getSelectedItem().equals(Location.valueOf(va.getCenLocation()))){
+                noti = va.getMessage();
+                break;
+            }
+        }
+        welcomeL.setText(noti);
         background = new JLabel(backgroundImage);
         
         //Frame Design
         frame.welcome.setText("Welcome To Real Champion Sport Academy");
-        frame.setSize(950,600);
+//        frame.setSize(950,600);
         //JComboBox to let user to choose for location
         location = new JComboBox(Location.values());
         location.setSelectedItem("PetalingJaya");
@@ -67,7 +103,6 @@ public class Visitor implements ActionListener{
         //Panel
         view = new JPanel();
         view.setLayout(new GridLayout(2,1));
-        view.setBorder(BorderFactory.createTitledBorder("Announcement: "));
         view.add(welcomeL);
         view.add(background);
         
@@ -79,6 +114,9 @@ public class Visitor implements ActionListener{
         Footer.add(exit);
         frame.Body.add(Footer, BorderLayout.SOUTH);
         frame.setVisible(true);
+        
+        
+        //Add ActionListener
         viewB.addActionListener(this);
         register.addActionListener((ActionListener) this);
         exit.addActionListener((ActionListener) this);

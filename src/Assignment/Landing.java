@@ -229,7 +229,7 @@ public class Landing extends JFrame implements ActionListener{
             System.exit(0);
         }else if (e.getSource() == visitorView){//If visitorView clicked, it will show visitor menu from Visitor
             setVisible(false);
-            Assignment.visitorView.Visitor();
+            Assignment.visitorView.Visitor("PetalingJaya");
         }
     }
 }

@@ -109,8 +109,8 @@ class ScheduleFunc  extends JPanel{
 //                System.out.println(Found);
                 for(int i = 0;i<Assignment.schedule.size();i++){
                     Schedule_Constr schedule = Assignment.schedule.get(i);
-                    if(RegisteredAdmin.centerLocation.equals(schedule.Center)){
-                        if(schedule.SchMonth.equals(Month.getSelectedItem())){
+                    if(RegisteredAdmin.centerLocation.equals(schedule.getCenter())){
+                        if(schedule.getSchMonth().equals(Month.getSelectedItem())){
                             Found = true;
                             Assignment.schedule.set(i, writeSch);   //replace existing data to new data first before write into file
                             break;
@@ -127,29 +127,29 @@ class ScheduleFunc  extends JPanel{
                         PrintWriter f = new PrintWriter("schedule.txt");
                         for(int i=0; i<Assignment.schedule.size(); i++){
                             Schedule_Constr s = Assignment.schedule.get(i);
-                            f.println(s.SchMonth);
-                            f.println(s.Center);
-                            f.println(s.Mon1);
-                            f.println(s.Mon2);
-                            f.println(s.Mon3);
-                            f.println(s.Tue1);
-                            f.println(s.Tue2);
-                            f.println(s.Tue3);
-                            f.println(s.Wed1);
-                            f.println(s.Wed2);
-                            f.println(s.Wed3);
-                            f.println(s.Thu1);
-                            f.println(s.Thu2);
-                            f.println(s.Thu3);
-                            f.println(s.Fri1);
-                            f.println(s.Fri2);
-                            f.println(s.Fri3);
-                            f.println(s.Sat1);
-                            f.println(s.Sat2);
-                            f.println(s.Sat3);
-                            f.println(s.Sun1);
-                            f.println(s.Sun2);
-                            f.println(s.Sun3);
+                            f.println(s.getSchMonth());
+                            f.println(s.getCenter());
+                            f.println(s.getMon1());
+                            f.println(s.getMon2());
+                            f.println(s.getMon3());
+                            f.println(s.getTue1());
+                            f.println(s.getTue2());
+                            f.println(s.getTue3());
+                            f.println(s.getWed1());
+                            f.println(s.getWed2());
+                            f.println(s.getWed3());
+                            f.println(s.getThu1());
+                            f.println(s.getThu2());
+                            f.println(s.getThu3());
+                            f.println(s.getFri1());
+                            f.println(s.getFri2());
+                            f.println(s.getFri3());
+                            f.println(s.getSat1());
+                            f.println(s.getSat2());
+                            f.println(s.getSat3());
+                            f.println(s.getSun1());
+                            f.println(s.getSun2());
+                            f.println(s.getSun3());
                             f.println();
                         }
                         f.close();   
@@ -163,29 +163,29 @@ class ScheduleFunc  extends JPanel{
                         PrintWriter f = new PrintWriter("schedule.txt");
                         for(int i=0; i<Assignment.schedule.size(); i++){
                             Schedule_Constr s = Assignment.schedule.get(i);
-                            f.println(s.SchMonth);
-                            f.println(s.Center);
-                            f.println(s.Mon1);
-                            f.println(s.Mon2);
-                            f.println(s.Mon3);
-                            f.println(s.Tue1);
-                            f.println(s.Tue2);
-                            f.println(s.Tue3);
-                            f.println(s.Wed1);
-                            f.println(s.Wed2);
-                            f.println(s.Wed3);
-                            f.println(s.Thu1);
-                            f.println(s.Thu2);
-                            f.println(s.Thu3);
-                            f.println(s.Fri1);
-                            f.println(s.Fri2);
-                            f.println(s.Fri3);
-                            f.println(s.Sat1);
-                            f.println(s.Sat2);
-                            f.println(s.Sat3);
-                            f.println(s.Sun1);
-                            f.println(s.Sun2);
-                            f.println(s.Sun3);
+                            f.println(s.getSchMonth());
+                            f.println(s.getCenter());
+                            f.println(s.getMon1());
+                            f.println(s.getMon2());
+                            f.println(s.getMon3());
+                            f.println(s.getTue1());
+                            f.println(s.getTue2());
+                            f.println(s.getTue3());
+                            f.println(s.getWed1());
+                            f.println(s.getWed2());
+                            f.println(s.getWed3());
+                            f.println(s.getThu1());
+                            f.println(s.getThu2());
+                            f.println(s.getThu3());
+                            f.println(s.getFri1());
+                            f.println(s.getFri2());
+                            f.println(s.getFri3());
+                            f.println(s.getSat1());
+                            f.println(s.getSat2());
+                            f.println(s.getSat3());
+                            f.println(s.getSun1());
+                            f.println(s.getSun2());
+                            f.println(s.getSun3());
                             f.println();
                         }
                         f.close();
@@ -204,7 +204,7 @@ class ScheduleFunc  extends JPanel{
             public void actionPerformed(ActionEvent ae) {
                 for(int i = 0;i<Assignment.schedule.size();i++){
                     Schedule_Constr schedule = Assignment.schedule.get(i);
-                    if(schedule.SchMonth.equals(Month.getSelectedItem())){
+                    if(schedule.getSchMonth().equals(Month.getSelectedItem())){
                         Found = true;
                         Assignment.schedule.remove(i);   //remove existing data
                     }
@@ -214,29 +214,29 @@ class ScheduleFunc  extends JPanel{
                         PrintWriter f = new PrintWriter("schedule.txt");
                         for(int i=0; i<Assignment.schedule.size(); i++){
                             Schedule_Constr s = Assignment.schedule.get(i);
-                            f.println(s.SchMonth);
-                            f.println(s.Mon1);
-                            f.println(s.Mon2);
-                            f.println(s.Mon3);
-                            f.println(s.Tue1);
-                            f.println(s.Tue2);
-                            f.println(s.Tue3);
-                            f.println(s.Wed1);
-                            f.println(s.Wed2);
-                            f.println(s.Wed3);
-                            f.println(s.Thu1);
-                            f.println(s.Thu2);
-                            f.println(s.Thu3);
-                            f.println(s.Fri1);
-                            f.println(s.Fri2);
-                            f.println(s.Fri3);
-                            f.println(s.Sat1);
-                            f.println(s.Sat2);
-                            f.println(s.Sat3);
-                            f.println(s.Sun1);
-                            f.println(s.Sun2);
-                            f.println(s.Sun3);
-                            f.println();
+                            f.println(s.getSchMonth());
+                            f.println(s.getCenter());
+                            f.println(s.getMon1());
+                            f.println(s.getMon2());
+                            f.println(s.getMon3());
+                            f.println(s.getTue1());
+                            f.println(s.getTue2());
+                            f.println(s.getTue3());
+                            f.println(s.getWed1());
+                            f.println(s.getWed2());
+                            f.println(s.getWed3());
+                            f.println(s.getThu1());
+                            f.println(s.getThu2());
+                            f.println(s.getThu3());
+                            f.println(s.getFri1());
+                            f.println(s.getFri2());
+                            f.println(s.getFri3());
+                            f.println(s.getSat1());
+                            f.println(s.getSat2());
+                            f.println(s.getSat3());
+                            f.println(s.getSun1());
+                            f.println(s.getSun2());
+                            f.println(s.getSun3());
                         }
                         f.close();   
 
