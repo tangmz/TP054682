@@ -120,20 +120,25 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                 }
                 StudentPayment studentPay = new StudentPayment(studentName, location, totalFee, totalFee, studentAttendance);
                 Assignment.payment.add(studentPay);
+                for(int i=0; i<Assignment.payment.size(); i++){
+                    StudentPayment c = Assignment.payment.get(i);
+                    if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
+                        c.setStudentTotalPayment(totalFee);
+                        c.setStudentBalance(totalFee);
+                    }
+                }
                 try{
                     PrintWriter f = new PrintWriter("studentPayment.txt"); 
                     for(int i=0; i<Assignment.payment.size(); i++){
                         StudentPayment c = Assignment.payment.get(i);
                         if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
-                            c.setStudentTotalPayment(totalFee);
-                            c.setStudentBalance(totalFee);
+                            f.println(c.getStudentName());
+                            f.println(c.getStudentLocation());
+                            f.println(c.getStudentTotalPayment());
+                            f.println(c.getStudentBalance());
+                            f.println(c.getStudentAttendance());
+                            f.println();
                         }
-                        f.println(c.getStudentName());
-                        f.println(c.getStudentLocation());
-                        f.println(c.getStudentTotalPayment());
-                        f.println(c.getStudentBalance());
-                        f.println(c.getStudentAttendance());
-                        f.println();
                     }
                     f.close();
                         

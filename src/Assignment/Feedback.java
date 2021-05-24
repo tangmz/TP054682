@@ -200,15 +200,19 @@ public class Feedback extends JPanel implements ActionListener{
                 
             }
         }else if (ae.getSource()==submitFeedback){
+            for(int i =0; i<Assignment.subscription.size(); i++){
+                selectedSport = sportComB.getSelectedItem().toString();
+                Subscription_Constr sub = Assignment.subscription.get(i);
+                if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionLocation().equals(location)&&sub.getSubscriptionSport().equals(selectedSport)){
+                    selectedRating = feedbackComB.getSelectedItem().toString();
+                    sub.setFeedback(selectedRating); 
+                } 
+            }
             try{
                 PrintWriter f = new PrintWriter("subscriptionSport.txt");
                 for(int i =0; i<Assignment.subscription.size(); i++){
                     selectedSport = sportComB.getSelectedItem().toString();
                     Subscription_Constr sub = Assignment.subscription.get(i);
-                    if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionLocation().equals(location)&&sub.getSubscriptionSport().equals(selectedSport)){
-                        selectedRating = feedbackComB.getSelectedItem().toString();
-                        sub.setFeedback(selectedRating);
-                    }
                     f.println(sub.getSubscriptionName());
                     f.println(sub.getSubscriptionLocation());
                     f.println(sub.getSubscriptionSport());
