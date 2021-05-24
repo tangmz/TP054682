@@ -1,10 +1,5 @@
 package Assignment;
 
-import static Assignment.RegisteredAdmin.Tab1;
-import static Assignment.RegisteredAdmin.Tab2;
-import static Assignment.RegisteredAdmin.Tab3;
-import static Assignment.RegisteredAdmin.Tab4;
-import static Assignment.RegisteredAdmin.Tab5;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -17,7 +12,6 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;

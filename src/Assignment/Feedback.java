@@ -43,7 +43,6 @@ public class Feedback extends JPanel implements ActionListener{
                 sportsType.add(sub.getSubscriptionSport());
             }
         }
-        System.out.println(sportsType);
         feedbackComB = new JComboBox(rating);
         sportComB = new JComboBox(sportsType.toArray());
 //        SportMod.setModel(cbm);
