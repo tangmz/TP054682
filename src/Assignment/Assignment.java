@@ -18,7 +18,6 @@ public class Assignment {
     public static ArrayList<Subscription_Constr> subscription = new ArrayList<Subscription_Constr>();
     public static ArrayList<StudentPayment> payment = new ArrayList<StudentPayment>();
     public static ArrayList<VisitorAnnouncement> noti = new ArrayList<VisitorAnnouncement>();
-    public static ArrayList<Rating_Constr> ratings = new ArrayList<Rating_Constr>();
     public static Date DateTime = new Date();
         
     public static void main(String[] args) {
