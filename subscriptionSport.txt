@@ -1,24 +1,14 @@
 Ng
 PetalingJaya
 BADMINTON
-600
-0
-
-Ng
-PetalingJaya
-BASKETBALL
-400
-0
+1000
+2
+Good Teacher
 
 tang
-PetalingJaya
+BukitJalil
 BADMINTON
-600
-2
-
-a
-PetalingJaya
-BADMINTON
-1000
+800
 0
+
 

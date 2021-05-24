@@ -114,8 +114,9 @@ public class Assignment {
                 String d3 = s.nextLine();
                 String d4 = s.nextLine();
                 String d5 = s.nextLine();
+                String d6 = s.nextLine();
                 s.nextLine();
-                Subscription_Constr sub = new Subscription_Constr(d1,d2,d3,d4,d5);
+                Subscription_Constr sub = new Subscription_Constr(d1,d2,d3,d4,d5,d6);
                 subscription.add(sub);
             }
             s = new Scanner(new File("studentPayment.txt"));

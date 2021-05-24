@@ -20,8 +20,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class Feedback extends JPanel implements ActionListener{
-    private static JLabel timeL, sportIdL, sportNameL, coachIdL, coachNameL, coachPhoneL, coachSportFeesL, coachStarL, coachJDateL, coachTDateL, feedbackL;
-    private static JTextField sportIdInText, sportNameInText, coachIdText, coachNameText, coachPhoneText, sportFeesText, coachJDateText, coachTDateText;
+    private static JLabel timeL, sportIdL, sportNameL, coachIdL, coachNameL, coachPhoneL, coachSportFeesL, coachStarL, coachJDateL, coachTDateL, feedbackL, ratingL;
+    private static JTextField sportIdInText, sportNameInText, coachIdText, coachNameText, coachPhoneText, sportFeesText, coachJDateText, feedbackText;
     public static JPanel PanelTop, PanelTSelect, PanelTView, PanelTV1, PanelTV2, PanelTV3, PanelTV4,
             PanelBody, PanelSouth, PanelSouthButtons; 
     private static JComboBox sportComB, feedbackComB;
@@ -31,7 +31,7 @@ public class Feedback extends JPanel implements ActionListener{
     private ArrayList<String> sportID = new ArrayList<String>();
     private static ArrayList <String> sportsType = new ArrayList <String>();
     private String selectedSport, studentName, selectedRating;
-    private String feedback[] = {"0","1", "2", "3", "4", "5"};
+    private String rating[] = {"0","1", "2", "3", "4", "5"};
     public Feedback(String cenLocation, String userName){
         //List for the location
         studentName = userName;
@@ -44,7 +44,7 @@ public class Feedback extends JPanel implements ActionListener{
                 
             }
         }
-        feedbackComB = new JComboBox(feedback);
+        feedbackComB = new JComboBox(rating);
         sportComB = new JComboBox(sportsType.toArray());
 //        SportMod.setModel(cbm);
         timeL = new JLabel(String.valueOf(dateTime.getFullDate()), SwingConstants.CENTER);
@@ -62,8 +62,8 @@ public class Feedback extends JPanel implements ActionListener{
         coachSportFeesL = new JLabel("Sport Fees per month (8 classes):");
         coachStarL = new JLabel("Rating:");
         coachJDateL = new JLabel("Joined Date:");
-        coachTDateL = new JLabel("Quit Date:");
-        feedbackL = new JLabel("Feedback: ");
+        feedbackL = new JLabel("Feedback:");
+        ratingL = new JLabel("Rating: ");
         
         coachIdText = new JTextField(15);
         coachIdText.setText(coachId);
@@ -76,8 +76,8 @@ public class Feedback extends JPanel implements ActionListener{
         sportFeesText.setHorizontalAlignment(JTextField.CENTER);
         coachJDateText = new JTextField(15);
         coachJDateText.setHorizontalAlignment(JTextField.CENTER);
-        coachTDateText = new JTextField(15);
-        coachTDateText.setHorizontalAlignment(JTextField.CENTER);
+        feedbackText = new JTextField(15);
+        feedbackText.setHorizontalAlignment(JTextField.CENTER);
 
         
         
@@ -89,7 +89,7 @@ public class Feedback extends JPanel implements ActionListener{
         coachPhoneText.setEnabled(false);
         sportFeesText.setEnabled(false);
         coachJDateText.setEnabled(false);
-        coachTDateText.setEnabled(false);
+        feedbackText.setEnabled(true);
 
         
         //++Button++//
@@ -157,9 +157,9 @@ public class Feedback extends JPanel implements ActionListener{
         PanelBody.add(coachJDateText);
         PanelBody.add(coachSportFeesL);
         PanelBody.add(sportFeesText);
-        PanelBody.add(coachTDateL);
-        PanelBody.add(coachTDateText);
         PanelBody.add(feedbackL);
+        PanelBody.add(feedbackText);
+        PanelBody.add(ratingL);
         PanelBody.add(submitFeedback);
         
         PanelSouth = new JPanel();
@@ -179,23 +179,16 @@ public class Feedback extends JPanel implements ActionListener{
             selectedSport = sportComB.getSelectedItem().toString();
             for(int i=0; i<Assignment.coachInfo.size(); i++){
                 Coach_Constr coach = Assignment.coachInfo.get(i);
-                if (coach.getCoachCenter().equals(location)){
-//                    for(int counter = 0; counter<sportID.size(); counter++){
-                    if (coach.getCoach_Sp_N().equals(selectedSport)){
-                        sportIdInText.setText(coach.getCoachSp_Id());
-                        coachIdText.setText(coach.getCoachId());
-                        coachNameText.setText(coach.getCoachN());
-                        coachPhoneText.setText(coach.getCoachTel());
-
-                        int coachSportFees = Integer.parseInt(coach.getCoachHRate());
-                        int coachFees = coachSportFees*4;
-                        sportFeesText.setText(Integer.toString(coachFees));
-                        coachJDateText.setText(coach.getJDate());
-                        coachTDateText.setText(coach.getTDate());
-                    }
-                }
-                else{
-                    System.out.println("Error");
+                if (coach.getCoachCenter().equals(location)&&coach.getCoach_Sp_N().equals(selectedSport)){
+                    sportIdInText.setText(coach.getCoachSp_Id());
+                    coachIdText.setText(coach.getCoachId());
+                    coachNameText.setText(coach.getCoachN());
+                    coachPhoneText.setText(coach.getCoachTel());
+                    int coachSportFees = Integer.parseInt(coach.getCoachHRate());
+                    int coachFees = coachSportFees*4;
+                    sportFeesText.setText(Integer.toString(coachFees));
+                    coachJDateText.setText(coach.getJDate());
+                    
                 }
                 
             }
@@ -205,7 +198,8 @@ public class Feedback extends JPanel implements ActionListener{
                 Subscription_Constr sub = Assignment.subscription.get(i);
                 if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionLocation().equals(location)&&sub.getSubscriptionSport().equals(selectedSport)){
                     selectedRating = feedbackComB.getSelectedItem().toString();
-                    sub.setFeedback(selectedRating); 
+                    sub.setRating(selectedRating); 
+                    sub.setFeedback(feedbackText.getText());
                 } 
             }
             try{
@@ -216,6 +210,7 @@ public class Feedback extends JPanel implements ActionListener{
                     f.println(sub.getSubscriptionLocation());
                     f.println(sub.getSubscriptionSport());
                     f.println(sub.getSubscriptionFee());
+                    f.println(sub.getRating());
                     f.println(sub.getFeedback());
                     f.println();
                 }

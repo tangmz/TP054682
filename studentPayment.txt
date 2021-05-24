@@ -1,13 +1,13 @@
 Ng
 PetalingJaya
 1000
-600
+1000
 5
 
 Ng
 PetalingJaya
 1000
-600
+1000
 5
 
 tang
@@ -20,5 +20,17 @@ a
 PetalingJaya
 1000
 1000
+8
+
+Ng
+PetalingJaya
+1000
+1000
+8
+
+tang
+BukitJalil
+800
+800
 8
 
