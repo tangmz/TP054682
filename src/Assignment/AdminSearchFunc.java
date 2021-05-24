@@ -39,9 +39,12 @@ public class AdminSearchFunc extends JPanel{
     public static String[][] SportData = new String[Assignment.sportInfo.size()][4];
     public static String[][] CoachData = new String[Assignment.coachInfo.size()][11];
     public static String[][] StudentData = new String[Assignment.studentInfo.size()][6];
-    public static ArrayList<String> sportType = new ArrayList<String>();
+//    public static ArrayList<String> sportType = new ArrayList<String>();
     
     public AdminSearchFunc(){
+//        CoachData=null;
+//        StudentData=null;
+//        SportData=null;
         
         //Create components
         BGroup = new ButtonGroup();
@@ -58,10 +61,12 @@ public class AdminSearchFunc extends JPanel{
 //        TMStu.setColumnIdentifiers(StudentIdentifier);
         for(int i = 0; i<Assignment.sportInfo.size(); i++){
             Sport_Constr sp = Assignment.sportInfo.get(i);
-            SportData[i][0] = sp.getSprtId();
-            SportData[i][1] = sp.getSportN();
-            SportData[i][2] = sp.getCenter();
-            SportData[i][3] = sp.getCoachN();
+            if(sp.getCenter().equals(RegisteredAdmin.centerLocation)){
+                SportData[i][0] = sp.getSprtId();
+                SportData[i][1] = sp.getSportN();
+                SportData[i][2] = sp.getCenter();
+                SportData[i][3] = sp.getCoachN();
+            }
         }
         String[] SportIdentifier = {"Sport ID","Sport Name","Center","Coach Assigned"};
         TMSp = new DefaultTableModel(SportData, SportIdentifier);
@@ -70,17 +75,19 @@ public class AdminSearchFunc extends JPanel{
         ScrollSp = new JScrollPane(TableSp);
         for(int i = 0; i<Assignment.coachInfo.size(); i++){
             Coach_Constr co = Assignment.coachInfo.get(i);
-            CoachData[i][0] = co.getCoachId();
-            CoachData[i][1] = co.getCoachN();
-            CoachData[i][2] = co.getCoachTel();
-            CoachData[i][3] = co.getCoachHRate();
-            CoachData[i][4] = co.getCoachStar();
-            CoachData[i][5] = co.getCoachCenter();
-            CoachData[i][6] = co.getCoachSp_Id();
-            CoachData[i][7] = co.getCoach_Sp_N();
-            CoachData[i][8] = co.getCoachAdd();
-            CoachData[i][9] = co.getJDate();
-            CoachData[i][10] = co.getTDate();
+            if(co.getCoachCenter().equals(RegisteredAdmin.centerLocation)){
+                CoachData[i][0] = co.getCoachId();
+                CoachData[i][1] = co.getCoachN();
+                CoachData[i][2] = co.getCoachTel();
+                CoachData[i][3] = co.getCoachHRate();
+                CoachData[i][4] = co.getCoachStar();
+                CoachData[i][5] = co.getCoachCenter();
+                CoachData[i][6] = co.getCoachSp_Id();
+                CoachData[i][7] = co.getCoach_Sp_N();
+                CoachData[i][8] = co.getCoachAdd();
+                CoachData[i][9] = co.getJDate();
+                CoachData[i][10] = co.getTDate();
+            }
         }
         String[] CoachIdentifier = {"Coach ID","Name","TelNo.", "HourlyRate (RM)","RatingStars(/5)","Center","Sport ID","Sport Name", "ResidingCity","Joined","Quit"};
         TMCo = new DefaultTableModel(CoachData, CoachIdentifier);
@@ -89,12 +96,14 @@ public class AdminSearchFunc extends JPanel{
         ScrollCo = new JScrollPane(TableCo);
         for(int i = 0; i<Assignment.studentInfo.size(); i++){
             Student stu = Assignment.studentInfo.get(i);
-            StudentData[i][0] = stu.getStuID();
-            StudentData[i][1] = stu.getStuName();
-            StudentData[i][2] = stu.getStuUserN();
-            StudentData[i][3] = stu.getStuPlace();
-            StudentData[i][4] = stu.getStuGender();
-            StudentData[i][5] = stu.getStuPhone();
+            if(stu.getStuPlace().equals(RegisteredAdmin.centerLocation)){
+                StudentData[i][0] = stu.getStuID();
+                StudentData[i][1] = stu.getStuName();
+                StudentData[i][2] = stu.getStuUserN();
+                StudentData[i][3] = stu.getStuPlace();
+                StudentData[i][4] = stu.getStuGender();
+                StudentData[i][5] = stu.getStuPhone();
+            }
         }
         String[] StudentIdentifier = {"Student ID","Name","Username","Center","Gender","Tel.No"};
         TMStu = new DefaultTableModel(StudentData, StudentIdentifier);
