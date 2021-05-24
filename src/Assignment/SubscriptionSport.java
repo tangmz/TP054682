@@ -22,8 +22,8 @@ public class SubscriptionSport extends JPanel implements ActionListener{
     private JLabel subscriptionTitle;
     private ImageIcon subscribeLogo, unsubscribeLogo;
     private JButton subscribe, unsubscribe;
-    private String location, studentName,selectedSport, feedback, totalFee, studentAttendance, monthlyFee,rating;
-    private int sportFees;
+    private String location, studentName,selectedSport, feedback, totalFee, studentAttendance, monthlyFee,rating, coachName;
+    private int sportFees, coachFees;
     private JComboBox sportComB;
     private boolean found=true, found2=false, found3 =false;
     private static ArrayList <String> sportsType = new ArrayList <String>();
@@ -87,17 +87,21 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                     Coach_Constr coach = Assignment.coachInfo.get(i);
                     if (coach.getCoachCenter().equals(location)&&(coach.getCoach_Sp_N().equals(selectedSport))){
                         int coachSportFees = Integer.parseInt(coach.getCoachHRate());
-                        int coachFees = coachSportFees*4;
-                        Subscription_Constr sub = new Subscription_Constr(studentName, location, selectedSport, Integer.toString(coachFees), rating, feedback);
-                        Assignment.subscription.add(sub);
+                        coachFees = coachSportFees*4;
+                        coachName = coach.getCoachN();
+                        found2 = true;
                     }
                 }
+                Subscription_Constr sub = new Subscription_Constr(studentName, location, coachName, selectedSport, Integer.toString(coachFees), rating, feedback);
+                Assignment.subscription.add(sub);
+                
                 try{
                     PrintWriter f = new PrintWriter("subscriptionSport.txt");
                     for(int i=0; i<Assignment.subscription.size(); i++){
                         Subscription_Constr c = Assignment.subscription.get(i);
                         f.println(c.getSubscriptionName());
                         f.println(c.getSubscriptionLocation());
+                        f.println(c.getCoachName());
                         f.println(c.getSubscriptionSport());
                         f.println(c.getSubscriptionFee());
                         f.println(c.getRating());

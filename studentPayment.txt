@@ -8,18 +8,6 @@ Ng
 PetalingJaya
 1000
 1000
-5
-
-tang
-PetalingJaya
-600
-600
-6
-
-a
-PetalingJaya
-1000
-1000
 8
 
 Ng

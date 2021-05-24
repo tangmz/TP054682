@@ -41,7 +41,6 @@ public class Feedback extends JPanel implements ActionListener{
             Subscription_Constr sub = Assignment.subscription.get(i);
             if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionLocation().equals(location)){
                 sportsType.add(sub.getSubscriptionSport());
-                
             }
         }
         feedbackComB = new JComboBox(rating);
@@ -188,9 +187,13 @@ public class Feedback extends JPanel implements ActionListener{
                     int coachFees = coachSportFees*4;
                     sportFeesText.setText(Integer.toString(coachFees));
                     coachJDateText.setText(coach.getJDate());
-                    
                 }
-                
+            }
+            for(int i=0; i<Assignment.subscription.size(); i++){
+                Subscription_Constr sub = Assignment.subscription.get(i);
+                if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionLocation().equals(location)&&sub.getSubscriptionSport().equals(selectedSport)){
+                    feedbackComB.setSelectedItem(sub.getRating());
+                }
             }
         }else if (ae.getSource()==submitFeedback){
             for(int i =0; i<Assignment.subscription.size(); i++){
