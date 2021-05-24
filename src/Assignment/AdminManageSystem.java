@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -13,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -33,7 +35,9 @@ public class AdminManageSystem extends JPanel{
         
         for(int i = 0; i<Assignment.studentInfo.size();i++){
             Student c = Assignment.studentInfo.get(i);
-            StudentUsername.add(c.getStuName());
+            if(c.getStuPlace().equals(RegisteredAdmin.centerLocation)){
+                StudentUsername.add(c.getStuName());
+            }
         }
         
         bGroup = new ButtonGroup();
@@ -72,11 +76,117 @@ public class AdminManageSystem extends JPanel{
         cB1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+                String pinAdmin = JOptionPane.showInputDialog("Passphrase");
+                if (!pinAdmin.equals("rcsadmin")){
+                    JOptionPane.showMessageDialog(cB1, "Wrong Passphrase!");
+                    if(cB1.isSelected()==false){
+                        cB1.setSelected(true);
+                    }else if(cB1.isSelected()==true){
+                        cB1.setSelected(false);
+                    }
+                }
+            }
+        });
+        noti.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                boolean Found = false;
+                for(int i = 0; i<Assignment.noti.size(); i++){
+                    VisitorAnnouncement vs = Assignment.noti.get(i);
+                    if(vs.getCenLocation().equals(RegisteredAdmin.centerLocation)){
+                        vs.setMessage(NotiTxt.getText());
+                        Assignment.noti.set(i, vs);
+                        Found = true;
+                    }
+                }
+                if(Found == true){
+                    try{
+                        PrintWriter f = new PrintWriter("announcement.txt");
+                        for(int i=0; i<Assignment.noti.size(); i++){
+                            VisitorAnnouncement vs = Assignment.noti.get(i);
+                            f.println(vs.getCenLocation());
+                            f.println(vs.getMessage());
+                            f.println();
+                        }
+                        f.close();   
+
+                    } catch(Exception ex){
+                        System.out.println("Error in stop!");
+                    }
+                    Found = false;
+                }else if(Found == false){
+                    VisitorAnnouncement writeVS = new VisitorAnnouncement(RegisteredAdmin.centerLocation,NotiTxt.getText());
+                    Assignment.noti.add(writeVS);
+                    try{
+                        PrintWriter f = new PrintWriter("announcement.txt");
+                        for(int i=0; i<Assignment.noti.size(); i++){
+                            VisitorAnnouncement vs = Assignment.noti.get(i);
+                            f.println(vs.getCenLocation());
+                            f.println(vs.getMessage());
+                            f.println();
+                        }
+                        f.close();   
+
+                    } catch(Exception ex){
+                        System.out.println("Error in stop!");
+                    }
+                }
+                RegisteredAdmin.Repaint r = new RegisteredAdmin.Repaint();
+                JOptionPane.showMessageDialog(noti,"Announcement Sent!");
+            }
+        });
+        notiClear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                NotiTxt.setText("");
+            }
+        });
+        btn1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                for(int i = 0; i<Assignment.adminInfo.size();i++){
+                    Admin ad = Assignment.adminInfo.get(i);
+                    if(ad.getAdUserN().equals(RegisteredAdmin.Username)){
+                        if(cB1.isSelected()==true){
+                            ad.setSuperRole("yes");
+                        }else{
+                            ad.setSuperRole("no");
+                        }
+                        if(!Txt1.getText().equals("")){
+                            ad.setAdPass(Txt1.getText());
+                        }
+                        Assignment.adminInfo.set(i, ad);
+                        JOptionPane.showMessageDialog(btn2, "\tAccount Updated!\n\n\tSuper Admin:    "+ad.getSuperRole());
+                        break;
+                    }
+                }
+            }
+        });
+        btn2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                for(int i = 0; i<Assignment.studentInfo.size();i++){
+                    Student stu = Assignment.studentInfo.get(i);
+                    if(stu.getStuUserN().equals(StudentUserB.getSelectedItem())){
+                        stu.setStuPass(Txt2.getText());
+                        Assignment.studentInfo.set(i, stu);
+                        JOptionPane.showMessageDialog(btn2, stu.getStuName()+"'s new password:  "+stu.getStuPass());
+                        break;
+                    }
+                }
             }
         });
         
-        SuperAdmin sAd = new SuperAdmin();
+        //To read and set Text to the TextField
+        for(int i = 0; i<Assignment.noti.size(); i++){
+            VisitorAnnouncement vs = Assignment.noti.get(i);
+            if(vs.getCenLocation().equals(RegisteredAdmin.centerLocation)){
+                NotiTxt.setText(vs.getMessage());
+            }
+            break;
+        }
+        
+        SuperAdmin();
         
         setLayout(new BorderLayout());
         
@@ -136,16 +246,14 @@ public class AdminManageSystem extends JPanel{
         add(Body, BorderLayout.CENTER);
     }
     
-    class SuperAdmin{
-        SuperAdmin(){
-                    for(int i = 0; i<Assignment.adminInfo.size();i++){
-                    Admin a = Assignment.adminInfo.get(i);
-                    if(a.getAdUserN().equals(RegisteredAdmin.Username)&&a.getSuperRole().equals("yes")){
-                        cB1.setSelected(true);
-                    }else{
-                        cB1.setSelected(false);
-                    }
-        }
+    private void SuperAdmin(){
+        for(int i = 0; i<Assignment.adminInfo.size();i++){
+            Admin a = Assignment.adminInfo.get(i);
+            if(a.getAdUserN().equals(RegisteredAdmin.Username)&&a.getSuperRole().equals("yes")){
+                cB1.setSelected(true);
+            }else{
+                cB1.setSelected(false);
+            }
         }
     }
 }

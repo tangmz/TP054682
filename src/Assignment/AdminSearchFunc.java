@@ -22,7 +22,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class AdminSearchFunc extends JPanel{
     private JPanel Header, HeaderBox, HeaderSelection, HeaderInp, HeaderBtm, Body, BodySp, BodyCo, BodyStu;
@@ -87,7 +89,10 @@ public class AdminSearchFunc extends JPanel{
                 TMStu.addRow(new Object[]{stu.getStuID(),stu.getStuName(),stu.getStuUserN(),stu.getStuPlace(),stu.getStuGender(),stu.getStuPhone()});
             }
         }
+//        TableRowSorter<DefaultTableModel> sorter3 = new TableRowSorter <>(TMStu);
         TableStu = new JTable(TMStu);
+//        TableStu.setRowSorter(sorter3);
+//        sorter3.setRowFilter(RowFilter.regexFilter(IdIn.getText()));///////////////////////////////////////////////////////////////
         TableStu.setAutoCreateRowSorter(true);
         ScrollStu = new JScrollPane(TableStu);
         
@@ -203,6 +208,10 @@ public class AdminSearchFunc extends JPanel{
                         JOptionPane.showMessageDialog(IdIn, "Invalid Sport ID");
                     }
                 }else if (selection ==3){
+//                    RowFilter<DefaultTableModel, Object> rf3 = null;
+//                    rf3 = RowFilter.regexFilter(IdIn.getText());
+//                    System.out.println(IdIn.getText());
+//                    sorter3.setRowFilter(rf3);
                     flag = true;
                     for(int i = 0; i<Assignment.studentInfo.size(); i++){ //Search for Student
                         Student student = Assignment.studentInfo.get(i);

@@ -31,7 +31,6 @@ class ViewCoachFunc  extends JPanel{
     private JScrollPane ScrollCo;
     private boolean flag = true;
     private int selection = 1;
-    public static String[][] CoachData = new String[Assignment.coachInfo.size()][11];
     
     public ViewCoachFunc(){
         
@@ -44,22 +43,15 @@ class ViewCoachFunc  extends JPanel{
 //        TMSp.setColumnIdentifiers(SportIdentifier);
 //        TMCo.setColumnIdentifiers(CoachIdentifier);
 //        TMStu.setColumnIdentifiers(StudentIdentifier);
+        String[] CoachIdentifier = {"Coach ID","Name","TelNo.", "HourlyRate (RM)","RatingStars(/5)","Center","Sport ID","Sport Name", "ResidingCity","Joined","Quit"};
+        TMCo = new DefaultTableModel(CoachIdentifier,0);
         for(int i = 0; i<Assignment.coachInfo.size(); i++){
             Coach_Constr co = Assignment.coachInfo.get(i);
-            CoachData[i][0] = co.getCoachId();
-            CoachData[i][1] = co.getCoachN();
-            CoachData[i][2] = co.getCoachTel();
-            CoachData[i][3] = co.getCoachHRate();
-            CoachData[i][4] = co.getCoachStar();
-            CoachData[i][5] = co.getCoachCenter();
-            CoachData[i][6] = co.getCoachSp_Id();
-            CoachData[i][7] = co.getCoach_Sp_N();
-            CoachData[i][8] = co.getCoachAdd();
-            CoachData[i][9] = co.getJDate();
-            CoachData[i][10] = co.getTDate();
+            if(co.getCoachCenter().equals(RegisteredAdmin.centerLocation)){
+                TMCo.addRow(new Object[]{co.getCoachId(),co.getCoachN(),co.getCoachTel(),co.getCoachHRate(),co.getCoachStar(),co.getCoachCenter(),
+                co.getCoachSp_Id(),co.getCoach_Sp_N(),co.getCoachAdd(),co.getJDate(),co.getTDate()});
+            }
         }
-        String[] CoachIdentifier = {"Coach ID","Name","TelNo.", "HourlyRate (RM)","RatingStars(/5)","Center","Sport ID","Sport Name", "ResidingCity","Joined","Quit"};
-        TMCo = new DefaultTableModel(CoachData, CoachIdentifier);
         TableCo = new JTable(TMCo);
         TableCo.setAutoCreateRowSorter(true);
         ScrollCo = new JScrollPane(TableCo);

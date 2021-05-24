@@ -1,7 +1,7 @@
 package Assignment;
 
 public class Schedule_Constr {
-    public String SchMonth, Center, Mon1, Mon2, Mon3, Tue1, Tue2, Tue3, Wed1, Wed2, Wed3, 
+    private String SchMonth, Center, Mon1, Mon2, Mon3, Tue1, Tue2, Tue3, Wed1, Wed2, Wed3, 
             Thu1, Thu2, Thu3, Fri1, Fri2, Fri3, Sat1, Sat2, Sat3, Sun1, Sun2, Sun3;
 
     public Schedule_Constr(String SchMonth, String Center, String Mon1, String Mon2, String Mon3, String Tue1, String Tue2, String Tue3, String Wed1, String Wed2, String Wed3, String Thu1, String Thu2, String Thu3, String Fri1, String Fri2, String Fri3, String Sat1, String Sat2, String Sat3, String Sun1, String Sun2, String Sun3) {

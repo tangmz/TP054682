@@ -16,3 +16,9 @@ BADMINTON
 600
 2
 
+a
+PetalingJaya
+BADMINTON
+1000
+0
+

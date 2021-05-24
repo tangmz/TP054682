@@ -16,3 +16,9 @@ PetalingJaya
 600
 6
 
+a
+PetalingJaya
+1000
+1000
+8
+

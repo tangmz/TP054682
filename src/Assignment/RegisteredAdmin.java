@@ -74,6 +74,43 @@ public class RegisteredAdmin extends DateTime{
         logout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                try{
+                    PrintWriter f = new PrintWriter("adminLogin.txt");
+                    for(int i=0; i<Assignment.adminInfo.size(); i++){
+                        Admin c = Assignment.adminInfo.get(i);
+                        f.println(c.getAdId());
+                        f.println(c.getAdUserN());
+                        f.println(c.getAdPass());
+                        f.println(c.getAdName());
+                        f.println(c.getAdPlace());
+                        f.println(c.getAdGender());
+                        f.println(c.getAdPhone());
+                        f.println(c.getSuperRole());
+                        f.println();
+                    }
+                    f.close();   
+                    
+                } catch(Exception ex){
+                    System.out.println("Error in stop!");
+                }
+                try{
+                    PrintWriter f = new PrintWriter("studentLogin.txt");
+                    for(int i=0; i<Assignment.studentInfo.size(); i++){
+                        Student c = Assignment.studentInfo.get(i);
+                        f.println(c.getStuID());
+                        f.println(c.getStuName());
+                        f.println(c.getStuUserN());
+                        f.println(c.getStuPass());
+                        f.println(c.getStuPlace());
+                        f.println(c.getStuGender());
+                        f.println(c.getStuPhone());
+                        f.println();
+                    }
+                    f.close();   
+                    
+                } catch(Exception ex){
+                    System.out.println("Error in stop!");
+                }
                 frame.dispose();
                 Assignment.login.setVisible(true);
             }
@@ -160,46 +197,31 @@ public class RegisteredAdmin extends DateTime{
             public void actionPerformed(ActionEvent ae) {
                 if(frame.CenLocation.getSelectedItem().equals(Location.Putrajaya)){
                     RegisteredAdmin.centerLocation = Location.Putrajaya.toString();
-                    Tab1.removeAll();
-                    Tab2.removeAll();
-                    Tab3.removeAll();
-                    Tab4.removeAll();
-                    Tab5.removeAll();
                     Repaint repaint = new Repaint();
                 }else if(frame.CenLocation.getSelectedItem().equals(Location.BukitJalil)){
                     RegisteredAdmin.centerLocation = Location.BukitJalil.toString();
-                    Tab1.removeAll();
-                    Tab2.removeAll();
-                    Tab3.removeAll();
-                    Tab4.removeAll();
-                    Tab5.removeAll();
                     Repaint repaint = new Repaint();
                 }
                 else if(frame.CenLocation.getSelectedItem().equals(Location.PetalingJaya)){
                     RegisteredAdmin.centerLocation = Location.PetalingJaya.toString();
-                    Tab1.removeAll();
-                    Tab2.removeAll();
-                    Tab3.removeAll();
-                    Tab4.removeAll();
-                    Tab5.removeAll();
                     Repaint repaint = new Repaint();
                 }
                 else if(frame.CenLocation.getSelectedItem().equals(Location.ShahAlam)){
                     RegisteredAdmin.centerLocation = Location.ShahAlam.toString();
-                    Tab1.removeAll();
-                    Tab2.removeAll();
-                    Tab3.removeAll();
-                    Tab4.removeAll();
-                    Tab5.removeAll();
                     Repaint repaint = new Repaint();
                 }
             }
         });
     }
 
-    private static class Repaint {
+    public static class Repaint {
 
         public Repaint() {
+            Tab1.removeAll();
+            Tab2.removeAll();
+            Tab3.removeAll();
+            Tab4.removeAll();
+            Tab5.removeAll();
             AdminAddFunc aa = new AdminAddFunc();
             AdminSearchFunc as = new AdminSearchFunc();
             ViewCoachFunc vc = new ViewCoachFunc();
