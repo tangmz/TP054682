@@ -34,3 +34,21 @@ BukitJalil
 800
 8
 
+Ng
+PetalingJaya
+1000
+1000
+8
+
+tang
+BukitJalil
+800
+800
+8
+
+tang
+BukitJalil
+800
+800
+8
+

@@ -1,12 +1,14 @@
 Ng
 PetalingJaya
+CN01
 BADMINTON
 1000
-0
-
+2
+Excellent
 
 tang
 BukitJalil
+CN04
 BADMINTON
 800
 2

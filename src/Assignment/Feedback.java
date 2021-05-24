@@ -211,6 +211,7 @@ public class Feedback extends JPanel implements ActionListener{
                     Subscription_Constr sub = Assignment.subscription.get(i);
                     f.println(sub.getSubscriptionName());
                     f.println(sub.getSubscriptionLocation());
+                    f.println(sub.getCoachID());
                     f.println(sub.getSubscriptionSport());
                     f.println(sub.getSubscriptionFee());
                     f.println(sub.getRating());
