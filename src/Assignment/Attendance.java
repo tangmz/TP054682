@@ -191,34 +191,38 @@ public class Attendance extends JPanel implements ActionListener{
                 }
             }
         }else if(ae.getSource()==attendanceConfirm){
+            for(int i=0; i<Assignment.payment.size(); i++){
+                StudentPayment c = Assignment.payment.get(i);
+                if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
+                    int totalAtt = Integer.parseInt(c.getStudentAttendance());
+                    if (totalAtt>=0){
+                        totalAtt = totalAtt - 1;
+                        finalAtt = Integer.toString(totalAtt);
+                        c.setStudentAttendance(finalAtt);
+                    }else{
+                        JOptionPane.showMessageDialog(attendanceConfirm, "You have attend all the classes");
+                        break;
+                        
+                    }
+                }
+            }
             try{
                 PrintWriter f = new PrintWriter("studentPayment.txt");
                 for(int i=0; i<Assignment.payment.size(); i++){
                     StudentPayment c = Assignment.payment.get(i);
-                    if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
-                        int totalAtt = Integer.parseInt(c.getStudentAttendance());
-                        if (totalAtt>=0){
-                            totalAtt = totalAtt - 1;
-                            finalAtt = Integer.toString(totalAtt);
-                            c.setStudentAttendance(finalAtt);
-                        }else{
-                            JOptionPane.showMessageDialog(attendanceConfirm, "You have attend all the classes");
-                            break;
-                        }
-                    }
                     f.println(c.getStudentName());
                     f.println(c.getStudentLocation());
                     f.println(c.getStudentTotalPayment());
                     f.println(c.getStudentBalance());
                     f.println(c.getStudentAttendance());
                     f.println();
-                    
                 }
                 f.close(); 
                 JOptionPane.showMessageDialog(attendanceConfirm, "You left "+finalAtt+" classes");
             } catch(Exception ex){
                 System.out.println("Error in stop!"); 
-            }  
+                
+            }
         }
     }
 }

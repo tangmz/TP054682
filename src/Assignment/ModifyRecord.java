@@ -18,12 +18,13 @@ import javax.swing.JPanel;
 
 
 public class ModifyRecord extends JPanel implements ActionListener {
-    private TextField modifyID, modifyName, modifyUserN, modifyPass, modifyPlace, modifyGender, modifyPhone;
+    private TextField modifyID, modifyName, modifyUserN, modifyPass,  modifyGender, modifyPhone;
     private JComboBox locationReg;
-    private JLabel titleL, background, b1L, b2L, b3L, b4L, b5L, b6L, b7L,c1L,c2L,c3L,c4L,c5L,c6L,c7L;
+    private JLabel titleL, c1L,c2L,c3L,c4L,c5L,c6L,c7L;
     private JPanel title, c1,c2,c3,c4,c5,c6,c7;
     private JButton modify;
-    private String userName2, modPhone, modPass;
+    private String userName2, modPhone, modPass, selectedLocation;
+    private static boolean flag = false;
     public ModifyRecord(String UserName, String cenLocation){
         //TextField
 
@@ -129,20 +130,20 @@ public class ModifyRecord extends JPanel implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent ae) {
-         
+        selectedLocation = locationReg.getSelectedItem().toString();
         if (ae.getSource()==modify){
-            String selectedLocation = locationReg.getSelectedItem().toString();
-            modPass = modifyPass.getText();
-            modPhone = modifyPhone.getText();
+            for(int i=0; i<Assignment.studentInfo.size(); i++){
+                Student c = Assignment.studentInfo.get(i);
+                if(userName2.equals(c.getStuUserN())){
+                    c.setStuPass(modifyPass.getText());
+                    c.setStuPlace(selectedLocation);
+                    c.setStuPhone(modifyPhone.getText());
+                }
+            }
             try{
                 PrintWriter f = new PrintWriter("studentLogin.txt");
                 for(int i=0; i<Assignment.studentInfo.size(); i++){
-                    Student c = Assignment.studentInfo.get(i);
-                    if(userName2.equals(c.getStuUserN())){
-                        c.setStuPass(modPass);
-                        c.setStuPlace(selectedLocation);
-                        c.setStuPhone(modPhone);
-                    }    
+                    Student c = Assignment.studentInfo.get(i);   
                     f.println(c.getStuID());
                     f.println(c.getStuName());
                     f.println(c.getStuUserN());
@@ -153,12 +154,6 @@ public class ModifyRecord extends JPanel implements ActionListener {
                     f.println();
                 }
                 f.close();
-//                        tempF.flush();
-//                        oldFile.delete();
-//                        newFile.renameTo(oldFile);
-                
-                     
-                    
             } catch(Exception ex){
                 System.out.println("Error in stop!");
             }
