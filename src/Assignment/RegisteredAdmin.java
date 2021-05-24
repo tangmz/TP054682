@@ -182,9 +182,6 @@ public class RegisteredAdmin extends DateTime{
                     Tab3.removeAll();
                     Tab4.removeAll();
                     Tab5.removeAll();
-                    if(Tab4!=null){
-                        System.out.println("Nor cleared!");
-                    }
                     Repaint repaint = new Repaint();
                 }
                 else if(frame.CenLocation.getSelectedItem().equals(Location.ShahAlam)){

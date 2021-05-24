@@ -572,20 +572,25 @@ public class AdminAddFunc extends JPanel implements ActionListener{
     private class retrieve {
 
         private retrieve() {
-            String nextID = "";
+            String nextCID = "";
             int i = 0;
             i = Assignment.coachInfo.size();
-            nextID = String.valueOf(i+1);
-            coachId = "CN0"+(nextID);
+            nextCID = String.valueOf(i+1);
+            coachId = "CN0"+(nextCID);
             CId.setText(coachId);
+            String nextID = "1";
             try{
-                
+                int x = 1;
                 for(i=0; i<Assignment.sportInfo.size(); i++){
                     Sport_Constr c = Assignment.sportInfo.get(i);
-                    if(c.getCoachN().equals(CName.getText())&&c.getCenter().equals(RegisteredAdmin.centerLocation)){
+                    if(c.getCenter().equals(RegisteredAdmin.centerLocation)){
 //                        String x = Integer.parseInt(c.getSprtId());
-                        int x = Integer.parseInt(c.getSprtId().replaceAll("[^0-9]", ""));
-                        nextID = String.valueOf(x+1);
+//                        int x = Integer.parseInt(c.getSprtId().replaceAll("[^0-9]", ""));
+                        System.out.println(c.getCenter());
+                        System.out.print(x+"a");
+                        x++;
+                        System.out.print(x+"b");
+                        nextID = String.valueOf(x);
                     }
                 }
             }catch(Exception e){
