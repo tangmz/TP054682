@@ -101,10 +101,10 @@ public class Visitor implements ActionListener{
             for(int i = 0; i<Assignment.schedule.size(); i++){
                 Schedule_Constr schedule = Assignment.schedule.get(i);
                 if (schedule.getCenter().equals(selectedLocation)){
-                    JOptionPane.showMessageDialog(welcomeL, "Monday: "+schedule.getMon1()+", "+schedule.getMon2()+", "+schedule.getMon3()+"\n\nTuesday: "+schedule.getTue1()+", "+schedule.getTue2()+", "+schedule.getTue3()+
-                            "\n\nWednesday: "+schedule.getWed1()+", "+schedule.getWed2()+", "+schedule.getWed3()+"\n\nThursday: "+schedule.getThu1()+", "+schedule.getThu2()+", "+schedule.getThu3()+
-                            "\n\nFriday: "+schedule.getFri1()+", "+schedule.getFri2()+", "+schedule.getFri3()+"\n\nSaturday: "+schedule.getSat1()+", "+schedule.getSat2()+", "+schedule.getSat3()+
-                            "\n\nSunday: "+schedule.getSun1()+", "+schedule.getSun2()+", "+schedule.getSun3(), "Schedule of "+frame.CenLocation.getSelectedItem().toString(), 1);
+                    JOptionPane.showMessageDialog(welcomeL, "Monday: \n"+schedule.getMon1()+", "+schedule.getMon2()+", "+schedule.getMon3()+"\n\nTuesday: \n"+schedule.getTue1()+", "+schedule.getTue2()+", "+schedule.getTue3()+
+                            "\n\nWednesday: \n"+schedule.getWed1()+", "+schedule.getWed2()+", "+schedule.getWed3()+"\n\nThursday: \n"+schedule.getThu1()+", "+schedule.getThu2()+", "+schedule.getThu3()+
+                            "\n\nFriday: \n"+schedule.getFri1()+", "+schedule.getFri2()+", "+schedule.getFri3()+"\n\nSaturday: \n"+schedule.getSat1()+", "+schedule.getSat2()+", "+schedule.getSat3()+
+                            "\n\nSunday: \n"+schedule.getSun1()+", "+schedule.getSun2()+", "+schedule.getSun3(), "Schedule of "+frame.CenLocation.getSelectedItem().toString(), 1);
                     flag = false;
                     break;
                 }else{
