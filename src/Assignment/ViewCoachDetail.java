@@ -25,11 +25,9 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
     public static JPanel PanelTop, PanelTSelect, PanelTView, PanelTV1, PanelTV2, PanelTV3, PanelTV4,
             PanelBody, PanelSouth; 
     private static JComboBox sportComB;
-    private static JRadioButton AddB, ModB;
-    private static ButtonGroup AddModSelection;
     private static Button search;
     private static final DateTime dateTime = new DateTime();
-    private static String coachId, sportId, whichOperation, location;
+    private static String coachId, sportId, location;
     private ArrayList<String> sportID = new ArrayList<String>();
     private static ArrayList <String> sportsType = new ArrayList <String>();
     private String selectedSport;
