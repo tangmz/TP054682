@@ -30,3 +30,19 @@ BASKETBALL
 4
 
 
+Ng
+PetalingJaya
+CN06
+SWIMMING
+400
+5
+
+
+Ng
+PetalingJaya
+CN07
+CRICKET
+480
+3
+
+

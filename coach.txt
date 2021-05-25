@@ -62,7 +62,7 @@ CN06
 Andrew
 0126532645
 100
-0
+5.00
 PetalingJaya
 RCSPJ04
 SWIMMING
@@ -74,7 +74,7 @@ CN07
 Felice
 0123265462
 120
-0
+3.00
 PetalingJaya
 RCSPJ05
 CRICKET
