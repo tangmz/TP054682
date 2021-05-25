@@ -2,49 +2,25 @@ Ng
 PetalingJaya
 2480
 2480
-8
+6
 
 Ng
 PetalingJaya
 2480
 2480
-8
+6
 
 Ng
 PetalingJaya
 2480
 2480
-8
-
-a
-PetalingJaya
-2000
-2000
-8
-
-a
-PetalingJaya
-2000
-2000
-8
+6
 
 Ng
 PetalingJaya
 2480
 2480
-8
-
-a
-PetalingJaya
-2000
-2000
-8
-
-Ng
-PetalingJaya
-2480
-2480
-8
+6
 
 a
 PetalingJaya
@@ -62,17 +38,5 @@ a
 PetalingJaya
 2000
 2000
-8
-
-Ng
-PetalingJaya
-2480
-2480
-8
-
-Ng
-PetalingJaya
-2480
-2480
 8
 

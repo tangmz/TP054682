@@ -2,7 +2,7 @@ CN01
 Alexander
 0123298908
 250
-3.50
+3.00
 PetalingJaya
 RCSPJ01
 BADMINTON
@@ -62,7 +62,7 @@ CN06
 Andrew
 0126532645
 100
-5.00
+2.50
 PetalingJaya
 RCSPJ04
 SWIMMING

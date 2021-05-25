@@ -24,8 +24,9 @@ public class ViewSchedule extends JPanel implements ActionListener{
             Thu1Sch, Thu2Sch, Thu3Sch, Fri1Sch, Fri2Sch, Fri3Sch, Sat1Sch, Sat2Sch, Sat3Sch, Sun1Sch, Sun2Sch, Sun3Sch;
     private static ArrayList <String> registeredSport = new ArrayList <String>();
     private static ArrayList <String> Months = new ArrayList <String>();
+    private static ArrayList <String> sportType = new ArrayList <String>();
     private static boolean Found=false;
-    private String sport, location;
+    private String location;
     DateTime dT = new DateTime();
     public ViewSchedule(String cenLocation, String userName){
         location = cenLocation;
@@ -33,7 +34,7 @@ public class ViewSchedule extends JPanel implements ActionListener{
         for(int i = 0; i<Assignment.subscription.size();i++){
             Subscription_Constr sub = Assignment.subscription.get(i);
             if(sub.getSubscriptionLocation().equals(cenLocation)&&sub.getSubscriptionName().equals(userName)){
-                sport = sub.getSubscriptionSport();
+                sportType.add(sub.getSubscriptionSport());
             }
         }
         
@@ -254,71 +255,73 @@ public class ViewSchedule extends JPanel implements ActionListener{
             Sun1Sch.setText("");
             Sun2Sch.setText("");
             Sun3Sch.setText("");
-            for(int i = 0; i<Assignment.schedule.size(); i++){
-                Schedule_Constr schedule = Assignment.schedule.get(i);
-                if(schedule.getCenter().equals(location)&&schedule.getSchMonth().equals(selectMonth.getSelectedItem().toString())){
-                    if(schedule.getMon1().equals(sport)){
-                        Mon1Sch.setText(sport);
-                    }
-                    if(schedule.getMon2().equals(sport)){
-                        Mon2Sch.setText(sport);
-                    }
-                    if(schedule.getMon3().equals(sport)){
-                        Mon3Sch.setText(sport);
-                    }
-                    if(schedule.getTue1().equals(sport)){
-                        Tue1Sch.setText(sport);
-                    }
-                    if(schedule.getTue2().equals(sport)){
-                        Tue2Sch.setText(sport);
-                    }
-                    if(schedule.getTue3().equals(sport)){
-                        Tue3Sch.setText(sport);
-                    }
-                    if(schedule.getWed1().equals(sport)){
-                        Wed1Sch.setText(sport);
-                    }
-                    if(schedule.getWed2().equals(sport)){
-                        Wed2Sch.setText(sport);
-                    }
-                    if(schedule.getWed3().equals(sport)){
-                        Wed3Sch.setText(sport);
-                    }
-                    if(schedule.getThu1().equals(sport)){
-                        Thu1Sch.setText(sport);
-                    }
-                    if(schedule.getThu2().equals(sport)){
-                        Thu2Sch.setText(sport);
-                    }
-                    if(schedule.getThu3().equals(sport)){
-                        Thu3Sch.setText(sport);
-                    }
-                    if(schedule.getFri1().equals(sport)){
-                        Fri1Sch.setText(sport);
-                    }
-                    if(schedule.getFri2().equals(sport)){
-                        Fri2Sch.setText(sport);
-                    }
-                    if(schedule.getFri3().equals(sport)){
-                        Fri3Sch.setText(sport);
-                    }
-                    if(schedule.getSat1().equals(sport)){
-                        Sat1Sch.setText(sport);
-                    }
-                    if(schedule.getSat2().equals(sport)){
-                        Sat2Sch.setText(sport);
-                    }
-                    if(schedule.getSat3().equals(sport)){
-                        Sat3Sch.setText(sport);
-                    }
-                    if(schedule.getSun1().equals(sport)){
-                        Sun1Sch.setText(sport);
-                    }
-                    if(schedule.getSun2().equals(sport)){
-                        Sun2Sch.setText(sport);
-                    }
-                    if(schedule.getSun3().equals(sport)){
-                        Sun3Sch.setText(sport);
+            for(int counter = 0; counter< sportType.size(); counter++){
+                for(int i = 0; i<Assignment.schedule.size(); i++){
+                    Schedule_Constr schedule = Assignment.schedule.get(i);
+                    if(schedule.getCenter().equals(location)&&schedule.getSchMonth().equals(selectMonth.getSelectedItem().toString())){
+                        if(schedule.getMon1().equals(sportType.get(counter))){
+                            Mon1Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getMon2().equals(sportType.get(counter))){
+                            Mon2Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getMon3().equals(sportType.get(counter))){
+                            Mon3Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getTue1().equals(sportType.get(counter))){
+                            Tue1Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getTue2().equals(sportType.get(counter))){
+                            Tue2Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getTue3().equals(sportType.get(counter))){
+                            Tue3Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getWed1().equals(sportType.get(counter))){
+                            Wed1Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getWed2().equals(sportType.get(counter))){
+                            Wed2Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getWed3().equals(sportType.get(counter))){
+                            Wed3Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getThu1().equals(sportType.get(counter))){
+                            Thu1Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getThu2().equals(sportType.get(counter))){
+                            Thu2Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getThu3().equals(sportType.get(counter))){
+                            Thu3Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getFri1().equals(sportType.get(counter))){
+                            Fri1Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getFri2().equals(sportType.get(counter))){
+                            Fri2Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getFri3().equals(sportType.get(counter))){
+                            Fri3Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getSat1().equals(sportType.get(counter))){
+                            Sat1Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getSat2().equals(sportType.get(counter))){
+                            Sat2Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getSat3().equals(sportType.get(counter))){
+                            Sat3Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getSun1().equals(sportType.get(counter))){
+                            Sun1Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getSun2().equals(sportType.get(counter))){
+                            Sun2Sch.setText(sportType.get(counter));
+                        }
+                        if(schedule.getSun3().equals(sportType.get(counter))){
+                            Sun3Sch.setText(sportType.get(counter));
+                        }
                     }
                 }
             }        
