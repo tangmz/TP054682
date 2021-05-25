@@ -6,33 +6,12 @@ import java.util.Calendar;
 
 public class DateTime{
     private String Year, FullMonth, PartialMonth, Date, hour, Day, FullDate, PartialDate;
-
+    
     public DateTime(){
         ClockTick();
     }
 
     private void ClockTick() {
-//        ActionListener aL = new ActionListener(){
-//            @Override
-//            public void actionPerformed(ActionEvent ae) {
-//                Date dateRead = new Date();
-//                DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-//                DateTime.this.setFullTime(timeFormat.format(dateRead));
-//                System.out.println(DateTime.this.getFullTime());
-//            }
-//            
-//        };
-//        Timer timer = new Timer(1000, aL);
-//        timer.setInitialDelay(0);
-//        timer.start();
-//            Calendar calendar = Calendar.getInstance();
-//            Year = String.valueOf(calendar.get(Calendar.YEAR));
-//            Month = String.valueOf(calendar.get(Calendar.MONTH));
-//            Date = String.valueOf(calendar.get(Calendar.DATE));
-//            hour = String.valueOf(calendar.get(Calendar.HOUR));
-//            minute = String.valueOf(calendar.get(Calendar.DAY_OF_WEEK));
-//            FullDate = (Year+"a"+Date+"b"+hour+"c"+minute);
-//        Date dateRead = new Date();
         Calendar dateRead = Calendar.getInstance();
         DateFormat dayFormat = new SimpleDateFormat("EEEE");
         Day = dayFormat.format(dateRead.getTime());

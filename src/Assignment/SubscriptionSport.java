@@ -88,9 +88,12 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                     if (coach.getCoachCenter().equals(location)&&(coach.getCoach_Sp_N().equals(selectedSport))){
                         int coachSportFees = Integer.parseInt(coach.getCoachHRate());
                         coachFees = coachSportFees*4;
+                        coachFees = coachSportFees*4;
                         coachID = coach.getCoachId();
                     }
                 }
+                LatestPayment a = new LatestPayment(studentName, coachFees);
+                JOptionPane.showMessageDialog(subscribe, a);
                 Subscription_Constr sub = new Subscription_Constr(studentName, location, coachID, selectedSport, Integer.toString(coachFees), rating, feedback);
                 Assignment.subscription.add(sub);
                 
@@ -162,8 +165,6 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                 Subscription_Constr sub = Assignment.subscription.get(i);
                 if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionSport().equals(selectedSport)&&sub.getSubscriptionLocation().equals(location)){
                     Assignment.subscription.remove(i);
-                    break;
-                    
                 }
             }
             

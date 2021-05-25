@@ -33,3 +33,18 @@ CRICKET
 PetalingJaya
 Felice
 
+RCSPJ06
+TENNIS
+PetalingJaya
+Lim
+
+RCSPJ07
+FOOTBALL
+PetalingJaya
+Desmond
+
+RCSPJ08
+ARCHERY
+PetalingJaya
+Anesh
+

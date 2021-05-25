@@ -1,21 +1,21 @@
 Ng
 BADMINTON
 PetalingJaya
-2000
-2000
+1600
+1600
 8
 
 Ng
 BASKETBALL
 PetalingJaya
-2000
-2000
+1600
+1600
 8
 
 Ng
-SWIMMING
+BADMINTON
 PetalingJaya
-2000
-2000
-7
+1600
+1600
+8
 
