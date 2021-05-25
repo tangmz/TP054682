@@ -154,6 +154,7 @@ public class Payment extends JPanel implements ActionListener {
                         StudentPayment c = Assignment.payment.get(i);
                         if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
                             f.println(c.getStudentName());
+                            f.println(c.getSportName());
                             f.println(c.getStudentLocation());
                             f.println(c.getStudentTotalPayment());
                             f.println(c.getStudentBalance());

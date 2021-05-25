@@ -127,8 +127,9 @@ public class Assignment {
                 String e3 = s.nextLine();
                 String e4 = s.nextLine();
                 String e5 = s.nextLine();
+                String e6 = s.nextLine();
                 s.nextLine();
-                StudentPayment studentPayment = new StudentPayment(e1,e2,e3,e4,e5);
+                StudentPayment studentPayment = new StudentPayment(e1,e2,e3,e4,e5,e6);
                 payment.add(studentPayment);
             }
             s = new Scanner(new File("announcement.txt"));

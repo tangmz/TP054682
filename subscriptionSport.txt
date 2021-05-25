@@ -3,7 +3,7 @@ PetalingJaya
 CN01
 BADMINTON
 1000
-2
+0
 
 
 Ng
@@ -11,15 +11,7 @@ PetalingJaya
 CN05
 BASKETBALL
 600
-3
-
-
-a
-PetalingJaya
-CN05
-BASKETBALL
-600
-4
+0
 
 
 Ng
@@ -27,15 +19,7 @@ PetalingJaya
 CN06
 SWIMMING
 400
-5
-
-
-Ng
-PetalingJaya
-CN07
-CRICKET
-480
-3
+0
 
 
 a

@@ -122,7 +122,7 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                         totalFee = Integer.toString(sportFees);
                     }
                 }
-                StudentPayment studentPay = new StudentPayment(studentName, location, totalFee, totalFee, studentAttendance);
+                StudentPayment studentPay = new StudentPayment(studentName, selectedSport, location, totalFee, totalFee, studentAttendance);
                 Assignment.payment.add(studentPay);
                 for(int i=0; i<Assignment.payment.size(); i++){
                     StudentPayment c = Assignment.payment.get(i);
@@ -136,6 +136,7 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                     for(int i=0; i<Assignment.payment.size(); i++){
                         StudentPayment c = Assignment.payment.get(i);
                         f.println(c.getStudentName());
+                        f.println(c.getSportName());
                         f.println(c.getStudentLocation());
                         f.println(c.getStudentTotalPayment());
                         f.println(c.getStudentBalance());
