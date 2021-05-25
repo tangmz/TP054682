@@ -1,17 +1,9 @@
 Ng
 PetalingJaya
-CN05
-BASKETBALL
-600
-0
-
-
-Ng
-PetalingJaya
-CN06
-SWIMMING
-400
-0
+CN01
+BADMINTON
+1000
+2
 
 
 a
@@ -20,5 +12,21 @@ CN01
 BADMINTON
 1000
 5
+
+
+Ng
+PetalingJaya
+CN05
+BASKETBALL
+600
+3
+
+
+a
+PetalingJaya
+CN05
+BASKETBALL
+600
+4
 
 
