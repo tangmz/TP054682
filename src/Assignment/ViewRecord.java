@@ -10,11 +10,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ViewRecord extends JPanel implements ActionListener {
-    private JPanel b1, b2, b3, b4, b5, b6, b7, b8, titlePanel;
+public class ViewRecord extends JPanel {
+    private JPanel b1, b2, b3, b4, b5, b6, b7, titlePanel;
     private TextField stuID, stuName, stuUserN, stuPass, stuPlace, stuGender, stuPhone;
     private JLabel b1L, b2L, b3L, b4L, b5L, b6L, b7L, title;
-    private Button view;
     private String studentName;
     public ViewRecord(String userName){
         //Assigning variable
@@ -45,9 +44,18 @@ public class ViewRecord extends JPanel implements ActionListener {
         b6L = new JLabel("Student Gender:               ");
         b7L = new JLabel("Student Phone Number: ");
         //Button
-        view = new Button("View");
-        view.addActionListener(this);
-        
+        for(int i=0; i<Assignment.studentInfo.size(); i++){
+            Student c = Assignment.studentInfo.get(i);
+            if(studentName.equals(c.getStuUserN())){
+                stuID.setText(c.getStuID());
+                stuName.setText(c.getStuName());
+                stuUserN.setText(c.getStuUserN());
+                stuPass.setText(c.getStuPass());
+                stuPlace.setText(c.getStuPlace());
+                stuGender.setText(c.getStuGender());
+                stuPhone.setText(c.getStuPhone());
+            }
+        }
        
         //Panel Design
         setLayout(new GridLayout(9, 1, 3, 3));
@@ -89,31 +97,5 @@ public class ViewRecord extends JPanel implements ActionListener {
         b7.add(b7L);
         b7.add(stuPhone);
         add(b7);
-        b8 = new JPanel();
-        b8.setLayout(new FlowLayout(FlowLayout.CENTER));
-        b8.add(view);
-        add(b8);
-        
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        if(ae.getSource() == view){
-            //Reading the date from studentInfo list
-            for(int i=0; i<Assignment.studentInfo.size(); i++){
-                Student c = Assignment.studentInfo.get(i);
-                if(studentName.equals(c.getStuUserN())){
-                    stuID.setText(c.getStuID());
-                    stuName.setText(c.getStuName());
-                    stuUserN.setText(c.getStuUserN());
-                    stuPass.setText(c.getStuPass());
-                    stuPlace.setText(c.getStuPlace());
-                    stuGender.setText(c.getStuGender());
-                    stuPhone.setText(c.getStuPhone());
-                }
-                    
-            }
-        }
-        
     }
 }
