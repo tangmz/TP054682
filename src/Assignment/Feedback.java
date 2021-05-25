@@ -230,3 +230,5 @@ public class Feedback extends JPanel implements ActionListener{
         
     }
 }
+JOptionPane.showMessageDialog(this, "Feedback Submitted!");
+JOptionPane.showMessageDialog(this, "Please Select a Sport First!");
