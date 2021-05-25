@@ -1,5 +1,6 @@
 package Assignment;
 
+import Assignment.RegisteredStudent.studentRepaint;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -14,6 +15,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -157,6 +159,8 @@ public class ModifyRecord extends JPanel implements ActionListener {
             } catch(Exception ex){
                 System.out.println("Error in stop!");
             }
+            JOptionPane.showMessageDialog(modify, "You have modified your self record");
         }
+        studentRepaint paint = new studentRepaint();
     }
 }

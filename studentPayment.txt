@@ -1,37 +1,25 @@
 Ng
 PetalingJaya
-1600
-1600
+2480
+2480
 8
 
 Ng
 PetalingJaya
-1600
-1600
+2480
+2480
 8
 
 Ng
 PetalingJaya
-1600
-1600
+2480
+2480
 8
 
 a
 PetalingJaya
 2000
 2000
-8
-
-a
-PetalingJaya
-2000
-2000
-8
-
-Ng
-PetalingJaya
-1600
-1600
 8
 
 a
@@ -42,8 +30,20 @@ PetalingJaya
 
 Ng
 PetalingJaya
-1600
-1600
+2480
+2480
+8
+
+a
+PetalingJaya
+2000
+2000
+8
+
+Ng
+PetalingJaya
+2480
+2480
 8
 
 a
@@ -62,5 +62,17 @@ a
 PetalingJaya
 2000
 2000
+8
+
+Ng
+PetalingJaya
+2480
+2480
+8
+
+Ng
+PetalingJaya
+2480
+2480
 8
 
