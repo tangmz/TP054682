@@ -145,6 +145,7 @@ public class RegisteredStudent extends DateTime{
         logout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                
                 frame.dispose();
                 Assignment.login.setVisible(true);
             }
