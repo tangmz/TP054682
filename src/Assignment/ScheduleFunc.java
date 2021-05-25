@@ -26,7 +26,7 @@ class ScheduleFunc  extends JPanel{
     private static ArrayList <String> sportsAvailable = new ArrayList <String>();
     private static ArrayList <String> Months = new ArrayList <String>();
     private static boolean Found=false;
-    DateTime dT = new DateTime();
+    RegisteredAdmin Ad = new RegisteredAdmin();
     ScheduleFunc(){
         
         //++Filter Sports Name Found for Specific Center Only++//
@@ -40,7 +40,7 @@ class ScheduleFunc  extends JPanel{
         
         //++Filter only current and future available Months++//
         Months.removeAll(Months);
-        int month = Integer.parseInt(dT.getPartialMonth());
+        int month = Integer.parseInt(Ad.getPartialMonth());
         String[] monthString = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         while(month<=12){
             Months.add(monthString[month-1]);
