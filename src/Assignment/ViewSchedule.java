@@ -27,7 +27,7 @@ public class ViewSchedule extends JPanel implements ActionListener{
     private static ArrayList <String> sportType = new ArrayList <String>();
     private static boolean Found=false;
     private String location;
-    DateTime dT = new DateTime();
+    RegisteredStudent dT = new RegisteredStudent();
     public ViewSchedule(String cenLocation, String userName){
         location = cenLocation;
         //++Filter Sports Name Found for Specific Center Only++//

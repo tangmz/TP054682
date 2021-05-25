@@ -24,12 +24,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Landing extends JFrame implements ActionListener{
-    private JButton student,admin,login,clear,exit, register, visitorView;
-    private Label id,password, locationLabel, title;
+    private static JButton student,admin,login,clear,exit, register, visitorView;
+    private static Label locationLabel, title;
     private TextField idIn,passIn; 
     private String Switch = "StudentL";
-    private JPanel Header, Subheader, Center, SelectionBody, InputBody, ButtonBody, Footer;
-    private ImageIcon Logo, loginLogo, registerLogo, clearLogo, exitLogo;
+    private static JPanel Header, Subheader, Center, SelectionBody, InputBody, ButtonBody, Footer;
+    private static ImageIcon Logo, loginLogo, registerLogo, clearLogo, exitLogo;
     private JComboBox locationLogin = new JComboBox();
     public Landing(){
         //Landing object = new Landing();
