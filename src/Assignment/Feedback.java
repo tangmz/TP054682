@@ -266,56 +266,12 @@ public class Feedback extends JPanel implements ActionListener{
                 } catch(Exception ex){
                     System.out.println("Error in stop!");
                 }
-
-                counter = 0;
-                coachStar = 0;
-                for(int i =0; i<Assignment.subscription.size(); i++){
-                    selectedSport = sportComB.getSelectedItem().toString();
-                    Subscription_Constr sub = Assignment.subscription.get(i);
-                    if(sub.getSubscriptionLocation().equals(location)&&sub.getSubscriptionSport().equals(selectedSport)){
-                        int star = Integer.parseInt(sub.getRating());
-                        coachStar = coachStar + star;
-                        coachId = sub.getCoachID();
-                        counter = counter +1;
-                    }
-                }
-                float averageStar = coachStar/counter;
-                averageRating = String.format("%.2f", averageStar);
-                for(int i =0; i<Assignment.coachInfo.size(); i++){
-                selectedSport = sportComB.getSelectedItem().toString();
-                    Coach_Constr coach = Assignment.coachInfo.get(i);
-                    if(coach.getCoachId().equals(coachId)&&coach.getCoachCenter().equals(location)&&coach.getCoach_Sp_N().equals(selectedSport)){
-                        coach.setCoachStar(averageRating);
-                    }
-                }
-                try{
-                    PrintWriter f = new PrintWriter("coach.txt");
-                    for(int i=0; i<Assignment.coachInfo.size(); i++){
-                        Coach_Constr c = Assignment.coachInfo.get(i);
-                        f.println(c.getCoachId());
-                        f.println(c.getCoachN());
-                        f.println(c.getCoachTel());
-                        f.println(c.getCoachHRate());
-                        f.println(c.getCoachStar());
-                        f.println(c.getCoachCenter());
-                        f.println(c.getCoachSp_Id());
-                        f.println(c.getCoach_Sp_N());
-                        f.println(c.getCoachAdd());
-                        f.println(c.getJDate());
-                        f.println(c.getTDate());
-                        f.println();
-                    }
-                    f.close();   
-
-                } catch(Exception ex){
-                    System.out.println("Error in stop!");
-                }
-                JOptionPane.showMessageDialog(submitFeedback, "Feedback Completed");
             }else{
                 JOptionPane.showMessageDialog(this, "Please Select a Sport First!");
             }
         }
     }
 }
+
 
 
