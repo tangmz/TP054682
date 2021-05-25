@@ -95,7 +95,6 @@ public class Attendance extends JPanel implements ActionListener{
                         flag = true;
                     }
                     if(schedule.getTue2().equals(sport)&&(dayCheck.equals("Tuesday")&&(hourCheckInteger>13)&&(hourCheckInteger<15))){
-                        System.out.println("HI");
                         flag = true;
                     }
                     if(schedule.getTue3().equals(sport)&&(dayCheck.equals("Tuesday")&&(hourCheckInteger>15)&&(hourCheckInteger<17))){
@@ -154,7 +153,7 @@ public class Attendance extends JPanel implements ActionListener{
         }else if(ae.getSource()==attendanceConfirm){
             for(int i=0; i<Assignment.payment.size(); i++){
                 StudentPayment c = Assignment.payment.get(i);
-                if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
+                if(c.getStudentName().equals(studentName)&&c.getSportName().equals(sport)&&c.getStudentLocation().equals(location)){
                     int totalAtt = Integer.parseInt(c.getStudentAttendance());
                     if (totalAtt>=0){
                         totalAtt = totalAtt - 1;
@@ -172,6 +171,7 @@ public class Attendance extends JPanel implements ActionListener{
                 for(int i=0; i<Assignment.payment.size(); i++){
                     StudentPayment c = Assignment.payment.get(i);
                     f.println(c.getStudentName());
+                    f.println(c.getSportName());
                     f.println(c.getStudentLocation());
                     f.println(c.getStudentTotalPayment());
                     f.println(c.getStudentBalance());

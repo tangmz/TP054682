@@ -1,9 +1,10 @@
 package Assignment;
 public class StudentPayment {
-    private String studentName, studentLocation, studentTotalPayment, studentBalance, studentAttendance;
+    private String studentName, sportName, studentLocation, studentTotalPayment, studentBalance, studentAttendance;
 
-    public StudentPayment(String studentName, String studentLocation, String studentTotalPayment, String studentBalance, String studentAttendance) {
+    public StudentPayment(String studentName, String sportName, String studentLocation, String studentTotalPayment, String studentBalance, String studentAttendance) {
         this.studentName = studentName;
+        this.sportName = sportName;
         this.studentLocation = studentLocation;
         this.studentTotalPayment = studentTotalPayment;
         this.studentBalance = studentBalance;
@@ -16,6 +17,14 @@ public class StudentPayment {
 
     public void setStudentName(String studentName) {
         this.studentName = studentName;
+    }
+
+    public String getSportName() {
+        return sportName;
+    }
+
+    public void setSportName(String sportName) {
+        this.sportName = sportName;
     }
 
     public String getStudentLocation() {
@@ -50,5 +59,5 @@ public class StudentPayment {
         this.studentAttendance = studentAttendance;
     }
 
-    
+
 }
