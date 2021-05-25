@@ -12,16 +12,10 @@ PetalingJaya
 1600
 8
 
-Ng
+tang
 BADMINTON
-PetalingJaya
-1600
-1600
-8
-
-a
-PetalingJaya
-1600
-1600
+BukitJalil
+800
+800
 8
 

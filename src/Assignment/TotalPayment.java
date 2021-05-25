@@ -1,4 +1,4 @@
 package Assignment;
 public interface TotalPayment {
-    public double calTotalPayment();
+    public int calTotalPayment();
 }

@@ -1,5 +1,5 @@
 package Assignment;
-public class LatestPayment extends AbstractPayment{
+public class LatestPayment extends AbstractPayment implements TotalPayment{
     private int totalPayment;  
     public LatestPayment(String a, int c){
         name = a;
@@ -9,7 +9,7 @@ public class LatestPayment extends AbstractPayment{
     public int getStudentHour(){
         return classes*4;
     }
-    public double calTotalPayment(){
+    public int calTotalPayment(){
         return totalPayment;
     }
     public String toString(){

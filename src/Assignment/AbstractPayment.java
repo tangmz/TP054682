@@ -1,5 +1,5 @@
 package Assignment;
-public abstract class AbstractPayment {
+public abstract class AbstractPayment  {
     protected String name;//Student name
     protected int classes; //Student class hour per month
     public abstract int getStudentHour();
