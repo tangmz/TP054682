@@ -7,6 +7,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,19 +17,19 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 class ViewCoachFunc  extends JPanel{
     
-    private JPanel Header, HeaderBox, HeaderSelection, HeaderInp, HeaderBtm, Body, BodyCo;
+    private JPanel Header, HeaderBox, HeaderInp, HeaderBtm;
     private JButton SearchBtn;
     private DefaultTableModel TMCo;
     private JTable TableCo;
     private JLabel IdL;
     private JTextField IdIn;
     private JScrollPane ScrollCo;
-    private boolean flag = true;
-    private int selection = 1;
     
     public ViewCoachFunc(){
         
@@ -35,11 +37,25 @@ class ViewCoachFunc  extends JPanel{
         SearchBtn = new JButton("Search");
         IdL = new JLabel("Coach Overall Perforamnce (Rating): ");
         IdIn = new JTextField(10);
+        IdIn.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent ke) {
+                char c = ke.getKeyChar();
+                if (!((c >= '0') && (c <= '5') ||
+                    (c == KeyEvent.VK_BACK_SPACE) ||
+                    (c == KeyEvent.VK_DELETE)   ||
+                    (c == KeyEvent.VK_PERIOD)   ||
+                    (c == KeyEvent.VK_DECIMAL))) {
+                  ke.consume();
+               }
+            }
+            @Override
+            public void keyPressed(KeyEvent ke) {}
+            @Override
+            public void keyReleased(KeyEvent ke) {}
+        });
         
         //++Creating Table++//
-//        TMSp.setColumnIdentifiers(SportIdentifier);
-//        TMCo.setColumnIdentifiers(CoachIdentifier);
-//        TMStu.setColumnIdentifiers(StudentIdentifier);
         String[] CoachIdentifier = {"Coach ID","Name","TelNo.", "HourlyRate (RM)","RatingStars(/5)","Center","Sport ID","Sport Name", "ResidingCity","Joined","Quit"};
         TMCo = new DefaultTableModel(CoachIdentifier,0);
         for(int i = 0; i<Assignment.coachInfo.size(); i++){
@@ -54,7 +70,6 @@ class ViewCoachFunc  extends JPanel{
         ScrollCo = new JScrollPane(TableCo);
         
         //Create and Design Panels
-//        CardLayout cl = new CardLayout();
         setLayout(new BorderLayout(5,5));
         
 
@@ -81,26 +96,8 @@ class ViewCoachFunc  extends JPanel{
         Header.setPreferredSize(new Dimension(this.getWidth(),150));
         Header.add(HeaderBox);
         
-//        BodySp = new JPanel();
-//        BodySp.setLayout(new BorderLayout());
-////        BodySp.add(ScrollSp, BorderLayout.CENTER);
-        
         add(ScrollCo, BorderLayout.CENTER);
-        
-//        BodyStu = new JPanel();
-//        BodyStu.setLayout(new BorderLayout());
-////        BodyStu.add(ScrollStu, BorderLayout.CENTER);
-        
-//        Body = new JPanel();
-////        Body.setLayout(cl);
-//        Body.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-//        Body.add(BodySp, "1");
-//        Body.add(BodyCo, "2");
-//        Body.add(BodyStu, "3");
-//        cl.show(Body, "1");
-        
         add(Header, BorderLayout.NORTH);
-//        add(Body, BorderLayout.CENTER);
 
         //set Functionality to components
 
@@ -108,19 +105,22 @@ class ViewCoachFunc  extends JPanel{
         SearchBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                flag = true;
-                for(int i = 0; i<Assignment.coachInfo.size(); i++){ // Search for Sport
-                    Coach_Constr coach = Assignment.coachInfo.get(i);
-                    if (IdIn.getText().equals(coach.getCoachStar())){
-                        JOptionPane.showMessageDialog(IdIn, "Coach ID: "+coach.getCoachId() +"\nCoach Name: "+ coach.getCoachN()+"\nCoach Phone Number: "+ coach.getCoachTel()+"\nCoach Hourly Rate: "+ coach.getCoachHRate()+"\nCoach Rating: "+coach.getCoachStar()+"\nCoach Sport Center: "+ coach.getCoachCenter()+"\nCoach Sport ID: "+ coach.getCoachSp_Id()+"\nCoach Sport Name: "+coach.getCoach_Sp_N()+"\nCoach Home Address: "+coach.getCoachAdd()+"\nCoach Joined Date: "+ coach.getJDate()+"\nCoach Terminated Date: "+ coach.getTDate());
-                        flag = false;
-
-                    }
-                }
-                if(flag){
-                    JOptionPane.showMessageDialog(IdIn, "Invalid Coach Rating");
-                    
-                }
+                TableRowSorter<DefaultTableModel> sorter1 = new TableRowSorter<DefaultTableModel>(TMCo);
+                TableCo.setRowSorter(sorter1);
+                sorter1.setRowFilter(RowFilter.regexFilter(IdIn.getText().trim(),4));
+//                flag = true;
+//                for(int i = 0; i<Assignment.coachInfo.size(); i++){ // Search for Sport
+//                    Coach_Constr coach = Assignment.coachInfo.get(i);
+//                    if (IdIn.getText().equals(coach.getCoachStar())){
+//                        JOptionPane.showMessageDialog(IdIn, "Coach ID: "+coach.getCoachId() +"\nCoach Name: "+ coach.getCoachN()+"\nCoach Phone Number: "+ coach.getCoachTel()+"\nCoach Hourly Rate: "+ coach.getCoachHRate()+"\nCoach Rating: "+coach.getCoachStar()+"\nCoach Sport Center: "+ coach.getCoachCenter()+"\nCoach Sport ID: "+ coach.getCoachSp_Id()+"\nCoach Sport Name: "+coach.getCoach_Sp_N()+"\nCoach Home Address: "+coach.getCoachAdd()+"\nCoach Joined Date: "+ coach.getJDate()+"\nCoach Terminated Date: "+ coach.getTDate());
+//                        flag = false;
+//
+//                    }
+//                }
+//                if(flag){
+//                    JOptionPane.showMessageDialog(IdIn, "Invalid Coach Rating");
+//                    
+//                }
             }
         });
                         

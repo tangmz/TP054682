@@ -18,7 +18,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class AdminSearchFunc extends JPanel{
     private JPanel Header, HeaderBox, HeaderSelection, HeaderInp, HeaderBtm, Body, BodySp, BodyCo, BodyStu;
@@ -169,47 +171,51 @@ public class AdminSearchFunc extends JPanel{
             public void actionPerformed(ActionEvent ae) {
                 flag = true;
                 if (selection ==1){
-                    for(int i = 0; i<Assignment.sportInfo.size(); i++){ // Search for Sport
-                        Sport_Constr sport = Assignment.sportInfo.get(i);
-                        if (IdIn.getText().equals(sport.getSprtId())){
-                            JOptionPane.showMessageDialog(IdIn, "Sport ID: "+ sport.getSprtId() + "\nSport Name: "+sport.getSportN()+"\nSport Center: "+sport.getCenter()+"\nCoach Assigned: "+sport.getCoachN());
-                            flag = false;
-                        
-                        }
-                    }
-                    if(flag){
-                        JOptionPane.showMessageDialog(IdIn, "Invalid Sport ID");
-                    }
+                    TableRowSorter<DefaultTableModel> sorter1 = new TableRowSorter<DefaultTableModel>(TMSp);
+                    TableSp.setRowSorter(sorter1);
+                    sorter1.setRowFilter(RowFilter.regexFilter(IdIn.getText().trim(),0));
+//                    for(int i = 0; i<Assignment.sportInfo.size(); i++){ // Search for Sport
+//                        Sport_Constr sport = Assignment.sportInfo.get(i);
+//                        if (IdIn.getText().equals(sport.getSprtId())){
+//                            JOptionPane.showMessageDialog(IdIn, "Sport ID: "+ sport.getSprtId() + "\nSport Name: "+sport.getSportN()+"\nSport Center: "+sport.getCenter()+"\nCoach Assigned: "+sport.getCoachN());
+//                            flag = false;
+//                        
+//                        }
+//                    }
+//                    if(flag){
+//                        JOptionPane.showMessageDialog(IdIn, "Invalid Sport ID");
+//                    }
                     
                 }else if (selection ==2){
-                    flag = true;
-                    for(int i = 0; i<Assignment.coachInfo.size(); i++){ //Search for Coach
-                        Coach_Constr coach = Assignment.coachInfo.get(i);
-                        if (IdIn.getText().equals(coach.getCoachId())){
-                            JOptionPane.showMessageDialog(IdIn, "Coach ID: "+coach.getCoachId() +"\nCoach Name: "+ coach.getCoachN()+"\nCoach Phone Number: "+ coach.getCoachTel()+"\nCoach Hourly Rate: "+ coach.getCoachHRate()+"\nCoach Rating: "+coach.getCoachStar()+"\nCoach Sport Center: "+ coach.getCoachCenter()+"\nCoach Sport ID: "+ coach.getCoachSp_Id()+"\nCoach Sport Name: "+coach.getCoach_Sp_N()+"\nCoach Home Address: "+coach.getCoachAdd()+"\nCoach Joined Date: "+ coach.getJDate()+"\nCoach Terminated Date: "+ coach.getTDate());
-                            flag = false;
-                        }
-                    }
-                    if(flag){
-                        JOptionPane.showMessageDialog(IdIn, "Invalid Sport ID");
-                    }
+                    TableRowSorter<DefaultTableModel> sorter1 = new TableRowSorter<DefaultTableModel>(TMCo);
+                    TableCo.setRowSorter(sorter1);
+                    sorter1.setRowFilter(RowFilter.regexFilter(IdIn.getText().trim(),0));
+//                    flag = true;
+//                    for(int i = 0; i<Assignment.coachInfo.size(); i++){ //Search for Coach
+//                        Coach_Constr coach = Assignment.coachInfo.get(i);
+//                        if (IdIn.getText().equals(coach.getCoachId())){
+//                            JOptionPane.showMessageDialog(IdIn, "Coach ID: "+coach.getCoachId() +"\nCoach Name: "+ coach.getCoachN()+"\nCoach Phone Number: "+ coach.getCoachTel()+"\nCoach Hourly Rate: "+ coach.getCoachHRate()+"\nCoach Rating: "+coach.getCoachStar()+"\nCoach Sport Center: "+ coach.getCoachCenter()+"\nCoach Sport ID: "+ coach.getCoachSp_Id()+"\nCoach Sport Name: "+coach.getCoach_Sp_N()+"\nCoach Home Address: "+coach.getCoachAdd()+"\nCoach Joined Date: "+ coach.getJDate()+"\nCoach Terminated Date: "+ coach.getTDate());
+//                            flag = false;
+//                        }
+//                    }
+//                    if(flag){
+//                        JOptionPane.showMessageDialog(IdIn, "Invalid Sport ID");
+//                    }
                 }else if (selection ==3){
-//                    RowFilter<DefaultTableModel, Object> rf3 = null;
-//                    rf3 = RowFilter.regexFilter(IdIn.getText());
-//                    System.out.println(IdIn.getText());
-//                    sorter3.setRowFilter(rf3);
-                    flag = true;
-                    for(int i = 0; i<Assignment.studentInfo.size(); i++){ //Search for Student
-                        Student student = Assignment.studentInfo.get(i);
-                        if (IdIn.getText().equals(student.getStuID())){
-                            JOptionPane.showMessageDialog(IdIn, "Student ID: "+ student.getStuID() + "\nStudent Name: "+student.getStuName()+"\nStudent Username: "+student.getStuUserN()+"\nStudent Center: "+student.getStuPlace()+"\nStudent Gender: "+student.getStuGender()+"\nStudent Phone Number: "+student.getStuPhone());
-                            flag = false;
-                        }
-                    }
-                    if(flag){
-                        JOptionPane.showMessageDialog(IdIn, "Invalid Student ID");
-                    }
-                    
+                    TableRowSorter<DefaultTableModel> sorter1 = new TableRowSorter<DefaultTableModel>(TMStu);
+                    TableStu.setRowSorter(sorter1);
+                    sorter1.setRowFilter(RowFilter.regexFilter(IdIn.getText().trim(),0));
+//                    flag = true;
+//                    for(int i = 0; i<Assignment.studentInfo.size(); i++){ //Search for Student
+//                        Student student = Assignment.studentInfo.get(i);
+//                        if (IdIn.getText().equals(student.getStuID())){
+//                            JOptionPane.showMessageDialog(IdIn, "Student ID: "+ student.getStuID() + "\nStudent Name: "+student.getStuName()+"\nStudent Username: "+student.getStuUserN()+"\nStudent Center: "+student.getStuPlace()+"\nStudent Gender: "+student.getStuGender()+"\nStudent Phone Number: "+student.getStuPhone());
+//                            flag = false;
+//                        }
+//                    }
+//                    if(flag){
+//                        JOptionPane.showMessageDialog(IdIn, "Invalid Student ID");
+//                    }
                 }
             }
         });

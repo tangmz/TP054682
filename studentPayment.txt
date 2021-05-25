@@ -18,14 +18,14 @@ PetalingJaya
 
 a
 PetalingJaya
-2000
-2000
+1600
+1600
 8
 
 a
 PetalingJaya
-2000
-2000
+1600
+1600
 8
 
 Ng
@@ -36,8 +36,8 @@ PetalingJaya
 
 a
 PetalingJaya
-2000
-2000
+1600
+1600
 8
 
 Ng
@@ -48,20 +48,20 @@ PetalingJaya
 
 a
 PetalingJaya
-2000
-2000
+1600
+1600
 8
 
 a
 PetalingJaya
-2000
-2000
+1600
+1600
 8
 
 a
 PetalingJaya
-2000
-2000
+1600
+1600
 8
 
 Ng
@@ -74,5 +74,11 @@ Ng
 PetalingJaya
 2480
 2480
+8
+
+a
+PetalingJaya
+1600
+1600
 8
 

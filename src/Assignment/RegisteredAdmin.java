@@ -1,16 +1,18 @@
 package Assignment;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -19,9 +21,10 @@ public class RegisteredAdmin extends DateTime{
     public static JPanel header, menuBody, displayBody, Tab1, Tab2, Tab3, Tab4, Tab5;
     private int counter;
     public static String centerLocation;
-    public Button AddModRecord, SearchRecord, CoachRecord, ScheduleB, manageSystem, logout; //SearchRecord inclusive of Sorting
+    public JButton AddModRecord, SearchRecord, CoachRecord, ScheduleB, manageSystem, logout; //SearchRecord inclusive of Sorting
     public boolean Check = true;
     public static String Username;
+    private static ImageIcon AddModRecordLogo,SearchRecordLogo,CoachRecordLogo,ScheduleLogo,ManageSystemLogo,LogoutLogo;
     
         
     public void FrameLoad(String UserName, String cenLocation, int counter){
@@ -55,12 +58,24 @@ public class RegisteredAdmin extends DateTime{
         }
         
         //++create Components++//
-        logout = new Button("Logout");
-        AddModRecord = new Button("Add/Modify Record");
-        SearchRecord = new Button("Search Record");
-        CoachRecord = new Button("Coaches");
-        ScheduleB = new Button("Sport Schedule");
-        manageSystem = new Button("Manage System");
+        LogoutLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/logout.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        logout = new JButton("Logout",LogoutLogo);
+        logout.setBackground(Color.WHITE);
+        AddModRecordLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/record.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        AddModRecord = new JButton("Add/Modify Record",AddModRecordLogo);
+        AddModRecord.setBackground(Color.WHITE);
+        SearchRecordLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/search.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        SearchRecord = new JButton("Search Record", SearchRecordLogo);
+        SearchRecord.setBackground(Color.WHITE);
+        CoachRecordLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/coach.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        CoachRecord = new JButton("Coaches",CoachRecordLogo);
+        CoachRecord.setBackground(Color.WHITE);
+        ScheduleLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/schedule.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        ScheduleB = new JButton("Sport Schedule",ScheduleLogo);
+        ScheduleB.setBackground(Color.WHITE);
+        ManageSystemLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/changePassword.png")).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        manageSystem = new JButton("Manage System",ManageSystemLogo);
+        manageSystem.setBackground(Color.WHITE);
         frame.welcome.setText("Admin Panel");
         frame.setTitle("Admin Panel");
         
@@ -146,7 +161,7 @@ public class RegisteredAdmin extends DateTime{
         menuBody = new JPanel();
         menuBody.setLayout(new GridLayout(6,1));
         menuBody.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 3));
-        menuBody.setPreferredSize(new Dimension(150, frame.getHeight()));
+        menuBody.setPreferredSize(new Dimension(190, frame.getHeight()));
         menuBody.add(AddModRecord);
         menuBody.add(SearchRecord);
         menuBody.add(CoachRecord);

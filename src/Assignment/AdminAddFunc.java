@@ -267,100 +267,111 @@ public class AdminAddFunc extends JPanel implements ActionListener{
 //            CRatePay.setText("");
 //            CAddress.setText("");
         if(ae.getSource() == AddCoach){
-//            whichOperation = "CoachA";
             whichOperation ="CoachA";
-            for(int i=0; i<Assignment.sportInfo.size(); i++){
-                Sport_Constr s = Assignment.sportInfo.get(i);
-                if(s.getSportN().equals(SportNameIn.getText())&&s.getCenter().equals(RegisteredAdmin.centerLocation)){
-                    Found = true;
-                    break;
+            if(!CName.getText().equals("")){
+                for(int i=0; i<Assignment.sportInfo.size(); i++){
+                    Sport_Constr s = Assignment.sportInfo.get(i);
+                    if(s.getSportN().equals(SportNameIn.getText())&&s.getCenter().equals(RegisteredAdmin.centerLocation)){
+                        Found = true;
+                        break;
+                    }
                 }
-            }
-            if (Found == true){
-                JOptionPane.showMessageDialog(AddCoach, "Sport existed!");
-            }
-            
-            for(int i=0; i<Assignment.coachInfo.size(); i++){
-                Coach_Constr c = Assignment.coachInfo.get(i);
-                if(c.getCoachN().equals(CName.getText())&&c.getCoachCenter().equals(RegisteredAdmin.centerLocation)){
-                    Found1 = true;
-                    break;
+                if (Found == true){
+                    JOptionPane.showMessageDialog(AddCoach, "Sport existed!");
+                }else{
+                    for(int i=0; i<Assignment.coachInfo.size(); i++){
+                        Coach_Constr c = Assignment.coachInfo.get(i);
+                        if(c.getCoachN().equals(CName.getText())&&c.getCoachCenter().equals(RegisteredAdmin.centerLocation)){
+                            Found1 = true;
+                            break;
+                        }
+                    }
+                    if(Found1==false&&Found==false){
+                        writeFile writeFile = new writeFile(whichOperation);
+                        JOptionPane.showMessageDialog(this, "Sport and Coach Added!");
+                    }else if (Found==false &&Found1 == true){
+                        JOptionPane.showMessageDialog(AddCoach, "Coach existed!");
+                        Found1 = false;
+                    }
+                    retrieve r = new retrieve();
+                    SportNameIn.setText("");
+                    CName.setText("");
+                    CPhone.setText("");
+                    CRatePay.setText("");
+                    CAddress.setText("");
                 }
+            }else{
+                JOptionPane.showMessageDialog(this, "Please Enter All The Needed Details!");
             }
-            if(Found1==false&&Found==false){
-                writeFile writeFile = new writeFile(whichOperation);
-            }else if (Found==false &&Found1 == true){
-                JOptionPane.showMessageDialog(AddCoach, "Coach existed!");
-                Found1 = false;
-            }
-            retrieve r = new retrieve();
-            SportNameIn.setText("");
-            CName.setText("");
-            CPhone.setText("");
-            CRatePay.setText("");
-            CAddress.setText("");
         }else if(ae.getSource() == modify){
             whichOperation = "Modify";
-            for(int i =0; i<Assignment.sportInfo.size();i++){
-                Sport_Constr sp = Assignment.sportInfo.get(i);
-                if(sp.getSprtId().equals(SportIdIn.getText())){
-                    sp.setSportN(SportNameIn.getText());
-                    sp.setCoachN(CName.getText());
-                    Assignment.sportInfo.set(i, sp);
-                    Found = true;
-                    break;
+            if(!CName.getText().equals("")){
+                for(int i =0; i<Assignment.sportInfo.size();i++){
+                    Sport_Constr sp = Assignment.sportInfo.get(i);
+                    if(sp.getSprtId().equals(SportIdIn.getText())){
+                        sp.setSportN(SportNameIn.getText());
+                        sp.setCoachN(CName.getText());
+                        Assignment.sportInfo.set(i, sp);
+                        Found = true;
+                        break;
+                    }
                 }
-            }
-            for(int i = 0; i<Assignment.coachInfo.size();i++){
-                Coach_Constr c = Assignment.coachInfo.get(i);
-                if(c.getCoachN().equals(CName.getText())&&c.getCoachCenter().equals(RegisteredAdmin.centerLocation)){
-                    c.setCoach_Sp_N(SportNameIn.getText());
-                    c.setCoachTel(CPhone.getText());
-                    c.setCoachAdd(CAddress.getText());
-                    c.setCoachHRate(CRatePay.getText());
-                    Assignment.coachInfo.set(i, c);
-                    Found1 = true;
-                    break;
+                for(int i = 0; i<Assignment.coachInfo.size();i++){
+                    Coach_Constr c = Assignment.coachInfo.get(i);
+                    if(c.getCoachN().equals(CName.getText())&&c.getCoachCenter().equals(RegisteredAdmin.centerLocation)){
+                        c.setCoach_Sp_N(SportNameIn.getText());
+                        c.setCoachTel(CPhone.getText());
+                        c.setCoachAdd(CAddress.getText());
+                        c.setCoachHRate(CRatePay.getText());
+                        Assignment.coachInfo.set(i, c);
+                        Found1 = true;
+                        break;
+                    }
                 }
-            }
-            if(Found == true&&Found1 == true){
-                writeFile writeFile = new writeFile(whichOperation);
-                Found = false;
-                Found1 = false;
+                if(Found == true&&Found1 == true){
+                    writeFile writeFile = new writeFile(whichOperation);
+                    JOptionPane.showMessageDialog(this, "Modification Successful!");
+                    Found = false;
+                    Found1 = false;
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "Please Select a Sport!");
             }
         }else if(ae.getSource() == TerminateCoach){
             whichOperation = "Terminate";
-            for(int i=0; i<Assignment.coachInfo.size(); i++){
-                Coach_Constr c = Assignment.coachInfo.get(i);
-                if(c.getCoachN().equals(CName.getText())&&c.getCoachCenter().equals(RegisteredAdmin.centerLocation)){
-                    c.setCoach_Sp_N("TERMINATED");
-                    c.setCoachSp_Id("TERMINATED");
-                    c.setTDate(dateTime.getPartialDate());
-                    Assignment.coachInfo.set(i, c);
-                    CTDate.setText(dateTime.getPartialDate());
-                    System.out.println(Found);
-                    Found = true;
-                    break;
+            if(!CName.getText().equals("")){
+                for(int i=0; i<Assignment.coachInfo.size(); i++){
+                    Coach_Constr c = Assignment.coachInfo.get(i);
+                    if(c.getCoachN().equals(CName.getText())&&c.getCoachCenter().equals(RegisteredAdmin.centerLocation)){
+                        c.setCoach_Sp_N("TERMINATED");
+                        c.setCoachSp_Id("TERMINATED");
+                        c.setTDate(dateTime.getPartialDate());
+                        Assignment.coachInfo.set(i, c);
+                        CTDate.setText(dateTime.getPartialDate());
+                        System.out.println(Found);
+                        Found = true;
+                        break;
+                    }
                 }
-            }
-            for(int i =0; i<Assignment.sportInfo.size();i++){
-                Sport_Constr sp = Assignment.sportInfo.get(i);
-                if(sp.getSprtId().equals(SportIdIn.getText())){
-                    sp.setSportN("TERMINATED");
-                    sp.setCoachN("-");
-                    Assignment.sportInfo.set(i, sp);
-                    System.out.println(Found1);
-                    Found1 = true;
-                    break;
+                for(int i =0; i<Assignment.sportInfo.size();i++){
+                    Sport_Constr sp = Assignment.sportInfo.get(i);
+                    if(sp.getSprtId().equals(SportIdIn.getText())){
+                        sp.setSportN("TERMINATED");
+                        sp.setCoachN("-");
+                        Assignment.sportInfo.set(i, sp);
+                        System.out.println(Found1);
+                        Found1 = true;
+                        break;
+                    }
                 }
-            }
-            System.out.println(Found);
-            System.out.println(Found1);
-            if(Found == true&&Found1==true){
-                System.out.println("2");
-                writeFile writeFile = new writeFile(whichOperation);
-                Found = false;
-                Found1 = false;
+                if(Found == true&&Found1==true){
+                    writeFile writeFile = new writeFile(whichOperation);
+                    JOptionPane.showMessageDialog(this, "Coach Termianted!");
+                    Found = false;
+                    Found1 = false;
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "No Coach to Terminate!");
             }
         }else if(ae.getSource() == Search){
             for(int i=0; i<Assignment.sportInfo.size(); i++){
