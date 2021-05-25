@@ -145,29 +145,6 @@ public class RegisteredStudent extends DateTime{
         logout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                ArrayList<Rating_Constr> rating = new ArrayList<Rating_Constr>();
-                rating = null;
-                for(int i = 0; i<Assignment.coachInfo.size(); i++){
-                    Subscription_Constr subs = Assignment.subscription.get(i);
-                    Rating_Constr rate = null;
-                    String a = "CN0"+String.valueOf(i);
-                    System.out.println(subs.getCoachID());
-                    System.out.println(a+"a");
-                    if(subs.getCoachID().equals(a)){
-                        System.out.println(subs.getCoachID()+"b");
-                        rate.setCoachId(subs.getCoachID());
-                        ArrayList<Integer> allRates = new ArrayList<Integer>();
-                        for(int x = 0; x<Assignment.subscription.size();x++){
-                            Subscription_Constr subs1 = Assignment.subscription.get(i);
-                            if(subs1.getCoachID().equals(subs.getCoachID())){
-                                allRates.add(Integer.parseInt(subs1.getRating()));
-                            }
-                        }
-                        rate.setRatings(allRates);
-    //                    rating.add(i-1,rate);
-                        System.out.println(rate.getCoachId()+"c");
-                    }
-                }
                 frame.dispose();
                 Assignment.login.setVisible(true);
             }
