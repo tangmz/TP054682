@@ -25,7 +25,7 @@ public class SubscriptionSport extends JPanel implements ActionListener{
     private String location, studentName,selectedSport, feedback, totalFee, studentAttendance, monthlyFee,rating, coachID;
     private int sportFees, coachFees;
     private JComboBox sportComB;
-    private boolean found=true, found2=false, found3 =false;
+    private boolean found=true;
     private static ArrayList <String> sportsType = new ArrayList <String>();
     public SubscriptionSport(String userName, String cenLocation){
         //Define default variable for studentAttendace, feedback, studentName and location

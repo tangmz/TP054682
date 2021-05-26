@@ -26,7 +26,6 @@ public class Payment extends JPanel implements ActionListener {
     private static final DateTime dateTime = new DateTime();
     private static String location, studentAttendance = "8";
     private String studentName,finalOutBalance;
-    private int sportFees;
     private boolean flag = true;
     public Payment(String userName, String cenLocation){
         //List for the location

@@ -25,7 +25,7 @@ public class ModifyRecord extends JPanel implements ActionListener {
     private JLabel titleL, c1L,c2L,c3L,c4L,c5L,c6L,c7L;
     private JPanel title, c1,c2,c3,c4,c5,c6,c7;
     private JButton modify;
-    private String userName2, modPhone, modPass, selectedLocation;
+    private String userName2, selectedLocation;
     private static boolean flag = false;
     public ModifyRecord(String UserName, String cenLocation){
         //TextField
