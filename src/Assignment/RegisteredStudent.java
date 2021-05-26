@@ -82,6 +82,7 @@ public class RegisteredStudent extends DateTime{
         //DisplayBody
         displayBody = new JPanel();
         displayBody.setLayout(cl);
+        //To retrieve full data from the datetime class
         JLabel time = new JLabel(String.valueOf(getFullDate()), SwingConstants.CENTER);
         time.setFont(new Font("Arial", Font.BOLD, 30));
         JLabel dateTime = new JLabel(String.valueOf(getFullDate()), SwingConstants.CENTER);
