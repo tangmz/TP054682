@@ -22,3 +22,19 @@ BADMINTON
 3
 
 
+Ng
+PetalingJaya
+CN01
+BADMINTON
+1000
+3
+
+
+Ng
+PetalingJaya
+CN06
+SWIMMING
+400
+4
+
+

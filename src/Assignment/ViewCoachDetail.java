@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -30,6 +31,7 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
     private ArrayList<String> sportID = new ArrayList<String>();
     private static ArrayList <String> sportsType = new ArrayList <String>();
     private String selectedSport;
+    private boolean flag = false;
     public ViewCoachDetail(String cenLocation){
         //Assign value to the variable
         location = cenLocation;
@@ -168,25 +170,19 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
             //For loop is used to find the coachInfo
             for(int i=0; i<Assignment.coachInfo.size(); i++){
                 Coach_Constr coach = Assignment.coachInfo.get(i);
-                //Check whether the coachCenter is matched with the user location
-                if (coach.getCoachCenter().equals(location)){
-                    //Check whether the Coach_Sp_N is matched with the user input for the sport in JComboBox
-                    if (coach.getCoach_Sp_N().equals(selectedSport)){
-                        sportIdInText.setText(coach.getCoachSp_Id());
-                        coachIdText.setText(coach.getCoachId());
-                        coachNameText.setText(coach.getCoachN());
-                        coachPhoneText.setText(coach.getCoachTel());
-                        coachStarText.setText(coach.getCoachStar());
-                        //Convert string to integer to calculate the coach fees
-                        int coachSportFees = Integer.parseInt(coach.getCoachHRate());
-                        int coachFees = coachSportFees*4;
-                        sportFeesText.setText(Integer.toString(coachFees));
-                        coachJDateText.setText(coach.getJDate());
-                        coachTDateText.setText(coach.getTDate());
-                    }
-                }
-                else{
-                    System.out.println("Error");
+                //Check whether the coachCenter and Coach_Sp_N are matched with the user input 
+                if (coach.getCoachCenter().equals(location)&&coach.getCoach_Sp_N().equals(selectedSport)){
+                    sportIdInText.setText(coach.getCoachSp_Id());
+                    coachIdText.setText(coach.getCoachId());
+                    coachNameText.setText(coach.getCoachN());
+                    coachPhoneText.setText(coach.getCoachTel());
+                    coachStarText.setText(coach.getCoachStar());
+                    //Convert string to integer to calculate the coach fees
+                    int coachSportFees = Integer.parseInt(coach.getCoachHRate());
+                    int coachFees = coachSportFees*4;
+                    sportFeesText.setText(Integer.toString(coachFees));
+                    coachJDateText.setText(coach.getJDate());
+                    coachTDateText.setText(coach.getTDate());
                 }
                 
             }

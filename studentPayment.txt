@@ -1,15 +1,15 @@
 Ng
 BADMINTON
 PetalingJaya
-1600
-1600
+3000
+3000
 8
 
 Ng
 BASKETBALL
 PetalingJaya
-1600
-1600
+3000
+3000
 7
 
 tang
@@ -17,5 +17,12 @@ BADMINTON
 BukitJalil
 800
 800
+8
+
+Ng
+SWIMMING
+PetalingJaya
+3000
+3000
 8
 
