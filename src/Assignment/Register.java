@@ -23,7 +23,9 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.LineBorder;
 
+//Allow user to register either admin or student account to login to the system
 public class Register extends JFrame implements ActionListener{
+    //Variable Declaration
     private Button create, exit;
     private Label title, nameL, usernameL, passwordL, locationL, genderL, phoneL, roleL;
     private TextField userName, userLoginName, userPass, userPhone;
@@ -33,6 +35,7 @@ public class Register extends JFrame implements ActionListener{
     private JComboBox locationReg = new JComboBox();
     private String adID, stuID, visitorName, visitorUserN ,visitorPass,visitorPhone,visitorGender, selectedLocation;
     public Register(){
+        //Create radio buton which only allow one selection
         adminB = new JRadioButton("Admin");
         studentB = new JRadioButton("Student");
         ButtonGroup buttonRole = new ButtonGroup();
@@ -43,28 +46,23 @@ public class Register extends JFrame implements ActionListener{
         ButtonGroup buttonGender = new ButtonGroup();
         buttonGender.add(female);
         buttonGender.add(male);
-        male.addActionListener(this);
-        female.addActionListener(this);
-        /*JComboBox comboBox = new JComboBox();
-        x = new JFrame();
-        x.setSize(500, 300);
-        x.setLocation(800, 200);
-        x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        c = new Panel();
-        c.setBackground(Color.black);
-        x.add(c,BorderLayout.CENTER);
-        s = new Panel();    //FlowLayout by default
-        x.add(s,BorderLayout.SOUTH);
-        x.setVisible(true);*/
+        
+        //To set the location
         locationReg.addItem("PetalingJaya");
         locationReg.setSelectedItem("PetalingJaya");
+        
+        //Default design 
         setSize(400,380);
         setLocation(800,300);
         Container mainCont = this.getContentPane();
         mainCont.setLayout(new BorderLayout(8,6));
         setBackground(Color.white);
+        
+        //Create buttons for user
         create = new Button("Create");
         exit = new Button("Exit");
+        
+        //Create label to show the details of the inputs
         nameL = new Label("Name:      \t  ");
         usernameL = new Label("Username:   ");
         passwordL = new Label("Password:    ");
@@ -72,13 +70,21 @@ public class Register extends JFrame implements ActionListener{
         locationL = new Label("Select your Location: ");
         phoneL = new Label("Phone number:");
         roleL = new Label("Role:          ", Label.LEFT);
+        
+        //Create textfield to allow user to input data
         userName = new TextField(15);
         userLoginName = new TextField(15);
         userPass = new TextField(15);
         userPhone = new TextField(15);
+        
+        //Add actionListener to allow user to click for further function
+        male.addActionListener(this);
+        female.addActionListener(this);
         create.addActionListener(this);
         exit.addActionListener(this);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        //To read the location from enum and set in the JComboBox
         locationReg.addFocusListener(new FocusListener(){
             @Override
             public void focusGained(FocusEvent fe) {
@@ -92,6 +98,7 @@ public class Register extends JFrame implements ActionListener{
             }
             
         });
+        //Panel Design
         Header = new JPanel();
         Header.setLayout(new FlowLayout(FlowLayout.CENTER));
         Header.setBorder(new LineBorder(Color.DARK_GRAY, 3));
@@ -151,33 +158,43 @@ public class Register extends JFrame implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e){
+        //Store the user selected location
         selectedLocation = locationReg.getSelectedItem().toString();
-        //String selectedLocation = (String)comboBox.getSelectedItem().toString();
+        //Declare the ID of the user
         adID = "AN1";
         stuID = "SN1";
         int i = 0;
+        //Receive the input of the user
         visitorName = userName.getText();
         visitorUserN = userLoginName.getText();
         visitorPass = userPass.getText();
         visitorPhone = userPhone.getText();
         if (adminB.isSelected()){
+                //Create the admin info
                 if(e.getSource() == create){
                     String pinAdmin = JOptionPane.showInputDialog(this, "Pin");
+                    //Require password to create admin account to ensure the security of the admin
                     if (pinAdmin.equals("admin1234")){
                         boolean flag = true;
+                        //Read the array of adminInfo by using for loop
                         for(i = 0; i<Assignment.adminInfo.size(); i++){
                             Admin adminA = Assignment.adminInfo.get(i);
+                            //If the username is same as the admin name
                             if(visitorName.equals(adminA.getAdName())){
                                 flag = false;
                                 break;
                             }
                         }
+                        //Assign the admin ID to the user
                         String nextID = String.valueOf(i+1);
                         adID = "AN"+(nextID);
+                        //If true
                         if (flag){
+                            //Store all the data before writing to the file
                             Admin adminReg = new Admin(adID, visitorName,visitorUserN,visitorPass,selectedLocation, visitorGender, visitorPhone, "no");
                             Assignment.adminInfo.add(adminReg);
                             try{
+                                //To write the array into the adminLogin file
                                 PrintWriter f = new PrintWriter("adminLogin.txt");
                                 for(i=0; i<Assignment.adminInfo.size(); i++){
                                     Admin c = Assignment.adminInfo.get(i);
@@ -197,29 +214,37 @@ public class Register extends JFrame implements ActionListener{
                             } catch(Exception ex){
                                 System.out.println("Error in stop!");
                             }
+                        //If false, it will show that the name has been used
                         } else{
                             JOptionPane.showMessageDialog(create, "Name has been used!");
                         }
+                    //If false, it will show that the admin has input the wrong pin
                     }else{
                     JOptionPane.showMessageDialog(adminB, "Wrong Pin");
                     }
                 }
+        //if the radio button of the student is selected
         } else if (studentB.isSelected()){
             if(e.getSource() == create){
                 boolean flag = true;
+                //Read studentInfo array using for loop
                 for(i = 0; i<Assignment.studentInfo.size(); i++){
                     Student studentA = Assignment.studentInfo.get(i);
+                    //Check whether visitorname is the same as the student name in the array
                     if(visitorName.equals(studentA.getStuName())){
                         flag = false;
                         break;
                     }
                 }
+                //ID for student
                 String nextID = String.valueOf(i+1);
                 stuID = "SN"+(nextID);
                 if (flag){
+                    //Store the data in the object and add into the list
                     Student studentReg = new Student(stuID,visitorName,visitorUserN,visitorPass,selectedLocation, visitorGender ,visitorPhone);
                     Assignment.studentInfo.add(studentReg);
                     try{
+                        //Write the studentInfo Array into the studentLogin file
                         PrintWriter f = new PrintWriter("studentLogin.txt");
                         for(i=0; i<Assignment.studentInfo.size(); i++){
                             Student c = Assignment.studentInfo.get(i);
@@ -238,20 +263,25 @@ public class Register extends JFrame implements ActionListener{
                     } catch(Exception ex){
                         System.out.println("Error in stop!");
                     }
+                //If name is found then it will show the name has been used
                 } else{
                     JOptionPane.showMessageDialog(create, "Name has been used!");
                 }
             }
         }
+        //To exit the system
         if(e.getSource() == exit){
             userName.setText("");
             userLoginName.setText("");
             userPass.setText("");
             this.dispose();
             Assignment.login.setVisible(true);
+        //To identify the gender of the users
         }else if(e.getSource() == male){
-            visitorGender = "Male";
+            //Store data into the visitorGender variable
+            visitorGender = "Male"; 
         }else if (e.getSource() == female){
+            //Store data into the visitorGender variable
             visitorGender = "Female";
         }
     }

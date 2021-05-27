@@ -17,7 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+//To show the payment details and allow student to pay
 public class Payment extends JPanel implements ActionListener {
+    //Variable Declaration
     private static JLabel timeL, studentNameL, outstandingFeesL, amountPayL, title, totalPayL;
     private static JTextField amountPayText, studentNameText,sportFeesText, totalPayText;
     public static JPanel PanelTop, PanelTSelect, PanelTView, PanelTV1, PanelTV2, PanelTV3, PanelTV4,
@@ -28,21 +30,20 @@ public class Payment extends JPanel implements ActionListener {
     private String studentName,finalOutBalance;
     private boolean flag = true;
     public Payment(String userName, String cenLocation){
-        //List for the location
+        //Store the string into a variable
         studentName = userName;
         location = cenLocation;
-//        SportMod.setModel(cbm);
+        //Create label for the panel
         timeL = new JLabel(String.valueOf(dateTime.getFullDate()), SwingConstants.CENTER);
         timeL.setFont(new Font("Arial", Font.BOLD, 30));
-        
-        //label
         title = new JLabel("Payment", JLabel.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 30));
         studentNameL = new JLabel("Student Name:");
         outstandingFeesL = new JLabel("Outstanding Balance:");
         totalPayL = new JLabel("Total Payment:");
         amountPayL = new JLabel("Amount payment: ");
-
+        
+        //Create textfield
         studentNameText = new JTextField(15);
         studentNameText.setHorizontalAlignment(JTextField.CENTER);
         sportFeesText = new JTextField(15);
@@ -52,9 +53,6 @@ public class Payment extends JPanel implements ActionListener {
         totalPayText = new JTextField(15);
         totalPayText.setHorizontalAlignment(JTextField.CENTER);
 
-
-        
-        
         //++Set Component Disabled by Default++//
         studentNameText.setEnabled(false);
         sportFeesText.setEnabled(false);
@@ -130,17 +128,23 @@ public class Payment extends JPanel implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent ae) {
+        //To pay the the outstanding balance
         if (ae.getSource()==pay){
             try{
+                //It will read the payment array list using for loop
                 for(int i=0; i<Assignment.payment.size(); i++){
                     StudentPayment c = Assignment.payment.get(i);
+                    //Check whether the student name and location are matched in the array
                     if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
+                        //if outstanding balance is more than 0, then the amount of money will deduct it from the outstanding baalnce
                         if (Integer.parseInt(c.getStudentBalance())>=0){
                             int totalAmountPay = Integer.parseInt(c.getStudentBalance());
                             int amountPay = Integer.parseInt(amountPayText.getText());
                             int outstandingBalance = totalAmountPay - amountPay;
                             finalOutBalance = Integer.toString(outstandingBalance);
+                            //Replace the outstanding balance into the array list before writing into the file
                             c.setStudentBalance(finalOutBalance);
+                        //If false, then it will show user that they have paid
                         }else{
                             JOptionPane.showMessageDialog(pay, "You have paid");
                             break;
@@ -148,9 +152,12 @@ public class Payment extends JPanel implements ActionListener {
                     }
                 }
                 try{
+                    //Write the latets array into the studentPayment file
                     PrintWriter f = new PrintWriter("studentPayment.txt");
+                    //It will write into the file by using for loop
                     for(int i=0; i<Assignment.payment.size(); i++){
                         StudentPayment c = Assignment.payment.get(i);
+                        //Check whether the student name and location are match with the user inputs
                         if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
                             f.println(c.getStudentName());
                             f.println(c.getSportName());
@@ -162,6 +169,7 @@ public class Payment extends JPanel implements ActionListener {
 
                         }
                         f.close(); 
+                        //It will also set the latest outstanding balance on the textfield
                         sportFeesText.setText(finalOutBalance);
                     }
                 } catch(Exception ex){
@@ -171,10 +179,14 @@ public class Payment extends JPanel implements ActionListener {
             catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Please enter an amount!");
             }
+        //Show the detail of the total payment and outstanding balance
         }else if(ae.getSource()==paymentDetail){
+            //Read the array using for loop
             for(int i=0; i<Assignment.payment.size(); i++){
                 StudentPayment c = Assignment.payment.get(i);
+                //Check whether the student name and location are matched
                 if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
+                    //It will display the details on the textfield
                     totalPayText.setText(c.getStudentTotalPayment());
                     sportFeesText.setText(c.getStudentBalance());
                 }

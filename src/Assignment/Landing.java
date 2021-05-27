@@ -199,7 +199,7 @@ public class Landing extends JFrame implements ActionListener{
                         if(passInput.equals(c.getStuPass())){
                             //Check whether the selected location in the JComboBox is the same as the student place in the array list
                             if(selectedLocation.equals(c.getStuPlace())){
-                                //If true, then it will show a new panel
+                                //If true, then it allow user to login and show student panel
                                 Assignment.registeredStu.FrameLoad(c.getStuUserN(),c.getStuPlace());
                                 this.dispose();
                                 break;
@@ -219,26 +219,35 @@ public class Landing extends JFrame implements ActionListener{
                 if (flag){
                         JOptionPane.showMessageDialog(login, "Wrong Username!");
                     }
+                //it will ask user to choose the Switch either student or admin
             } else if (Switch.equals("AdminL")){
+                //It will read the admin info from the array list
                 for(int i=0; i<Assignment.adminInfo.size(); i++){
                     Admin c = Assignment.adminInfo.get(i);
+                    //Find whether the userinput is match with the admin username in the array list
                     if(userInput.equals(c.getAdUserN())){
                         flag = false;
+                        //Find whether the passInput is match with the admin password in the array list
                         if(passInput.equals(c.getAdPass())){
+                            //Find whether the selectedLocation from the JComboBox is the same as admin place
                             if(selectedLocation.equals(c.getAdPlace())){
+                                //If true, then it will allow user to login and show admin panel
                                 Assignment.registeredAd.FrameLoad(c.getAdUserN(),c.getAdPlace(),i);
                                 this.dispose();
                                 break;
                             } else{
+                                //Show error/false
                                 JOptionPane.showMessageDialog(login, "Wrong Location!");
                                 break;
                             }
                         } else{
+                            //Show error/false
                             JOptionPane.showMessageDialog(login, "Wrong password!");
                             break;
                         }
                     }
                 }
+                //Show error/false
                 if (flag){
                         JOptionPane.showMessageDialog(login, "Wrong Username!");
                     }

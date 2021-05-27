@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+//The main panel for Admin 
 public class RegisteredAdmin extends DateTime{
     public static JPanel header, menuBody, displayBody, Tab1, Tab2, Tab3, Tab4, Tab5;
     private int counter;
@@ -26,9 +27,8 @@ public class RegisteredAdmin extends DateTime{
     public static String Username;
     private static ImageIcon AddModRecordLogo,SearchRecordLogo,CoachRecordLogo,ScheduleLogo,ManageSystemLogo,LogoutLogo;
     
-        
     public void FrameLoad(String UserName, String cenLocation, int counter){
-        
+        //Variable Declaration
         RegisteredAdmin.Username = UserName;
         this.counter = counter;
         RegisteredAdmin.centerLocation = cenLocation;
@@ -42,7 +42,7 @@ public class RegisteredAdmin extends DateTime{
         ScheduleFunc sch = new ScheduleFunc();
         AdminManageSystem adMS = new AdminManageSystem();
         frame.setVisible(true);
-        
+        //Set the location from the enum
         frame.CenLocation.setSelectedItem(Location.valueOf(centerLocation));
         while(Check == true){
             Admin c = Assignment.adminInfo.get(this.counter);
