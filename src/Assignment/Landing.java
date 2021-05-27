@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Landing extends JFrame implements ActionListener{
+    //Variable Declaration
     private static JButton student,admin,login,clear,exit, register, visitorView;
     private static Label locationLabel, title;
     private TextField idIn,passIn; 
@@ -31,8 +32,9 @@ public class Landing extends JFrame implements ActionListener{
     private static JPanel Header, Subheader, Center, SelectionBody, InputBody, ButtonBody, Footer;
     private static ImageIcon Logo, loginLogo, registerLogo, clearLogo, exitLogo;
     private JComboBox locationLogin = new JComboBox();
+    //Login menu
     public Landing(){
-        //Landing object = new Landing();
+        //Image and Label
         Logo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/A_Logo.png")).getImage().getScaledInstance(300, 110, Image.SCALE_SMOOTH));
         JLabel LogoFrame = new JLabel(Logo);
         loginLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/login1.png")).getImage().getScaledInstance(20,20, Image.SCALE_SMOOTH));
@@ -47,12 +49,15 @@ public class Landing extends JFrame implements ActionListener{
         exitLogo = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/logout.png")).getImage().getScaledInstance(20,20, Image.SCALE_SMOOTH));
         exit = new JButton("Exit", exitLogo);
         exit.setBackground(Color.WHITE);
+        //JComboBox for location
         locationLogin.addItem("PetalingJaya");
         locationLogin.setSelectedItem("Petalingjaya");
+        //Set the default size and design for the panel
         setSize(400,420);
         setLocation(800,250);
         Container mainCont = this.getContentPane();
         mainCont.setLayout(new BorderLayout(8,6));
+        //Create new design panel
         Header = new JPanel();
         Subheader = new JPanel();
         Center = new JPanel();
@@ -60,14 +65,18 @@ public class Landing extends JFrame implements ActionListener{
         InputBody = new JPanel();
         ButtonBody = new JPanel();
         Footer = new JPanel();
+        //Create new Buttons for different functionalities
         student = new JButton("Student");
         admin = new JButton("Admin");
         visitorView = new JButton("Visitor View");
         visitorView.setBackground(Color.WHITE);
+        //Create new textField for user input for the username and password
         idIn = new TextField("Username",15);
         passIn = new TextField("Password",15);
+        //Create labels for the system
         title = new Label("Sport Academy System", Label.CENTER);
         locationLabel = new Label ("Select your location");
+        //Adding the action for each JButtons
         student.addActionListener(this);
         admin.addActionListener(this);
         login.addActionListener(this);
@@ -75,6 +84,7 @@ public class Landing extends JFrame implements ActionListener{
         clear.addActionListener(this);
         exit.addActionListener(this);
         visitorView.addActionListener(this);
+        //To appear Username when there's no any user input when user click it then it will disappear
         idIn.addFocusListener(new FocusListener(){
             @Override
             public void focusGained(FocusEvent fe) {
@@ -90,6 +100,7 @@ public class Landing extends JFrame implements ActionListener{
                 }
             }
         });
+        //To appear Password when there's no any user input when user click it then it will disappear
         passIn.addFocusListener(new FocusListener(){
             @Override
             public void focusGained(FocusEvent fe) {
@@ -105,6 +116,7 @@ public class Landing extends JFrame implements ActionListener{
                 }
             }
         });
+        //To show the various location of the sport academy
         locationLogin.addFocusListener(new FocusListener(){
             @Override
             public void focusGained(FocusEvent fe) {
@@ -118,6 +130,7 @@ public class Landing extends JFrame implements ActionListener{
             }
             
         });
+        //Create design panel
         Header.setLayout(new BorderLayout());
         Header.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 3));
         Header.add(LogoFrame,BorderLayout.NORTH);
@@ -158,40 +171,51 @@ public class Landing extends JFrame implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e){
+        //It will direct it to student role
         if(e.getSource()==student){
             student.setBackground(Color.GREEN);
             admin.setBackground(Color.LIGHT_GRAY);
             Switch= "StudentL";
+        //It will direct it to admin role
         }else if(e.getSource()==admin){
             student.setBackground(Color.LIGHT_GRAY);
             admin.setBackground(Color.GREEN);
             Switch= "AdminL";
         }
         boolean flag = true;
+        //Login to the system based on users' role
         if(e.getSource()==login){
             String selectedLocation = locationLogin.getSelectedItem().toString();
             String userInput = idIn.getText();
             String passInput = passIn.getText();
             if(Switch.equals("StudentL")){
+                //Read the student info from the array list
                 for(int i=0; i<Assignment.studentInfo.size(); i++){
                     Student c = Assignment.studentInfo.get(i);
+                    //Check whether userinput is match with the studentUsername in the array list
                     if(userInput.equals(c.getStuUserN())){
                         flag = false;
+                        //Check whether password input is match with the student password in the array list
                         if(passInput.equals(c.getStuPass())){
+                            //Check whether the selected location in the JComboBox is the same as the student place in the array list
                             if(selectedLocation.equals(c.getStuPlace())){
+                                //If true, then it will show a new panel
                                 Assignment.registeredStu.FrameLoad(c.getStuUserN(),c.getStuPlace());
                                 this.dispose();
                                 break;
                             }else{
+                                //Show error/false
                                 JOptionPane.showMessageDialog(login, "Wrong Location!");
                                 break;
                             }
                         }else{
+                            //Show error/false
                             JOptionPane.showMessageDialog(login, "Wrong Password!");
                             break;
                         }
                     }
                 }
+                //Show error/false
                 if (flag){
                         JOptionPane.showMessageDialog(login, "Wrong Username!");
                     }

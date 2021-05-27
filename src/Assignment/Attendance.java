@@ -59,6 +59,7 @@ public class Attendance extends JPanel implements ActionListener{
         attendanceConfirm.setBackground(Color.RED);
         attendanceConfirm.setEnabled(false);
         flag = false;
+        //Panel and Design
         add(sportL, BorderLayout.NORTH);
         centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(2,1));
@@ -74,13 +75,16 @@ public class Attendance extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        //To search the attendance from the schedule file
         if(ae.getSource()==search){
             flag = false;
             sport = sportList.getSelectedItem().toString();
             attendanceConfirm.setBackground(Color.RED);
             attendanceConfirm.setEnabled(false);
+            //Read the schedule from Array List
             for(int i = 0; i<Assignment.schedule.size(); i++){
                 Schedule_Constr schedule = Assignment.schedule.get(i);
+                //To find the matched location and current month
                 if(schedule.getCenter().equals(location)&&schedule.getSchMonth().equals(currentMonth)){
                     if(schedule.getMon1().equals(sport)&&(dayCheck.equals("Monday"))&&(hourCheckInteger>10)&&(hourCheckInteger<12)){
                         flag = true;
@@ -145,11 +149,13 @@ public class Attendance extends JPanel implements ActionListener{
                     if(schedule.getSun3().equals(sport)&&(dayCheck.equals("Sunday"))&&(hourCheckInteger>=15)&&(hourCheckInteger<=17)){
                         flag = true;
                     }
+                //When there's matched attendance, then it will turn green
                 }if(flag){
                     attendanceConfirm.setBackground(Color.GREEN);
                     attendanceConfirm.setEnabled(true);
                 }
             }
+        //To ensure the attendance has taken
         }else if(ae.getSource()==attendanceConfirm){
             for(int i=0; i<Assignment.payment.size(); i++){
                 StudentPayment c = Assignment.payment.get(i);
@@ -167,6 +173,7 @@ public class Attendance extends JPanel implements ActionListener{
                 }
             }
             try{
+                //Write into the file when the attendance is confirmed
                 PrintWriter f = new PrintWriter("studentPayment.txt");
                 for(int i=0; i<Assignment.payment.size(); i++){
                     StudentPayment c = Assignment.payment.get(i);
@@ -184,6 +191,7 @@ public class Attendance extends JPanel implements ActionListener{
                 System.out.println("Error in stop!"); 
                 
             }
+            //The attendance button will turn red after the process has done
             attendanceConfirm.setBackground(Color.RED);
             attendanceConfirm.setEnabled(false);
         }

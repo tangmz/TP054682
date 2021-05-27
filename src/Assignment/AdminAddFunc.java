@@ -23,6 +23,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 public class AdminAddFunc extends JPanel implements ActionListener{
+    //Variable Declaration
     private static JLabel SportSelc , SportIdL, SportNameL, CIdL, CNameL, CPhoneL, CRatePayL, CStarL, CAddressL, CJDateL, CTDateL;
     private static JTextField SportIdIn, SportNameIn, CId, CName, CPhone, CRatePay, CStar, CAddress, CJDate, CTDate;
     public static JPanel PanelTop, PanelTSelect, PanelTView, PanelTSNorth, PanelTSButton, PanelTSCenter, PanelTV1, PanelTV2, PanelTV3, PanelTV4,
@@ -47,13 +48,10 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         }
         
         SportComB = new JComboBox(sportsAvailable.toArray());
-//        SportComB.addItem("Hiiiiiii");/////////////Delete Later
-//        SportMod.setModel(cbm);
         SportSelc = new JLabel("Sport:  ");
         SportIdL = new JLabel("Sport ID:  ");
         SportNameL = new JLabel("Sport:       ");
         SportIdIn = new JTextField(15);
-//        SportIdIn.setText(sportId);
         SportIdIn.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent ke) {
@@ -80,7 +78,7 @@ public class AdminAddFunc extends JPanel implements ActionListener{
             @Override
             public void keyReleased(KeyEvent ke) {}
         });
-        
+        //Create label to show the textfield represent as what variable
         CIdL = new JLabel("Coach ID:");
         CNameL = new JLabel("Name:");
         CPhoneL = new JLabel("Phone:");
@@ -90,8 +88,8 @@ public class AdminAddFunc extends JPanel implements ActionListener{
         CJDateL = new JLabel("Joined Date:");
         CTDateL = new JLabel("Quit Date:");
         
+        //Create new TextField
         CId = new JTextField(15);
-//        CId.setText(coachId);
         CId.setHorizontalAlignment(JTextField.CENTER);
         CName = new JTextField(15);
         CName.setHorizontalAlignment(JTextField.CENTER);

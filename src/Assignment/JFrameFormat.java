@@ -16,20 +16,23 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 public class JFrameFormat extends JFrame{
-    
+    //Variable Declaration
     public JPanel header, headerUser, Body;
     public Label UserLoggedIn; 
     public JLabel welcome, LogoFrame, UserFrame;
     private ImageIcon Logo, User;
     public String UserName;
     public JComboBox CenLocation;
-
+    //Basic format of the panel
     public JFrameFormat(String UserName){
+        //Declaration of variable
         this.UserName = UserName;
+        //Set the default panel size, location and design
         setSize(1150,650);
         setLocation(450,200);
         Container mainCont = this.getContentPane();
         mainCont.setLayout(new BorderLayout(8,6));
+        //Labels are created
         welcome = new JLabel("", JLabel.CENTER);
         welcome.setFont(new Font("Arial", Font.BOLD, 26));
         UserLoggedIn = new Label(":\t<USER>");
@@ -39,9 +42,10 @@ public class JFrameFormat extends JFrame{
         User = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/AccountHeader.png")).getImage().getScaledInstance(35,35,Image.SCALE_SMOOTH));
         UserFrame = new JLabel(User);
         UserFrame.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Color.DARK_GRAY));
+        //JComboBox is created for the location
         CenLocation = new JComboBox(Location.values());
         CenLocation.setSelectedIndex(-1);
-        ///////////////////////////
+        //Design Panel 
         header = new JPanel();
         header.setBorder(new LineBorder(Color.DARK_GRAY, 2));
         header.setLayout(new BorderLayout());
