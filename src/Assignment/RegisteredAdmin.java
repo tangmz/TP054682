@@ -22,7 +22,6 @@ public class RegisteredAdmin extends DateTime{
     private int counter;
     public static String centerLocation;
     public JButton AddModRecord, SearchRecord, CoachRecord, ScheduleB, manageSystem, logout; //SearchRecord inclusive of Sorting
-    public boolean Check = true;
     public static String Username;
     private static ImageIcon AddModRecordLogo,SearchRecordLogo,CoachRecordLogo,ScheduleLogo,ManageSystemLogo,LogoutLogo;
     
@@ -44,17 +43,11 @@ public class RegisteredAdmin extends DateTime{
         frame.setVisible(true);
         
         frame.CenLocation.setSelectedItem(Location.valueOf(centerLocation));
-        while(Check == true){
-            Admin c = Assignment.adminInfo.get(this.counter);
-            if("no".equals(c.getSuperRole())){
-                frame.CenLocation.setEnabled(false);
-                Check = false;
-                break;
-            } else{
-                frame.CenLocation.setEnabled(true);
-                Check = false;
-                break;
-            }
+        Admin c = Assignment.adminInfo.get(this.counter);
+        if("no".equals(c.getSuperRole())){
+            frame.CenLocation.setEnabled(false);
+        } else{
+            frame.CenLocation.setEnabled(true);
         }
         
         //++create Components++//

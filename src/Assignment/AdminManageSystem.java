@@ -2,7 +2,9 @@ package Assignment;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
 
 public class AdminManageSystem extends JPanel{
     private static ButtonGroup bGroup;
@@ -156,6 +159,7 @@ public class AdminManageSystem extends JPanel{
                             ad.setAdPass(Txt1.getText());
                         }
                         Assignment.adminInfo.set(i, ad);
+                        System.out.println(Assignment.adminInfo.get(i));
                         JOptionPane.showMessageDialog(btn2, "\tAccount Updated!\n\n\tSuper Admin:    "+ad.getSuperRole());
                         break;
                     }
@@ -191,7 +195,7 @@ public class AdminManageSystem extends JPanel{
         setLayout(new BorderLayout());
         
         Header = new JPanel(new BorderLayout());
-        Header.setBorder(BorderFactory.createTitledBorder("Modify Account"));
+        Header.setBorder(BorderFactory.createTitledBorder(null,"--Modify Account--",TitledBorder.CENTER,TitledBorder.TOP,new Font("Verdana",Font.BOLD,25),Color.DARK_GRAY));
         TopSelP = new JPanel(new FlowLayout(FlowLayout.CENTER,10,5));
         TopSelP.add(rB1);
         TopSelP.add(rB2);
@@ -232,7 +236,7 @@ public class AdminManageSystem extends JPanel{
         Header.add(CardContainer, BorderLayout.CENTER);
         
         Body = new JPanel(new BorderLayout());
-        Body.setBorder(BorderFactory.createTitledBorder("Set System Announcement"));
+        Body.setBorder(BorderFactory.createTitledBorder(null,"--System Announcement--",TitledBorder.CENTER,TitledBorder.TOP,new Font("Verdana",Font.BOLD,25),Color.DARK_GRAY));
         NotiBody = new JPanel(new FlowLayout());
         NotiBody.add(Lab5);
         NotiBody.add(NotiTxt);

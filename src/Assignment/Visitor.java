@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 public class Visitor implements ActionListener{
     private JButton register, exit, viewB;
@@ -64,7 +65,7 @@ public class Visitor implements ActionListener{
         //Create new label
         welcomeL = new JLabel("Example", JLabel.CENTER);
         welcomeL.setFont(new Font("Arial", Font.BOLD, 30));
-        welcomeL.setBorder(BorderFactory.createTitledBorder("Announcement:  "));
+        welcomeL.setBorder(BorderFactory.createTitledBorder(null,"==Announcement Board==",TitledBorder.CENTER,TitledBorder.TOP,new Font("Verdana",Font.BOLD,30),Color.DARK_GRAY));
         notiChange();
         background = new JLabel(backgroundImage);
         

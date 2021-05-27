@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class AdminAddFunc extends JPanel implements ActionListener{
     private static JLabel SportSelc , SportIdL, SportNameL, CIdL, CNameL, CPhoneL, CRatePayL, CStarL, CAddressL, CJDateL, CTDateL;
@@ -81,14 +82,14 @@ public class AdminAddFunc extends JPanel implements ActionListener{
             public void keyReleased(KeyEvent ke) {}
         });
         
-        CIdL = new JLabel("Coach ID:");
-        CNameL = new JLabel("Name:");
-        CPhoneL = new JLabel("Phone:");
-        CRatePayL = new JLabel("Hourly Pay:");
-        CStarL = new JLabel("Rating :");
-        CAddressL = new JLabel("Residing City:");
-        CJDateL = new JLabel("Joined Date:");
-        CTDateL = new JLabel("Quit Date:");
+        CIdL = new JLabel("Coach ID:", SwingConstants.CENTER);
+        CNameL = new JLabel("Name:", SwingConstants.CENTER);
+        CPhoneL = new JLabel("Phone:", SwingConstants.CENTER);
+        CRatePayL = new JLabel("Hourly Pay:", SwingConstants.CENTER);
+        CStarL = new JLabel("Rating :", SwingConstants.CENTER);
+        CAddressL = new JLabel("Residing City:", SwingConstants.CENTER);
+        CJDateL = new JLabel("Joined Date:", SwingConstants.CENTER);
+        CTDateL = new JLabel("Quit Date:", SwingConstants.CENTER);
         
         CId = new JTextField(15);
 //        CId.setText(coachId);
@@ -244,28 +245,6 @@ public class AdminAddFunc extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-//        if(ae.getSource() == AddSport){
-//            whichOperation = "SportA";
-//            for(int i=0; i<Assignment.sportInfo.size(); i++){
-//                Sport_Constr s = Assignment.sportInfo.get(i);
-//                if(s.getSportN().equals(SportNameIn.getText())&&s.getCenter().equals(RegisteredAdmin.centerLocation)){
-//                    Found = true;
-//                }else{
-//                    Found = false;
-//                }
-//            }
-//            if(Found==false){
-//                writeFile writeFile = new writeFile(whichOperation);
-//            }else if (Found == true){
-//                JOptionPane.showMessageDialog(AddCoach, "Sport existed!");
-//            }
-//            
-//            retrieve r = new retrieve();
-//            SportNameIn.setText("");
-//            CName.setText("");
-//            CPhone.setText("");
-//            CRatePay.setText("");
-//            CAddress.setText("");
         if(ae.getSource() == AddCoach){
             whichOperation ="CoachA";
             if(!CName.getText().equals("")){
@@ -482,24 +461,6 @@ public class AdminAddFunc extends JPanel implements ActionListener{
                     System.out.println("Error in stop!");
                 }
                 Repaint r = new Repaint();
-//            else if(whichButton.equals("SportA")){
-//                Sport_Constr writeS = new Sport_Constr(SportIdIn.getText(),SportNcap,RegisteredAdmin.centerLocation,CName.getText());
-//                Assignment.sportInfo.add(writeS);
-//                try{
-//                    PrintWriter f = new PrintWriter("sport.txt");
-//                    for(int i=0; i<Assignment.sportInfo.size(); i++){
-//                        Sport_Constr c = Assignment.sportInfo.get(i);
-//                        f.println(c.getSprtId());
-//                        f.println(c.getSportN());
-//                        f.println(c.getCenter());
-//                        f.println(c.getCoachN());
-//                        f.println();
-//                    }
-//                    f.close();   
-//                    
-//                } catch(Exception ex){
-//                    System.out.println("Error in stop!");
-//                }
             }else if (whichButton.equals("Modify")){
                 try{
                     PrintWriter f = new PrintWriter("coach.txt");
