@@ -40,7 +40,7 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
         sportsType.removeAll(sportsType);
         for(int i = 0; i<Assignment.sportInfo.size(); i++){
             Sport_Constr sport = Assignment.sportInfo.get(i);
-            if(sport.getCenter().equals(location)){
+            if(sport.getCenter().equals(location)&&!sport.getSportN().equals("TERMINATED")){
                 sportsType.add(sport.getSportN()); 
                 
             }
