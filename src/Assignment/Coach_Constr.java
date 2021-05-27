@@ -1,8 +1,8 @@
 package Assignment;
-
+//Coach Info
 public class Coach_Constr {
     private String CoachId, CoachN, CoachTel, CoachHRate, CoachStar, CoachCenter, CoachSp_Id, coach_Sp_N, CoachAdd, JDate, TDate;
-
+    //Coach Constructor
     public Coach_Constr(String CoachId, String CoachN, String CoachTel, String CoachHRate, String CoachStar, String CoachCenter, String CoachSp_Id, String coach_Sp_N, String CoachAdd, String JDate, String TDate) {
         this.CoachId = CoachId;
         this.CoachN = CoachN;
@@ -16,7 +16,7 @@ public class Coach_Constr {
         this.JDate = JDate;
         this.TDate = TDate;
     }
-
+    //Getter and Setter for Coach Info
     public String getCoachId() {
         return CoachId;
     }

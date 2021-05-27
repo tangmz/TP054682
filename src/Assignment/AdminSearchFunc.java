@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 public class AdminSearchFunc extends JPanel{
+    //Variable Declaration
     private JPanel Header, HeaderBox, HeaderSelection, HeaderInp, HeaderBtm, Body, BodySp, BodyCo, BodyStu;
     private JRadioButton RbSp, RbCo, RbStu;
     private ButtonGroup BGroup;
@@ -77,10 +78,7 @@ public class AdminSearchFunc extends JPanel{
                 TMStu.addRow(new Object[]{stu.getStuID(),stu.getStuName(),stu.getStuUserN(),stu.getStuPlace(),stu.getStuGender(),stu.getStuPhone()});
             }
         }
-//        TableRowSorter<DefaultTableModel> sorter3 = new TableRowSorter <>(TMStu);
         TableStu = new JTable(TMStu);
-//        TableStu.setRowSorter(sorter3);
-//        sorter3.setRowFilter(RowFilter.regexFilter(IdIn.getText()));///////////////////////////////////////////////////////////////
         TableStu.setAutoCreateRowSorter(true);
         ScrollStu = new JScrollPane(TableStu);
         
@@ -93,7 +91,6 @@ public class AdminSearchFunc extends JPanel{
         HeaderSelection.add(RbSp);
         HeaderSelection.add(RbCo);
         HeaderSelection.add(RbStu);
-//        Header.setSize(new Dimension(150,150));
         
         HeaderInp = new JPanel();
         HeaderInp.setLayout(new FlowLayout(FlowLayout.CENTER,15,5));
@@ -144,6 +141,7 @@ public class AdminSearchFunc extends JPanel{
         BGroup.add(RbCo);
         BGroup.add(RbStu);
         RbSp.setSelected(true);
+        //To change to the specific panel
         RbSp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -151,6 +149,7 @@ public class AdminSearchFunc extends JPanel{
                 selection = 1;
             }
         });
+        //To change to the specific panel
         RbCo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -158,6 +157,7 @@ public class AdminSearchFunc extends JPanel{
                 selection = 2;
             }
         });
+        //To change to the specific panel
         RbStu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -165,7 +165,7 @@ public class AdminSearchFunc extends JPanel{
                 selection =3;
             }
         });
-        
+        //To filter the table and find the matched word
         SearchBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -174,48 +174,14 @@ public class AdminSearchFunc extends JPanel{
                     TableRowSorter<DefaultTableModel> sorter1 = new TableRowSorter<DefaultTableModel>(TMSp);
                     TableSp.setRowSorter(sorter1);
                     sorter1.setRowFilter(RowFilter.regexFilter(IdIn.getText().trim(),0));
-//                    for(int i = 0; i<Assignment.sportInfo.size(); i++){ // Search for Sport
-//                        Sport_Constr sport = Assignment.sportInfo.get(i);
-//                        if (IdIn.getText().equals(sport.getSprtId())){
-//                            JOptionPane.showMessageDialog(IdIn, "Sport ID: "+ sport.getSprtId() + "\nSport Name: "+sport.getSportN()+"\nSport Center: "+sport.getCenter()+"\nCoach Assigned: "+sport.getCoachN());
-//                            flag = false;
-//                        
-//                        }
-//                    }
-//                    if(flag){
-//                        JOptionPane.showMessageDialog(IdIn, "Invalid Sport ID");
-//                    }
-                    
                 }else if (selection ==2){
                     TableRowSorter<DefaultTableModel> sorter1 = new TableRowSorter<DefaultTableModel>(TMCo);
                     TableCo.setRowSorter(sorter1);
                     sorter1.setRowFilter(RowFilter.regexFilter(IdIn.getText().trim(),0));
-//                    flag = true;
-//                    for(int i = 0; i<Assignment.coachInfo.size(); i++){ //Search for Coach
-//                        Coach_Constr coach = Assignment.coachInfo.get(i);
-//                        if (IdIn.getText().equals(coach.getCoachId())){
-//                            JOptionPane.showMessageDialog(IdIn, "Coach ID: "+coach.getCoachId() +"\nCoach Name: "+ coach.getCoachN()+"\nCoach Phone Number: "+ coach.getCoachTel()+"\nCoach Hourly Rate: "+ coach.getCoachHRate()+"\nCoach Rating: "+coach.getCoachStar()+"\nCoach Sport Center: "+ coach.getCoachCenter()+"\nCoach Sport ID: "+ coach.getCoachSp_Id()+"\nCoach Sport Name: "+coach.getCoach_Sp_N()+"\nCoach Home Address: "+coach.getCoachAdd()+"\nCoach Joined Date: "+ coach.getJDate()+"\nCoach Terminated Date: "+ coach.getTDate());
-//                            flag = false;
-//                        }
-//                    }
-//                    if(flag){
-//                        JOptionPane.showMessageDialog(IdIn, "Invalid Sport ID");
-//                    }
                 }else if (selection ==3){
                     TableRowSorter<DefaultTableModel> sorter1 = new TableRowSorter<DefaultTableModel>(TMStu);
                     TableStu.setRowSorter(sorter1);
                     sorter1.setRowFilter(RowFilter.regexFilter(IdIn.getText().trim(),0));
-//                    flag = true;
-//                    for(int i = 0; i<Assignment.studentInfo.size(); i++){ //Search for Student
-//                        Student student = Assignment.studentInfo.get(i);
-//                        if (IdIn.getText().equals(student.getStuID())){
-//                            JOptionPane.showMessageDialog(IdIn, "Student ID: "+ student.getStuID() + "\nStudent Name: "+student.getStuName()+"\nStudent Username: "+student.getStuUserN()+"\nStudent Center: "+student.getStuPlace()+"\nStudent Gender: "+student.getStuGender()+"\nStudent Phone Number: "+student.getStuPhone());
-//                            flag = false;
-//                        }
-//                    }
-//                    if(flag){
-//                        JOptionPane.showMessageDialog(IdIn, "Invalid Student ID");
-//                    }
                 }
             }
         });

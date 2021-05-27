@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 public class AdminManageSystem extends JPanel{
+    //Variable Declaration
     private static ButtonGroup bGroup;
     private static JRadioButton rB1, rB2;
     private static JComboBox StudentUserB;

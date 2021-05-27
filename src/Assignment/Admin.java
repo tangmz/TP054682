@@ -1,8 +1,8 @@
 package Assignment;
-
+//Encapsulation for Admin
 public class Admin {
     private String adId, adUserN, adPass, adName, adPlace, adGender, adPhone, superRole;
-    
+    //Constructor for Admin
     public Admin(String adId, String adUserN, String adPass, String adName, String adPlace, String adGender, String adPhone, String superRole) {
         this.adId = adId;
         this.adUserN = adUserN;
@@ -13,7 +13,7 @@ public class Admin {
         this.adPhone = adPhone;
         this.superRole = superRole;
     }
-
+    //Getter and Setter
     public String getAdId() {
         return adId;
     }

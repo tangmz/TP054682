@@ -6,7 +6,7 @@ import java.awt.GridLayout;
 import java.awt.TextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+//To view student self record
 public class ViewRecord extends JPanel {
     private JPanel b1, b2, b3, b4, b5, b6, b7, titlePanel;
     private TextField stuID, stuName, stuUserN, stuPass, stuPlace, stuGender, stuPhone;

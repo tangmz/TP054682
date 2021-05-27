@@ -18,17 +18,18 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-
+//To modify the student self record
 public class ModifyRecord extends JPanel implements ActionListener {
+    //Variable Declaration
     private TextField modifyID, modifyName, modifyUserN, modifyPass,  modifyGender, modifyPhone;
     private JComboBox locationReg;
     private JLabel titleL, c1L,c2L,c3L,c4L,c5L,c6L,c7L;
     private JPanel title, c1,c2,c3,c4,c5,c6,c7;
     private JButton modify;
-    private String userName2, modPhone, modPass, selectedLocation;
+    private String userName2, selectedLocation;
     private static boolean flag = false;
     public ModifyRecord(String UserName, String cenLocation){
-        //TextField
+        //Create TextFields
 
         userName2 = UserName;
         modifyID = new TextField(15);
@@ -46,6 +47,7 @@ public class ModifyRecord extends JPanel implements ActionListener {
         //To get the data from studentInfo and display in the TextFields
         for(int i=0; i<Assignment.studentInfo.size(); i++){
             Student c = Assignment.studentInfo.get(i);
+            //Check whether username is same as the student user name in the ArrayList
             if(UserName.equals(c.getStuUserN())){
                 modifyID.setText(c.getStuID());
                 modifyName.setText(c.getStuName());
@@ -115,10 +117,11 @@ public class ModifyRecord extends JPanel implements ActionListener {
         modify.setBackground(Color.WHITE);
         add(modify);
         modify.addActionListener(this);
-
+        //JComboBox for the locationReg
         locationReg.addFocusListener(new FocusListener(){
             @Override
             public void focusGained(FocusEvent fe) {
+                //Show the location from the enum
                 locationReg.setModel(new DefaultComboBoxModel(Location.values()));
                 locationReg.showPopup();
             }
@@ -132,17 +135,23 @@ public class ModifyRecord extends JPanel implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent ae) {
+        //Convert the location from the enum to String
         selectedLocation = locationReg.getSelectedItem().toString();
+        //To modify the record by clicking the button
         if (ae.getSource()==modify){
+            //Find the student info using for loop
             for(int i=0; i<Assignment.studentInfo.size(); i++){
                 Student c = Assignment.studentInfo.get(i);
+                //Check whether userName is same as the student username in the Array List
                 if(userName2.equals(c.getStuUserN())){
+                    //Replacing the modified data into the array list
                     c.setStuPass(modifyPass.getText());
                     c.setStuPlace(selectedLocation);
                     c.setStuPhone(modifyPhone.getText());
                 }
             }
             try{
+                //Write the new array list into the student file
                 PrintWriter f = new PrintWriter("studentLogin.txt");
                 for(int i=0; i<Assignment.studentInfo.size(); i++){
                     Student c = Assignment.studentInfo.get(i);   
@@ -159,8 +168,10 @@ public class ModifyRecord extends JPanel implements ActionListener {
             } catch(Exception ex){
                 System.out.println("Error in stop!");
             }
+            //If false, it will show error
             JOptionPane.showMessageDialog(modify, "You have modified your self record");
         }
+        //It repaint the panel after modifying the data 
         studentRepaint paint = new studentRepaint();
     }
 }

@@ -3,14 +3,14 @@ package Assignment;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
+//To extract time
 public class DateTime{
     private String Year, FullMonth, PartialMonth, Date, hour, Day, FullDate, PartialDate;
     
     public DateTime(){
         ClockTick();
     }
-
+    //To read all the format such as day, year, month, date and hour
     private void ClockTick() {
         Calendar dateRead = Calendar.getInstance();
         DateFormat dayFormat = new SimpleDateFormat("EEEE");
@@ -29,6 +29,7 @@ public class DateTime{
         PartialDate = partialDateFormat.format(dateRead.getTime());
         FullDate = (Day+", "+Date+" "+FullMonth+" "+Year);
     }
+    //To get the data from other classes
     public String getFullDate() {
         return FullDate;
     }

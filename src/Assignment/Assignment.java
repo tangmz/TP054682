@@ -5,11 +5,13 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Assignment {
+    //To call the different class/panel
     public static Landing login = new Landing();
     public static Register register = new Register();
     public static Visitor visitorView = new Visitor();
     public static RegisteredAdmin registeredAd = new RegisteredAdmin();
     public static RegisteredStudent registeredStu = new RegisteredStudent();
+    //ArrayList to store the data from the file
     public static ArrayList <Student> studentInfo = new ArrayList<Student>();
     public static ArrayList<Admin> adminInfo = new ArrayList<Admin>();
     public static ArrayList <Coach_Constr> coachInfo = new ArrayList<Coach_Constr>();
@@ -18,6 +20,7 @@ public class Assignment {
     public static ArrayList<Subscription_Constr> subscription = new ArrayList<Subscription_Constr>();
     public static ArrayList<StudentPayment> payment = new ArrayList<StudentPayment>();
     public static ArrayList<VisitorAnnouncement> noti = new ArrayList<VisitorAnnouncement>();
+    //To extract date from DateTime class
     public static Date DateTime = new Date();
         
     public static void main(String[] args) {
@@ -51,6 +54,7 @@ public class Assignment {
                 Admin admin = new Admin(h,i,j,k,l,m,n,o);
                 adminInfo.add(admin);
             }
+            //Coach Info
             s = new Scanner(new File("coach.txt"));
             while(s.hasNext()){
                 String c1 = s.nextLine();
@@ -68,6 +72,7 @@ public class Assignment {
                 Coach_Constr coach = new Coach_Constr(c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11);
                 coachInfo.add(coach);
             }
+            //Sport Info
             s = new Scanner(new File("sport.txt"));
             while(s.hasNext()){
                 String d1 = s.nextLine();
@@ -78,6 +83,7 @@ public class Assignment {
                 Sport_Constr coach = new Sport_Constr(d1,d2,d3,d4);
                 sportInfo.add(coach);
             }
+            //Schedule Info
             s = new Scanner(new File("schedule.txt"));
             while(s.hasNext()){
                 String sc1 = s.nextLine();
@@ -107,6 +113,7 @@ public class Assignment {
                 Schedule_Constr schedule_read = new Schedule_Constr(sc1,sc2,sc3,sc4,sc5,sc6,sc7,sc8,sc9,sc10,sc11,sc12,sc13,sc14,sc15,sc16,sc17,sc18,sc19,sc20,sc21,sc22,sc23);
                 schedule.add(schedule_read);
             }
+            //Sport has subscribed by student
             s = new Scanner(new File("subscriptionSport.txt"));
             while(s.hasNext()){
                 String d1 = s.nextLine();
@@ -120,6 +127,7 @@ public class Assignment {
                 Subscription_Constr sub = new Subscription_Constr(d1,d2,d3,d4,d5,d6,d7);
                 subscription.add(sub);
             }
+            //Student payment detail
             s = new Scanner(new File("studentPayment.txt"));
             while(s.hasNext()){
                 String e1 = s.nextLine();
@@ -132,6 +140,7 @@ public class Assignment {
                 StudentPayment studentPayment = new StudentPayment(e1,e2,e3,e4,e5,e6);
                 payment.add(studentPayment);
             }
+            //Announcement that has been set by admin
             s = new Scanner(new File("announcement.txt"));
             while(s.hasNext()){
                 String f1 = s.nextLine();

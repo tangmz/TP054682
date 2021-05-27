@@ -1,7 +1,8 @@
 package Assignment;
+//Encapsulation for the Subscription
 public class Subscription_Constr {
     private String subscriptionName, subscriptionLocation, coachID, subscriptionSport, subscriptionFee, rating, feedback;
-
+    //Constructor for the Subscription
     public Subscription_Constr(String subscriptionName, String subscriptionLocation, String coachID, String subscriptionSport, String subscriptionFee, String rating, String feedback) {
         this.subscriptionName = subscriptionName;
         this.subscriptionLocation = subscriptionLocation;
@@ -11,7 +12,7 @@ public class Subscription_Constr {
         this.rating = rating;
         this.feedback = feedback;
     }
-
+    //Getter and setter for the subscription
     public String getSubscriptionName() {
         return subscriptionName;
     }

@@ -59,6 +59,7 @@ public class Attendance extends JPanel implements ActionListener{
         attendanceConfirm.setBackground(Color.RED);
         attendanceConfirm.setEnabled(false);
         flag = false;
+        //Panel and Design
         add(sportL, BorderLayout.NORTH);
         centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(2,1));
@@ -74,82 +75,87 @@ public class Attendance extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        //To search the attendance from the schedule file
         if(ae.getSource()==search){
             flag = false;
             sport = sportList.getSelectedItem().toString();
             attendanceConfirm.setBackground(Color.RED);
             attendanceConfirm.setEnabled(false);
+            //Read the schedule from Array List
             for(int i = 0; i<Assignment.schedule.size(); i++){
                 Schedule_Constr schedule = Assignment.schedule.get(i);
+                //To find the matched location and current month
                 if(schedule.getCenter().equals(location)&&schedule.getSchMonth().equals(currentMonth)){
-                    if(schedule.getMon1().equals(sport)&&(dayCheck.equals("Monday")&&(hourCheckInteger>10)&&(hourCheckInteger<12))){
+                    if(schedule.getMon1().equals(sport)&&(dayCheck.equals("Monday"))&&(hourCheckInteger>10)&&(hourCheckInteger<12)){
                         flag = true;
                     }
-                    if(schedule.getMon2().equals(sport)&&(dayCheck.equals("Monday")&&(hourCheckInteger>13)&&(hourCheckInteger<15))){
+                    if(schedule.getMon2().equals(sport)&&(dayCheck.equals("Monday"))&&(hourCheckInteger>=13)&&(hourCheckInteger<=15)){
                         flag = true;
                     }
-                    if(schedule.getMon3().equals(sport)&&(dayCheck.equals("Monday")&&(hourCheckInteger>15)&&(hourCheckInteger<17))){
+                    if(schedule.getMon3().equals(sport)&&(dayCheck.equals("Monday"))&&(hourCheckInteger>=15)&&(hourCheckInteger<=17)){
                         flag = true;
                     }
-                    if(schedule.getTue1().equals(sport)&&(dayCheck.equals("Tuesday")&&(hourCheckInteger>10)&&(hourCheckInteger<12))){
+                    if(schedule.getTue1().equals(sport)&&(dayCheck.equals("Tuesday"))&&(hourCheckInteger>=10)&&(hourCheckInteger<=12)){
                         flag = true;
                     }
-                    if(schedule.getTue2().equals(sport)&&(dayCheck.equals("Tuesday")&&(hourCheckInteger>13)&&(hourCheckInteger<15))){
+                    if(schedule.getTue2().equals(sport)&&(dayCheck.equals("Tuesday"))&&(hourCheckInteger>=13)&&(hourCheckInteger<=15)){
                         flag = true;
                     }
-                    if(schedule.getTue3().equals(sport)&&(dayCheck.equals("Tuesday")&&(hourCheckInteger>15)&&(hourCheckInteger<17))){
+                    if(schedule.getTue3().equals(sport)&&(dayCheck.equals("Tuesday"))&&(hourCheckInteger>=15)&&(hourCheckInteger<=17)){
                         flag = true;
                     }
-                    if(schedule.getWed1().equals(sport)&&(dayCheck.equals("Wednesday")&&(hourCheckInteger>10)&&(hourCheckInteger<12))){
+                    if(schedule.getWed1().equals(sport)&&(dayCheck.equals("Wednesday"))&&(hourCheckInteger>=10)&&(hourCheckInteger<=12)){
                         flag = true;
                     }
-                    if(schedule.getWed2().equals(sport)&&(dayCheck.equals("Wednesday")&&(hourCheckInteger>13)&&(hourCheckInteger<15))){
+                    if(schedule.getWed2().equals(sport)&&(dayCheck.equals("Wednesday"))&&(hourCheckInteger>=13)&&(hourCheckInteger<=15)){
                         flag = true;
                     }
-                    if(schedule.getWed3().equals(sport)&&(dayCheck.equals("Wednesday")&&(hourCheckInteger>15)&&(hourCheckInteger<17))){
+                    if(schedule.getWed3().equals(sport)&&(dayCheck.equals("Wednesday"))&&(hourCheckInteger>=15)&&(hourCheckInteger<=17)){
                         flag = true;
                     }
-                    if(schedule.getThu1().equals(sport)&&(dayCheck.equals("Thursday")&&(hourCheckInteger>10)&&(hourCheckInteger<12))){
+                    if(schedule.getThu1().equals(sport)&&(dayCheck.equals("Thursday"))&&(hourCheckInteger>=10)&&(hourCheckInteger<=12)){
                         flag = true;
                     }
-                    if(schedule.getThu2().equals(sport)&&(dayCheck.equals("Thursday")&&(hourCheckInteger>13)&&(hourCheckInteger<15))){
+                    if(schedule.getThu2().equals(sport)&&(dayCheck.equals("Thursday"))&&(hourCheckInteger>=13)&&(hourCheckInteger<=15)){
                         flag = true;
                     }
-                    if(schedule.getThu3().equals(sport)&&(dayCheck.equals("Thursday")&&(hourCheckInteger>15)&&(hourCheckInteger<17))){
+                    if(schedule.getThu3().equals(sport)&&(dayCheck.equals("Thursday"))&&(hourCheckInteger>=15)&&(hourCheckInteger<=17)){
                         flag = true;
                     }
-                    if(schedule.getFri1().equals(sport)&&(dayCheck.equals("Friday")&&(hourCheckInteger>10)&&(hourCheckInteger<12))){
+                    if(schedule.getFri1().equals(sport)&&(dayCheck.equals("Friday"))&&(hourCheckInteger>=10)&&(hourCheckInteger<=12)){
                         flag = true;
                     }
-                    if(schedule.getFri2().equals(sport)&&(dayCheck.equals("Friday")&&(hourCheckInteger>13)&&(hourCheckInteger<15))){
+                    if(schedule.getFri2().equals(sport)&&(dayCheck.equals("Friday"))&&(hourCheckInteger>=13)&&(hourCheckInteger<=15)){
                         flag = true;
                     }
-                    if(schedule.getFri3().equals(sport)&&(dayCheck.equals("Friday")&&(hourCheckInteger>15)&&(hourCheckInteger<17))){
+                    if(schedule.getFri3().equals(sport)&&(dayCheck.equals("Friday"))&&(hourCheckInteger>=15)&&(hourCheckInteger<=17)){
                         flag = true;
                     }
-                    if(schedule.getSat1().equals(sport)&&(dayCheck.equals("Saturday")&&(hourCheckInteger>10)&&(hourCheckInteger<12))){
+                    if(schedule.getSat1().equals(sport)&&(dayCheck.equals("Saturday"))&&(hourCheckInteger>=10)&&(hourCheckInteger<=12)){
                         flag = true;
                     }   
-                    if(schedule.getSat2().equals(sport)&&(dayCheck.equals("Saturday")&&(hourCheckInteger>13)&&(hourCheckInteger<15))){
+                    if(schedule.getSat2().equals(sport)&&(dayCheck.equals("Saturday"))&&(hourCheckInteger>=13)&&(hourCheckInteger<=15)){
                         flag = true;
                     }
-                    if(schedule.getSat3().equals(sport)&&(dayCheck.equals("Saturday")&&(hourCheckInteger>15)&&(hourCheckInteger<17))){
+                    if(schedule.getSat3().equals(sport)&&(dayCheck.equals("Saturday"))&&(hourCheckInteger>=15)&&(hourCheckInteger<=17)){
                         flag = true;
                     }
-                    if(schedule.getSun1().equals(sport)&&(dayCheck.equals("Sunday")&&(hourCheckInteger>10)&&(hourCheckInteger<12))){
+                    if(schedule.getSun1().equals(sport)&&(dayCheck.equals("Sunday"))&&(hourCheckInteger>=10)&&(hourCheckInteger<=12)){
                         flag = true;
                     }
-                    if(schedule.getSun2().equals(sport)&&(dayCheck.equals("Sunday")&&(hourCheckInteger>13)&&(hourCheckInteger<15))){
+                    if(schedule.getSun2().equals(sport)&&(dayCheck.equals("Sunday"))&&(hourCheckInteger>=13)&&(hourCheckInteger<=15)){
                         flag = true;
                     }
-                    if(schedule.getSun3().equals(sport)&&(dayCheck.equals("Sunday")&&(hourCheckInteger>15)&&(hourCheckInteger<17))){
+                    if(schedule.getSun3().equals(sport)&&(dayCheck.equals("Sunday"))&&(hourCheckInteger>=15)&&(hourCheckInteger<=17)){
                         flag = true;
                     }
+                //When there's matched attendance, then it will turn green
                 }if(flag){
                     attendanceConfirm.setBackground(Color.GREEN);
                     attendanceConfirm.setEnabled(true);
                 }
             }
+        //To ensure the attendance has taken
         }else if(ae.getSource()==attendanceConfirm){
             for(int i=0; i<Assignment.payment.size(); i++){
                 StudentPayment c = Assignment.payment.get(i);
@@ -167,6 +173,7 @@ public class Attendance extends JPanel implements ActionListener{
                 }
             }
             try{
+                //Write into the file when the attendance is confirmed
                 PrintWriter f = new PrintWriter("studentPayment.txt");
                 for(int i=0; i<Assignment.payment.size(); i++){
                     StudentPayment c = Assignment.payment.get(i);
@@ -184,6 +191,7 @@ public class Attendance extends JPanel implements ActionListener{
                 System.out.println("Error in stop!"); 
                 
             }
+            //The attendance button will turn red after the process has done
             attendanceConfirm.setBackground(Color.RED);
             attendanceConfirm.setEnabled(false);
         }

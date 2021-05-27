@@ -25,7 +25,7 @@ public class SubscriptionSport extends JPanel implements ActionListener{
     private String location, studentName,selectedSport, feedback, totalFee, studentAttendance, monthlyFee,rating, coachID;
     private int sportFees, coachFees;
     private JComboBox sportComB;
-    private boolean found=true, found2=false, found3 =false;
+    private boolean found=true;
     private static ArrayList <String> sportsType = new ArrayList <String>();
     public SubscriptionSport(String userName, String cenLocation){
         //Define default variable for studentAttendace, feedback, studentName and location
@@ -70,10 +70,13 @@ public class SubscriptionSport extends JPanel implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent ae) {
+        //Allow student to subscribe new sport
         if(ae.getSource()== subscribe){
            selectedSport = sportComB.getSelectedItem().toString();
+           //Read the subscription array using for loop
            for(int i = 0; i <Assignment.subscription.size(); i++){
                 Subscription_Constr sub = Assignment.subscription.get(i);
+                //Check whether the subscription name, sport and location are matched
                 if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionSport().equals(selectedSport)&&sub.getSubscriptionLocation().equals(location)){
                     found = false;
                     
@@ -83,21 +86,25 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                 }
             }
             if(found){
+                //Read the coachInfo array by using for loop
                 for(int i=0; i<Assignment.coachInfo.size(); i++){
                     Coach_Constr coach = Assignment.coachInfo.get(i);
+                    //Check whether coachCenter and Coach_Sp_N are the same as the user inputs
                     if (coach.getCoachCenter().equals(location)&&(coach.getCoach_Sp_N().equals(selectedSport))){
+                        //To calculate the coachFees
                         int coachSportFees = Integer.parseInt(coach.getCoachHRate());
-                        coachFees = coachSportFees*4;
                         coachFees = coachSportFees*4;
                         coachID = coach.getCoachId();
                     }
                 }
+                //Add a new object with the studentName and coachFees
                 LatestPayment a = new LatestPayment(studentName, coachFees);
                 JOptionPane.showMessageDialog(subscribe, a);
                 Subscription_Constr sub = new Subscription_Constr(studentName, location, coachID, selectedSport, Integer.toString(coachFees), rating, feedback);
                 Assignment.subscription.add(sub);
                 
                 try{
+                    //Write into the subscriptionSport file
                     PrintWriter f = new PrintWriter("subscriptionSport.txt");
                     for(int i=0; i<Assignment.subscription.size(); i++){
                         Subscription_Constr c = Assignment.subscription.get(i);
@@ -115,10 +122,12 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                 } catch(Exception ex){
                     System.out.println("Error!");
                 }
+                //Set to 0 to avoid the sport fees to calculate again when there's repeated 
                 sportFees = 0;
                 for(int i=0; i<Assignment.subscription.size(); i++){
                 Subscription_Constr c = Assignment.subscription.get(i);
                     if(c.getSubscriptionName().equals(studentName)&&c.getSubscriptionLocation().equals(location)){
+                        //To calculate the total fees
                         monthlyFee = c.getSubscriptionFee();
                         int coachSportFees = Integer.parseInt(monthlyFee);
                         sportFees = sportFees + coachSportFees;
@@ -129,12 +138,14 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                 Assignment.payment.add(studentPay);
                 for(int i=0; i<Assignment.payment.size(); i++){
                     StudentPayment c = Assignment.payment.get(i);
+                    //Find whether there are StudentName and StudentLocation is matched in the array
                     if(c.getStudentName().equals(studentName)&&c.getStudentLocation().equals(location)){
                         c.setStudentTotalPayment(totalFee);
                         c.setStudentBalance(totalFee);
                     }
                 }
                 try{
+                    //Write the payment array into the file
                     PrintWriter f = new PrintWriter("studentPayment.txt"); 
                     for(int i=0; i<Assignment.payment.size(); i++){
                         StudentPayment c = Assignment.payment.get(i);
@@ -154,21 +165,21 @@ public class SubscriptionSport extends JPanel implements ActionListener{
            }else{
                JOptionPane.showMessageDialog(subscribe, "Sport has subscribed"); 
            }
-                            
-                        
-                    
-                
-            
+                              
+        //To unsubscribe the sport
         }else if(ae.getSource() == unsubscribe){
             selectedSport = sportComB.getSelectedItem().toString();
             for (int i = 0; i<Assignment.subscription.size(); i++){
                 Subscription_Constr sub = Assignment.subscription.get(i);
+                //Check whether the SubscriptionName, SubscriptionSport and SubscriptionLocation are matched with the inputs
                 if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionSport().equals(selectedSport)&&sub.getSubscriptionLocation().equals(location)){
+                    //Remove the subscription from the array
                     Assignment.subscription.remove(i);
                 }
             }
             
             try{
+                //Write the new array into the subscriptionSport file
                 PrintWriter f = new PrintWriter("subscriptionSport.txt");
                 for (int i = 0; i<Assignment.subscription.size(); i++){
                     Subscription_Constr sub = Assignment.subscription.get(i);

@@ -17,7 +17,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+//Allow visitor to view sports and minimum of the schedule
 public class Visitor implements ActionListener{
+    //Variable Declaration
     private JButton register, exit, viewB;
     private JPanel view, Footer; 
     private JLabel welcomeL, background;
@@ -28,6 +30,7 @@ public class Visitor implements ActionListener{
     private String selectedLocation;
     private boolean flag = true;
     public void Visitor(String cenLocation){
+        //Get the location from the enum
         frame.CenLocation.setSelectedItem(Location.valueOf(cenLocation));
         //Create Image
         backgroundImage = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/background.png")).getImage().getScaledInstance(300,300, Image.SCALE_SMOOTH));
@@ -97,10 +100,13 @@ public class Visitor implements ActionListener{
 
     @Override
     public void actionPerformed (ActionEvent ae) {
+        //To view the sport schedule
         if(ae.getSource() == viewB){
             selectedLocation = frame.CenLocation.getSelectedItem().toString();
+            //Read the schedule info by using for loop
             for(int i = 0; i<Assignment.schedule.size(); i++){
                 Schedule_Constr schedule = Assignment.schedule.get(i);
+                //Check whether center is matched with the selectedLocation
                 if (schedule.getCenter().equals(selectedLocation)){
                     JOptionPane.showMessageDialog(welcomeL, "Monday: \n"+schedule.getMon1()+", "+schedule.getMon2()+", "+schedule.getMon3()+"\n\nTuesday: \n"+schedule.getTue1()+", "+schedule.getTue2()+", "+schedule.getTue3()+
                             "\n\nWednesday: \n"+schedule.getWed1()+", "+schedule.getWed2()+", "+schedule.getWed3()+"\n\nThursday: \n"+schedule.getThu1()+", "+schedule.getThu2()+", "+schedule.getThu3()+
@@ -115,36 +121,24 @@ public class Visitor implements ActionListener{
             if (flag){
                 JOptionPane.showMessageDialog(welcomeL, "No Schedule has been found");
             }
-//            String sportAvail = "";
-//            for(int i = 0; i<Assignment.sportInfo.size(); i++){
-//                Sport_Constr c = Assignment.sportInfo.get(i);
-//                System.out.println(c.getSportN());
-//                if (c.getCenter().equals(selectedLocation)&&!c.getSportN().equals("TERMINATED")){
-//                    sportAvail = sportAvail + c.getSportN()+"\t";
-//                }
-//            }
-//            JOptionPane.showMessageDialog(welcomeL, "Available Sport: "+sportAvail);
-//            if (flag){
-//                JOptionPane.showMessageDialog(welcomeL, "No available Sport in "+selectedLocation);
-//                flag = false;
-//            }
-            
-        
+        //It will ask user to register with their details
         }else if (ae.getSource() == register){
             frame.Body.removeAll();
             frame.dispose();
             Assignment.register.setVisible(true);
+        //Exit to the login system
         }else if(ae.getSource() == exit){
             frame.Body.removeAll();
             frame.dispose();
             Assignment.login.setVisible(true);
         }
     }
-
+    //Show the notification in the panel
     private void notiChange() {
         for(int i = 0; i<Assignment.noti.size();i++){
             VisitorAnnouncement va = Assignment.noti.get(i);
             if(frame.CenLocation.getSelectedItem().equals(Location.valueOf(va.getCenLocation()))){
+                //It will set the text of the label 
                 welcomeL.setText(va.getMessage());
                 break;
             }else{

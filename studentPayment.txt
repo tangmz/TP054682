@@ -10,7 +10,7 @@ BASKETBALL
 PetalingJaya
 1600
 1600
-8
+7
 
 tang
 BADMINTON

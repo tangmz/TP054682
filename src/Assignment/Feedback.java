@@ -17,8 +17,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
+//To give feedback and rating to the coach
 public class Feedback extends JPanel implements ActionListener{
+    //Declaration variable
     private static JLabel timeL, sportIdL, sportNameL, coachIdL, coachNameL, coachPhoneL, coachSportFeesL, coachStarL, coachJDateL, coachTDateL, feedbackL, ratingL;
     private static JTextField sportIdInText, sportNameInText, coachIdText, coachNameText, coachPhoneText, sportFeesText, coachJDateText, feedbackText;
     public static JPanel PanelTop, PanelTSelect, PanelTView, PanelTV1, PanelTV2, PanelTV3, PanelTV4,
@@ -44,9 +45,11 @@ public class Feedback extends JPanel implements ActionListener{
                 sportsType.add(sub.getSubscriptionSport());
             }
         }
+        //Create ComboBox to allow user to choose 
         feedbackComB = new JComboBox(rating);
         sportComB = new JComboBox(sportsType.toArray());
-//        SportMod.setModel(cbm);
+        
+        //Create label to show the textfield represent as what variable
         timeL = new JLabel(String.valueOf(dateTime.getFullDate()), SwingConstants.CENTER);
         timeL.setFont(new Font("Arial", Font.BOLD, 30));
         sportIdL = new JLabel("Sport ID:  ");
@@ -54,8 +57,6 @@ public class Feedback extends JPanel implements ActionListener{
         sportIdInText= new JTextField(15);
         sportIdInText.setText(sportId);
         sportNameInText = new JTextField(15);
-        
-        
         coachIdL = new JLabel("Coach ID:");
         coachNameL = new JLabel("Name:");
         coachPhoneL = new JLabel("Phone:");
@@ -65,6 +66,7 @@ public class Feedback extends JPanel implements ActionListener{
         feedbackL = new JLabel("Feedback:");
         ratingL = new JLabel("Rating: ");
         
+        //TextField to allow user to inser their input and display their details
         coachIdText = new JTextField(15);
         coachIdText.setText(coachId);
         coachIdText.setHorizontalAlignment(JTextField.CENTER);
@@ -165,7 +167,7 @@ public class Feedback extends JPanel implements ActionListener{
         PanelSouthButtons.setLayout(new FlowLayout());
         PanelSouthButtons.add(submitFeedback);
         PanelSouth.add(PanelSouthButtons, BorderLayout.SOUTH);
-        
+        //Add all the panel in the same panel
         add(PanelTop, BorderLayout.NORTH);
         add(PanelBody, BorderLayout.CENTER);
         add(PanelSouth, BorderLayout.SOUTH);
@@ -173,39 +175,54 @@ public class Feedback extends JPanel implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent ae) {
+        //To find the matched sport
         if (ae.getSource()==search){
             selectedSport = sportComB.getSelectedItem().toString();
+            //Read the coach Info by using for loop
             for(int i=0; i<Assignment.coachInfo.size(); i++){
                 Coach_Constr coach = Assignment.coachInfo.get(i);
+                //Read whether the coach center and the coach sport name are matched with location and selectedSport
                 if (coach.getCoachCenter().equals(location)&&coach.getCoach_Sp_N().equals(selectedSport)){
+                    //Display the data in the textfield
                     sportIdInText.setText(coach.getCoachSp_Id());
                     coachIdText.setText(coach.getCoachId());
                     coachNameText.setText(coach.getCoachN());
                     coachPhoneText.setText(coach.getCoachTel());
+                    coachJDateText.setText(coach.getJDate());
+                    //Calculate the coachSportFees by multiplying 4 because there are several student in the class
                     int coachSportFees = Integer.parseInt(coach.getCoachHRate());
                     int coachFees = coachSportFees*4;
+                    //The sport fees is displayed in the textfield 
                     sportFeesText.setText(Integer.toString(coachFees));
-                    coachJDateText.setText(coach.getJDate());
                 }
             }
+            //Read the subscription info by using for loop
             for(int i=0; i<Assignment.subscription.size(); i++){
                 Subscription_Constr sub = Assignment.subscription.get(i);
+                //Read whether there are similar word found in subscription name, subscription location and the subscription sport
                 if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionLocation().equals(location)&&sub.getSubscriptionSport().equals(selectedSport)){
+                    //Set the Rating in the feedbackComB JComboBox
                     feedbackComB.setSelectedItem(sub.getRating());
                 }
             }
+        //Provide feedback to the coach
         }else if (ae.getSource()==submitFeedback){
             if(!coachNameText.getText().equals("")){
+                //Read the subscription info by using for loop
                 for(int i =0; i<Assignment.subscription.size(); i++){
                     selectedSport = sportComB.getSelectedItem().toString();
                     Subscription_Constr sub = Assignment.subscription.get(i);
+                    //Check whether subscriptionName, subscriptionLocation and SubscriptionSport has similar word or not
                     if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionLocation().equals(location)&&sub.getSubscriptionSport().equals(selectedSport)){
+                        //If true, it will set the selectedRating 
                         selectedRating = feedbackComB.getSelectedItem().toString();
+                        //Replacing data into the ArrayList
                         sub.setRating(selectedRating); 
                         sub.setFeedback(feedbackText.getText());
                     } 
                 }
                 try{
+                    //It will write ArrayList data into the file
                     PrintWriter f = new PrintWriter("subscriptionSport.txt");
                     for(int i=0; i<Assignment.subscription.size(); i++){
                         Subscription_Constr sub = Assignment.subscription.get(i);
@@ -223,28 +240,38 @@ public class Feedback extends JPanel implements ActionListener{
                 } catch(Exception ex){
                     System.out.println("Error in stop!");
                 }
+                //Declaration of variable to ensure it will change to 0 when this section is repeated
                 counter = 0;
                 coachStar = 0;
+                //To find the subscription info by using for loop
                 for(int i =0; i<Assignment.subscription.size(); i++){
                     selectedSport = sportComB.getSelectedItem().toString();
                     Subscription_Constr sub = Assignment.subscription.get(i);
+                    //To find whether the subscription location and subscription sport is equal to the input
                     if(sub.getSubscriptionLocation().equals(location)&&sub.getSubscriptionSport().equals(selectedSport)){
+                        //Convert from string into integer
                         int star = Integer.parseInt(sub.getRating());
+                        //Calcualte total coach star by using for loop
                         coachStar = coachStar + star;
                         coachId = sub.getCoachID();
                         counter = counter +1;
                     }
                 }
+                //Calculate the average star 
                 float averageStar = coachStar/counter;
+                //averageRating is set to 2 decimal point
                 averageRating = String.format("%.2f", averageStar);
+                //Search the coach info using loop
                 for(int i =0; i<Assignment.coachInfo.size(); i++){
-                selectedSport = sportComB.getSelectedItem().toString();
                     Coach_Constr coach = Assignment.coachInfo.get(i);
+                    //Check whether the coach ID, location and selectedsport match with the inputs
                     if(coach.getCoachId().equals(coachId)&&coach.getCoachCenter().equals(location)&&coach.getCoach_Sp_N().equals(selectedSport)){
+                        //If true, it will set the averageRating into the coach Array List
                         coach.setCoachStar(averageRating);
                     }
                 }
                 try{
+                    //Write the coach data from the Array into the coach file
                     PrintWriter f = new PrintWriter("coach.txt");
                     for(int i=0; i<Assignment.coachInfo.size(); i++){
                         Coach_Constr c = Assignment.coachInfo.get(i);

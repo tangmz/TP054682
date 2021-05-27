@@ -14,9 +14,9 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
+//Edit the sport schedule for students
 class ScheduleFunc  extends JPanel{
-    
+    //Variable Declaration
     private JPanel Top, ScheduleBody, ScheduleTopRow, ScheduleBottomRow, ButtonPanel, MonP, TueP, WedP, ThuP, FriP, SatP, SunP;
     private JButton Confirm, Delete;
     private JComboBox Month, Mon1Sch, Mon2Sch, Mon3Sch, Tue1Sch, Tue2Sch, Tue3Sch, Wed1Sch, Wed2Sch, Wed3Sch, 
@@ -27,7 +27,8 @@ class ScheduleFunc  extends JPanel{
     private static ArrayList <String> Months = new ArrayList <String>();
     private static boolean Found=false;
     RegisteredAdmin Ad = new RegisteredAdmin();
-    ScheduleFunc(){
+    
+    public ScheduleFunc(){
         
         //++Filter Sports Name Found for Specific Center Only++//
         sportsAvailable.removeAll(sportsAvailable);
@@ -70,7 +71,7 @@ class ScheduleFunc  extends JPanel{
         Sun1L = new JLabel("10am ~ 12pm");
         Sun2L = new JLabel("1pm ~ 3pm");
         Sun3L = new JLabel("3pm ~ 5pm");
-        
+        //Display the available sports in the JComboBox 
         Month = new JComboBox(Months.toArray());
         Mon1Sch = new JComboBox(sportsAvailable.toArray());
         Mon2Sch = new JComboBox(sportsAvailable.toArray());
@@ -93,9 +94,10 @@ class ScheduleFunc  extends JPanel{
         Sun1Sch = new JComboBox(sportsAvailable.toArray());
         Sun2Sch = new JComboBox(sportsAvailable.toArray());
         Sun3Sch = new JComboBox(sportsAvailable.toArray());
-        
+        //Create buttons
         Confirm = new JButton("Confirm");
         Delete = new JButton("Delete");
+        //To add new schedule
         Confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -198,6 +200,7 @@ class ScheduleFunc  extends JPanel{
                 
             }
         });
+        //Delete the schedule
         Delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
