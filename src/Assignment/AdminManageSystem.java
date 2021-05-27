@@ -6,12 +6,14 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -33,7 +35,11 @@ public class AdminManageSystem extends JPanel{
     private static JCheckBox cB1;
     private static JPanel Header, TopSelP, CardContainer, ModOwnP, ModOwnP1, ModOwnP2, ModOwnP3, ModStuP, ModStuP1, ModStuP2, ModStuP3, Body, NotiBody, NotiButtonBody;
     private static final ArrayList <String> StudentUsername = new <String> ArrayList();
+    private static ImageIcon backgroundImage;
+    private static JLabel background;
     public AdminManageSystem(){
+        backgroundImage = new ImageIcon(new ImageIcon(this.getClass().getResource("/PicLibrary/background.png")).getImage().getScaledInstance(300, 250, Image.SCALE_SMOOTH));
+        background = new JLabel(backgroundImage);
         CardLayout cl = new CardLayout();
         StudentUsername.removeAll(StudentUsername);
         
@@ -245,9 +251,10 @@ public class AdminManageSystem extends JPanel{
         NotiButtonBody.add(notiClear);
         Body.add(NotiBody, BorderLayout.NORTH);
         Body.add(NotiButtonBody, BorderLayout.CENTER);
-        
+
         add(Header, BorderLayout.NORTH);
         add(Body, BorderLayout.CENTER);
+        add(background, BorderLayout.SOUTH);
     }
     
     private void SuperAdmin(){
