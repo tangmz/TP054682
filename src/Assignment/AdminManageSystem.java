@@ -160,7 +160,6 @@ public class AdminManageSystem extends JPanel{
                             ad.setAdPass(Txt1.getText());
                         }
                         Assignment.adminInfo.set(i, ad);
-                        System.out.println(Assignment.adminInfo.get(i));
                         JOptionPane.showMessageDialog(btn2, "\tAccount Updated!\n\n\tSuper Admin:    "+ad.getSuperRole());
                         break;
                     }
