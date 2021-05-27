@@ -1,8 +1,8 @@
 package Assignment;
-
+//Visitor Announcement
 public class VisitorAnnouncement {
     private String cenLocation, Message;
-
+    
     public VisitorAnnouncement(String cenLocation, String Message) {
         this.cenLocation = cenLocation;
         this.Message = Message;

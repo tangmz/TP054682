@@ -1,15 +1,15 @@
 package Assignment;
-
+//Sport Info
 public class Sport_Constr {
     private String SprtId, SportN, Center, CoachN;
-
+    //Constructor for sport info
     public Sport_Constr(String SprtId, String SportN, String Center, String CoachN) {
         this.SprtId = SprtId;
         this.SportN = SportN;
         this.Center = Center;
         this.CoachN = CoachN;
     }
-
+    //Getter and setter for sport info
     public String getSprtId() {
         return SprtId;
     }

@@ -21,7 +21,7 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-class ViewCoachFunc  extends JPanel{
+public class ViewCoachFunc  extends JPanel{
     
     private JPanel Header, HeaderBox, HeaderInp, HeaderBtm;
     private JButton SearchBtn;

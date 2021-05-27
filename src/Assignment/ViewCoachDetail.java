@@ -18,8 +18,9 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
+//To view the coach detail in the student panel
 public class ViewCoachDetail extends JPanel implements ActionListener{
+    //Variable Declaration
     private static JLabel timeL, sportIdL, sportNameL, coachIdL, coachNameL, coachPhoneL, coachSportFeesL, coachStarL, coachJDateL;
     private static JTextField sportIdInText, sportNameInText, coachIdText, coachNameText, coachPhoneText, sportFeesText, coachStarText, coachJDateText, coachTDateText;
     public static JPanel PanelTop, PanelTSelect, PanelTView, PanelTV1, PanelTV2, PanelTV3, PanelTV4,
@@ -32,10 +33,11 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
     private static ArrayList <String> sportsType = new ArrayList <String>();
     private String selectedSport;
     public ViewCoachDetail(String cenLocation){
-        //List for the location
-        
+        //Assign value to the variable
         location = cenLocation;
+        //To avoid duplicated sportsType
         sportsType.removeAll(sportsType);
+        //To read the sport from the sportInfo in various location
         for(int i = 0; i<Assignment.sportInfo.size(); i++){
             Sport_Constr sport = Assignment.sportInfo.get(i);
             if(sport.getCenter().equals(location)){
@@ -43,24 +45,23 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
                 
             }
         }
+        //Create a JComboBox for the sport types
         sportComB = new JComboBox(sportsType.toArray());
-//        SportMod.setModel(cbm);
+        //Create labels
         timeL = new JLabel(String.valueOf(dateTime.getFullDate()), SwingConstants.CENTER);
         timeL.setFont(new Font("Arial", Font.BOLD, 30));
         sportIdL = new JLabel("Sport ID:  ");
         sportNameL = new JLabel("Sport:       ");
-        sportIdInText= new JTextField(15);
-        sportIdInText.setText(sportId);
-        sportNameInText = new JTextField(15);
-        
-        
         coachIdL = new JLabel("Coach ID:");
         coachNameL = new JLabel("Name:");
         coachPhoneL = new JLabel("Phone:");
         coachSportFeesL = new JLabel("Sport Fees per month (8 classes):");
         coachStarL = new JLabel("Rating:");
         coachJDateL = new JLabel("Joined Date:");
-        
+        //Create textfield for user input
+        sportIdInText= new JTextField(15);
+        sportIdInText.setText(sportId);
+        sportNameInText = new JTextField(15);
         coachIdText = new JTextField(15);
         coachIdText.setText(coachId);
         coachIdText.setHorizontalAlignment(JTextField.CENTER);
@@ -77,8 +78,6 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
         coachTDateText = new JTextField(15);
         coachTDateText.setHorizontalAlignment(JTextField.CENTER);
 
-        
-        
         //++Set Component Disabled by Default++//
         sportIdInText.setEnabled(false);
         sportNameInText.setEnabled(false);
@@ -98,7 +97,6 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
         //++PanelDesign//++
         
         setLayout(new BorderLayout(0,20));
-        
         PanelTSelect = new JPanel();
         int TopWidth = (this.getWidth());
         GridLayout gL = new GridLayout(3,1);
@@ -158,7 +156,7 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
         
         PanelSouth = new JPanel();
         PanelSouth.setLayout(new BorderLayout(5,5));
-        
+        //Add all the panels into one
         add(PanelTop, BorderLayout.NORTH);
         add(PanelBody, BorderLayout.CENTER);
         add(PanelSouth, BorderLayout.SOUTH);
@@ -166,18 +164,22 @@ public class ViewCoachDetail extends JPanel implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent ae) {
+        //To search the details of the coach
         if (ae.getSource()==search){
             selectedSport = sportComB.getSelectedItem().toString();
+            //For loop is used to find the coachInfo
             for(int i=0; i<Assignment.coachInfo.size(); i++){
                 Coach_Constr coach = Assignment.coachInfo.get(i);
+                //Check whether the coachCenter is matched with the user location
                 if (coach.getCoachCenter().equals(location)){
-//                    for(int counter = 0; counter<sportID.size(); counter++){
+                    //Check whether the Coach_Sp_N is matched with the user input for the sport in JComboBox
                     if (coach.getCoach_Sp_N().equals(selectedSport)){
                         sportIdInText.setText(coach.getCoachSp_Id());
                         coachIdText.setText(coach.getCoachId());
                         coachNameText.setText(coach.getCoachN());
                         coachPhoneText.setText(coach.getCoachTel());
                         coachStarText.setText(coach.getCoachStar());
+                        //Convert string to integer to calculate the coach fees
                         int coachSportFees = Integer.parseInt(coach.getCoachHRate());
                         int coachFees = coachSportFees*4;
                         sportFeesText.setText(Integer.toString(coachFees));

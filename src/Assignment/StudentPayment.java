@@ -1,7 +1,8 @@
 package Assignment;
+//Encapsulation for the student payment
 public class StudentPayment {
     private String studentName, sportName, studentLocation, studentTotalPayment, studentBalance, studentAttendance;
-
+    //Constructor for the student payment
     public StudentPayment(String studentName, String sportName, String studentLocation, String studentTotalPayment, String studentBalance, String studentAttendance) {
         this.studentName = studentName;
         this.sportName = sportName;
@@ -10,7 +11,7 @@ public class StudentPayment {
         this.studentBalance = studentBalance;
         this.studentAttendance = studentAttendance;
     }
-
+    //Getter and setter for the student payment
     public String getStudentName() {
         return studentName;
     }

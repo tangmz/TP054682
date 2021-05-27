@@ -142,6 +142,7 @@ public class RegisteredStudent extends DateTime{
         displayBody.add(select8, "9");
         cl.show(displayBody, "1");
         frame.Body.add(displayBody, BorderLayout.CENTER);
+        //Logout from the system
         logout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -149,55 +150,63 @@ public class RegisteredStudent extends DateTime{
                 Assignment.login.setVisible(true);
             }
         });
+        //View the details of coach
         viewCoach.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 cl.show(displayBody, "2");
             }
         });
+        //View self record
         viewRecord.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 cl.show(displayBody, "3");
             }
         });
+        //View the registered Sport Schedule
         viewRegSport.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 cl.show(displayBody, "4");
             }
         });
-
+        //Modify self record
         modifyRecord.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 cl.show(displayBody, "5");
             }
         });
+        //Subscribe or unsubscribe sport
         subscription.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 cl.show(displayBody, "6");
             }
         });
+        //Provide feedback to the coach
         feedbackCoach.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 cl.show(displayBody, "7");
             }
         });
+        //Get the attendance when the times is matched with the schedule
         attendance.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 cl.show(displayBody, "8");
             }
         });
+        //View the payment detail and make payment
         payment.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 cl.show(displayBody, "9");
             }
         });
+        //To get the location
         frame.CenLocation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -219,7 +228,7 @@ public class RegisteredStudent extends DateTime{
             }
         });
     }
-
+    //Repaint the panel after certain function has implemented
     public static class studentRepaint {
 
         public studentRepaint() {

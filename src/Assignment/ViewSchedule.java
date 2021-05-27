@@ -13,8 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+//To allow user to view the registered sport schedule
 public class ViewSchedule extends JPanel implements ActionListener{
+    //Variable Declration
     private JPanel Top, ScheduleBody, ScheduleTopRow, ScheduleBottomRow, ButtonPanel, MonP, TueP, WedP, ThuP, FriP, SatP, SunP;
     private JButton search;
     private JComboBox selectMonth;
@@ -27,6 +28,7 @@ public class ViewSchedule extends JPanel implements ActionListener{
     private static ArrayList <String> sportType = new ArrayList <String>();
     private String location;
     RegisteredStudent dT = new RegisteredStudent();
+    //To view the registered sport schedule
     public ViewSchedule(String cenLocation, String userName){
         location = cenLocation;
         //++Filter Sports Name Found for Specific Center Only++//
@@ -231,6 +233,7 @@ public class ViewSchedule extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        //To search the registered sport schedule
         if(ae.getSource()==search){
             //setText to empty when user search a new month
             Mon1Sch.setText("");
@@ -254,10 +257,13 @@ public class ViewSchedule extends JPanel implements ActionListener{
             Sun1Sch.setText("");
             Sun2Sch.setText("");
             Sun3Sch.setText("");
+            //Find the sportType using for loop
             for(int counter = 0; counter< sportType.size(); counter++){
                 for(int i = 0; i<Assignment.schedule.size(); i++){
                     Schedule_Constr schedule = Assignment.schedule.get(i);
+                    //Check whether the Center and SchMonth are matched with the inputs
                     if(schedule.getCenter().equals(location)&&schedule.getSchMonth().equals(selectMonth.getSelectedItem().toString())){
+                        //Get the data for each sports
                         if(schedule.getMon1().equals(sportType.get(counter))){
                             Mon1Sch.setText(sportType.get(counter));
                         }
