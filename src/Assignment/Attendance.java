@@ -86,7 +86,7 @@ public class Attendance extends JPanel implements ActionListener{
                 Schedule_Constr schedule = Assignment.schedule.get(i);
                 //To find the matched location and current month
                 if(schedule.getCenter().equals(location)&&schedule.getSchMonth().equals(currentMonth)){
-                    if(schedule.getMon1().equals(sport)&&(dayCheck.equals("Monday"))&&(hourCheckInteger>10)&&(hourCheckInteger<12)){
+                    if(schedule.getMon1().equals(sport)&&(dayCheck.equals("Monday"))&&(hourCheckInteger>=10)&&(hourCheckInteger<=12)){
                         flag = true;
                     }
                     if(schedule.getMon2().equals(sport)&&(dayCheck.equals("Monday"))&&(hourCheckInteger>=13)&&(hourCheckInteger<=15)){

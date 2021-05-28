@@ -25,7 +25,7 @@ public class SubscriptionSport extends JPanel implements ActionListener{
     private String location, studentName,selectedSport, feedback, totalFee, studentAttendance, monthlyFee,rating, coachID;
     private int sportFees, coachFees;
     private JComboBox sportComB;
-    private boolean found=true;
+    private boolean found=false;
     private static ArrayList <String> sportsType = new ArrayList <String>();
     public SubscriptionSport(String userName, String cenLocation){
         //Define default variable for studentAttendace, feedback, studentName and location
@@ -74,15 +74,16 @@ public class SubscriptionSport extends JPanel implements ActionListener{
         if(ae.getSource()== subscribe){
            selectedSport = sportComB.getSelectedItem().toString();
            //Read the subscription array using for loop
-           for(int i = 0; i <Assignment.subscription.size(); i++){
+            found = true;
+            for(int i = 0; i <Assignment.subscription.size(); i++){
                 Subscription_Constr sub = Assignment.subscription.get(i);
                 //Check whether the subscription name, sport and location are matched
-                if(sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionSport().equals(selectedSport)&&sub.getSubscriptionLocation().equals(location)){
+                if(sub.getSubscriptionSport().equals(selectedSport)&&sub.getSubscriptionName().equals(studentName)&&sub.getSubscriptionLocation().equals(location)){
                     found = false;
+                    break;
                     
-                }else{
+                } else{
                     found = true;
-                    
                 }
             }
             if(found){
@@ -162,9 +163,10 @@ public class SubscriptionSport extends JPanel implements ActionListener{
                 } catch(Exception ex){
                     System.out.println("Error in stop!");
                 }
-           }else{
+            }else{
                JOptionPane.showMessageDialog(subscribe, "Sport has subscribed"); 
-           }
+            }
+            studentRepaint paint = new studentRepaint();
                               
         //To unsubscribe the sport
         }else if(ae.getSource() == unsubscribe){
@@ -198,7 +200,7 @@ public class SubscriptionSport extends JPanel implements ActionListener{
             } catch(Exception ex){
                 System.out.println("Error!"); 
             }  
+            studentRepaint paint = new studentRepaint();
         }
-        studentRepaint paint = new studentRepaint();
     }
 }
