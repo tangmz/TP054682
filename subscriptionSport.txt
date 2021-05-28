@@ -11,7 +11,15 @@ PetalingJaya
 CN05
 BASKETBALL
 600
-4
+3
+
+
+Ng
+PetalingJaya
+CN07
+CRICKET
+480
+3
 
 
 tang
@@ -19,22 +27,22 @@ BukitJalil
 CN04
 BADMINTON
 800
-3
+0
 
 
-Ng
+a
 PetalingJaya
 CN01
 BADMINTON
 1000
-3
+2
 
 
-Ng
+a
 PetalingJaya
-CN06
-SWIMMING
-400
+CN05
+BASKETBALL
+600
 4
 
 
