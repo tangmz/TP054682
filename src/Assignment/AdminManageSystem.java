@@ -20,6 +20,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
@@ -86,9 +87,26 @@ public class AdminManageSystem extends JPanel{
         cB1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                String pinAdmin = JOptionPane.showInputDialog("Passphrase");
-                if (!pinAdmin.equals("rcsadmin")){
-                    JOptionPane.showMessageDialog(cB1, "Wrong Passphrase!");
+                JPasswordField pass = new JPasswordField();
+                int pinAdmin = JOptionPane.showConfirmDialog(null, pass ,"Passphrase", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                if (pinAdmin == JOptionPane.OK_OPTION){
+                    String password = new String(pass.getPassword());
+                    if (!password.equals("rcsadmin")){
+                        JOptionPane.showMessageDialog(cB1, "Wrong Passphrase!");
+                        if(cB1.isSelected()==false){
+                            cB1.setSelected(true);
+                        }else if(cB1.isSelected()==true){
+                            cB1.setSelected(false);
+                        }
+                    }
+                }else if (pinAdmin == JOptionPane.CANCEL_OPTION){
+                    if(cB1.isSelected()==false){
+                        cB1.setSelected(true);
+                    }else if(cB1.isSelected()==true){
+                        cB1.setSelected(false);
+                    }
+                }
+                else if (pinAdmin == JOptionPane.CLOSED_OPTION){
                     if(cB1.isSelected()==false){
                         cB1.setSelected(true);
                     }else if(cB1.isSelected()==true){
