@@ -191,7 +191,7 @@ public class Register extends JFrame implements ActionListener{
                         //If true
                         if (flag){
                             //Store all the data before writing to the file
-                            Admin adminReg = new Admin(adID, visitorName,visitorUserN,visitorPass,selectedLocation, visitorGender, visitorPhone, "no");
+                            Admin adminReg = new Admin(adID, visitorUserN, visitorPass, visitorName, selectedLocation, visitorGender, visitorPhone, "no");
                             Assignment.adminInfo.add(adminReg);
                             try{
                                 //To write the array into the adminLogin file
@@ -199,9 +199,9 @@ public class Register extends JFrame implements ActionListener{
                                 for(i=0; i<Assignment.adminInfo.size(); i++){
                                     Admin c = Assignment.adminInfo.get(i);
                                     f.println(c.getAdId());
-                                    f.println(c.getAdName());
                                     f.println(c.getAdUserN());
                                     f.println(c.getAdPass());
+                                    f.println(c.getAdName());
                                     f.println(c.getAdPlace());
                                     f.println(c.getAdGender());
                                     f.println(c.getAdPhone());
